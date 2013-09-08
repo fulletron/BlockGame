@@ -1,8 +1,8 @@
 #ifndef __GSVECTOR_H_
 #define __GSVECTOR_H_
 
-#include "typedefinitions.h"
-#include "chunkmanager.h"
+#include <typedefinitions.h>
+#include <chunkmanager.h>
 
 namespace GS {
 namespace Utilities {
