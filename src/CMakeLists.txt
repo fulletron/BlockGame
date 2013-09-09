@@ -35,13 +35,15 @@ endif()
 
 
 
-#3if(APPLE)
+if(APPLE)
 	# On Mac systems, we need to explicitly enable C++11 extensions and runtime
-#	set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
-#elseif(WIN32)
-#else()
-#	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x" )
-#endif()
+	#set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
+	set(CMAKE_CXX_FLAGS "-std=c++0x" )
+elseif(WIN32)
+else()
+	#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x" )
+	set(CMAKE_CXX_FLAGS "-std=c++0x" )
+endif()
 
 add_subdirectory( Main )
 add_subdirectory( External )

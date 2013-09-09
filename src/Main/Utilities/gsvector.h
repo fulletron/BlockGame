@@ -1,8 +1,8 @@
 #ifndef __GSVECTOR_H_
 #define __GSVECTOR_H_
 
-#include <typedefinitions.h>
-#include <chunkmanager.h>
+#include "typedefinitions.h"
+#include "chunkmanager.h"
 
 namespace GS {
 namespace Utilities {
@@ -38,7 +38,7 @@ public:
 
 	void shutdown()
 	{
-		memset(m_pDataArray, 0, sizeof(DATA_TYPE) * a_allSize);
+		memset(m_pDataArray, 0, sizeof(DATA_TYPE) * m_allSize);
 		m_pDataArray = 0;
 		m_curSize = 0;
 		m_allSize = 0;
@@ -69,7 +69,7 @@ public:
 	void remove( DATA_TYPE a_data )
 	{
 		int i = 0;
-		it = m_pDataArray[i];
+		DATA_TYPE it = m_pDataArray[i];
 
 		while( a_data !=  *it && i != m_curSize )
 			it = m_pDataArray[++i];

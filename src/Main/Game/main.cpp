@@ -1,8 +1,8 @@
 #include <iostream>
 //#include <conio.h>
 
-#include <boost\thread.hpp>
-#include <Utilities\utilities.h>
+//#include <boost/thread.hpp>
+#include <Utilities/utilities.h>
 
 int main()
 {

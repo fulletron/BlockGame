@@ -11,7 +11,7 @@ _INT32 ChunkManager::init( /* const _INT32 a_byteAlignment */ )
 
 	for( int i = 0; i < NUMCHUNKS; ++i )
 	{
-		m_pFramesInRelation[i] = new Frame( (void*) ((_UINT32)m_pChunk + (SIZECHUNK * i)) );
+		m_pFramesInRelation[i] = new Frame( (void*) ((_UINT64)m_pChunk + (SIZECHUNK * i)) );
 	}
 
 	return 0;
