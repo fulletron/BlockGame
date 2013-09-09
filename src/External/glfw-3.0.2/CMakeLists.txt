@@ -363,10 +363,8 @@ set(GLFW_LIBRARIES ${glfw_LIBRARIES} CACHE STRING "Dependencies of GLFW")
 if (BUILD_SHARED_LIBS AND UNIX)
     # On Unix-like systems, shared libraries can use the soname system.
     set(GLFW_LIB_NAME glfw)
-    SET_PROPERTY(TARGET glfw	PROPERTY FOLDER "External/glfw")
 else()
     set(GLFW_LIB_NAME glfw3)
-    SET_PROPERTY(TARGET glfw3	PROPERTY FOLDER "External/glfw3")
 endif()
 
 #--------------------------------------------------------------------
@@ -436,4 +434,3 @@ if (GLFW_INSTALL)
 endif()
 
 SET_PROPERTY(TARGET glfw	PROPERTY FOLDER "External/glfw")
-SET_PROPERTY(TARGET glfw3	PROPERTY FOLDER "External/glfw3")
