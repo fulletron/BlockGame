@@ -1,40 +1,54 @@
 #include "gshandler.h"
+#include <string.h>
+#include "gsassert.h"
 
 namespace GS {
 namespace Utilities {
 
-template<typename DATA_TYPE>
-GSHandler<DATA_TYPE>::GSHandler()
+GSHandler::GSHandler()
 {
-
+	m_size = 0;
+	m_pData = 0;
 }
 
-template<typename DATA_TYPE>
-_INT32 GSHandler<DATA_TYPE>::init( Frame * const a_pFrame, const _UINT32 a_size )
+_INT32 GSHandler::init( Frame * const a_pFrame, const _UINT32 a_size )
 {
+	m_size = a_size;
+	m_pData = a_pFrame->allocate( a_size, Frame::PLACE::TOP );
+	memset( m_pData, 0, m_size * sizeof(void *) );
+
 	return 0;
 }
 
-template<typename DATA_TYPE>
-void GSHandler<DATA_TYPE>::shutdown()
+void GSHandler::shutdown()
 {
+	m_pData = 0;
+	m_size = 0;
 }
 
-template<typename DATA_TYPE>
-_UINT32 GSHandler<DATA_TYPE>::insert( DATA_TYPE a_data )
+_UINT32 GSHandler::insert( void * a_pData )
 {
-	return 0;
+	int i = 0;
+	while( m_pData[i] != 0 && i < m_size )
+		++i;
+	
+	//assert(i < m_size);
+	if (i >= m_size)
+		return -1;
+
+	m_pData[i] = a_pData;
+		
+	return i;
 }
 
-template<typename DATA_TYPE>
-DATA_TYPE GSHandler<DATA_TYPE>::get( const _UINT32 a_key )
+void * GSHandler::get( const _UINT32 a_key )
 {
-	return 0;
+	return m_pData[a_key];
 }
 
-template<typename DATA_TYPE>
-void GSHandler<DATA_TYPE>::remove( const _UINT32 a_key )
+void GSHandler::remove( const _UINT32 a_key )
 {
+	m_pData[a_key] = 0;
 }
 
 };
