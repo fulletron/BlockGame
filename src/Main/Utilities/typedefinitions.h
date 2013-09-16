@@ -1,10 +1,12 @@
 #ifndef __TYPEDEFINITIONS_H_
 #define __TYPEDEFINITIONS_H_
 
+#ifndef FLT_MAX
 #define FLT_MAX							3.402823466e+38F        /* max value */
+#endif
 
-static const float INFINITY =			FLT_MAX;
-static const float EPSILON  =			0.001f;
+//static const float INFINITY = FLT_MAX;
+//static const float EPSILON  = 0.001f;
 
 typedef double							_DOUBLE;
 typedef long							_LONG;

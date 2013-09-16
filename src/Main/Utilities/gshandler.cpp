@@ -18,11 +18,11 @@ _INT32 GSHandler::init( Frame * const a_pFrame, const _UINT32 a_size )
 
 	_UINT64 * test = (_UINT64 *)m_pData;
 
-	printf("test == %d", *test);
+	//printf("test == %d", *test);
 
 	memset( m_pData, 0, m_size * sizeof(void *) );
 
-	printf("test == %d", *test);
+	//printf("test == %d", *test);
 
 	return 0;
 }

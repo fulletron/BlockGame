@@ -33,6 +33,7 @@ else()
 	set(STATIC_LIB_SUFFIX  .a)
 	set(DYANMIC_LIB_SUFFIX .so) 
 	add_definitions(-g)
+	add_definitions(-DGTEST_HAS_PTHREAD=0)
 endif()
 
 
