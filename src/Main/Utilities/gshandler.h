@@ -13,7 +13,7 @@ class GSHandler
 {
 public:
 private:
-	void * m_pData;
+	void ** m_pData;
 	_UINT32 m_size;
 
 public:

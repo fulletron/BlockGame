@@ -1,6 +1,8 @@
 cmake_minimum_required (VERSION 2.8)
 project( Main )
 
+add_definitions(-D_VARIADIC_MAX=10)
+
 SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 
 
@@ -47,3 +49,5 @@ endif()
 
 add_subdirectory( Main )
 add_subdirectory( External )
+
+add_subdirectory( Test )

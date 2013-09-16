@@ -82,6 +82,7 @@ public:
 	{
 		if( m_pDataArray )
 			return m_pDataArray[a_index];
+		return 0;
 	}
 
 };

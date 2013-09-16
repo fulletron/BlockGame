@@ -1,6 +1,6 @@
 #include "gshandler.h"
 #include <string.h>
-#include "gsassert.h"
+//#include "gsassert.h"
 
 namespace GS {
 namespace Utilities {
@@ -14,8 +14,15 @@ GSHandler::GSHandler()
 _INT32 GSHandler::init( Frame * const a_pFrame, const _UINT32 a_size )
 {
 	m_size = a_size;
-	m_pData = a_pFrame->allocate( a_size, Frame::PLACE::TOP );
+	m_pData = (void**)a_pFrame->allocate( a_size, Frame::PLACE::TOP );
+
+	_UINT64 * test = (_UINT64 *)m_pData;
+
+	printf("test == %d", *test);
+
 	memset( m_pData, 0, m_size * sizeof(void *) );
+
+	printf("test == %d", *test);
 
 	return 0;
 }
@@ -28,8 +35,9 @@ void GSHandler::shutdown()
 
 _UINT32 GSHandler::insert( void * a_pData )
 {
-	int i = 0;
-	while( m_pData[i] != 0 && i < m_size )
+	_UINT64 i = 0;
+
+	while( (m_pData[i]) != 0 && i < m_size )
 		++i;
 	
 	//assert(i < m_size);
