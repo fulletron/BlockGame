@@ -23,8 +23,14 @@ public:
 	BOT = 0,
 	TOP = 1,
 	} PLACE;
+
+#ifdef TEST_ENABLED
+public:
+#else
 private:
+#endif
 	void * m_pMemBlock;
+	_UINT32 m_size;
 
 	_INT64 m_name;
 	void * m_pCurrentLoc[2];
@@ -36,7 +42,7 @@ private:
 
 	void __zerofStops(const PLACE & a_place);
 public:
-	Frame(void * a_pAddress);
+	Frame(void * a_pAddress, const _UINT32 a_size );
 	~Frame(){};
 
 	_INT64 getName() const {return m_name;}

@@ -18,7 +18,7 @@ _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChun
 
 	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
-		m_pFramesInRelation[i] = new Frame( (void*) ((_UINT64)m_pChunk + (m_sizeOfChunk * i)) );
+		m_pFramesInRelation[i] = new Frame( (void*) ((_UINT64)m_pChunk + (m_sizeOfChunk * i)), m_sizeOfChunk );
 	}
 
 	return 0;

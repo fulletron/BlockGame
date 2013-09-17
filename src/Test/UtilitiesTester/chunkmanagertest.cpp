@@ -1,5 +1,12 @@
-#include <Utilities/utilities.h>
+#define TEST_ENABLED
 #include <gtest/gtest.h>
+#include <Utilities\utilities.h>
+
+#ifdef TEST_ENABLED
+int test;
+#else
+int net;
+#endif
 
 TEST(ChunkManager, create_frame_test)
 {
@@ -7,10 +14,12 @@ TEST(ChunkManager, create_frame_test)
 	_UINT32 ret = man.init(4,16);
 	man.m_pChunk;
 
+	printf("GOOD JOB TEAM\n");
+
 	EXPECT_EQ( ret, 0 );
 	
 	GS::Utilities::Frame * pFrame = man.createFrame( (_INT64)"frame001" );
-	EXPECT_EQ( (_UINT64)pFrame, (_UINT64)man.m_pChunk );
+	EXPECT_EQ( (_UINT64)pFrame->m_pMemBlock, (_UINT64)man.m_pChunk );
 };
 
 TEST(ChunkManager, create_nameclash_test )

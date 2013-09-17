@@ -5,9 +5,10 @@
 namespace GS {
 namespace Utilities {
 
-Frame::Frame(void * a_pAddress)
+Frame::Frame(void * a_pAddress, const _UINT32 a_size)
 {
 	m_pMemBlock = a_pAddress;
+	m_size = a_size;
 	shutdown();
 }
 
@@ -80,13 +81,13 @@ _INT32 Frame::init(const _INT64 a_name)
 {
 	m_name = a_name;
 	m_pCurrentLoc[PLACE::BOT] = m_pMemBlock;
-	m_pCurrentLoc[PLACE::TOP] = (void*) ((_UINT64)m_pMemBlock + SIZECHUNK);
+	m_pCurrentLoc[PLACE::TOP] = (void*) ((_UINT64)m_pMemBlock + m_size);
 	return 0;
 }
 
 void Frame::shutdown()
 {
-	memset(m_pMemBlock, 0, SIZECHUNK);
+	memset(m_pMemBlock, 0, m_size );
 	m_name = 0;
 
 	m_pCurrentLoc[PLACE::BOT] = 0;

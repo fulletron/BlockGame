@@ -14,7 +14,7 @@ target_link_libraries( Utilities
 include_directories( ${CMAKE_SOURCE_DIR} )
 include_directories( ${CMAKE_SOURCE_DIR}/External/include )
 
-add_library( UtilitiesTest SHARED ${UTILITIESSRC} )
+add_library( UtilitiesTest ${UTILITIESSRC} )
 target_link_libraries( UtilitiesTest
 		${BOOST_LIBRARIES}
 )
