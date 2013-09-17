@@ -3,15 +3,22 @@
 namespace GS {
 namespace Utilities {
 
-_INT32 ChunkManager::init( /* const _INT32 a_byteAlignment */ )
+_INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChunk )
 {
-	m_pChunk = malloc( NUMCHUNKS * SIZECHUNK );
+	m_numChunks = a_numChunks;
+	m_sizeOfChunk = a_sizeOfChunk;
+
+	m_pChunk = malloc( m_numChunks * m_sizeOfChunk );
 	if ( !m_pChunk )
 		return 1;
 
-	for( int i = 0; i < NUMCHUNKS; ++i )
+	//
+	m_pFramesInRelation = new Frame*[m_numChunks];
+	//
+
+	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
-		m_pFramesInRelation[i] = new Frame( (void*) ((_UINT64)m_pChunk + (SIZECHUNK * i)) );
+		m_pFramesInRelation[i] = new Frame( (void*) ((_UINT64)m_pChunk + (m_sizeOfChunk * i)) );
 	}
 
 	return 0;
@@ -20,7 +27,7 @@ _INT32 ChunkManager::init( /* const _INT32 a_byteAlignment */ )
 void ChunkManager::shutdown()
 {
 	free( m_pChunk );
-	for( int i = 0; i < NUMCHUNKS; ++i )
+	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
 		delete m_pFramesInRelation[i];
 	}
@@ -30,8 +37,8 @@ Frame * ChunkManager::createFrame(const _INT64 a_name)
 {
 	//TODO
 	// IN DEBUG, CHECK FOR NAME COLLISIONS
-	int i;
-	for( i = 0; i < NUMCHUNKS; ++i )
+	_UINT32 i;
+	for( i = 0; i < m_numChunks; ++i )
 	{
 		if ( !m_pFramesInRelation[i]->isValid() )
 		{
@@ -40,7 +47,7 @@ Frame * ChunkManager::createFrame(const _INT64 a_name)
 	}
 
 	// THIS SHOULD BE AN ASSERT
-	if( i == NUMCHUNKS )
+	if( i == m_numChunks )
 		return 0;
 
 	if( m_pFramesInRelation[i]->init( a_name ) )
@@ -51,7 +58,7 @@ Frame * ChunkManager::createFrame(const _INT64 a_name)
 
 Frame * ChunkManager::getFrame( const _INT64 a_name)
 {
-	for( int i = 0; i < NUMCHUNKS; ++i )
+	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
 		if ( m_pFramesInRelation[i]->getName() == a_name )
 		{
@@ -64,7 +71,7 @@ Frame * ChunkManager::getFrame( const _INT64 a_name)
 
 void ChunkManager::destroyFrame ( const _INT64 a_name)
 {
-	for( int i = 0; i < NUMCHUNKS; ++i )
+	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
 		if ( m_pFramesInRelation[i]->getName() == a_name )
 		{

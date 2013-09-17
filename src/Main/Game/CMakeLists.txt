@@ -27,7 +27,7 @@ target_link_libraries(Game
 )
 
 include_directories( ${CMAKE_SOURCE_DIR} )
-#include_directories( ${CMAKE_SOURCE_DIR}/External/include )
+include_directories( ${CMAKE_SOURCE_DIR}/External/include )
 
 ADD_CUSTOM_COMMAND(TARGET Game
           POST_BUILD

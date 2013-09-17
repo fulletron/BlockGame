@@ -13,3 +13,11 @@ target_link_libraries( Utilities
 
 include_directories( ${CMAKE_SOURCE_DIR} )
 include_directories( ${CMAKE_SOURCE_DIR}/External/include )
+
+add_library( UtilitiesTest SHARED ${UTILITIESSRC} )
+target_link_libraries( UtilitiesTest
+		${BOOST_LIBRARIES}
+)
+SET_TARGET_PROPERTIES(UtilitiesTest PROPERTIES
+        COMPILE_DEFINITIONS "TEST_ENABLED;") 
+SET_PROPERTY(TARGET UtilitiesTest PROPERTY FOLDER "Test/Mirror")

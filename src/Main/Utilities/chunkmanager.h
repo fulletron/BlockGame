@@ -14,28 +14,34 @@
 #include "typedefinitions.h"
 #include "frame.h"
 
-#define ALIGNUP( nAddress, nBytes ) ( (((_UINT32)nAddress) + (nBytes)-1) & (~((nBytes)-1)) )
-
 namespace GS {
 namespace Utilities {
 
 class ChunkManager
 {
 public:
+
+#ifdef TEST_ENABLED
+public:
+#else
 private:
+#endif
+	_UINT32		m_numChunks;
+	_UINT32		m_sizeOfChunk;
 	void * 		m_pChunk;
-	Frame * 	m_pFramesInRelation[NUMCHUNKS];
+	Frame ** 	m_pFramesInRelation;
 public:	
 	ChunkManager(){}
 	~ChunkManager(){}
 	
-	_INT32 init();
+	_INT32 init( const _UINT32 a_numChunks = NUMCHUNKS, const _UINT32 a_sizeOfChunk = SIZECHUNK);
 	void shutdown();
 
 	Frame * createFrame(const _INT64 a_name);
 	Frame * getFrame( const _INT64 a_name);
 	void destroyFrame ( const _INT64 a_name);
 	void destroyFrame ( Frame * const a_pFrame );
+
 };
 
 };
