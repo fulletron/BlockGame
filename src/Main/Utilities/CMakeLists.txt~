@@ -1,0 +1,40 @@
+cmake_minimum_required (VERSION 2.6)
+
+set(Boost_LIBRARY_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_54_0/stage/lib)
+set(Boost_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_54_0)
+set(BOOST_ROOT ${CMAKE_SOURCE_DIR}/External/boost_1_54_0)
+
+find_package(Boost)
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIR})
+
+SET_PROPERTY(TARGET ${Boost_LIBRARIES} PROPERTY FOLDER "External/Boost")
+
+file(GLOB UTILITIESSRC
+    "*.h"
+    "*.cpp"
+)
+
+add_library( Utilities ${UTILITIESSRC} )
+
+target_link_libraries( Utilities
+	${Boost_LIBRARIES}
+	#${Boost_FILESYSTEM_LIBRARY}
+	#${Boost_SYSTEM_LIBRARY}
+	#${Boost_REGEX_LIBRARY}
+)
+
+include_directories( ${CMAKE_SOURCE_DIR} )
+include_directories( ${CMAKE_SOURCE_DIR}/External/include )
+
+add_library( UtilitiesTest ${UTILITIESSRC} )
+target_link_libraries( UtilitiesTest
+	${Boost_LIBRARIES}
+	#${Boost_FILESYSTEM_LIBRARY}
+	#${Boost_SYSTEM_LIBRARY}
+	#${Boost_REGEX_LIBRARY}
+)
+
+SET_TARGET_PROPERTIES(UtilitiesTest PROPERTIES
+        COMPILE_DEFINITIONS "TEST_ENABLED;") 
+SET_PROPERTY(TARGET UtilitiesTest PROPERTY FOLDER "Test/Mirror")
