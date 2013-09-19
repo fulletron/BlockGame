@@ -7,6 +7,7 @@ _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChun
 {
 	m_numChunks = a_numChunks;
 	m_sizeOfChunk = a_sizeOfChunk;
+	m_usedChunks = 0;
 
 	m_pChunk = malloc( m_numChunks * m_sizeOfChunk );
 	if ( !m_pChunk )
@@ -18,7 +19,7 @@ _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChun
 
 	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
-		m_pFramesInRelation[i] = new Frame( (void*) ((_UINT64)m_pChunk + (m_sizeOfChunk * i)), m_sizeOfChunk );
+		m_pFramesInRelation[i] = new Frame( (m_pChunk + (m_sizeOfChunk * i)), m_sizeOfChunk );
 	}
 
 	return 0;
@@ -29,31 +30,21 @@ void ChunkManager::shutdown()
 	free( m_pChunk );
 	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
-		delete m_pFramesInRelation[i];
+		Frame * pFrame = m_pFramesInRelation[i];
+		if( pFrame->isValid() )
+			pFrame->shutdown();
+		delete pFrame;
 	}
 }
 
 Frame * ChunkManager::createFrame(const _INT64 a_name)
 {
-	//TODO
-	// IN DEBUG, CHECK FOR NAME COLLISIONS
-	_UINT32 i;
-	for( i = 0; i < m_numChunks; ++i )
-	{
-		if ( !m_pFramesInRelation[i]->isValid() )
-		{
-			break;
-		}
-	}
-
-	// THIS SHOULD BE AN ASSERT
-	if( i == m_numChunks )
+	if( m_pFramesInRelation[m_usedChunks]->init( a_name ) )
 		return 0;
 
-	if( m_pFramesInRelation[i]->init( a_name ) )
-		return 0;
+	m_usedChunks++;
 
-	return m_pFramesInRelation[i]; 
+	return m_pFramesInRelation[m_usedChunks - 1]; 
 }
 
 Frame * ChunkManager::getFrame( const _INT64 a_name)
@@ -75,14 +66,17 @@ void ChunkManager::destroyFrame ( const _INT64 a_name)
 	{
 		if ( m_pFramesInRelation[i]->getName() == a_name )
 		{
-			destroyFrame(m_pFramesInRelation[i]);
+			m_pFramesInRelation[i]->shutdown();
+			__compress(i);
 		}
 	}
 }
 
-void ChunkManager::destroyFrame ( Frame * const a_pFrame )
+void ChunkManager::__compress( const _UINT32 a_slot )
 {
-	a_pFrame->shutdown();
+	memcpy( m_pFramesInRelation[a_slot], m_pFramesInRelation[m_usedChunks], m_sizeOfChunk );
+	// update all things currently pointing to this
+	m_usedChunks--;
 }
 
 };

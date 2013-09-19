@@ -28,7 +28,10 @@ private:
 #endif
 	_UINT32		m_numChunks;
 	_UINT32		m_sizeOfChunk;
-	void * 		m_pChunk;
+
+	_UINT32		m_usedChunks;
+
+	_BYTE * 	m_pChunk;
 	Frame ** 	m_pFramesInRelation;
 public:	
 	ChunkManager(){}
