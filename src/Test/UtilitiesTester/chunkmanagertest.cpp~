@@ -1,6 +1,6 @@
 #define TEST_ENABLED
 #include <gtest/gtest.h>
-#include <Utilities/utilities.h>
+#include <Utilities\utilities.h>
 
 #ifdef TEST_ENABLED
 int test;

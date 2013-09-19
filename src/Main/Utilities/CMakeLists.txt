@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 
-SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "${CMAKE_SOURCE_DIR}/External/include/boost")
-SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${CMAKE_SOURCE_DIR}/External/boost_1_54_0/stage/lib")
+#SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "${CMAKE_SOURCE_DIR}/External/include/boost")
+#SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${CMAKE_SOURCE_DIR}/External/boost_1_54_0/stage/lib")
 
 FIND_PACKAGE(Boost)
 IF (Boost_FOUND)
