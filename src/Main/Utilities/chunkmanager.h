@@ -33,6 +33,8 @@ private:
 
 	_BYTE * 	m_pChunk;
 	Frame ** 	m_pFramesInRelation;
+
+	void __compress( const _UINT32 a_slot );
 public:	
 	ChunkManager(){}
 	~ChunkManager(){}

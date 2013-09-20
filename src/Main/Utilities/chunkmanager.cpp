@@ -9,7 +9,7 @@ _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChun
 	m_sizeOfChunk = a_sizeOfChunk;
 	m_usedChunks = 0;
 
-	m_pChunk = malloc( m_numChunks * m_sizeOfChunk );
+	m_pChunk = static_cast<_BYTE*>(malloc( m_numChunks * m_sizeOfChunk ));
 	if ( !m_pChunk )
 		return 1;
 
@@ -75,7 +75,7 @@ void ChunkManager::destroyFrame ( const _INT64 a_name)
 void ChunkManager::__compress( const _UINT32 a_slot )
 {
 	memcpy( m_pFramesInRelation[a_slot], m_pFramesInRelation[m_usedChunks], m_sizeOfChunk );
-	// update all things currently pointing to this
+	// TODO :: CALL THE GSHANDLER's adjust FUNCTION
 	m_usedChunks--;
 }
 

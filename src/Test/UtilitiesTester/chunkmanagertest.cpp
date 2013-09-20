@@ -69,12 +69,12 @@ TEST(ChunkManager, init)
 
 	_UINT64 handle[4];
 
-	handle[0] = g_handler.insert(a);
-	handle[1] = g_handler.insert(b);
-	handle[2] = g_handler.insert(c);
-	handle[3] = g_handler.insert(d);
+	//handle[0] = g_handler.insert(a);
+	//handle[1] = g_handler.insert(b);
+	//handle[2] = g_handler.insert(c);
+	//handle[3] = g_handler.insert(d);
 
-	t = *(char *)g_handler.get(handle[2]);
+	//t = *(char *)g_handler.get(handle[2]);
 
 	printf( "hello world! %c \n", t );
 
