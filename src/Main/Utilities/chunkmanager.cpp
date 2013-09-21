@@ -60,7 +60,7 @@ Frame * ChunkManager::getFrame( const _INT64 a_name)
 	return 0;
 }
 
-void ChunkManager::destroyFrame ( const _INT64 a_name)
+bool ChunkManager::destroyFrame ( const _INT64 a_name)
 {
 	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
@@ -68,14 +68,18 @@ void ChunkManager::destroyFrame ( const _INT64 a_name)
 		{
 			m_pFramesInRelation[i]->shutdown();
 			__compress(i);
+			return true;
 		}
 	}
+	return false;
 }
 
 void ChunkManager::__compress( const _UINT32 a_slot )
 {
+	_UINT32 adjust_amount = m_sizeOfChunk * (m_usedChunks - a_slot);
 	memcpy( m_pFramesInRelation[a_slot], m_pFramesInRelation[m_usedChunks], m_sizeOfChunk );
 	// TODO :: CALL THE GSHANDLER's adjust FUNCTION
+	// gshandler.adjust(adjust_amount);
 	m_usedChunks--;
 }
 

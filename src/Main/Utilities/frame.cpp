@@ -5,7 +5,7 @@
 namespace GS {
 namespace Utilities {
 
-Frame::Frame(void * a_pAddress, const _UINT32 a_size)
+Frame::Frame(_BYTE * a_pAddress, const _UINT32 a_size)
 {
 	m_pMemBlock = a_pAddress;
 	m_size = a_size;
@@ -40,11 +40,11 @@ bool Frame::freefStop(const PLACE & a_place)
 		
 		if( a_place == PLACE::BOT )
 		{
-			memset( m_pfStop[a_place][0], 0, (_UINT64)m_pCurrentLoc[a_place] - (_UINT64)m_pfStop[a_place][0] );
+			memset( m_pfStop[a_place][0], 0, m_pCurrentLoc[a_place] - m_pfStop[a_place][0] );
 		}
 		else
 		{
-			memset( m_pCurrentLoc[a_place], 0, (_UINT64)m_pfStop[a_place][0] - (_UINT64)m_pCurrentLoc[a_place] );
+			memset( m_pCurrentLoc[a_place], 0, m_pfStop[a_place][0] - m_pCurrentLoc[a_place] );
 		}
 
 		m_pCurrentLoc[a_place] = m_pfStop[a_place][0];
@@ -57,21 +57,21 @@ bool Frame::freefStop(const PLACE & a_place)
 	return false;
 }
 
-void * Frame::allocate( const _INT32 a_sizeInBytes, const PLACE & a_place )
+_BYTE * Frame::allocate( const _INT32 a_sizeInBytes, const PLACE & a_place )
 {
-	void * pMem = 0;
-	if( (_UINT64)m_pCurrentLoc[PLACE::BOT] + a_sizeInBytes > (_UINT64)m_pCurrentLoc[PLACE::TOP] )
+	_BYTE * pMem = 0;
+	if( m_pCurrentLoc[PLACE::BOT] + a_sizeInBytes > m_pCurrentLoc[PLACE::TOP] )
 		return 0;
 
 	if( a_place == PLACE::TOP )
 	{
-		m_pCurrentLoc[PLACE::TOP] = (void*)((_UINT64)m_pCurrentLoc[PLACE::TOP] - a_sizeInBytes);
+		m_pCurrentLoc[PLACE::TOP] = (m_pCurrentLoc[PLACE::TOP] - a_sizeInBytes);
 		pMem = m_pCurrentLoc[PLACE::TOP];	
 	}
 	else
 	{
 		pMem = m_pCurrentLoc[PLACE::BOT];
-		m_pCurrentLoc[PLACE::BOT] = (void*)((_UINT64)m_pCurrentLoc[PLACE::BOT] + a_sizeInBytes);
+		m_pCurrentLoc[PLACE::BOT] = (m_pCurrentLoc[PLACE::BOT] + a_sizeInBytes);
 	}
 
 	return pMem;
@@ -81,7 +81,7 @@ _INT32 Frame::init(const _INT64 a_name)
 {
 	m_name = a_name;
 	m_pCurrentLoc[PLACE::BOT] = m_pMemBlock;
-	m_pCurrentLoc[PLACE::TOP] = (void*) ((_UINT64)m_pMemBlock + m_size);
+	m_pCurrentLoc[PLACE::TOP] = m_pMemBlock + m_size;
 	return 0;
 }
 

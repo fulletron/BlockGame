@@ -44,8 +44,7 @@ public:
 
 	Frame * createFrame(const _INT64 a_name);
 	Frame * getFrame( const _INT64 a_name);
-	void destroyFrame ( const _INT64 a_name);
-	void destroyFrame ( Frame * const a_pFrame );
+	bool destroyFrame ( const _INT64 a_name);
 
 };
 

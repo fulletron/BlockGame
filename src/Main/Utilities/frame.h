@@ -29,20 +29,20 @@ public:
 #else
 private:
 #endif
-	void * m_pMemBlock;
+	_BYTE * m_pMemBlock;
 	_UINT32 m_size;
 
 	_INT64 m_name;
-	void * m_pCurrentLoc[2];
+	_BYTE * m_pCurrentLoc[2];
 
 	// actual stacks may be faster
 	// but i want to avoid memory
 	// allocation for now
-	void * m_pfStop[2][MAX_FSTOPS];
+	_BYTE * m_pfStop[2][MAX_FSTOPS];
 
 	void __zerofStops(const PLACE & a_place);
 public:
-	Frame(void * a_pAddress, const _UINT32 a_size );
+	Frame(_BYTE * a_pAddress, const _UINT32 a_size );
 	~Frame(){};
 
 	_INT64 getName() const {return m_name;}
@@ -52,7 +52,7 @@ public:
 
 	_INT32 init( const _INT64 a_name);
 	void shutdown();
-	void * allocate( const _INT32 a_sizeInBytes, const PLACE & a_place );
+	_BYTE * allocate( const _INT32 a_sizeInBytes, const PLACE & a_place );
 	bool isValid();
 };
 

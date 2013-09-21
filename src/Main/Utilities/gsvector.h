@@ -31,7 +31,7 @@ public:
 
 	_INT32 init( Frame * const a_pFrame, const _UINT32 a_allSize )
 	{
-		m_pDataArray = (DATA_TYPE *)a_pFrame->allocate( sizeof(DATA_TYPE) * a_allSize, Frame::PLACE::BOT );
+		m_pDataArray = reinterpret_cast<DATA_TYPE *>(a_pFrame->allocate( sizeof(DATA_TYPE) * a_allSize, Frame::PLACE::BOT ));
 		m_allSize = a_allSize;
 		return 0;
 	}
