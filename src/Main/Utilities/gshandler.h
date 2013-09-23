@@ -4,14 +4,18 @@
 #include "typedefinitions.h"
 #include "frame.h"
 #include "gsobject.h"
+#include "gsinvestor.h"
 
 namespace GS {
 namespace Utilities {
 
-class GSHandler 
+class GSHandler : public GSInvestor 
 {
+#ifdef TEST_ENABLED
 public:
-private:
+#else
+protected:
+#endif
 	_GSObjectPair * 	m_pData;
 	_UINT32 		m_numPairs;
 
@@ -26,7 +30,7 @@ public:
 	GSObject * get( const _UINT32 a_key );
 	void remove( const _UINT32 a_key );
 
-	bool adjust( const _INT64 a_frameName, const _UINT32 a_adjustment );
+	_UINT32 readjust( const _INT64 a_frameName, const _UINT64 a_adjustment );
 };
 
 };

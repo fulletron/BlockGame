@@ -57,14 +57,17 @@ void GSHandler::remove( const _UINT32 a_key )
 	m_pData[a_key].ownerFrameName = 0;
 }
 
-bool GSHandler::adjust( const _INT64 a_frameName, const _UINT32 a_adjustment )
+_UINT32 GSHandler::readjust( const _INT64 a_frameName, const _UINT64 a_adjustment )
 {
+	_UINT32 num_adjusted = 0;
 	for( _UINT32 i = 0; i < m_numPairs; ++i )
 		if( m_pData[i].ownerFrameName == a_frameName )
+		{
 			m_pData[i].pGSObject -= a_adjustment;
-	return true;
-
-	// TODO:: False Case
+			num_adjusted++;
+		}
+	
+	return num_adjusted;
 }
 
 };

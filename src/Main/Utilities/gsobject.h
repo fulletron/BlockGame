@@ -2,15 +2,15 @@
 #define __GSOBJECT_H_
 
 #include "typedefinitions.h"
+#include "gsvariant.h"
 
 namespace GS {
 namespace Utilities {
 
 class GSMsg
 {
-protected:
 public:
-	int test;
+	GSVariant m_msgs[NUM_VARIANTS_PER_MSG];
 };
 
 class GSObject

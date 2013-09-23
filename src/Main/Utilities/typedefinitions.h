@@ -46,8 +46,10 @@ typedef bool							_BOOL;
 #endif
 
 // This may be in the wrong spot
-static const _INT32 NUMCHUNKS = 24;
-static const _INT32 SIZECHUNK = 20480000;
+static const _UINT32 NUMCHUNKS = 24;
+static const _UINT32 SIZECHUNK = 20480000;
+static const _UINT32 NUM_VARIANTS_PER_MSG = 8;
+static const _UINT32 NUM_INVESTORS = 16;
 
 namespace GS {
 namespace Utilities {

@@ -13,19 +13,20 @@
 
 #include "typedefinitions.h"
 #include "frame.h"
+#include "gsinvestor.h"
+#include "gsvector.h"
 
 namespace GS {
 namespace Utilities {
 
 class ChunkManager
 {
-public:
-
 #ifdef TEST_ENABLED
 public:
 #else
-private:
+protected:
 #endif
+	GSVector<GSInvestor *> m_investors;
 	_UINT32		m_numChunks;
 	_UINT32		m_sizeOfChunk;
 
@@ -34,7 +35,7 @@ private:
 	_BYTE * 	m_pChunk;
 	Frame ** 	m_pFramesInRelation;
 
-	void __compress( const _UINT32 a_slot );
+	void __compress( const _INT64 a_name, const _UINT32 a_slot );
 public:	
 	ChunkManager(){}
 	~ChunkManager(){}
@@ -45,6 +46,8 @@ public:
 	Frame * createFrame(const _INT64 a_name);
 	Frame * getFrame( const _INT64 a_name);
 	bool destroyFrame ( const _INT64 a_name);
+
+	void addInvestor( GSInvestor * const a_pInvestor );
 
 };
 

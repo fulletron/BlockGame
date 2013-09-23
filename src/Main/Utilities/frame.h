@@ -27,7 +27,7 @@ public:
 #ifdef TEST_ENABLED
 public:
 #else
-private:
+protected:
 #endif
 	_BYTE * m_pMemBlock;
 	_UINT32 m_size;

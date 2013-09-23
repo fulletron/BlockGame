@@ -13,6 +13,8 @@ _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChun
 	if ( !m_pChunk )
 		return 1;
 
+	
+	m_investors.init( NUM_INVESTORS );
 	//
 	m_pFramesInRelation = new Frame*[m_numChunks];
 	//
@@ -67,19 +69,26 @@ bool ChunkManager::destroyFrame ( const _INT64 a_name)
 		if ( m_pFramesInRelation[i]->getName() == a_name )
 		{
 			m_pFramesInRelation[i]->shutdown();
-			__compress(i);
+			__compress(a_name, i);
 			return true;
 		}
 	}
 	return false;
 }
 
-void ChunkManager::__compress( const _UINT32 a_slot )
+void ChunkManager::addInvestor( GSInvestor * const a_pInvestor )
 {
-	_UINT32 adjust_amount = m_sizeOfChunk * (m_usedChunks - a_slot);
+	m_investors.add( a_pInvestor );
+}
+
+void ChunkManager::__compress( const _INT64 a_name, const _UINT32 a_slot )
+{
+	_UINT64 adjust_amount = m_sizeOfChunk * (m_usedChunks - a_slot);
 	memcpy( m_pFramesInRelation[a_slot], m_pFramesInRelation[m_usedChunks], m_sizeOfChunk );
-	// TODO :: CALL THE GSHANDLER's adjust FUNCTION
-	// gshandler.adjust(adjust_amount);
+
+	for( _UINT32 i = 0; i < m_investors.getSize(); ++i )
+		m_investors.get(i)->readjust(a_name, adjust_amount);
+
 	m_usedChunks--;
 }
 
