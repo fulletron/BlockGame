@@ -29,7 +29,6 @@ _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChun
 
 void ChunkManager::shutdown()
 {
-	free( m_pChunk );
 	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
 		Frame * pFrame = m_pFramesInRelation[i];
@@ -37,10 +36,19 @@ void ChunkManager::shutdown()
 			pFrame->shutdown();
 		delete pFrame;
 	}
+	free( m_pChunk );
 }
 
 Frame * ChunkManager::createFrame(const _INT64 a_name)
 {
+	for( _UINT32 i = 0; i < m_usedChunks; ++i )
+	{
+		if ( m_pFramesInRelation[i]->getName() == a_name )
+		{
+			return 0;
+		}
+	}
+
 	if( m_pFramesInRelation[m_usedChunks]->init( a_name ) )
 		return 0;
 

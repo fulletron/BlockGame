@@ -1,45 +1,67 @@
 #define TEST_ENABLED
 #include <gtest/gtest.h>
 #include <Utilities/utilities.h>
+#include "chunkmanagertest.h"
 
-#ifdef TEST_ENABLED
-int test;
-#else
-int net;
-#endif
-
-TEST(ChunkManager, create_frame_test)
+TEST(ChunkManager, init_test)
 {
 	GS::Utilities::ChunkManager man;
 	_UINT32 ret = man.init(4,16);
-	man.m_pChunk;
-
-	printf("GOOD JOB TEAM\n");
-
 	EXPECT_EQ( ret, 0 );
-	
-	GS::Utilities::Frame * pFrame = man.createFrame( (_INT64)"frame001" );
-	EXPECT_EQ( (_UINT64)pFrame->m_pMemBlock, (_UINT64)man.m_pChunk );
 };
 
-TEST(ChunkManager, create_nameclash_test )
+TEST(CV8, converter_test)
+{
+	EXPECT_EQ( CV8("frame001"), CV8("frame001") );
+}
+
+TEST_F(MockChunkManager, create_frame_test)
+{
+	GS::Utilities::Frame * pFrame = m_man.createFrame( CV8("frame001") );
+
+	EXPECT_EQ( pFrame->m_pMemBlock, m_man.m_pChunk );
+};
+
+TEST_F(MockChunkManager, create_nameclash_test )
+{
+	GS::Utilities::Frame * pFrame = m_man.createFrame( CV8("frame001") );
+
+	pFrame = m_man.createFrame( CV8("frame001") );
+
+	EXPECT_EQ( reinterpret_cast<GS::Utilities::Frame *>(0), pFrame );
+};
+
+TEST_F(MockChunkManager, get_frame_test)
+{
+	GS::Utilities::Frame * pFrame = m_man.createFrame( CV8("frame001") );
+
+	GS::Utilities::Frame * pFrameFromGet = m_man.getFrame( CV8("frame001") );
+
+	EXPECT_EQ( pFrame, pFrameFromGet );
+
+	pFrame = m_man.createFrame( CV8("frame001") );
+
+	m_man.createFrame( CV8("frame001") );
+
+	pFrameFromGet = m_man.getFrame( CV8("frame001") );
+
+	EXPECT_EQ( pFrame, pFrameFromGet );
+
+	m_man.destroyFrame( CV8("frame001") );
+
+	pFrameFromGet = m_man.getFrame( CV8("frame001") );
+
+	EXPECT_EQ( 0, pFrameFromGet );
+};
+
+TEST_F(MockChunkManager, destroy_frame_test)
 {
 
 };
 
-TEST(ChunkManager, get_frame_test)
-{
-
-};
-
-TEST(ChunkManager, destroy_frame_test)
-{
-
-};
 
 
-
-TEST(ChunkManager, init)
+TEST(ChunkManager, initbale)
 {
 	GS::Utilities::ChunkManager g_man;
 	g_man.init();

@@ -51,10 +51,10 @@ static const _UINT32 SIZECHUNK = 20480000;
 static const _UINT32 NUM_VARIANTS_PER_MSG = 8;
 static const _UINT32 NUM_INVESTORS = 16;
 
+_INT64 CV8(char * a_name);
+
 namespace GS {
 namespace Utilities {
-
-
 
 };
 };
