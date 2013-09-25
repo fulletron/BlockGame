@@ -9,7 +9,8 @@ _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChun
 	m_sizeOfChunk = a_sizeOfChunk;
 	m_usedChunks = 0;
 
-	m_pChunk = static_cast<_BYTE*>(malloc( m_numChunks * m_sizeOfChunk ));
+	m_pChunk = static_cast<_BYTE*>(malloc( m_numChunks * m_sizeOfChunk));
+	m_pChunk = INALIGNUP(m_pChunk, 8);
 	if ( !m_pChunk )
 		return 1;
 
@@ -77,7 +78,8 @@ bool ChunkManager::destroyFrame ( const _INT64 a_name)
 		if ( m_pFramesInRelation[i]->getName() == a_name )
 		{
 			m_pFramesInRelation[i]->shutdown();
-			__compress(a_name, i);
+			if( m_usedChunks > 1 )
+				__compress(a_name, i);
 			return true;
 		}
 	}
@@ -91,8 +93,11 @@ void ChunkManager::addInvestor( GSInvestor * const a_pInvestor )
 
 void ChunkManager::__compress( const _INT64 a_name, const _UINT32 a_slot )
 {
-	_UINT64 adjust_amount = m_sizeOfChunk * (m_usedChunks - a_slot);
-	memcpy( m_pFramesInRelation[a_slot], m_pFramesInRelation[m_usedChunks], m_sizeOfChunk );
+	_UINT64 adjust_amount = m_sizeOfChunk * ((m_usedChunks-1) - a_slot);
+	memcpy( m_pFramesInRelation[a_slot]->getMemBlock(), m_pFramesInRelation[m_usedChunks-1]->getMemBlock(), m_sizeOfChunk );
+	memcpy( m_pFramesInRelation[a_slot], m_pFramesInRelation[m_usedChunks-1], sizeof( Frame ) );
+
+	m_pFramesInRelation[m_usedChunks-1]->shutdown();
 
 	for( _UINT32 i = 0; i < m_investors.getSize(); ++i )
 		m_investors.get(i)->readjust(a_name, adjust_amount);

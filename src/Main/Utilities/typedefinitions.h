@@ -53,6 +53,27 @@ static const _UINT32 NUM_INVESTORS = 16;
 
 _INT64 CV8(char * a_name);
 
+#define ALIGNUP( nAddress, nBytes ) (reinterpret_cast<_BYTE*>(( (( reinterpret_cast<_UINT64>(nAddress) ) + \
+	(nBytes) - 1) & (~((nBytes) - 1)) )))
+
+inline _BYTE* INALIGNUP( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
+{
+	int nBytes = 0;
+
+	if(a_sizeInBytes >= 8)
+		nBytes = 8;
+	else if(a_sizeInBytes >= 4)
+		nBytes = 4;
+	else if(a_sizeInBytes >= 2)
+		nBytes = 2;
+	else
+		nBytes = 1;
+
+	return (reinterpret_cast<_BYTE*>(( (( \
+		reinterpret_cast<_UINT64>(a_pAddress) ) + \
+		(nBytes) - 1) & (~((nBytes) - 1)) )));
+}
+
 namespace GS {
 namespace Utilities {
 

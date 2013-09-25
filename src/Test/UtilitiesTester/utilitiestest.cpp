@@ -1,6 +1,9 @@
 #include <iostream>
 #include <gtest/gtest.h>
 
+#include "chunkmanagertest.h"
+#include "frametest.h"
+
 int main(int argc, char **argv)
 {
 	::testing::InitGoogleTest(&argc,argv);

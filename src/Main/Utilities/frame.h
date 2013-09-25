@@ -46,6 +46,7 @@ public:
 	~Frame(){};
 
 	_INT64 getName() const {return m_name;}
+	_BYTE* const getMemBlock() const { return m_pMemBlock; }
 
 	bool setfStop(const PLACE & a_place);
 	bool freefStop (const PLACE & a_place);
