@@ -44,7 +44,14 @@ public:
 
 TEST_F(MockFrameManager, setfStop_test)
 {
-	
+	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, GS::Utilities::Frame::PLACE::BOT ));
+	//*test = 'a';
+
+	bool set = m_pBaseFrame->setfStop(GS::Utilities::Frame::PLACE::BOT);
+
+	EXPECT_EQ( true, set ) << "Could not set the damn fStop.";
+
+	EXPECT_EQ( test + 1, reinterpret_cast<char *>(m_pBaseFrame->m_pfStop[GS::Utilities::Frame::PLACE::BOT][0]) ) << "fStop is in the wrong spot.";
 };
 
 TEST_F(MockFrameManager, freefStop_test)
@@ -72,7 +79,20 @@ TEST_F(MockFrameManager, allocate_test)
 
 TEST_F(MockFrameManager, allocate_test_2)
 {
-	
+	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, GS::Utilities::Frame::PLACE::TOP ));
+	//*test = 'a';
+
+	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) + m_man.m_sizeOfChunk - 1, test );
+
+	char * test2 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, GS::Utilities::Frame::PLACE::TOP ));
+	//*test = 'a';
+
+	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) - 2 + m_man.m_sizeOfChunk, test2 );
+
+	_UINT32 * test3 = reinterpret_cast<_UINT32 *>(m_pBaseFrame->allocate( 4, GS::Utilities::Frame::PLACE::TOP ));
+	//*test = 'a';
+
+	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) - 4 + m_man.m_sizeOfChunk, reinterpret_cast<_BYTE *>(test3) );
 };
 
 TEST_F(MockFrameManager, allocate_test_3)

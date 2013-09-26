@@ -11,7 +11,7 @@
 
 #include "typedefinitions.h"
 
-#define MAX_FSTOPS 4
+static const int MAX_FSTOPS = 4;
 
 namespace GS {
 namespace Utilities {

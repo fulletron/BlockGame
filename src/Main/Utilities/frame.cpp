@@ -14,7 +14,7 @@ Frame::Frame(_BYTE * a_pAddress, const _UINT32 a_size)
 
 void Frame::__zerofStops(const PLACE & a_place)
 {
-	for( int i = 0; i < MAX_FSTOPS - 1; ++i )
+	for( int i = 0; i < MAX_FSTOPS; ++i )
 		m_pfStop[a_place][i] = 0;
 }
 
