@@ -22,8 +22,8 @@ bool Frame::setfStop(const PLACE & a_place)
 {
 	if( !m_pfStop[a_place][MAX_FSTOPS - 1] )
 	{
-		for( int i = 0; i < MAX_FSTOPS - 1; ++i )
-			m_pfStop[a_place][i+1] = m_pfStop[a_place][i];
+		for( int i = MAX_FSTOPS-1; i > 0; --i )
+			m_pfStop[a_place][i] = m_pfStop[a_place][i-1];
 
 		m_pfStop[a_place][0] = m_pCurrentLoc[a_place];
 		return true;
@@ -36,8 +36,6 @@ bool Frame::freefStop(const PLACE & a_place)
 	// pop fStop
 	if( m_pfStop[a_place][0] )
 	{
-		PLACE::BOT;
-		
 		if( a_place == PLACE::BOT )
 		{
 			memset( m_pfStop[a_place][0], 0, m_pCurrentLoc[a_place] - m_pfStop[a_place][0] );

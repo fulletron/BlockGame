@@ -60,4 +60,7 @@ public:
 };
 };
 
+static const GS::Utilities::Frame::PLACE BOT = GS::Utilities::Frame::PLACE::BOT;
+static const GS::Utilities::Frame::PLACE TOP = GS::Utilities::Frame::PLACE::TOP;
+
 #endif

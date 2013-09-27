@@ -42,36 +42,131 @@ public:
 	}
 };
 
-TEST_F(MockFrameManager, setfStop_test)
+TEST_F(MockFrameManager, setfStop_test_BOT)
 {
-	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, GS::Utilities::Frame::PLACE::BOT ));
-	//*test = 'a';
+	char *test, *test2, *test3, *test4, *test5 = 0;
+	bool set = false;
 
-	bool set = m_pBaseFrame->setfStop(GS::Utilities::Frame::PLACE::BOT);
+	test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, BOT ));
+	set = m_pBaseFrame->setfStop(BOT);
+	EXPECT_EQ( true, set ) 
+		<< "Could not set the damn fStop.";
+	EXPECT_EQ( test + 1, reinterpret_cast<char *>(m_pBaseFrame->m_pfStop[BOT][0]) ) 
+		<< "fStop is in the wrong spot.";
+	set = false;
 
-	EXPECT_EQ( true, set ) << "Could not set the damn fStop.";
+	test2 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, BOT ));
+	set = m_pBaseFrame->setfStop(BOT);
+	EXPECT_EQ( true, set ) 
+		<< "Could not set the damn fStop 2.";
+	EXPECT_EQ( test2 + 1, reinterpret_cast<char *>(m_pBaseFrame->m_pfStop[BOT][0]) ) 
+		<< "fStop 2 is in the wrong spot.";
+	set = false;
 
-	EXPECT_EQ( test + 1, reinterpret_cast<char *>(m_pBaseFrame->m_pfStop[GS::Utilities::Frame::PLACE::BOT][0]) ) << "fStop is in the wrong spot.";
+	test3 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, BOT ));
+	set = m_pBaseFrame->setfStop(BOT);
+	EXPECT_EQ( true, set ) 
+		<< "Could not set the damn fStop 3.";
+	EXPECT_EQ( test3 + 1, reinterpret_cast<char *>(m_pBaseFrame->m_pfStop[BOT][0]) ) 
+		<< "fStop 3 is in the wrong spot.";
+	set = false;
+
+	test4 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, BOT ));
+	set = m_pBaseFrame->setfStop(BOT);
+	EXPECT_EQ( true, set ) << "Could not set the damn fStop 4.";
+	EXPECT_EQ( test4 + 1, reinterpret_cast<char *>(m_pBaseFrame->m_pfStop[BOT][0]) )
+	    << "fStop 4 is in the wrong spot.";	
+	//set = false;
+
+	set = true;
+	test5 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, BOT ));
+	set = m_pBaseFrame->setfStop(BOT);
+	EXPECT_EQ( false, set ) 
+		<< "Was incorrectly able to set the fStop.";
 };
 
-TEST_F(MockFrameManager, freefStop_test)
+TEST_F(MockFrameManager, setfStop_test_TOP)
 {
-	
+	char *test, *test2, *test3, *test4, *test5 = 0;
+	bool set = false;
+
+	test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
+	set = m_pBaseFrame->setfStop( TOP );
+	EXPECT_EQ( true, set ) 
+		<< "Could not set the damn fStop.";
+	EXPECT_EQ( test, reinterpret_cast<char *>(m_pBaseFrame->m_pfStop[TOP][0]) )
+		<< "fStop is in the wrong spot.";
+	set = false;
+
+	test2 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
+	set = m_pBaseFrame->setfStop(TOP);
+	EXPECT_EQ( true, set ) 
+		<< "Could not set the damn fStop 2.";
+	EXPECT_EQ( test2, reinterpret_cast<char *>(m_pBaseFrame->m_pfStop[TOP][0]) ) 
+		<< "fStop 2 is in the wrong spot.";
+	set = false;
+
+	test3 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
+	set = m_pBaseFrame->setfStop(TOP);
+	EXPECT_EQ( true, set ) 
+		<< "Could not set the damn fStop 3.";
+	EXPECT_EQ( test3, reinterpret_cast<char *>(m_pBaseFrame->m_pfStop[TOP][0]) ) 
+		<< "fStop 3 is in the wrong spot.";
+	set = false;
+
+	test4 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
+	set = m_pBaseFrame->setfStop(TOP);
+	EXPECT_EQ( true, set ) 
+		<< "Could not set the damn fStop 4.";
+	EXPECT_EQ( test4, reinterpret_cast<char *>(m_pBaseFrame->m_pfStop[TOP][0]) ) 
+		<< "fStop 4 is in the wrong spot.";	
+	//set = false;
+
+	set = true;
+	test5 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
+	set = m_pBaseFrame->setfStop(TOP);
+	EXPECT_EQ( false, set ) 
+		<< "Was incorrectly able to set the fStop.";
+};
+
+TEST_F(MockFrameManager, freefStop_test_BOT)
+{	
+	_CHAR *test[MAX_FSTOPS];
+	bool unset = false;
+
+	_BYTE* pStart[MAX_FSTOPS];
+
+	for(int i = 0; i < MAX_FSTOPS; ++i)
+	{
+		test[i] = reinterpret_cast<char *>(m_pBaseFrame->allocate(1, BOT));
+		pStart[i] = m_pBaseFrame->m_pCurrentLoc[BOT];
+		m_pBaseFrame->setfStop(BOT);
+	}
+
+	for(int i = 0; i < MAX_FSTOPS; ++i)
+	{
+		unset = m_pBaseFrame->freefStop(BOT);
+		EXPECT_EQ(true, unset) 
+			<< "Could not unset the damn fstop " << i+1 << ".";
+
+		EXPECT_EQ( pStart[MAX_FSTOPS-1-i], m_pBaseFrame->m_pCurrentLoc[BOT] )
+			<< "Current location " << i+1 << " was not set properly.";
+	}
 };
 
 TEST_F(MockFrameManager, allocate_test)
 {
-	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, GS::Utilities::Frame::PLACE::BOT ));
+	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, BOT ));
 	//*test = 'a';
 
 	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock), test );
 
-	char * test2 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, GS::Utilities::Frame::PLACE::BOT ));
+	char * test2 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, BOT ));
 	//*test = 'a';
 
 	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) + 1, test2 );
 
-	_UINT32 * test3 = reinterpret_cast<_UINT32 *>(m_pBaseFrame->allocate( 4, GS::Utilities::Frame::PLACE::BOT ));
+	_UINT32 * test3 = reinterpret_cast<_UINT32 *>(m_pBaseFrame->allocate( 4, BOT ));
 	//*test = 'a';
 
 	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + 4, reinterpret_cast<_BYTE *>(test3) );
@@ -79,17 +174,17 @@ TEST_F(MockFrameManager, allocate_test)
 
 TEST_F(MockFrameManager, allocate_test_2)
 {
-	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, GS::Utilities::Frame::PLACE::TOP ));
+	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
 	//*test = 'a';
 
 	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) + m_man.m_sizeOfChunk - 1, test );
 
-	char * test2 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, GS::Utilities::Frame::PLACE::TOP ));
+	char * test2 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
 	//*test = 'a';
 
 	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) - 2 + m_man.m_sizeOfChunk, test2 );
 
-	_UINT32 * test3 = reinterpret_cast<_UINT32 *>(m_pBaseFrame->allocate( 4, GS::Utilities::Frame::PLACE::TOP ));
+	_UINT32 * test3 = reinterpret_cast<_UINT32 *>(m_pBaseFrame->allocate( 4, TOP ));
 	//*test = 'a';
 
 	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) - 4 + m_man.m_sizeOfChunk, reinterpret_cast<_BYTE *>(test3) );
