@@ -58,17 +58,21 @@ bool Frame::freefStop(const PLACE & a_place)
 _BYTE * Frame::allocate( const _INT32 a_sizeInBytes, const PLACE & a_place )
 {
 	_BYTE * pMem = 0;
-	if( m_pCurrentLoc[PLACE::BOT] + a_sizeInBytes > m_pCurrentLoc[PLACE::TOP] )
-		return 0;
 	
 	if( a_place == PLACE::TOP )
 	{
+		if( INALIGNDOWN(m_pCurrentLoc[PLACE::TOP], a_sizeInBytes) - a_sizeInBytes <= m_pCurrentLoc[PLACE::BOT])
+			return 0;
+
 		m_pCurrentLoc[PLACE::TOP] = (m_pCurrentLoc[PLACE::TOP] - a_sizeInBytes);
-		m_pCurrentLoc[PLACE::TOP] = INALIGNUP(m_pCurrentLoc[PLACE::TOP], a_sizeInBytes);
+		m_pCurrentLoc[PLACE::TOP] = INALIGNDOWN(m_pCurrentLoc[PLACE::TOP], a_sizeInBytes);
 		pMem = m_pCurrentLoc[PLACE::TOP];	
 	}
 	else
 	{
+		if( INALIGNUP(m_pCurrentLoc[PLACE::BOT], a_sizeInBytes) + a_sizeInBytes >= m_pCurrentLoc[PLACE::TOP])
+			return 0;
+
 		pMem = m_pCurrentLoc[PLACE::BOT];
 		pMem = INALIGNUP(m_pCurrentLoc[PLACE::BOT], a_sizeInBytes);
 		m_pCurrentLoc[PLACE::BOT] = (m_pCurrentLoc[PLACE::BOT] + a_sizeInBytes);
