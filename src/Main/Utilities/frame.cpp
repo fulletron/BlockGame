@@ -59,23 +59,26 @@ _BYTE * Frame::allocate( const _INT32 a_sizeInBytes, const PLACE & a_place )
 {
 	_BYTE * pMem = 0;
 	
-	if( a_place == PLACE::TOP )
+	if( a_place == TOP )
 	{
-		if( INALIGNDOWN(m_pCurrentLoc[PLACE::TOP], a_sizeInBytes) - a_sizeInBytes <= m_pCurrentLoc[PLACE::BOT])
+		_BYTE * pUnProspectiveLoc = m_pCurrentLoc[TOP] - a_sizeInBytes;
+		_BYTE * pProspectiveLoc = INALIGNDOWN(pUnProspectiveLoc, a_sizeInBytes);
+
+		if( pProspectiveLoc < m_pCurrentLoc[BOT] )
 			return 0;
 
-		m_pCurrentLoc[PLACE::TOP] = (m_pCurrentLoc[PLACE::TOP] - a_sizeInBytes);
-		m_pCurrentLoc[PLACE::TOP] = INALIGNDOWN(m_pCurrentLoc[PLACE::TOP], a_sizeInBytes);
-		pMem = m_pCurrentLoc[PLACE::TOP];	
+		m_pCurrentLoc[TOP] = pMem = pProspectiveLoc;	
 	}
 	else
 	{
-		if( INALIGNUP(m_pCurrentLoc[PLACE::BOT], a_sizeInBytes) + a_sizeInBytes >= m_pCurrentLoc[PLACE::TOP])
+		_BYTE * pUnProspectiveLoc = m_pCurrentLoc[BOT];
+		_BYTE * pProspectiveLoc = INALIGNUP(pUnProspectiveLoc, a_sizeInBytes);
+
+		if( pProspectiveLoc  + a_sizeInBytes > m_pCurrentLoc[TOP] )
 			return 0;
 
-		pMem = m_pCurrentLoc[PLACE::BOT];
-		pMem = INALIGNUP(m_pCurrentLoc[PLACE::BOT], a_sizeInBytes);
-		m_pCurrentLoc[PLACE::BOT] = (m_pCurrentLoc[PLACE::BOT] + a_sizeInBytes);
+		pMem = pProspectiveLoc;
+		m_pCurrentLoc[BOT] = pMem + a_sizeInBytes;
 	}
 	 
 	return pMem;
@@ -84,8 +87,8 @@ _BYTE * Frame::allocate( const _INT32 a_sizeInBytes, const PLACE & a_place )
 _INT32 Frame::init(const _INT64 a_name)
 {
 	m_name = a_name;
-	m_pCurrentLoc[PLACE::BOT] = m_pMemBlock;
-	m_pCurrentLoc[PLACE::TOP] = m_pMemBlock + m_size;
+	m_pCurrentLoc[BOT] = m_pMemBlock;
+	m_pCurrentLoc[TOP] = m_pMemBlock + m_size;
 	return 0;
 }
 
@@ -94,11 +97,11 @@ void Frame::shutdown()
 	memset(m_pMemBlock, 0, m_size );
 	m_name = 0;
 
-	m_pCurrentLoc[PLACE::BOT] = 0;
-	m_pCurrentLoc[PLACE::TOP] = 0; 
+	m_pCurrentLoc[BOT] = 0;
+	m_pCurrentLoc[TOP] = 0; 
 
-	__zerofStops(PLACE::BOT);
-	__zerofStops(PLACE::TOP);
+	__zerofStops(BOT);
+	__zerofStops(TOP);
 	// it would be faster to memset,
 	// for now do this to excersize
 	// functions

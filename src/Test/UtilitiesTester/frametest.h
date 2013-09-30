@@ -172,11 +172,11 @@ TEST_F(MockFrameManager, allocate_test_TOP_basic)
 	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
 	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) + m_man.m_sizeOfChunk - 1, test );
 
-	char * test2 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
-	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) - 2 + m_man.m_sizeOfChunk, test2 );
+	_BYTE * test2 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 2, TOP ));
+	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + m_man.m_sizeOfChunk - 4, test2 );
 
-	_UINT32 * test3 = reinterpret_cast<_UINT32 *>(m_pBaseFrame->allocate( 4, TOP ));
-	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) - 4 + m_man.m_sizeOfChunk, reinterpret_cast<_BYTE *>(test3) );
+	_BYTE * test3 = reinterpret_cast<_BYTE * >(m_pBaseFrame->allocate( 4, TOP ));
+	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + m_man.m_sizeOfChunk - 8, reinterpret_cast<_BYTE * >(test3) );
 };
 
 TEST_F(MockFrameManager, allocate_test_BOT_overflow)
@@ -184,35 +184,35 @@ TEST_F(MockFrameManager, allocate_test_BOT_overflow)
 	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, BOT ));
 	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock), test );
 
-	char * test2 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 2, BOT ));
-	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) + 2, test2 );
+	_BYTE * test2 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 2, BOT ));
+	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + 2, test2 );
 
-	_UINT32 * test3 = reinterpret_cast<_UINT32 *>(m_pBaseFrame->allocate( 4, BOT ));
+	_BYTE * test3 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 4, BOT ));
 	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + 4, reinterpret_cast<_BYTE *>(test3) );
 
-	_UINT64 * test4 = reinterpret_cast<_UINT64 *>(m_pBaseFrame->allocate( 8, BOT ));
+	_BYTE * test4 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 8, BOT ));
 	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + 8, reinterpret_cast<_BYTE *>(test4) );
 
-	char * test8 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, BOT ));
+	_BYTE * test8 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 1, BOT ));
 	EXPECT_EQ( 0, reinterpret_cast<_BYTE *>(test8) );
 };
 
 TEST_F(MockFrameManager, allocate_test_TOP_overflow)
 {
-	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
-	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) + m_pBaseFrame->m_size - 1, test );
+	_BYTE * test = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 1, TOP ));
+	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + m_pBaseFrame->m_size - 1, test );
 
-	char * test2 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 2, TOP ));
-	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) + m_pBaseFrame->m_size - 4, test2 );
+	_BYTE * test2 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 2, TOP ));
+	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + m_pBaseFrame->m_size - 4, test2 );
 
-	_UINT32 * test3 = reinterpret_cast<_UINT32 *>(m_pBaseFrame->allocate( 4, TOP ));
+	_BYTE * test3 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 4, TOP ));
 	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + m_pBaseFrame->m_size - 8, reinterpret_cast<_BYTE *>(test3) );
 
-	_UINT64 * test4 = reinterpret_cast<_UINT64 *>(m_pBaseFrame->allocate( 8, TOP ));
+	_BYTE * test4 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 8, TOP ));
 	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + m_pBaseFrame->m_size - 16, reinterpret_cast<_BYTE *>(test4) );
 
-	//char * test8 = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
-	//EXPECT_EQ( 0, reinterpret_cast<_BYTE *>(test8) );
+	_BYTE * test8 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 1, TOP ));
+	EXPECT_EQ( 0, reinterpret_cast<_BYTE *>(test8) );
 };
 
 TEST_F(MockFrameManager, allocate_test_5)

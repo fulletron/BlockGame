@@ -53,7 +53,7 @@ static const _UINT32 NUM_INVESTORS = 16;
 
 _INT64 CV8(char * a_name);
 
-#define ALIGNUP( nAddress, nBytes ) (reinterpret_cast<_BYTE*>(( (( reinterpret_cast<_UINT64>(nAddress) ) + \
+//#define ALIGNUP( nAddress, nBytes ) (reinterpret_cast<_BYTE*>(( (( reinterpret_cast<_UINT64>(nAddress) ) + \
 	(nBytes) - 1) & (~((nBytes) - 1)) )))
 
 inline _BYTE* INALIGNUP( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
@@ -69,13 +69,10 @@ inline _BYTE* INALIGNUP( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
 	else
 		nBytes = 1;
 
-	_UINT64 test = ((reinterpret_cast<_UINT64>(a_pAddress) ) + (nBytes) - 1);
-	_UINT64 test2 = test & (~((nBytes) - 1));
-	_BYTE* test3 = reinterpret_cast<_BYTE*>(test2);
+	_UINT64 address = reinterpret_cast<_UINT64>(a_pAddress);
+	_UINT64 remainder = address % nBytes;
 
-	return (reinterpret_cast<_BYTE*>(( (( \
-		reinterpret_cast<_UINT64>(a_pAddress) ) + \
-		(nBytes) - 1) & (~((nBytes) - 1)) )));
+	return reinterpret_cast<_BYTE *>( address + remainder );
 }
 
 inline _BYTE* INALIGNDOWN( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
@@ -91,17 +88,10 @@ inline _BYTE* INALIGNDOWN( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
 	else
 		nBytes = 1;
 
-	_UINT64 test0 = reinterpret_cast<_UINT64>(a_pAddress);
-	_UINT64 test = ((reinterpret_cast<_UINT64>(a_pAddress) ) + 1 - (nBytes) );
-	_UINT64 test2 = test & (~( (nBytes) - 1 ));
-	_BYTE* test3 = reinterpret_cast<_BYTE*>(test2);
+	_UINT64 address = reinterpret_cast<_UINT64>(a_pAddress);
+	_UINT64 remainder = address % nBytes;
 
-	return test3;
-	/*
-	return reinterpret_cast<_BYTE*>( (( \
-		reinterpret_cast<_UINT64>(a_pAddress) ) + \
-		(nBytes) - 1) & (~((nBytes) - 1)) );
-		*/
+	return reinterpret_cast<_BYTE *>( address - remainder );
 }
 
 namespace GS {
