@@ -9,7 +9,7 @@ namespace Utilities {
 class GSInvestor
 {
 public:
-	virtual _UINT32 readjust( const _INT64 a_frameName, const _UINT64 a_adjustment ) = 0;
+	virtual _UINT32 readjust( const _INT64 a_frameName, const _INT64 a_adjustment ) = 0;
 };
 
 };

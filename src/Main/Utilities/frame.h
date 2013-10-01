@@ -48,6 +48,7 @@ public:
 	_INT64 getName() const {return m_name;}
 	_BYTE* const getMemBlock() const { return m_pMemBlock; }
 
+	void offsetfStops(const _INT64 a_offset);
 	bool setfStop(const PLACE & a_place);
 	bool freefStop (const PLACE & a_place);
 

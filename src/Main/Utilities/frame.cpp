@@ -18,6 +18,13 @@ void Frame::__zerofStops(const PLACE & a_place)
 		m_pfStop[a_place][i] = 0;
 }
 
+void Frame::offsetfStops(const _INT64 a_offset)
+{
+	for( int i = 0; i < 2; ++i )
+		for( int j = 0; j < MAX_FSTOPS; ++j )
+			m_pfStop[i][j] += a_offset;
+}
+
 bool Frame::setfStop(const PLACE & a_place)
 {
 	if( !m_pfStop[a_place][MAX_FSTOPS - 1] )

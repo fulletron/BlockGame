@@ -30,7 +30,7 @@ public:
 	GSObject * get( const _UINT32 a_key );
 	void remove( const _UINT32 a_key );
 
-	_UINT32 readjust( const _INT64 a_frameName, const _UINT64 a_adjustment );
+	_UINT32 readjust( const _INT64 a_frameName, const _INT64 a_adjustment );
 };
 
 };
