@@ -93,16 +93,16 @@ void ChunkManager::addInvestor( GSInvestor * const a_pInvestor )
 
 void ChunkManager::__compress( const _INT64 a_name, const _UINT32 a_slot )
 {
-	_INT64 adjust_amount = m_sizeOfChunk * ((m_usedChunks-1) - a_slot);
+	_INT64 adjust_amount_left = m_sizeOfChunk * ((m_usedChunks-1) - a_slot);
 	memcpy( m_pFramesInRelation[a_slot]->getMemBlock(), m_pFramesInRelation[m_usedChunks-1]->getMemBlock(), m_sizeOfChunk );
 	memcpy( m_pFramesInRelation[a_slot], m_pFramesInRelation[m_usedChunks-1], sizeof( Frame ) );
 
 	m_pFramesInRelation[m_usedChunks-1]->shutdown();
 
-	m_pFramesInRelation[a_slot]->offsetfStops( adjust_amount );
+	m_pFramesInRelation[a_slot]->offsetfStops( -adjust_amount_left );
 
 	for( _UINT32 i = 0; i < m_investors.getSize(); ++i )
-		m_investors.get(i)->readjust( a_name, adjust_amount );
+		m_investors.get(i)->readjust( a_name, -adjust_amount_left );
 
 	m_usedChunks--;
 }
