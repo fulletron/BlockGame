@@ -22,7 +22,8 @@ void Frame::offsetfStops(const _INT64 a_offset)
 {
 	for( int i = 0; i < 2; ++i )
 		for( int j = 0; j < MAX_FSTOPS; ++j )
-			m_pfStop[i][j] += a_offset;
+			if(m_pfStop[i][j])
+				m_pfStop[i][j] += a_offset;
 }
 
 bool Frame::setfStop(const PLACE & a_place)

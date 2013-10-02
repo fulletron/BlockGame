@@ -90,10 +90,12 @@ TEST_F(MockChunkManager, get_frame_test_3)
 
 	pFrame = m_man.createFrame( CV8("frame001") );
 	bool destroyed = m_man.destroyFrame( CV8("frame001") );
-	EXPECT_EQ( true, destroyed )  << "Test A Failed.";
+	EXPECT_EQ( true, destroyed )  
+		<< "FRAME WAS NOT DESTROYED.";
 
 	pFrameFromGet = m_man.getFrame( CV8("frame001") );
-	EXPECT_EQ( 0, pFrameFromGet )  << "Test B Failed.";
+	EXPECT_EQ( 0, pFrameFromGet )  
+		<< "COULD STILL INCORRECTLY GRAB FRAME.";
 };
 
 TEST_F(MockChunkManager, destroy_frame_test_1)
@@ -132,11 +134,36 @@ TEST_F(MockChunkManager, destroy_frame_test_2)
 	EXPECT_EQ( true, destroyed )  << "Test A Failed.";
 
 	pFrameFromGet = m_man.getFrame( CV8("frame004") );
-	EXPECT_EQ( pFrame2, pFrameFromGet )  << "Test B Failed.";
+	EXPECT_EQ( pFrame2, pFrameFromGet )  << "FRAME 4 WAS NOT PROPERLY MOVED.";
 
 	EXPECT_EQ( *pFrameMemBlock, *pFrameFromGet->m_pMemBlock ) << "Test C Failed.";
 	EXPECT_EQ( 0, pFrame4->getName() ) << "Test D Failed.";
 };
+
+TEST_F(MockChunkManager, destroy_frame_test_fStop)
+{
+	GS::Utilities::Frame	*pFrame = 0, 
+							*pFrame2 = 0,
+							*pFrameFromGet = 0, 
+							*pNull = 0,
+							*pFrame3 = 0,
+							*pFrame4 = 0;
+
+	pFrame = m_man.createFrame( CV8("frame001") );
+	pFrame2 = m_man.createFrame( CV8("frame002") );
+
+	_BYTE* pFrameMemBlock = pFrame2->m_pMemBlock;
+
+	pFrame2->setfStop(BOT);
+
+	bool destroyed = m_man.destroyFrame( CV8("frame001") );
+	EXPECT_EQ( true, destroyed )  << "Frame 1 could not be destroyed";
+
+	pFrameFromGet = m_man.getFrame( CV8("frame002") );
+	EXPECT_EQ( pFrame->m_pMemBlock, pFrameFromGet->m_pfStop[BOT][0] ) 
+		<< "Frame2's fstop was not moved correctly.";
+};
+
 
 
 

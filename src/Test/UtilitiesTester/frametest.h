@@ -199,8 +199,8 @@ TEST_F(MockFrameManager, allocate_test_BOT_overflow)
 
 TEST_F(MockFrameManager, allocate_test_TOP_overflow)
 {
-	_BYTE * test = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 1, TOP ));
-	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + m_pBaseFrame->m_size - 1, test );
+	_BYTE * test = m_pBaseFrame->allocate( 1, TOP );
+	EXPECT_EQ( m_pBaseFrame->m_pMemBlock + m_pBaseFrame->m_size - 1, test );
 
 	_BYTE * test2 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 2, TOP ));
 	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + m_pBaseFrame->m_size - 4, test2 );
