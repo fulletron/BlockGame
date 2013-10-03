@@ -3,6 +3,7 @@
 
 #include "chunkmanagertest.h"
 #include "frametest.h"
+#include "gshandlertest.h"
 
 int main(int argc, char **argv)
 {

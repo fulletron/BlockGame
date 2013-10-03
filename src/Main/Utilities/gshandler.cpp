@@ -16,10 +16,11 @@ _INT32 GSHandler::init( Frame * const a_pFrame, const _UINT32 a_maximumHandles )
 	m_numPairs = a_maximumHandles;
 	m_pData = reinterpret_cast<GS::Utilities::_GSObjectPair*>(a_pFrame->allocate( 
 			a_maximumHandles * sizeof( _GSObjectPair ), 
-			Frame::PLACE::TOP 
+			BOT
 			));
 
-	memset( m_pData, 0, a_maximumHandles * sizeof( _GSObjectPair ) );
+	int size = sizeof( _GSObjectPair );
+	memset( m_pData, 0, a_maximumHandles * size );
 
 	return 0;
 }
