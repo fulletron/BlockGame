@@ -4,6 +4,7 @@
 #include "chunkmanagertest.h"
 #include "frametest.h"
 #include "gshandlertest.h"
+#include "gsvectortest.h"
 
 int main(int argc, char **argv)
 {
