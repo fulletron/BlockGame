@@ -1,5 +1,5 @@
 #include "chunkmanager.h"
-#include <cstring>
+#include <string>
 
 namespace GS {
 namespace Utilities {

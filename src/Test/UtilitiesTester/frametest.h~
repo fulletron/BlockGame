@@ -139,7 +139,7 @@ TEST_F(MockFrameManager, freefStop_test_BOT)
 
 	for(int i = 0; i < MAX_FSTOPS; ++i)
 	{
-		test[i] = reinterpret_cast<_CHAR *>(m_pBaseFrame->allocate(1, BOT));
+		test[i] = reinterpret_cast<char *>(m_pBaseFrame->allocate(1, BOT));
 		pStart[i] = m_pBaseFrame->m_pCurrentLoc[BOT];
 		m_pBaseFrame->setfStop(BOT);
 	}
