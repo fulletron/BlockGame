@@ -16,7 +16,7 @@ public:
 class GSObject
 {
 public:
-	virtual int handleMsg( const GSMsg & a_msg ) = 0;
+	virtual _INT32 handleMsg( const GSMsg & a_msg ) = 0;
 };
 
 struct _GSObjectPair

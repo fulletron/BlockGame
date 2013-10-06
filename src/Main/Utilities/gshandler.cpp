@@ -64,7 +64,7 @@ _UINT32 GSHandler::readjust( const _INT64 a_frameName, const _INT64 a_adjustment
 	for( _UINT32 i = 0; i < m_numPairs; ++i )
 		if( m_pData[i].ownerFrameName == a_frameName )
 		{
-			m_pData[i].pGSObject -= a_adjustment;
+			m_pData[i].pGSObject = RC(GSObject*,RC(_BYTE*,(m_pData[i].pGSObject)) + a_adjustment);
 			num_adjusted++;
 		}
 	

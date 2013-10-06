@@ -13,6 +13,8 @@ typedef long							_LONG;
 typedef float							_FLOAT;
 typedef bool							_BOOL;
 
+#include <new>
+
 #if ((defined  (WIN32) || defined(_WIN32)) && !defined(_STDINT))
 	// On windows, we define the C99 types if they haven't already been included.
 	// We don't #include <stdint.h> here because it bleeds out Windows.h, which 
@@ -52,6 +54,8 @@ static const _UINT32 NUM_VARIANTS_PER_MSG = 8;
 static const _UINT32 NUM_INVESTORS = 16;
 
 _INT64 CV8(char * a_name);
+
+#define RC(x,y) reinterpret_cast<x>(y)
 
 inline _BYTE* INALIGNUP( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
 {

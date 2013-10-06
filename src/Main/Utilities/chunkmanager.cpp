@@ -77,9 +77,11 @@ bool ChunkManager::destroyFrame ( const _INT64 a_name)
 	{
 		if ( m_pFramesInRelation[i]->getName() == a_name )
 		{
-			m_pFramesInRelation[i]->shutdown();
 			if( m_usedChunks > 1 )
 				__compress(a_name, i);
+
+			m_pFramesInRelation[m_usedChunks-1]->shutdown();
+			m_usedChunks--;
 			return true;
 		}
 	}
@@ -97,13 +99,8 @@ void ChunkManager::__compress( const _INT64 a_name, const _UINT32 a_slot )
 	memcpy( m_pFramesInRelation[a_slot]->getMemBlock(), m_pFramesInRelation[m_usedChunks-1]->getMemBlock(), m_sizeOfChunk );
 	memcpy( m_pFramesInRelation[a_slot], m_pFramesInRelation[m_usedChunks-1], sizeof( Frame ) );
 
-	//m_pFramesInRelation[a_slot]->offsetfStops( -adjust_amount_left );
-
 	for( _UINT32 i = 0; i < m_investors.getSize(); ++i )
-		m_investors.get(i)->readjust( a_name, -adjust_amount_left );
-
-	m_pFramesInRelation[m_usedChunks-1]->shutdown();
-	m_usedChunks--;
+		m_investors.get(i)->readjust( m_pFramesInRelation[a_slot]->getName(), -adjust_amount_left );
 }
 
 };
