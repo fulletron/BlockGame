@@ -8,7 +8,7 @@
 #include "chunkmanager.h"
 #include "frame.h"
 #include "gsvariant.h"
-//#include <boost/thread.hpp>
-//#include <boost/asio.hpp>
+#include <boost/thread.hpp>
+#include <boost/asio.hpp>
 
 #endif
