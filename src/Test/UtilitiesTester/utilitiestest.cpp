@@ -5,6 +5,7 @@
 #include "frametest.h"
 #include "gshandlertest.h"
 #include "gsvectortest.h"
+#include "gsthreadtest.h"
 
 int main(int argc, char **argv)
 {
