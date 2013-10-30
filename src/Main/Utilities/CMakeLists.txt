@@ -5,15 +5,15 @@ file(GLOB UTILITIESSRC
     "*.cpp"
 )
 
-find_library( GLFW_LIBRARY NAMES glfw3
-	HINTS 
-	#${CMAKE_BINARY_DIR}/External/glfw-3.0.2/src/Debug 
-	${CMAKE_BINARY_DIR}/External/glfw-3.0.2/src/Release )
+#find_library( GLFW_LIBRARY NAMES glfw3
+#	HINTS 
+#	${CMAKE_BINARY_DIR}/External/glfw-3.0.2/src/Release )
+#set( GLFW_LIBRARY glfw3 )
 
-find_library( GLEW_LIBRARY NAMES GLEW
-	HINTS 
-	#${CMAKE_BINARY_DIR}/External/glew-1.10.0/Debug 
-	${CMAKE_BINARY_DIR}/External/glew-1.10.0/Release )
+#find_library( GLEW_LIBRARY NAMES GLEW
+#	HINTS 
+#	${CMAKE_BINARY_DIR}/External/glew-1.10.0/Release )
+set( GLEW_LIBRARY GLEW )
 
 find_package(OpenGL)
 if (OPENGL_FOUND)
@@ -30,8 +30,9 @@ add_library( Utilities ${UTILITIESSRC} )
 target_link_libraries( Utilities
 	${OPENGL_LIBRARIES}
 	${GLEW_LIBRARY}
-	${GLFW_LIBRARY}
+	#${GLFW_LIBRARY}
 	${Boost_LIBRARIES}
+	glfw
 )
 
 include_directories( ${CMAKE_SOURCE_DIR} )
@@ -41,8 +42,9 @@ add_library( UtilitiesTest ${UTILITIESSRC} )
 target_link_libraries( UtilitiesTest
 	${OPENGL_LIBRARIES}
 	${GLEW_LIBRARY}
-	${GLFW_LIBRARY}
+	#${GLFW_LIBRARY}
 	${Boost_LIBRARIES}
+	glfw
 )
 
 SET_TARGET_PROPERTIES(UtilitiesTest PROPERTIES
