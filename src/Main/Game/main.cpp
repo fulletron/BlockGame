@@ -1,26 +1,18 @@
 #include <iostream>
 
 #include <Graphics/graphics.h>
-#include <boost/thread.hpp>
-#include <Utilities/utilities.h>
 
-int globalInt = 0;
+bool g_isRunning = false;
 
-int test()
-{
-	globalInt++;
-	return 1;
-}
+GS::Graphics::Window g_window;
 
 int main()
 {
-	boost::thread thred(test);
+	g_isRunning = true;
 
-	thred.start_thread();
-	thred.join();
+	while( g_isRunning && g_window.isOpen() )
+	{
 
-	printf("%d", globalInt);
-
-	printf( "hello world! \n" );
+	}
 	return 0;
 }

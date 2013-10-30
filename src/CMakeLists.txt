@@ -76,7 +76,6 @@ else()
 	set(CMAKE_CXX_FLAGS "-std=c++0x -Wno-write-strings -L/GitRepos/BlockGame/src/External/boost_1_54_0/stage/lib -I/GitRepos/BlockGame/src/External/boost_1_54_0" )
 endif()
 
-add_subdirectory( Main )
 add_subdirectory( External )
-
+add_subdirectory( Main )
 add_subdirectory( Test )

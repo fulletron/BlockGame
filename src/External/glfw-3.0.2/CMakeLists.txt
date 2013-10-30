@@ -364,8 +364,11 @@ if (BUILD_SHARED_LIBS AND UNIX)
     # On Unix-like systems, shared libraries can use the soname system.
     set(GLFW_LIB_NAME glfw)
 else()
+    #SHOULD ALWAYS BE glfw3
     set(GLFW_LIB_NAME glfw3)
 endif()
+
+message(STATUS "GLFW_LIB_NAME:         " ${GLFW_LIB_NAME})
 
 #--------------------------------------------------------------------
 # Create generated files

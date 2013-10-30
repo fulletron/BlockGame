@@ -3,26 +3,10 @@
 
 #include "openglincludes.h"
 #include <Utilities/typedefinitions.h>
-
-namespace GS
-{ 
-	// PROTOTYPE
-	class Game;
-
-	namespace GraphicsNS
-	{
-		class Graphics
-		{
-		private:
-		public:
-			Graphics(void){}
-			~Graphics(void){}
-
-			//_UINT32			init(GS::Game * const a_g);
-			_UINT32			shutdown();
-		};
-	};
-
-};
+#include "animator.h"
+#include "camera.h"
+#include "panel.h"
+#include "renderer.h"
+#include "window.h"
 
 #endif

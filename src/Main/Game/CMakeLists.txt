@@ -8,6 +8,7 @@ file(GLOB GAMESRC
 add_executable(Game ${GAMESRC} )
 
 target_link_libraries(Game
+		Graphics
 		Utilities
 )
 

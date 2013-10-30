@@ -1,54 +1,36 @@
 cmake_minimum_required ( VERSION 2.6 )
 
-# set( Boost_USE_STATIC_LIBS ON )
-# set( Boost_USE_MULTITHREADED ON )
-# set( Boost_USE_STATIC_RUNTIME ON )
-
-# if(WIN32)
-	# set(Boost_LIBRARY_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_54_0/stage/lib)
-	# set(Boost_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_54_0)
-	# set(BOOST_ROOT ${CMAKE_SOURCE_DIR}/External/boost_1_54_0)
-	
-	# find_package(Boost)
-	# include_directories(${Boost_INCLUDE_DIR})
-	# link_directories(${Boost_LIBRARY_DIR})	
-	# message(TEST:: WIN32)
-	
-	## //SET(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "${CMAKE_SOURCE_DIR}/External/include/boost")
-	## //SET(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${CMAKE_SOURCE_DIR}/External/boost_1_54_0/stage/lib")
-	
-# elseif(APPLE)
-	# message(TEST:: APPLE)
-# else()
-	# find_package( Boost 1.54.0 COMPONENTS system regex filesystem atomic chrono )
-	# message(TEST:: UNIX)
-# endif()
-
-
-#FIND_PACKAGE(Boost)
-#IF (Boost_FOUND)
-#    INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIR})
-#    ADD_DEFINITIONS( "-DHAS_BOOST" )
-#ENDIF()
-
-#set(Boost_LIBRARY_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_54_0/stage/lib)
-#set(Boost_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_54_0)
-#set(BOOST_ROOT ${CMAKE_SOURCE_DIR}/External/boost_1_54_0)
-
-#find_package(Boost)
-#include_directories(${Boost_INCLUDE_DIR})
-#link_directories(${Boost_LIBRARY_DIR})
-
-#SET_PROPERTY(TARGET ${Boost_LIBRARIES} PROPERTY FOLDER "External/Boost")
-
 file(GLOB UTILITIESSRC
     "*.h"
     "*.cpp"
 )
 
-add_library( Utilities ${UTILITIESSRC} )
+find_library( GLFW_LIBRARY NAMES glfw3
+	HINTS 
+	#${CMAKE_BINARY_DIR}/External/glfw-3.0.2/src/Debug 
+	${CMAKE_BINARY_DIR}/External/glfw-3.0.2/src/Release )
 
+find_library( GLEW_LIBRARY NAMES GLEW
+	HINTS 
+	#${CMAKE_BINARY_DIR}/External/glew-1.10.0/Debug 
+	${CMAKE_BINARY_DIR}/External/glew-1.10.0/Release )
+
+find_package(OpenGL)
+if (OPENGL_FOUND)
+    MESSAGE("OpenGL Correctly Found")
+    #include_directories(${OPENGL_INCLUDE_DIR})
+else (OPENGL_FOUND)
+    MESSAGE("OpenGL environment missing")
+endif (OPENGL_FOUND)
+
+message( STATUS "GLFW OUT DIR:: " ${CMAKE_BINARY_DIR}/src/ )
+message( STATUS "OPENGL LIBS:: " ${GLEW_LIBRARY} )
+
+add_library( Utilities ${UTILITIESSRC} )
 target_link_libraries( Utilities
+	${OPENGL_LIBRARIES}
+	${GLEW_LIBRARY}
+	${GLFW_LIBRARY}
 	${Boost_LIBRARIES}
 )
 
@@ -57,6 +39,9 @@ include_directories( ${CMAKE_SOURCE_DIR}/External/include )
 
 add_library( UtilitiesTest ${UTILITIESSRC} )
 target_link_libraries( UtilitiesTest
+	${OPENGL_LIBRARIES}
+	${GLEW_LIBRARY}
+	${GLFW_LIBRARY}
 	${Boost_LIBRARIES}
 )
 

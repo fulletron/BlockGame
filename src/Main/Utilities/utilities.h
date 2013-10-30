@@ -10,5 +10,6 @@
 #include "gsvariant.h"
 #include "gsthread.h"
 #include <boost/asio.hpp>
+#include "input.h"
 
 #endif
