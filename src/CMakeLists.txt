@@ -3,8 +3,10 @@ project( Main )
 
 add_definitions(-D_VARIADIC_MAX=10)
 
-SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
+include_directories( ${CMAKE_SOURCE_DIR}/Main )
+include_directories( ${CMAKE_SOURCE_DIR}/External/include )
 
+SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 
 if(WIN32)
 	set(TARGET_OS windows)
@@ -59,11 +61,22 @@ if(WIN32)
 elseif(APPLE)
 	message(TEST:: APPLE)
 else()
-	find_package( Boost 1.54.0 COMPONENTS system regex filesystem atomic chrono )
+	find_package( Boost 1.54.0 COMPONENTS system regex filesystem atomic chrono thread)
 	message(TEST:: UNIX)
 endif()
 
 #[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
+
+
+#========================================
+find_package(OpenGL)
+if (OPENGL_FOUND)
+    MESSAGE("OpenGL Correctly Found")
+    #include_directories(${OPENGL_INCLUDE_DIR})
+else (OPENGL_FOUND)
+    MESSAGE("OpenGL environment missing")
+endif (OPENGL_FOUND)
+#========================================
 
 
 if(APPLE)

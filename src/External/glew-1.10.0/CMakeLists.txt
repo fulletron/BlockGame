@@ -6,15 +6,7 @@ file(GLOB GLEWSRC
 
 add_library(GLEW ${GLEWSRC} )
 
-include_directories( ${CMAKE_SOURCE_DIR}/External/include )
-
-find_package(OpenGL)
-if (OPENGL_FOUND)
-    MESSAGE("OpenGL Correctly Found")
-    #include_directories(${OPENGL_INCLUDE_DIR})
-else (OPENGL_FOUND)
-    MESSAGE("OpenGL environment missing")
-endif (OPENGL_FOUND)
+###include_directories( ${CMAKE_SOURCE_DIR}/External/include )
 
 target_link_libraries(GLEW ${OPENGL_LIBRARIES})
 

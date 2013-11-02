@@ -13,5 +13,5 @@ target_link_libraries( UtilitiesTester
 		${Boost_LIBRARIES}
 )
 
-include_directories( ${CMAKE_SOURCE_DIR} )
-include_directories( ${CMAKE_SOURCE_DIR}/External/include )
+###include_directories( ${CMAKE_SOURCE_DIR} )
+###include_directories( ${CMAKE_SOURCE_DIR}/External/include )

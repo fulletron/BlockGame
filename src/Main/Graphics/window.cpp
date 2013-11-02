@@ -9,7 +9,11 @@ Window::Window()
 
 _UINT32 Window::init()
 {
-	//glewInit();
+	glClearColor(0.0f,0.0f,0.0f,0.0f);
+
+	///glewInit();
+	
+	/*
 	if(!glfwInit())
 		exit( EXIT_FAILURE );
 
@@ -19,7 +23,7 @@ _UINT32 Window::init()
 	/// SOIL USES DEPRECATED CALLS(IN CERTAIN FUNCTIONS). IT IS POSSIBLE YOU WILL NOT BE ABLE TO FORWARD COMPAT!
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_SAMPLES, 8);
-
+	*/
 
 	return 0;
 }
