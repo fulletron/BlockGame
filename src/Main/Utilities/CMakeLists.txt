@@ -29,7 +29,7 @@ message( STATUS "OPENGL LIBS:: " ${GLEW_LIBRARY} )
 add_library( Utilities ${UTILITIESSRC} )
 target_link_libraries( Utilities
 	${OPENGL_LIBRARIES}
-	${GLEW_LIBRARY}
+	#${GLEW_LIBRARY}
 	#${GLFW_LIBRARY}
 	${Boost_LIBRARIES}
 	glfw
@@ -41,7 +41,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/External/include )
 add_library( UtilitiesTest ${UTILITIESSRC} )
 target_link_libraries( UtilitiesTest
 	${OPENGL_LIBRARIES}
-	${GLEW_LIBRARY}
+	#${GLEW_LIBRARY}
 	#${GLFW_LIBRARY}
 	${Boost_LIBRARIES}
 	glfw
