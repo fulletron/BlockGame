@@ -61,7 +61,15 @@ if(WIN32)
 elseif(APPLE)
 	message(TEST:: APPLE)
 else()
-	find_package( Boost 1.54.0 COMPONENTS system regex filesystem atomic chrono thread)
+	set(Boost_LIBRARY_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_54_0/stage/lib)
+	set(Boost_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_54_0)
+	set(BOOST_ROOT ${CMAKE_SOURCE_DIR}/External/boost_1_54_0)
+	
+	find_package(Boost)
+	include_directories(${Boost_INCLUDE_DIR})
+	link_directories(${Boost_LIBRARY_DIR})
+
+	#find_package( Boost 1.54.0 COMPONENTS system regex filesystem atomic chrono thread)
 	message(TEST:: UNIX)
 endif()
 
