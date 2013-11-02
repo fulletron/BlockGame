@@ -10,7 +10,8 @@ target_link_libraries( Utilities
 	${OPENGL_LIBRARIES}
 	#GLEW
 	#${GLFW_LIBRARY}
-	${Boost_LIBRARIES}
+	${Boost_LIBRARY_DIR}
+	####${Boost_LIBRARIES}
 	#glfw3
 )
 
@@ -22,7 +23,8 @@ target_link_libraries( UtilitiesTest
 	${OPENGL_LIBRARIES}
 	#GLEW
 	#${GLFW_LIBRARY}
-	${Boost_LIBRARIES}
+	${Boost_LIBRARY_DIR}
+	####${Boost_LIBRARIES}
 	#glfw3
 )
 
