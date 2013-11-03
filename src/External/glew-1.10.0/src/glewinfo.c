@@ -32,15 +32,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <GL/glew.h>
+#include "../../include/gl/glew.h"
 #if defined(_WIN32)
 #include <GL/wglew.h>
 #elif !defined(__APPLE__) || defined(GLEW_APPLE_GLX)
-#include <GL/glxew.h>
+#include "../../include/gl/glxew.h"
 #endif
 
 #ifdef GLEW_REGAL
 #include <GL/Regal.h>
+#error TADAH! Regal?
 #endif
 
 static FILE* f;

@@ -75,10 +75,10 @@
 ** TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 ** MATERIALS OR THE USE OR OTHER DEALINGS IN THE MATERIALS.
 */
-
 #ifndef __glxew_h__
 #define __glxew_h__
 #define __GLXEW_H__
+
 
 #ifdef __glxext_h_
 #error glxext.h included before glxew.h
