@@ -1,0 +1,10 @@
+syntax on
+syntax enable
+
+set number
+set t_Co=256
+"color sonofobsidian
+color wombat256
+set omnifunc=syntaxComplete#Complete
+set nobackup
+set autochdir
