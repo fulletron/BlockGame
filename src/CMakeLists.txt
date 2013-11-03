@@ -45,15 +45,18 @@ set( Boost_USE_STATIC_LIBS ON )
 set( Boost_USE_MULTITHREADED ON )
 set( Boost_USE_STATIC_RUNTIME ON )
 
-add_definitions( -DBOOST_ALL_NO_LIB )
-
 set(Boost_LIBRARY_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_54_0/stage/lib)
 set(Boost_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_54_0)
 set(BOOST_ROOT ${CMAKE_SOURCE_DIR}/External/boost_1_54_0)
-	
 
-find_package( Boost 1.54.0 COMPONENTS system regex filesystem atomic chrono thread timer date_time)
-#find_package(Boost)
+if(WIN32)
+    find_package(Boost)
+elseif(APPLE)
+    find_package(Boost)
+else()
+    add_definitions( -DBOOST_ALL_NO_LIB )
+    find_package( Boost 1.54.0 COMPONENTS system regex filesystem atomic chrono thread timer date_time)
+endif()
 
 if(Boost_FOUND)
     MESSAGE("BOOST Found!")
@@ -70,11 +73,13 @@ if(WIN32)
 elseif(APPLE)
 	message(TEST:: APPLE)
 else()
-	include_directories(${Boost_INCLUDE_DIR})
-	link_directories(${Boost_LIBRARY_DIR})
+    add_definitions( -DBOOST_ALL_NO_LIB )
+    find_package( Boost 1.54.0 COMPONENTS system regex filesystem atomic chrono thread timer date_time)
+    include_directories(${Boost_INCLUDE_DIR})
+    link_directories(${Boost_LIBRARY_DIR})
 
 	#find_package( Boost 1.54.0 COMPONENTS system regex filesystem atomic chrono thread)
-	message(TEST:: UNIX)
+    message(TEST:: UNIX)
 endif()
 
 #[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
