@@ -9,7 +9,7 @@
 #include "frame.h"
 #include "gsvariant.h"
 #include "gsthread.h"
-#include <boost/asio.hpp>
+//#include <boost/asio.hpp>
 #include "input.h"
 
 #endif
