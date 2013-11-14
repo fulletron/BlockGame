@@ -62,7 +62,7 @@ debfoster
 freeglut3-dev
 git
 libevent-dev
-libglew1.6-dev
+@@@@@libglew1.6-dev
 libltdl-dev
 libxi-dev
 libxrandr-dev
