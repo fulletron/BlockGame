@@ -8,20 +8,17 @@ file(GLOB UTILITIESSRC
 add_library( Utilities ${UTILITIESSRC} )
 target_link_libraries( Utilities
 	${OPENGL_LIBRARIES}
-	#GLEW
+	GLEW
 	#${GLFW_LIBRARY}
 	###${Boost_LIBRARY_DIR}
 	${Boost_LIBRARIES}
 	#glfw3
 )
 
-###include_directories( ${CMAKE_SOURCE_DIR} )
-###include_directories( ${CMAKE_SOURCE_DIR}/External/include )
-
 add_library( UtilitiesTest ${UTILITIESSRC} )
 target_link_libraries( UtilitiesTest
 	${OPENGL_LIBRARIES}
-	#GLEW
+	GLEW
 	#${GLFW_LIBRARY}
 	####${Boost_LIBRARY_DIR}
 	${Boost_LIBRARIES}

@@ -10,9 +10,6 @@ target_link_libraries( Graphics
 		Utilities
 )
 
-###include_directories( ${CMAKE_SOURCE_DIR} )
-###include_directories( ${CMAKE_SOURCE_DIR}/External/include )
-
 add_library( GraphicsTest ${GRAPHICSSRC} )
 target_link_libraries( GraphicsTest
 		UtilitiesTest

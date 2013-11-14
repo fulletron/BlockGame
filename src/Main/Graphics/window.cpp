@@ -11,7 +11,7 @@ _UINT32 Window::init()
 {
 	glClearColor(0.0f,0.0f,0.0f,0.0f);
 
-	///glewInit();
+	glewInit();
 	
 	/*
 	if(!glfwInit())
