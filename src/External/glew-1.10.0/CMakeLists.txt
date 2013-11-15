@@ -4,6 +4,9 @@ file(GLOB GLEWSRC
     "src/*.c"
 )
 
+include_directories( ${CMAKE_SOURCE_DIR}/Main )
+include_directories( ${CMAKE_SOURCE_DIR}/External/include )
+
 add_library(GLEW ${GLEWSRC} )
 
 target_link_libraries(GLEW ${OPENGL_LIBRARIES})
