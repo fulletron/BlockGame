@@ -89,7 +89,7 @@ if(APPLE)
 elseif(WIN32)
 	###set ( CMAKE_CXX_FLAGS "-L/GitRepos/BlockGame/src/External/boost_1_54_0/stage/lib -I/GitRepos/BlockGame/src/External/boost_1_54_0" )
 else()
-	set( CMAKE_CXX_FLAGS "-std=c++0x -Wno-write-strings -Wl,--no-as-needed -lrt " )
+	set( CMAKE_CXX_FLAGS "-std=c++0x -Wno-write-strings -Wl,--no-as-needed -lrt -lX11 -lXxf86vm -lXrandr -lpthread -lXi" ) #-lglfw3
 # -L/GitRepos/BlockGame/src/External/boost_1_54_0/stage/lib -I/GitRepos/BlockGame/src/External/boost_1_54_0" )
 endif()
 
