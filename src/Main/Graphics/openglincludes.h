@@ -7,7 +7,7 @@
 #pragma warning( disable : 4005 )
 
 #include "gl/glew.h"
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
 #include "gl/GL.h"
 
 #include "SOIL.h"

@@ -6,24 +6,23 @@ file(GLOB UTILITIESSRC
 )
 
 add_library( Utilities ${UTILITIESSRC} )
+
 target_link_libraries( Utilities
 	${OPENGL_LIBRARIES}
 	GLEW
-	#${GLFW_LIBRARY}
-	###${Boost_LIBRARY_DIR}
+	glfw
 	${Boost_LIBRARIES}
-	#glfw3
 )
 
 add_library( UtilitiesTest ${UTILITIESSRC} )
 target_link_libraries( UtilitiesTest
 	${OPENGL_LIBRARIES}
 	GLEW
-	#${GLFW_LIBRARY}
-	####${Boost_LIBRARY_DIR}
 	${Boost_LIBRARIES}
-	#glfw3
+	glfw
 )
+
+message( STATUS "glfw libs : " ${GLFW_LIBRARIES} )
 
 SET_TARGET_PROPERTIES(UtilitiesTest PROPERTIES
         COMPILE_DEFINITIONS "TEST_ENABLED;") 

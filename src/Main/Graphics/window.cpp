@@ -11,12 +11,12 @@ _UINT32 Window::init()
 {
 	glClearColor(0.0f,0.0f,0.0f,0.0f);
 
-	glewInit();
+	//glewInit();
 	
-	/*
 	if(!glfwInit())
 		exit( EXIT_FAILURE );
 
+	/*
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 
