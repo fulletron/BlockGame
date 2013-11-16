@@ -1,0 +1,12 @@
+cmake_minimum_required (VERSION 2.6)
+project( MS4 )
+
+add_subdirectory( Game )
+add_subdirectory( Entity )
+add_subdirectory( Graphics )
+add_subdirectory( Input )
+add_subdirectory( Panel )
+add_subdirectory( Resource )
+add_subdirectory( State )
+add_subdirectory( Utilities )
+add_subdirectory( Library )
