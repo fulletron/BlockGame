@@ -15,16 +15,15 @@ public:
 private:
 #endif
 	bool			m_isOpen;
-	//GLFWwindow *	m_pGLFWwindow;
+	GLFWwindow *	m_pGLFWwindow;
 
 public:
 	Window();
 	_UINT32 init();
 	bool isOpen();
 	_UINT32 shutdown();
-
-	GLFWwindow *	m_pGLFWwindow;
-
+	void swapBuffers();
+	
 private:
 	_UINT32 __createOnlyWindow();
 };

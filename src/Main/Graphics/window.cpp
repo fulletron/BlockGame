@@ -74,6 +74,11 @@ _UINT32 Window::shutdown()
 	return 0;
 }
 
+void Window::swapBuffers()
+{
+	glfwSwapBuffers(m_pGLFWwindow);
+}
+
 bool Window::isOpen()
 {
 	if(glfwWindowShouldClose(m_pGLFWwindow)

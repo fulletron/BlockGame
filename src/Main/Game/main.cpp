@@ -17,6 +17,8 @@ int main()
 
 	while( g_isRunning && g_window.isOpen())
 	{
+		g_window.swapBuffers();
+/*
 			float ratio;
 			int width, height;
 
@@ -43,6 +45,7 @@ int main()
 			glfwSwapBuffers(g_window.m_pGLFWwindow);
 
 			glfwPollEvents();
+*/
 	}
 
 	g_window.shutdown();
