@@ -11,5 +11,6 @@
 #include "gsthread.h"
 //#include <boost/asio.hpp>
 #include "input.h"
+#include "glfwerrorfunc.h"
 
 #endif

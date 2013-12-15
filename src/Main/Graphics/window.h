@@ -9,6 +9,7 @@ namespace Graphics {
 
 class Window
 {
+
 #ifdef TEST_ENABLED
 public:
 #else

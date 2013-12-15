@@ -40,6 +40,9 @@ _UINT32 Window::init()
 	if(!glfwInit())
 		return 1;
 
+	// SET STANDARD ERROR CALLBACK
+	glfwSetErrorCallback(GS::Utilities::ErrorCallbacks::glfwErrorCallback);
+
 	/// Set GLFW Version
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
@@ -62,6 +65,7 @@ _UINT32 Window::init()
 
 	//GSU::checkForGLErrors(); /// TODO ::
 	error = glGetError();
+
 	return 0;
 }
 

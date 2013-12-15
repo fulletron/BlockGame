@@ -1,7 +1,7 @@
 #include <iostream>
 #include <gtest/gtest.h>
 
-#include "utilitiestest.h"
+#include "graphicstest.h"
 
 int main(int argc, char **argv)
 {
