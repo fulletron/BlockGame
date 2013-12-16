@@ -30,15 +30,15 @@ public:
 protected:
 #endif
 	_BYTE * m_pMemBlock;
-	_UINT32 m_size;
-
-	_INT64 m_name;
 	_BYTE * m_pCurrentLoc[2];
 
 	// actual stacks may be faster
 	// but i want to avoid memory
 	// allocation for now
 	_BYTE * m_pfStop[2][MAX_FSTOPS];
+
+	_INT64 m_name;
+	_UINT32 m_size;
 
 	void __zerofStops(const PLACE & a_place);
 public:
@@ -56,6 +56,8 @@ public:
 	void shutdown();
 	_BYTE * allocate( const _INT32 a_sizeInBytes, const PLACE & a_place );
 	bool isValid();
+
+	void copyFrame( Frame * const a_pFromFrame );
 };
 
 };

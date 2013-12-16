@@ -50,10 +50,13 @@ TEST_F(MockWindowManager, init_test)
 	m_errors = GS::Utilities::ErrorCallbacks::errorsExist();
 	EXPECT_EQ( false, m_errors );
 
+	EXPECT_EQ( true, m_window.isOpen() );
+
 	m_window.shutdown();
 
 	m_errors = GS::Utilities::ErrorCallbacks::errorsExist();
 	EXPECT_EQ(false, m_errors);
+	EXPECT_EQ( false, m_window.isOpen() );
 };
 
 

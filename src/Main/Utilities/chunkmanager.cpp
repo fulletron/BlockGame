@@ -1,8 +1,11 @@
 #include "chunkmanager.h"
+#include <Utilities/chunkptr.h>
 #include <cstring>
 
 namespace GS {
 namespace Utilities {
+
+ChunkManager * ChunkManager::s_pChunkMan = 0;
 
 _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChunk )
 {
@@ -10,21 +13,19 @@ _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChun
 	m_sizeOfChunk = a_sizeOfChunk;
 	m_usedChunks = 0;
 
-	m_pChunk = static_cast<_BYTE*>(malloc( m_numChunks * m_sizeOfChunk));
-	m_pChunk = INALIGNUP(m_pChunk, 8);
+	m_pChunk = reinterpret_cast<_BYTE*>( malloc( m_numChunks * m_sizeOfChunk ) );
+	m_pChunk = INALIGNDOWN(m_pChunk, 8);
 	if ( !m_pChunk )
 		return 1;
 
-	
-	m_investors.init( NUM_INVESTORS );
-	//
 	m_pFramesInRelation = new Frame*[m_numChunks];
-	//
 
 	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
 		m_pFramesInRelation[i] = new Frame( (m_pChunk + (m_sizeOfChunk * i)), m_sizeOfChunk );
 	}
+
+	s_pChunkMan = this;
 
 	return 0;
 }
@@ -34,8 +35,8 @@ void ChunkManager::shutdown()
 	for( _UINT32 i = 0; i < m_numChunks; ++i )
 	{
 		Frame * pFrame = m_pFramesInRelation[i];
-		if( pFrame->isValid() )
-			pFrame->shutdown();
+		//if( pFrame->isValid() )
+		pFrame->shutdown();
 		delete pFrame;
 	}
 	free( m_pChunk );
@@ -79,8 +80,9 @@ bool ChunkManager::destroyFrame ( const _INT64 a_name)
 		if ( m_pFramesInRelation[i]->getName() == a_name )
 		{
 			if( m_usedChunks > 1 )
+			{
 				__compress(a_name, i);
-
+			}
 			m_pFramesInRelation[m_usedChunks-1]->shutdown();
 			m_usedChunks--;
 			return true;
@@ -89,19 +91,67 @@ bool ChunkManager::destroyFrame ( const _INT64 a_name)
 	return false;
 }
 
-void ChunkManager::addInvestor( GSInvestor * const a_pInvestor )
+ChunkPtr ChunkManager::getNewChunkPtr(ChunkPtr * const a_cpIn )
 {
-	m_investors.add( a_pInvestor );
+	// set base values, and one new value.
+	ChunkPtr newChunkPtr(a_cpIn->getpData(), a_cpIn->getOwnerFrame(), a_cpIn->getOwnerName());
+	Frame * pFrame = getFrame(a_cpIn->getOwnerName());
+
+	newChunkPtr.setpOwnerFrame (pFrame);
+
+	if(!pFrame)
+	{
+		newChunkPtr.clean();
+		return newChunkPtr;
+	}
+
+	_BYTE * pFrom = RC( _BYTE *, a_cpIn->getOwnerFrame()->getMemBlock() );
+	_BYTE * pTo = RC( _BYTE *, newChunkPtr.getOwnerFrame()->getMemBlock() );
+
+	_INT64 diff = pFrom - pTo;
+
+	// set new value for data
+	newChunkPtr.setpData( RC( _BYTE *, RC( _UINT64, a_cpIn->getpData() ) - diff ) );
+
+	// return new value
+	return newChunkPtr;
+}
+
+ChunkPtr ChunkManager::allocate( const _INT64 a_frame, const _INT32 a_sizeInBytes, const GS::Utilities::Frame::PLACE & a_place )
+{
+	Frame * pFrame = getFrame( a_frame );
+	if( !pFrame )
+		pFrame = createFrame( a_frame );
+
+	return ChunkPtr(pFrame->allocate(a_sizeInBytes, a_place), pFrame, a_frame);
+}
+
+
+ChunkPtr ChunkManager::allocate( Frame * const a_pFrame, const _INT32 a_sizeInBytes, const GS::Utilities::Frame::PLACE & a_place )
+{
+	if( !a_pFrame )
+		return ChunkPtr(0,0,0);
+
+	return ChunkPtr(a_pFrame->allocate(a_sizeInBytes, a_place), a_pFrame, a_pFrame->getName());
+}
+
+ChunkPtr ChunkManager::getFrameChunkPtr( const _INT64 a_name )
+{
+	Frame * pFrame = getFrame( a_name );
+	if ( pFrame )
+		return getFrameChunkPtr( pFrame );
+
+	return ChunkPtr(0,0,0);
+}
+
+ChunkPtr ChunkManager::getFrameChunkPtr( Frame * const a_pFrame )
+{
+	return ChunkPtr( RC(_BYTE*, a_pFrame), a_pFrame, a_pFrame->getName() );
 }
 
 void ChunkManager::__compress( const _INT64 a_name, const _UINT32 a_slot )
 {
-	_INT64 adjust_amount_left = m_sizeOfChunk * ((m_usedChunks-1) - a_slot);
-	memcpy( m_pFramesInRelation[a_slot]->getMemBlock(), m_pFramesInRelation[m_usedChunks-1]->getMemBlock(), m_sizeOfChunk );
-	memcpy( m_pFramesInRelation[a_slot], m_pFramesInRelation[m_usedChunks-1], sizeof( Frame ) );
-
-	for( _UINT32 i = 0; i < m_investors.getSize(); ++i )
-		m_investors.get(i)->readjust( m_pFramesInRelation[a_slot]->getName(), -adjust_amount_left );
+	m_pFramesInRelation[a_slot]->copyFrame(m_pFramesInRelation[m_usedChunks-1]);
 }
 
 };

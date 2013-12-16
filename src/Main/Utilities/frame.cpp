@@ -120,6 +120,27 @@ void Frame::shutdown()
 	//m_pMemBlock = 0;
 }
 
+void Frame::copyFrame( Frame * a_pFromFrame )
+{
+	_BYTE * pMemBlock = m_pMemBlock;
+	memcpy( m_pMemBlock, a_pFromFrame->getMemBlock(), m_size );
+
+	_BYTE * pFrom = RC( _BYTE *, a_pFromFrame );
+	_BYTE * pTo = RC( _BYTE *, this );
+
+	int test = sizeof(Frame);
+	_INT64 diff = pFrom - pTo;
+
+ 	m_pCurrentLoc[TOP] -= diff;
+	m_pCurrentLoc[BOT] -= diff;
+
+	offsetfStops(-diff);
+
+	m_name = a_pFromFrame->getName();
+
+	m_pMemBlock = pMemBlock;
+}
+
 bool Frame::isValid()
 {
 	if( m_name ) 

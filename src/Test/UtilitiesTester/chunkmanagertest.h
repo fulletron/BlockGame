@@ -38,6 +38,42 @@ public:
 	}
 };
 
+TEST_F(MockChunkManager, two_minus_one_check_TOP)
+{
+	m_man.shutdown();
+	m_man.init(2,16);
+	m_man.createFrame( 1 );
+	m_man.createFrame( 2 );
+
+	_TChunkPtr<_UINT64> test;
+	test = m_man.allocate( 2, 8, TOP );
+	test.dereference() = 19;
+
+	EXPECT_EQ( 19, test.dereference() );
+
+	m_man.destroyFrame( 1 );
+
+	EXPECT_EQ( 19, test.dereference() );
+};
+
+TEST_F(MockChunkManager, two_minus_one_check_SUC)
+{
+	m_man.shutdown();
+	m_man.init(16,16);
+	m_man.createFrame( 1 );
+	m_man.createFrame( 2 );
+
+	_TChunkPtr<_UINT64> test;
+	test = m_man.allocate( 2, 8, TOP );
+	test.dereference() = 19;
+
+	EXPECT_EQ( 19, test.dereference() );
+
+	m_man.destroyFrame( 1 );
+
+	EXPECT_EQ( 19, test.dereference() );
+};
+
 TEST(ChunkManager, init_test)
 {
 	GS::Utilities::ChunkManager man;

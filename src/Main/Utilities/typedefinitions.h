@@ -95,6 +95,8 @@ inline _BYTE* INALIGNDOWN( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
 	return reinterpret_cast<_BYTE *>( address - remainder );
 }
 
+#define FR_BASE CV8("basefram")
+
 namespace GS {
 namespace Utilities {
 

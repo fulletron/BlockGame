@@ -3,6 +3,19 @@
 
 namespace GS {
 namespace Graphics {
+
+class Panel {
+
+#ifdef TEST_ENABLED
+public:
+#else
+private:
+#endif
+
+public:
+
+};
+
 };
 };
 

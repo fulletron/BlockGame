@@ -14,7 +14,7 @@
 #include "typedefinitions.h"
 #include "frame.h"
 #include "gsinvestor.h"
-#include "gsvector.h"
+#include "chunkptr.h"
 
 namespace GS {
 namespace Utilities {
@@ -26,7 +26,6 @@ public:
 #else
 protected:
 #endif
-	GSVector<GSInvestor *> m_investors;
 	_UINT32		m_numChunks;
 	_UINT32		m_sizeOfChunk;
 
@@ -39,6 +38,8 @@ protected:
 public:	
 	ChunkManager(){}
 	~ChunkManager(){}
+
+	static ChunkManager * s_pChunkMan;
 	
 	_INT32 init( const _UINT32 a_numChunks = NUMCHUNKS, const _UINT32 a_sizeOfChunk = SIZECHUNK);
 	void shutdown();
@@ -47,8 +48,11 @@ public:
 	Frame * getFrame( const _INT64 a_name);
 	bool destroyFrame ( const _INT64 a_name);
 
-	void addInvestor( GSInvestor * const a_pInvestor );
-
+	ChunkPtr getNewChunkPtr(ChunkPtr * const a_cpIn );
+	ChunkPtr getFrameChunkPtr( const _INT64 a_name );
+	ChunkPtr getFrameChunkPtr( Frame * const a_pFrame );
+	ChunkPtr allocate( const _INT64 a_frame, const _INT32 a_sizeInBytes, const GS::Utilities::Frame::PLACE & a_place );
+	ChunkPtr allocate( Frame * const a_pFrame, const _INT32 a_sizeInBytes, const GS::Utilities::Frame::PLACE & a_place );
 };
 
 };

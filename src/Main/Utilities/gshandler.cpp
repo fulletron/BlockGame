@@ -1,6 +1,6 @@
 #include "gshandler.h"
 #include <string.h>
-//#include "gsassert.h"
+/*
 
 namespace GS {
 namespace Utilities {
@@ -14,12 +14,12 @@ GSHandler::GSHandler()
 _INT32 GSHandler::init( Frame * const a_pFrame, const _UINT32 a_maximumHandles )
 {
 	m_numPairs = a_maximumHandles;
-	m_pData = reinterpret_cast<GS::Utilities::_GSObjectPair*>(a_pFrame->allocate( 
-			a_maximumHandles * sizeof( _GSObjectPair ), 
+	m_pData = reinterpret_cast<GS::Utilities::GSObjectPair*>(a_pFrame->allocate( 
+			a_maximumHandles * sizeof( GSObjectPair ), 
 			BOT
 			));
 
-	int size = sizeof( _GSObjectPair );
+	int size = sizeof( GSObjectPair );
 	memset( m_pData, 0, a_maximumHandles * size );
 
 	return 0;
@@ -31,7 +31,7 @@ void GSHandler::shutdown()
 	m_numPairs = 0;
 }
 
-_GSKeyPair GSHandler::insert( GSObject * const a_pObject, const _INT64 a_frameName )
+GSKeyPair GSHandler::insert( GSObject * const a_pObject, const _INT64 a_frameName )
 {
 	_UINT32 i = 0;
 
@@ -40,11 +40,11 @@ _GSKeyPair GSHandler::insert( GSObject * const a_pObject, const _INT64 a_frameNa
 	
 	//assert(i < m_size);
 	if (i >= m_numPairs)
-		return _GSKeyPair( 0, 0 );
+		return GSKeyPair( 0, 0 );
 
-	m_pData[i] = _GSObjectPair( a_pObject, a_frameName );
+	m_pData[i] = GSObjectPair( a_pObject, a_frameName );
 		
-	return _GSKeyPair( i, a_frameName );
+	return GSKeyPair( i, a_frameName );
 }
 
 GSObject * GSHandler::get( const _UINT32 a_key )
@@ -71,5 +71,8 @@ _UINT32 GSHandler::readjust( const _INT64 a_frameName, const _INT64 a_adjustment
 	return num_adjusted;
 }
 
+
 };
 };
+
+*/

@@ -3,7 +3,7 @@
 
 #include "chunkmanagertest.h"
 #include "frametest.h"
-#include "gshandlertest.h"
+#include "chunkptrtest.h"
 #include "gsvectortest.h"
 #include "gsthreadtest.h"
 

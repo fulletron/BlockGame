@@ -7,6 +7,8 @@
 namespace GS {
 namespace Graphics {
 
+Window * Window::s_pWindow = 0;
+
 Window::Window()
 {
 	m_pGLFWwindow = 0;
@@ -66,6 +68,8 @@ _UINT32 Window::init()
 	//GSU::checkForGLErrors(); /// TODO ::
 	error = glGetError();
 
+	s_pWindow = this;
+
 	return 0;
 }
 
@@ -90,6 +94,11 @@ bool Window::isOpen()
 		return false;
 
 	return true;
+}
+
+GLFWwindow * Window::getGLFWwindow()
+{
+	return m_pGLFWwindow;
 }
 
 };

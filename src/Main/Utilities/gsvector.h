@@ -1,64 +1,60 @@
-#ifndef __GSVECTOR_H_
-#define __GSVECTOR_H_
+#ifndef __CHUNKVECTOR_H_
+#define __CHUNKVECTOR_H_
 
 #include "typedefinitions.h"
 #include "frame.h"
+#include "chunkptr.h"
+#include "chunkmanager.h"
 
 namespace GS {
 namespace Utilities {
 
 template<typename DATA_TYPE>
-class GSVector
+class IVector
+{
+public:
+	virtual void shutdown() = 0;
+	virtual _UINT32 getSize() = 0;
+	virtual void add( DATA_TYPE a_data ) = 0;
+	virtual void clean() = 0;
+	virtual void remove( _UINT32 a_index ) = 0;
+	//virtual void remove( DATA_TYPE a_data ) = 0;
+	virtual DATA_TYPE get( _UINT32 a_index ) = 0;
+};
+
+template<typename DATA_TYPE>
+class LimitedVector16 : public IVector<DATA_TYPE>
 {
 #ifdef TEST_ENABLED
 public:
 #else
 protected:
 #endif
-	DATA_TYPE * m_pDataArray;
+	static const int MAX_SIZE = 16;
+
+	DATA_TYPE m_vector[MAX_SIZE];
+
 	_UINT32 m_curSize;
-	_UINT32 m_allSize;
-	_BOOL	m_managed;
+
 public:
-	~GSVector(){}
 
-	GSVector(void)
+	~LimitedVector16(){}
+
+	LimitedVector16(void)
 	{
-		m_pDataArray = 0;
+		clean();
 		m_curSize = 0;
-		m_allSize = 0;
-	}
-
-	//_INT32 init( ChunkManager * const a_pChunkMan, const _INT64 a_targetFrame, const _UINT32 a_allSize )
-	//{
-	//	return 0;
-	//}
-
-	_INT32 init( Frame * const a_pFrame, const _UINT32 a_allSize )
-	{
-		m_pDataArray = reinterpret_cast<DATA_TYPE *>(a_pFrame->allocate( sizeof(DATA_TYPE) * a_allSize, Frame::PLACE::BOT ));
-		m_allSize = a_allSize;
-		m_managed = true;
-		return 0;
 	}
 
 	_INT32 init( const _UINT32 a_allSize )
 	{
-		m_managed = false;
-		m_pDataArray = new DATA_TYPE[a_allSize];
-		m_allSize = a_allSize;
 		return 0;
 	}	
 
 	void shutdown()
 	{
-		memset(m_pDataArray, 0, sizeof(DATA_TYPE) * m_allSize);
-
-		if( m_managed )
-			delete [] m_pDataArray;
-		m_pDataArray = 0;
+		clean();
 		m_curSize = 0;
-		m_allSize = 0;
 	}
 
 	_UINT32 getSize()
@@ -68,37 +64,152 @@ public:
 
 	void add( DATA_TYPE a_data )
 	{
-		if( !m_pDataArray )
+		if( m_curSize + 1 < MAX_SIZE )
 			return;
-	
-		m_pDataArray[m_curSize] = a_data;
+
+		m_vector[m_curSize] = a_data;
 		m_curSize++;
+	}
+
+	void clean()
+	{
+		memset(&m_vector, 0, sizeof(DATA_TYPE) * MAX_SIZE);
 	}
 
 	void remove( _UINT32 a_index )
 	{
-		if( m_curSize && m_pDataArray )
+		if( m_curSize )
 			m_curSize--;
 		if( m_curSize )
-			m_pDataArray[a_index] = m_pDataArray[m_curSize];
+			m_vector[a_index] = m_vector[m_curSize];
 	}
 
+	/*
 	void remove( DATA_TYPE a_data )
 	{
 		int i = 0;
-		DATA_TYPE it = m_pDataArray[i];
+		DATA_TYPE it = m_vector[i];
 
 		while( a_data !=  *it && i != m_curSize )
-			it = m_pDataArray[++i];
+			it = m_vector[++i];
 
 		if( i != m_curSize )
 			remove(i);
 	}
+	*/
 
 	DATA_TYPE get( _UINT32 a_index )
 	{
-		if( m_pDataArray )
-			return m_pDataArray[a_index];
+		return m_vector[a_index];
+	}
+
+};
+
+template<typename DATA_TYPE>
+class ChunkVector : public IVector<DATA_TYPE>
+{
+#ifdef TEST_ENABLED
+public:
+#else
+protected:
+#endif
+	TChunkPtr<DATA_TYPE> m_chunkPtr;
+
+	_UINT32 m_curSize;
+	_UINT32 m_allSize;
+	_BOOL	m_inited;
+
+public:
+	~ChunkVector(){}
+
+	ChunkVector(void)
+	{
+		m_chunkPtr.clean();
+		m_curSize = 0;
+		m_allSize = 0;
+		m_inited = false;
+	}
+
+	ChunkVector<DATA_TYPE> & operator=( ChunkPtr & a_chunkPtr )
+	{
+		m_chunkPtr = a_chunkPtr;
+		return *this;
+	}
+
+	_INT32 init( const _UINT32 a_allSize )
+	{
+		m_inited = true;
+		m_allSize = a_allSize;
+		return 0;
+	}	
+
+	void shutdown()
+	{
+		clean();
+		m_curSize = 0;
+		m_allSize = 0;
+		m_inited = false;
+	}
+
+	_UINT32 getSize()
+	{
+		assert(m_inited);
+		return m_curSize;
+	}
+
+	void add( DATA_TYPE a_data )
+	{
+		assert(m_inited);
+
+		if( !m_chunkPtr.isValid() )
+			return;
+
+		DATA_TYPE * pCurPlace = (m_chunkPtr.pointer());
+		pCurPlace[m_curSize] = a_data;
+		m_curSize++;
+	}
+
+	void clean()
+	{
+		//assert(m_inited);
+
+		memset(m_chunkPtr.pointer(), 0, sizeof(DATA_TYPE) * m_allSize);
+	}
+
+	void remove( _UINT32 a_index )
+	{
+		assert(m_inited);
+
+		if( m_curSize && m_chunkPtr.pointer() )
+			m_curSize--;
+		if( m_curSize )
+			m_chunkPtr.pointer()[a_index] = m_chunkPtr.pointer()[m_curSize];
+	}
+
+	/*
+	void remove( DATA_TYPE a_data )
+	{
+		assert(m_inited);
+
+		int i = 0;
+		DATA_TYPE it = m_chunkPtr.pointer()[i];
+
+		a_data !=
+		while( a_data !=  *it && i != m_curSize )
+			it = m_chunkPtr.pointer()[++i];
+
+		if( i != m_curSize )
+			remove(i);
+	}
+	*/
+
+	DATA_TYPE get( _UINT32 a_index )
+	{
+		assert(m_inited);
+
+		if( m_chunkPtr.pointer() )
+			//return m_chunkPtr.dereference()[a_index];
+			return (m_chunkPtr.pointer())[a_index];
 		return 0;
 	}
 

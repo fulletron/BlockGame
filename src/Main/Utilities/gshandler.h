@@ -16,7 +16,7 @@ public:
 #else
 protected:
 #endif
-	_GSObjectPair * 	m_pData;
+	GSObjectPair * 	m_pData;
 	_UINT32 		m_numPairs;
 
 public:
@@ -26,7 +26,7 @@ public:
 	_INT32 init( Frame * const a_pFrame, const _UINT32 a_size );
 	void shutdown();
 
-	_GSKeyPair insert( GSObject * const a_pObject, const _INT64 a_frameName );
+	GSKeyPair insert( GSObject * const a_pObject, const _INT64 a_frameName );
 	GSObject * get( const _UINT32 a_key );
 	void remove( const _UINT32 a_key );
 

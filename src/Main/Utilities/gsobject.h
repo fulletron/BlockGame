@@ -19,18 +19,18 @@ public:
 	virtual _INT32 handleMsg( const GSMsg & a_msg ) = 0;
 };
 
-struct _GSObjectPair
+struct GSObjectPair
 {
-	_GSObjectPair( GSObject * const a_pGSObject, const _INT64 a_ownerFrameName )
+	GSObjectPair( GSObject * const a_pGSObject, const _INT64 a_ownerFrameName )
 	: pGSObject(a_pGSObject), ownerFrameName( a_ownerFrameName )
 	{}
 	GSObject * pGSObject;
 	_INT64 ownerFrameName;
 };
 
-struct _GSKeyPair
+struct GSKeyPair
 {
-	_GSKeyPair( const _UINT32 a_key, const _INT64 a_ownerFrameName )
+	GSKeyPair( const _UINT32 a_key, const _INT64 a_ownerFrameName )
 	: key(a_key), ownerFrameName( a_ownerFrameName )
 	{}	
 	_UINT32 key;
