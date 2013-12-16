@@ -1,6 +1,8 @@
 #ifndef __RENDERER_H_
 #define __RENDERER_H_
 
+#include <Graphics/openglincludes.h>
+
 namespace GS {
 namespace Graphics {
 

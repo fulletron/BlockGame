@@ -8,5 +8,6 @@
 #include "panel.h"
 #include "renderer.h"
 #include "window.h"
+#include "font.h"
 
 #endif

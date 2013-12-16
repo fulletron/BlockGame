@@ -12,6 +12,8 @@ target_link_libraries(Game
 		Utilities
 )
 
+message(STATUS "Target File Dir :: " $<TARGET_FILE_DIR:Game>)
+
 ADD_CUSTOM_COMMAND(TARGET Game
           POST_BUILD
           COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Game>/Internal

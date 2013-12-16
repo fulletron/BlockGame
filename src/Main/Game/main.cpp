@@ -9,6 +9,7 @@ bool g_isRunning = false;
 GS::Utilities::ChunkManager g_chunkman;
 GS::Graphics::Window g_window;
 GS::Utilities::Input g_input;
+GS::Graphics::Font g_font;
 
 int main()
 {
@@ -17,6 +18,7 @@ int main()
 	g_chunkman.init();
 	g_window.init();
 	g_input.init(&g_window);
+	g_font.init();
 
 	while( g_isRunning && g_window.isOpen())
 	{

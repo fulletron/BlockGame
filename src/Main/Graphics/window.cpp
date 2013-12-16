@@ -35,6 +35,9 @@ _UINT32 Window::__createOnlyWindow()
 
 _UINT32 Window::init()
 {
+	/// TODO :: KYLE :: MISPLACED ::
+	m_projMat = glm::ortho(0,SCREEN_WIDTH,0,SCREEN_HEIGHT);
+
 	GLenum error = glGetError();
 
 	glClearColor(0.0f,0.0f,0.0f,0.0f);

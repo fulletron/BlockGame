@@ -1,17 +1,19 @@
 #ifndef __PANEL_H_
 #define __PANEL_H_
 
+#include <Utilities/typedefinitions.h>
+
 namespace GS {
 namespace Graphics {
 
-class Panel {
+class Pane {
 
 #ifdef TEST_ENABLED
 public:
 #else
-private:
+protected:
 #endif
-
+	_BOOL m_dirty;
 public:
 
 };

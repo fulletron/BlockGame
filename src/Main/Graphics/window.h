@@ -28,6 +28,9 @@ public:
 	void swapBuffers();
 	void setGameWindow(Window * a_pWindow);
 	GLFWwindow * getGLFWwindow();
+
+	/// TODO :: KYLE :: MISPLACED ::
+	glm::mat4x4 m_projMat;
 	
 private:
 	_UINT32 __createOnlyWindow();

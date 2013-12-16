@@ -17,6 +17,8 @@
 #include "glm/gtc/type_ptr.hpp"
 
 #include "ft2build.h"
+#include "freetype/freetype.h"
+#include "freetype/ftglyph.h"
 #include FT_FREETYPE_H
 
 #endif

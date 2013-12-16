@@ -5,6 +5,7 @@ add_definitions(-D_VARIADIC_MAX=10)
 
 include_directories( ${CMAKE_SOURCE_DIR}/Main )
 include_directories( ${CMAKE_SOURCE_DIR}/External/include )
+include_directories( ${CMAKE_SOURCE_DIR}/External/include/freetype )
 
 SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
 

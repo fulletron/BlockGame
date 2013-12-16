@@ -10,5 +10,6 @@
 #include "input.h"
 #include "glfwerrorfunc.h"
 #include "chunkptr.h"
+#include <boost/filesystem.hpp>
 
 #endif
