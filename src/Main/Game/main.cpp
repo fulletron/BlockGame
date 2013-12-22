@@ -18,13 +18,17 @@ int main()
 	g_chunkman.init();
 	g_window.init();
 	g_input.init(&g_window);
-	g_font.init();
+	//g_font.init();
+
+	double tt = 0.0;
 
 	while( g_isRunning && g_window.isOpen())
 	{
 		double dt;
 		do{ dt = glfwGetTime(); }
-		while (dt < 0.16666);
+		while (dt < 0.016666);
+
+		tt += dt;
 
 		glfwSetTime(0.0);
 
@@ -41,7 +45,7 @@ int main()
 		glOrtho(-ratio, ratio, -1.f, 1.f, 1.f, -1.f);
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
-		glRotatef((float) glfwGetTime() * 50.f, 0.f, 0.f, 1.f);
+		glRotatef((float) tt * 50.f, 0.f, 0.f, 1.f);
 		glBegin(GL_TRIANGLES);
 		glColor3f(1.f, 0.f, 0.f);
 		glVertex3f(-0.6f, -0.4f, 0.f);
