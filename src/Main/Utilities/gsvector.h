@@ -130,7 +130,7 @@ public:
 		m_inited = false;
 	}
 
-	ChunkVector<DATA_TYPE> & operator=( ChunkPtr & a_chunkPtr )
+	ChunkVector<DATA_TYPE> & operator=( ChunkPtr a_chunkPtr )
 	{
 		m_chunkPtr = a_chunkPtr;
 		return *this;
@@ -153,13 +153,13 @@ public:
 
 	_UINT32 getSize()
 	{
-		assert(m_inited);
+		// assert( (m_inited == true) ); // fpermissive error
 		return m_curSize;
 	}
 
 	void add( DATA_TYPE a_data )
 	{
-		assert(m_inited);
+		// assert(m_inited); // fpermissive error
 
 		if( !m_chunkPtr.isValid() )
 			return;
@@ -178,7 +178,7 @@ public:
 
 	void remove( _UINT32 a_index )
 	{
-		assert(m_inited);
+		// assert(m_inited); // fpermissive error
 
 		if( m_curSize && m_chunkPtr.pointer() )
 			m_curSize--;
@@ -205,7 +205,7 @@ public:
 
 	DATA_TYPE get( _UINT32 a_index )
 	{
-		assert(m_inited);
+		// assert(m_inited); // fpermissive error
 
 		if( m_chunkPtr.pointer() )
 			//return m_chunkPtr.dereference()[a_index];

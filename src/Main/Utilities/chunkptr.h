@@ -38,8 +38,8 @@ public:
 
 protected:
 
-	_BYTE * __pointer();
-	void __update(ChunkPtr & a_cpUp);
+	_BYTE * __pointer(); // fpermissive if &
+	void __update(ChunkPtr a_cpUp); // fpermissive if &
 };
 
 template<typename DATA_TYPE>
@@ -65,7 +65,7 @@ public:
 			return 0;
 	}
 
-	TChunkPtr<DATA_TYPE> & operator=(ChunkPtr & a_chunkPtr)
+	TChunkPtr<DATA_TYPE> & operator=(ChunkPtr a_chunkPtr)
 	{
 		m_pData = a_chunkPtr.getpData();
 		m_pOwnerFrame = a_chunkPtr.getOwnerFrame();

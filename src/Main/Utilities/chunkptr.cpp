@@ -40,13 +40,13 @@ namespace Utilities {
 
 		// The data has moved
 		if ( m_pOwnerFrame->getName() != m_ownerName )
-			__update(GS::Utilities::ChunkManager::s_pChunkMan->getNewChunkPtr( &ChunkPtr(m_pData, m_pOwnerFrame, m_ownerName) ));
+			__update(GS::Utilities::ChunkManager::s_pChunkMan->getNewChunkPtr( ChunkPtr(m_pData, m_pOwnerFrame, m_ownerName) ));
 
 		// return data
 		return m_pData;
 	}
 
-	void ChunkPtr::__update( ChunkPtr & a_cpUp )
+	void ChunkPtr::__update( ChunkPtr  a_cpUp )
 	{
 		m_pData = a_cpUp.getpData();
 		m_pOwnerFrame = a_cpUp.getOwnerFrame();

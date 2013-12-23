@@ -18,7 +18,7 @@ int main()
 	g_chunkman.init();
 	g_window.init();
 	g_input.init(&g_window);
-	//g_font.init();
+	g_font.init();
 
 	double tt = 0.0;
 

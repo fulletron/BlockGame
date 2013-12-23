@@ -48,7 +48,7 @@ public:
 	Frame * getFrame( const _INT64 a_name);
 	bool destroyFrame ( const _INT64 a_name);
 
-	ChunkPtr getNewChunkPtr(ChunkPtr * const a_cpIn );
+	ChunkPtr getNewChunkPtr(ChunkPtr a_cpIn ); // fpermissive if const
 	ChunkPtr getFrameChunkPtr( const _INT64 a_name );
 	ChunkPtr getFrameChunkPtr( Frame * const a_pFrame );
 	ChunkPtr allocate( const _INT64 a_frame, const _INT32 a_sizeInBytes, const GS::Utilities::Frame::PLACE & a_place );
