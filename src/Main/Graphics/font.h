@@ -31,17 +31,21 @@ public:
 		Rect_t dim;
 	};
 
-	struct GlyphInAtlas
+	class GlyphInAtlas
 	{
-		// only one OpenGL Texture
-		// uint32_t texture;
-		// Dimensions and offsets.
-		Rect_t dimLive;
-		Rect_t dimAtlas;
+	public:
+		Vec4D<_USHORT> glyphDim;
+		Vec2D<_UCHAR> glyphLoc;
+
+		GlyphInAtlas(){}
 	};
 
 	FT_Library	m_library;
 	FT_Face		m_face;
+
+	uint32_t	m_texture;
+
+	GlyphInAtlas m_glyphs[100];
 
 	Font(){}
 	~Font(){}
@@ -86,6 +90,7 @@ public:
 		if (error)
 			return error;
 
+		/*
 		// FT_Set_Char_Size computes pixel size... this
 		// is the override!
 		//error = FT_Set_Pixel_Sizes(
@@ -95,12 +100,7 @@ public:
 		//if (error)
 		//	return error;
 
-		// Load all printable characters.
-		// If you visit an ASCII table (like www.asciitable.com) you will see
-		// that the only valid values for printing are the space character all
-		// the way up to the tilde (~).
-		///for(size_t i = ' '; i <= '~'; ++i)
-
+		// Load character
 		FT_GlyphSlot slot = m_face->glyph;
 		FT_UInt glyph_index;
 
@@ -122,6 +122,109 @@ public:
 			return error;
 
 		&slot->bitmap;
+
+		*/
+
+
+		uint32_t biggest_w = 0;
+		uint32_t biggest_h = 0;
+		int numOfChars = '~' - ' ' + 1;
+
+		for(size_t i = ' '; i <= '~'; ++i)
+		{
+			FT_Glyph glyph;
+ 
+			// Locate the index of the character in the font face.
+			uint32_t index = FT_Get_Char_Index(m_face, i);
+			if(index == 0) continue;
+ 
+			// Load the glyph into the font face.
+			FT_Load_Glyph(m_face, index, FT_LOAD_RENDER); // RENDER ????
+ 
+			// Render the glyph as a mono-chrome bitmap.
+			FT_Render_Glyph(m_face->glyph, FT_RENDER_MODE_NORMAL);
+ 
+			// Put the glyph in the glyph slot into an actual glpyh struct.
+			FT_Get_Glyph(m_face->glyph, &glyph);
+ 
+			// Small shortcuts
+			FT_GlyphSlot slot = m_face->glyph;
+			FT_Bitmap& bitmap = slot->bitmap;
+ 
+			// Bitmap dimensions
+			uint32_t w = bitmap.width;
+			uint32_t h = bitmap.rows;
+
+			if( w > biggest_w )
+				biggest_w = w;
+			if( h > biggest_h )
+				biggest_h = h;
+		}
+
+		glGenTextures(1, &m_texture);
+		glBindTexture(GL_TEXTURE_2D, m_texture);
+
+		int tTexWidth = biggest_w * 10;
+		int tTexHeight = biggest_h * 10;
+
+		// create data ptr to hold every letter (needs to be 100 chars
+		unsigned char* data = new unsigned char[biggest_w * biggest_h * 100];
+		memset(data, NULL, tTexWidth * tTexHeight * sizeof(unsigned char));
+
+		// Load all printable characters.
+		// If you visit an ASCII table (like www.asciitable.com) you will see
+		// that the only valid values for printing are the space character all
+		// the way up to the tilde (~).
+		for(size_t i = ' '; i <= '~'; ++i)
+		{
+			size_t glyphNumCur = i - ' ';
+
+			FT_Glyph glyph;
+ 
+			// Locate the index of the character in the font face.
+			uint32_t index = FT_Get_Char_Index(m_face, i);
+			if(index == 0) continue;
+ 
+			// Load the glyph into the font face.
+			FT_Load_Glyph(m_face, index, FT_LOAD_RENDER); // RENDER ????
+ 
+			// Render the glyph as a mono-chrome bitmap.
+			FT_Render_Glyph(m_face->glyph, FT_RENDER_MODE_NORMAL);
+ 
+			// Put the glyph in the glyph slot into an actual glpyh struct.
+			FT_Get_Glyph(m_face->glyph, &glyph);
+ 
+			// Small shortcuts
+			FT_GlyphSlot slot = m_face->glyph;
+			FT_Bitmap& bitmap = slot->bitmap;
+ 
+			// Bitmap dimensions
+			uint32_t w = bitmap.width;
+			uint32_t h = bitmap.rows;
+
+			// STORE THE NEEDED INFORMATION TO FIND THE DAMN TEXT
+			m_glyphs[glyphNumCur].glyphLoc.x = glyphNumCur % 10;
+			m_glyphs[glyphNumCur].glyphLoc.y = glyphNumCur / 10;
+			m_glyphs[glyphNumCur].glyphDim.x = SC(_USHORT, w);
+			m_glyphs[glyphNumCur].glyphDim.y = SC(_USHORT, h);
+			m_glyphs[glyphNumCur].glyphDim.z = SC(_USHORT, slot->advance.x >> 6);
+			m_glyphs[glyphNumCur].glyphDim.a = SC(_USHORT, slot->metrics.horiBearingY >> 6);
+ 
+			memcpy(data + (glyphNumCur * biggest_w + ((glyphNumCur / 10) % biggest_h)), bitmap.buffer, sizeof(unsigned char) * w * h);
+ 
+			FT_Done_Glyph(glyph);
+		}
+
+		// Alignment for pixels needs to be at 1 byte.
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, 0, GL_RED, tTexWidth, tTexHeight,
+		GL_UNSIGNED_BYTE, data);
+		// Restore default alignment value. I haven't actually tested this
+		// part so it may or may not actually be the default.
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+
+		// Delete bitmap buffers
+		delete[] data;
 
 		
 

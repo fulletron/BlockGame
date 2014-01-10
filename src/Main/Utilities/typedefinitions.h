@@ -56,6 +56,7 @@ static const _UINT32 NUM_INVESTORS = 16;
 _INT64 CV8(char * a_name);
 
 #define RC(x,y) reinterpret_cast<x>(y)
+#define SC(x,y) static_cast<x>(y)
 
 inline _BYTE* INALIGNUP( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
 {
@@ -94,6 +95,43 @@ inline _BYTE* INALIGNDOWN( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
 
 	return reinterpret_cast<_BYTE *>( address - remainder );
 }
+
+template<typename T>
+class Vec2D
+{
+public:
+	T x;
+	T y;
+	
+	Vec2D(){}
+	Vec2D(T a_x, T a_y) : a_x(x), a_y(y){}
+};
+
+template<typename T>
+class Vec3D
+{
+public:
+	T x;
+	T y;
+	T z;
+	
+	Vec3D(){}
+	Vec3D(T a_x, T a_y, T a_z) : a_x(x), a_y(y), a_z(z){}
+};
+
+template<typename T>
+class Vec4D
+{
+public:
+	T x;
+	T y;
+	T z;
+	T a;
+	
+	Vec4D(){}
+	Vec4D(T a_x, T a_y, T a_z, T a_a) : a_x(x), a_y(y), a_z(z), a_a(a){}
+};
+
 
 #define FR_BASE CV8("basefram")
 

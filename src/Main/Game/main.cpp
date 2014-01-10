@@ -22,7 +22,7 @@ int main()
 
 	double tt = 0.0;
 
-	while( g_isRunning && g_window.isOpen())
+	while( g_isRunning && g_window.isOpen() )
 	{
 		double dt;
 		do{ dt = glfwGetTime(); }
