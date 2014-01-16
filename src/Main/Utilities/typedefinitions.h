@@ -104,7 +104,7 @@ public:
 	T y;
 	
 	Vec2D(){}
-	Vec2D(T a_x, T a_y) : a_x(x), a_y(y){}
+	Vec2D(T a_x, T a_y) : x(a_x), y(a_y){}
 };
 
 template<typename T>
@@ -116,7 +116,7 @@ public:
 	T z;
 	
 	Vec3D(){}
-	Vec3D(T a_x, T a_y, T a_z) : a_x(x), a_y(y), a_z(z){}
+	Vec3D(T a_x, T a_y, T a_z) : x(a_x), y(a_y), z(a_z){}
 };
 
 template<typename T>
@@ -129,7 +129,7 @@ public:
 	T a;
 	
 	Vec4D(){}
-	Vec4D(T a_x, T a_y, T a_z, T a_a) : a_x(x), a_y(y), a_z(z), a_a(a){}
+	Vec4D(T a_x, T a_y, T a_z, T a_a) : x(a_x), y(a_y), z(a_z), a(a_a){}
 };
 
 

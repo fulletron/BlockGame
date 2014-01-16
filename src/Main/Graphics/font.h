@@ -169,7 +169,7 @@ public:
 
 		// create data ptr to hold every letter (needs to be 100 chars
 		unsigned char* data = new unsigned char[biggest_w * biggest_h * 100];
-		memset(data, NULL, tTexWidth * tTexHeight * sizeof(unsigned char));
+		memset(data, 0, tTexWidth * tTexHeight * sizeof(unsigned char));
 
 		// Load all printable characters.
 		// If you visit an ASCII table (like www.asciitable.com) you will see
