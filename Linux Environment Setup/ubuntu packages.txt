@@ -56,19 +56,15 @@ ubuntu-standard
 wamerican
 wbritish
 ------------------- CONDENSE
-build-essential
-cmake
-debfoster
-freeglut3-dev
+build-essential cmake debfoster freeglut3-dev mesa-utils
 git
 libevent-dev
-@@@@@libglew1.6-dev
 libltdl-dev
 libxi-dev
 libxrandr-dev
 libxxf86vm-dev
-mesa-utils
 @@@@@libboost-all-dev
+@@@@@libglew1.6-dev
 
 --------------------------------
 git
@@ -77,4 +73,8 @@ sudo apt-get install freeglut3-dev libevent-dev libltdl-dev libxi-dev libxrandr-
 @@@@@libglew1.6-dev
 @@@@@libboost-all-dev
 
+
+
+--------------FINAL-----------
+sudo apt-get install build-essential cmake debfoster freeglut3-dev mesa-utils vim libxrandr-dev libxi-dev libxxf86vm-dev
 
