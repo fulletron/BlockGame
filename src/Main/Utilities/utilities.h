@@ -11,5 +11,6 @@
 #include "glfwerrorfunc.h"
 #include "chunkptr.h"
 #include <boost/filesystem.hpp>
+#include "misc.h"
 
 #endif

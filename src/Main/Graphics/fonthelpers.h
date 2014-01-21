@@ -3,6 +3,9 @@
 
 #include <Graphics/openglincludes.h>
 
+#define VBO_OFFSET(count, vertex, field) \
+    (void*)((count * sizeof(vertex)) + (long int)&(((vertex*)NULL)->field))
+
 namespace GS {
 namespace Graphics {
 
@@ -21,24 +24,6 @@ struct Vector2_t
  
 	/// Assignment operator.
 	inline Vector2_t& operator=(const Vector2_t& Copy)
-	{ x = Copy.x; y = Copy.y; return (*this); }
-};
-
-struct Vertex2_t
-{
-	float x,y;
-
-	 /// Default constructor that sets components to 0.
-	Vertex2_t() : x(0), y(0) {}
- 
-	/// Constructs a 2D vector from components.
-	Vertex2_t(float x, float y) : x(x), y(y) {}
- 
-	/// Copy constructor.
-	Vertex2_t(const Vertex2_t& Copy) : x(Copy.x), y(Copy.y) {}
- 
-	/// Assignment operator.
-	inline Vertex2_t& operator=(const Vertex2_t& Copy)
 	{ x = Copy.x; y = Copy.y; return (*this); }
 };
 
@@ -63,6 +48,27 @@ struct Color4f_t
 	r(r), g(g), b(b), a(a) {}
 	float r, g, b, a;
 };
+
+struct Vertex2_t
+{
+	Vector2_t Position;
+	Vector2_t TexCoord;
+	Color4f_t Color;
+
+	// /// Default constructor that sets components to 0.
+	//Vertex2_t() : x(0), y(0) {}
+ //
+	///// Constructs a 2D vector from components.
+	//Vertex2_t(float x, float y) : x(x), y(y) {}
+ //
+	///// Copy constructor.
+	//Vertex2_t(const Vertex2_t& Copy) : x(Copy.x), y(Copy.y) {}
+ //
+	///// Assignment operator.
+	//inline Vertex2_t& operator=(const Vertex2_t& Copy)
+	//{ x = Copy.x; y = Copy.y; return (*this); }
+};
+
 
 };
 };

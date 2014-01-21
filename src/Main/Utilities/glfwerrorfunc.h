@@ -3,17 +3,35 @@
 
 namespace GS {
 namespace Utilities {
-namespace ErrorCallbacks {
 
-static int g_latestErrorCode = 0;
-static const char * g_pLatestErrorDesc = 0;
+class ErrorCallbacks {
 
-typedef void(*GLFWerrorfun)(int, const char *);
-void glfwErrorCallback(int, const char *);
-bool errorsExist();
+	/*
+	static int g_latestGLError = 0;
+	static int g_latestErrorCode = 0;
+	static const char * g_pLatestErrorDesc = 0;
+
+	typedef void(*GLFWerrorfun)(int, const char *);
+	static void glfwErrorCallback(int, const char *);
+	static bool errorsExist();
+	static bool glErrorExist();
+	*/
+
+
+public:
+	static int g_latestGLError;
+	static int g_latestErrorCode;
+	static const char * g_pLatestErrorDesc;
+
+	typedef void(*GLFWerrorfun)(int, const char *);
+	static void glfwErrorCallback(int, const char *);
+	static bool errorsExist();
+	static bool glErrorExist();
 
 };
 };
 };
+
+#define _CheckForErrors() GS::Utilities::ErrorCallbacks::glErrorExist()
 
 #endif

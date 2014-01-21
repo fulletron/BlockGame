@@ -13,6 +13,7 @@ target_link_libraries( Utilities
 	glfw
 	${Boost_LIBRARIES}
 	freetype
+	SOIL
 )
 
 add_library( UtilitiesTest ${UTILITIESSRC} )
@@ -22,6 +23,7 @@ target_link_libraries( UtilitiesTest
 	${Boost_LIBRARIES}
 	glfw
 	freetype
+	SOIL
 )
 
 message( STATUS "glfw libs : " ${GLFW_LIBRARIES} )
