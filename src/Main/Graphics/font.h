@@ -9,7 +9,6 @@
 // http://www.freetype.org/freetype2/docs/tutorial/step1.html
 
 #include "fonthelpers.h"
-//#define VBO_OFFSET(count, vertex, field) (void*)((count * sizeof(vertex)) + (long int)&(((vertex*)NULL)->field))
 
 namespace GS {
 namespace Graphics {
@@ -25,13 +24,6 @@ protected:
 public:
 
 	_BOOL m_loaded;
-	struct Glyph
-	{
-		// OpenGL texture handle for the bitmap
-		uint32_t texture;
-		// Dimensions and offsets.
-		Rect_t dim;
-	};
 
 	class GlyphInAtlas
 	{
@@ -40,14 +32,24 @@ public:
 		Vec2D<_UCHAR> loc;
 
 		GlyphInAtlas(){}
+		~GlyphInAtlas(){}
 	};
 
+	// KYLE ::
+	// TODO ::
+	// The library for freetype operations.
+	// Only one needs to exist ever.
 	FT_Library	m_library;
+
+	// Handle to the entire character set
+	// This is specific to each .otf or .ttf
 	FT_Face		m_face;
 
+	// gl texture of the font atlas
 	uint32_t	m_texture;
 
-	GlyphInAtlas m_glyphs[100];
+	// HOW MANY GLYPHS? KYLE ::
+	GlyphInAtlas m_glyphs[256];
 
 	uint32_t  m_biggest_w, m_biggest_h;
 
@@ -60,6 +62,8 @@ public:
 	~Font(){}
 
 
+	_INT32 renderText( const std::string& a_text, const Vector2_t& a_pos );
+	_INT32 loadFile( const char * a_fontFile, const int a_size );
 	/// THIS IS STILL REALLY MESSY
 	/// CURRENTLY WORKING ON IT!
 	_INT32 init()
@@ -488,8 +492,8 @@ public:
 		Vertex2_t* verts = new Vertex2_t[vlen];
 		uint16_t* inds = new uint16_t[ilen];
  
-		memset(inds, NULL, sizeof(uint16_t) * ilen);
-		memset(verts, NULL, sizeof(Vertex2_t) * vlen);
+		memset(inds, 0, sizeof(uint16_t) * ilen);
+		memset(verts, 0, sizeof(Vertex2_t) * vlen);
  
 		// Track width and max height.
 		int max_w = 0, max_h = 0;

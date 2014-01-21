@@ -1,5 +1,5 @@
 #include "glfwerrorfunc.h"
-#include <Graphics\openglincludes.h>
+#include <Graphics/openglincludes.h>
 
 namespace GS {
 namespace Utilities {

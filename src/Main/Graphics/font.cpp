@@ -3,6 +3,367 @@
 namespace GS {
 namespace Graphics {
 
+// KYLE ::
+// TODO ::
+// Replace all definitions with my definitions.
+
+_INT32 Font::renderText( const std::string& a_text, const Vector2_t& a_pos )
+{
+	if( !m_loaded )
+		return -1;
+	if( a_text.empty() )
+		return -2;
+	uint32_t vao = 0,
+		vbo = 0,
+		ibo = 0;
+
+	// Vertex buffer, Index buffer sizes
+	uint16_t vlen = a_text.length() << 2;
+	uint16_t ilen = a_text.length() * ( ( 1 << 2 ) + 2  );
+
+	// KYLE ::
+	// TODO ::
+	// use homemade allocator
+	Vertex2_t * verts = new Vertex2_t[vlen];
+	uint16_t * inds = new uint16_t[ilen];
+
+	memset( inds, 0, sizeof( uint16_t ) * ilen );
+	memset( verts, 0, sizeof( Vertex2_t ) * vlen );
+
+	// Track max width & height
+	int max_w = 0, max_h = 0;
+
+	// The x-position to start the next character at
+	int32_t last_w = a_pos.x;
+
+	// The y pos of the starting character
+	float y = a_pos.y;
+
+	for( size_t i = 0; i < vlen; i += 4 )
+	{
+		_UCHAR c = a_text[ i >> 2 ];
+		
+		if( c == '\n' )
+		{
+			last_w = a_pos.x;
+			y -= m_biggest_h;
+		}
+
+		// the actual letter
+		_UCHAR actualLetter = ( c > '~' || c < ' ' ) ? ' ' : c;
+		
+		// the letter adjusted to fit the m_glyphs index
+		_UCHAR letterIndex = actualLetter - m_startingChar;
+		
+		// dimensions of the current letter
+		const Vec4D<_USHORT> & cDim = m_glyphs[letterIndex].dim;
+		
+		float w = last_w;
+		float h = cDim.y;
+		last_w = w + cDim.z; // cDim.z is bitmap width
+
+		// Set the vertices
+		// KYLE ::
+		// TODO ::
+		// divide by a non magic number, alternatively, decide
+		// how much customization i want in xy values
+		verts[i].Position = Vector2_t(w / 800.0f,
+					(y + h - (h - cDim.a)) / 600.0f);
+		verts[i+1].Position = Vector2_t(last_w  / 800.0f, 
+					(y + h - (h - cDim.a) ) / 600.0f);
+		verts[i+2].Position = Vector2_t(last_w  / 800.0f, 
+					(y - (h - cDim.a)) / 600.0f);
+		verts[i+3].Position = Vector2_t(w  / 800.0f, 
+					(y - (h - cDim.a)) / 600.0f);
+	
+		// The relative width OR height of any given character
+		// cell on the texture
+		float singleCharDim = 1.0f / SC( float, m_numOfCharsRoot );
+
+		int numCharsRootI = SC( int, m_numOfCharsRoot );
+		int charIndex = letterIndex;
+		
+		// this letters beginning cell w, h
+		float tx = SC(float,( charIndex % numCharsRootI )) 
+				* singleCharDim;
+		float ty = SC(float,( charIndex / numCharsRootI )) 
+				* singleCharDim;
+		
+		// current letters w, h in relation to entire (partial cell)
+		float thisCharWidth = singleCharDim 
+			* (SC(float, cDim.x) / SC(float, m_biggest_w));
+		float thisCharHeight = singleCharDim 
+			* (SC(float, h) / SC(float, m_biggest_h));
+		
+		// declare the tex coords
+		verts[i+0].TexCoord = Vector2_t(tx, ty);
+		verts[i+1].TexCoord = Vector2_t(tx + thisCharWidth, ty);
+		verts[i+2].TexCoord = Vector2_t(
+				tx + thisCharWidth, ty + thisCharHeight);
+		verts[i+3].TexCoord = Vector2_t(tx, ty + thisCharHeight);
+
+		// KYLE ::
+		// TODO ::
+		// pass in the color as opposed to setting it here!
+		// DO NOT HAVE A COLOR MEMBER VARIABLE;
+		for( size_t j = i; j < i + 4; ++j )
+			verts[j].Color = m_color;
+
+		// Assuming vert 0 is top left and verts are 
+		// clockwise, texture quads are indices
+		// [0, 1, 3, 3, 2, 1]
+
+		// The index we need is i / 4 * 6, since that
+		// gives us the current character, and each
+		// character needs 6 indices.
+		int x = ( i >> 2 ) * 6;
+
+		inds[x+0] = i + 0;
+		inds[x+1] = i + 1;
+		inds[x+2] = i + 3;
+		inds[x+3] = i + 3;
+		inds[x+4] = i + 2;
+		inds[x+5] = i + 1;
+		
+		// keep track of overall dims
+		max_w += cDim.x;
+		max_h = ( max_h > cDim.a + h ) ? max_h : cDim.a + h ;
+	}	
+	// KYLE ::
+	// TODO ::
+	// Enable font render shader. Perhaps	
+	
+	// Create GPU buffers for vertex/index data
+	glGenVertexArrays( 1, &vao );
+	glGenBuffers( 1, &vbo );
+	glGenBuffers( 1, &ibo );
+	
+	glBindVertexArray( vao );
+	glBindBuffer( GL_ARRAY_BUFFER, vbo );
+	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, ibo );
+	// Enable the vertex attributes for position, texcoord, color
+	glEnableVertexAttribArray(0);
+	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
+	
+	// Give data to GPU
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex2_t) * vlen, verts, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint16_t) * ilen, inds, GL_STATIC_DRAW);
+	// Vertices are arranged in memory like so:
+	// [ p0, p1, t0, t1, c0, c1, c2, c3 ]
+
+	// vertex position starts at index 0.
+	// VBO_OFFSET macro
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE,
+		sizeof(Vertex2_t),VBO_OFFSET(0, Vertex2_t, Position));
+
+	// texture coordinates start at index 2
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE,
+		sizeof(Vertex2_t), VBO_OFFSET(0, Vertex2_t, TexCoord));
+	// color floats start at index 4
+	glVertexAttribPointer(2, 4, GL_FLOAT, GL_FALSE,
+		sizeof(Vertex2_t), VBO_OFFSET(0, Vertex2_t, Color));
+
+	// Enable blending so that the text doesn't have a black background.
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	// Draw each character
+	for(size_t i = 0; i < a_text.length(); ++i)
+	{
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT,
+		(void*)(sizeof(uint16_t) * i * 6));
+	}	
+	
+	// Delete GPU buffers.
+	glBufferData(GL_ARRAY_BUFFER, 0, NULL, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 0, NULL, GL_STATIC_DRAW);
+
+	// Unbind all the things.
+	//glBindTexture(GL_TEXTURE_2D, 0);
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindVertexArray(0);
+	//m_FontRender.Unbind();
+	// Delete all buffers.
+	glDeleteVertexArrays(1, &vao);
+	glDeleteBuffers(1, &vbo);
+	glDeleteBuffers(1, &ibo);
+
+	_CheckForErrors();
+
+	// KYLE ::
+	// TODO ::
+	// remove these deletes
+	// Delete old buffers in RAM.
+	delete[] verts;
+	delete[] inds;
+	// Give back the total dimensions of the text rendered.
+	return 0;
+}
+
+_INT32 Font::loadFile( const char * a_fontFile, const int a_size )
+{
+	// KYLE ::
+	// TODO ::
+	// move the library initialization out of this function
+	// perhaps have a static m_library and do call it here
+	FT_Error error;
+	error = FT_Init_FreeType( &m_library );
+	if( error )
+		return error;
+
+	_GSPath path = GS::Utilities::FileSystem::getCurrentFullPath();	
+	path /= "./Internal/Resources/Fonts/";
+	path /= a_fontFile;
+
+	// m_face is the handle to the entire set of characters
+	error = FT_New_Face(	m_library,
+				path.string().c_str(),
+				0,
+				&m_face );
+	
+	if( error )
+		return error;
+
+	error = FT_Set_Char_Size(
+				m_face,		
+				0,		//char_width 1/64th of point
+				a_size * 64,	//char_height ''''
+				300,		//horizontal device res
+				300 ); 		//vertical device res
+
+	if( error )
+		return error;
+
+	// SETTING THE CHARACTER RANGE
+	// MOST PROBABLY MISPLACED
+	// KYLE ::
+	m_startingChar = ' ';
+	_UCHAR endingChar = '~';
+	m_numOfCharsRoot = 
+		GS::Utilities::Misc::getClosestSquareRoot( 
+					endingChar - m_startingChar + 1 );
+	m_biggest_w = 0;
+	m_biggest_h = 0;
+
+	// Find the size of a cell on the font texture atlas
+	// This is done by looking up all of the text and finding
+	// the largest w and largest h.
+	for(size_t i = m_startingChar; i <= endingChar; ++i)
+	{
+		// KYLE ::
+		// ? For cleanup at the end ( unsure if needed!)
+		FT_Glyph glyph;
+
+		//Locate the index of the character in the font face
+		uint32_t index = FT_Get_Char_Index( m_face, i );
+		if(index == 0) continue; // if this one doesn't exise, skip
+		
+		// Load the glyph into the font face
+		FT_Load_Glyph( m_face, index, FT_LOAD_RENDER );
+
+		// Render the glyph as a mono-chrome bitmap
+		FT_Render_Glyph( m_face->glyph, FT_RENDER_MODE_NORMAL );
+
+		// ? Set glyph so i can call glyph_done
+		FT_Get_Glyph( m_face->glyph, &glyph );
+
+		// Small Shortcuts
+		FT_GlyphSlot slot = m_face->glyph;
+		FT_Bitmap& bitmap = slot->bitmap;
+
+		// Bitmap dimensions
+		uint32_t w = bitmap.width;
+		uint32_t h = bitmap.rows;
+
+		// Store Largest
+		if( w > m_biggest_w )
+			m_biggest_w = w;
+		if( h > m_biggest_h )
+			m_biggest_h = h;
+		
+		// ? clean up!
+		FT_Done_Glyph( glyph );
+	}
+	
+	glGenTextures(1, &m_texture);
+	glBindTexture(GL_TEXTURE_2D, m_texture);
+
+	// TODO :: replace with custom mem alloc
+	unsigned char* data = new unsigned char[	m_biggest_w * 
+							m_biggest_h * 
+							m_numOfCharsRoot * 
+							m_numOfCharsRoot ];
+	memset(data, 0, m_biggest_w * 
+			m_biggest_h * 
+			m_numOfCharsRoot * 
+			m_numOfCharsRoot *
+			sizeof(unsigned char) );
+
+	glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_R8, 
+		m_biggest_w * m_numOfCharsRoot,
+		m_biggest_h * m_numOfCharsRoot,
+		0, GL_RED, GL_UNSIGNED_BYTE,
+		data );
+
+	uint32_t w = 0;
+	uint32_t h = 0;
+
+	for( size_t i = m_startingChar; i <= endingChar; ++i )
+	{
+		FT_Glyph glyph;
+		size_t glyphNumCur = i - m_startingChar;
+		uint32_t index = FT_Get_Char_Index( m_face, i );
+
+		FT_Load_Glyph( m_face, index, FT_LOAD_RENDER );
+		FT_Render_Glyph( m_face->glyph, FT_RENDER_MODE_NORMAL );
+		FT_Get_Glyph( m_face->glyph, &glyph );
+		
+		FT_GlyphSlot slot = m_face->glyph;
+		FT_Bitmap& bitmap = slot->bitmap;	
+		
+		w = bitmap.width;
+		h = bitmap.rows;
+
+		// store the needed glyph information in m_glyphs
+		m_glyphs[glyphNumCur].loc.x = glyphNumCur % m_numOfCharsRoot;
+		m_glyphs[glyphNumCur].loc.y = glyphNumCur / m_numOfCharsRoot;
+		m_glyphs[glyphNumCur].dim.x = SC(_USHORT, w);
+		m_glyphs[glyphNumCur].dim.y = SC(_USHORT, h);
+		m_glyphs[glyphNumCur].dim.z = SC(_USHORT, slot->advance.x >> 6);
+		m_glyphs[glyphNumCur].dim.a = SC(_USHORT, slot->metrics.horiBearingY >> 6);
+		
+		// put the glyph bitmap buffer in the texture
+		size_t biggest_char = ( m_biggest_h * m_biggest_w );
+		memcpy( 	data + biggest_char * glyphNumCur, 
+				bitmap.buffer, 
+				sizeof(unsigned char) * w * h );
+
+		// Perhaps an OpenGL Error Check Here? TODO ::
+
+		glTexSubImage2D( GL_TEXTURE_2D, 0,
+			m_biggest_w * ( SC(int, glyphNumCur) % 10 ),
+			m_biggest_h * ( SC(int, glyphNumCur) / 10 ),
+			w, h, GL_RED, GL_UNSIGNED_BYTE,
+			data + biggest_char * glyphNumCur );
+	}
+
+	_CheckForErrors();
+
+	delete[] data; // TODO ::
+
+	glPixelStorei( GL_UNPACK_ALIGNMENT, 4 );
+	
+	m_loaded = true;
+
+	return 0;
+}
+
 #if 0
 
 bool Font::Initialize()

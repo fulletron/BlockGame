@@ -43,7 +43,8 @@ int main()
 	g_chunkman.init();
 	g_window.init();
 	g_input.init(&g_window);
-	g_font.init();
+	//g_font.init();
+	g_font.loadFile( "KaushanScript-Regular.otf", 16 );
 
 	double tt = 0.0;
 
@@ -198,8 +199,8 @@ int main()
 
 		_CheckForErrors();
 
-		g_font.RenderText("I Was Spinning Free! WHOA!!", GS::Graphics::Vector2_t(-800.00f,-600.00f));
-		//g_font.RenderText("W", GS::Graphics::Vector2_t(0.0f,70.0f));
+		//g_font.RenderText("I Was Spinning Free! WHOA!!", GS::Graphics::Vector2_t(-800.00f,-600.00f));
+		g_font.renderText("I Was Spinning Free! WHOA!!", GS::Graphics::Vector2_t(-800.00f,-600.00f));
 
 		g_window.swapBuffers();
 
