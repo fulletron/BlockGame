@@ -12,6 +12,7 @@ typedef double							_DOUBLE;
 typedef long							_LONG;
 typedef float							_FLOAT;
 typedef bool							_BOOL;
+typedef size_t							_SIZET;
 
 #include <new>
 
@@ -134,6 +135,7 @@ public:
 
 
 #define FR_BASE CV8("basefram")
+#define FR_TRASH CV8("trash000")
 
 namespace GS {
 namespace Utilities {

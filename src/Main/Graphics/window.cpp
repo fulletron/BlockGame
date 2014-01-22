@@ -71,8 +71,6 @@ _UINT32 Window::init()
 	//GSU::checkForGLErrors(); /// TODO ::
 	error = glGetError();
 
-	s_pWindow = this;
-
 	return 0;
 }
 
