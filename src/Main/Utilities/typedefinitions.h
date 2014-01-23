@@ -12,7 +12,8 @@ typedef double							_DOUBLE;
 typedef long							_LONG;
 typedef float							_FLOAT;
 typedef bool							_BOOL;
-typedef size_t							_SIZET;
+#define _SIZET size_t
+//typedef size_t							_SIZET;
 
 #include <new>
 
