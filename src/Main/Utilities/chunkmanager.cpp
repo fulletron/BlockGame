@@ -35,6 +35,7 @@ void ChunkManager::shutdown()
 		pFrame->shutdown();
 		delete pFrame;
 	}
+	delete [] m_pFramesInRelation;
 	free( m_pChunk );
 }
 
@@ -131,24 +132,24 @@ ChunkPtr ChunkManager::allocate( Frame * const a_pFrame, const _INT32 a_sizeInBy
 	return ChunkPtr(a_pFrame->allocate(a_sizeInBytes, a_place), a_pFrame, a_pFrame->getName());
 }
 
-ChunkPtr ChunkManager::getFrameChunkPtr( const _INT64 a_name )
-{
-	Frame * pFrame = getFrame( a_name );
-	if ( pFrame )
-		return getFrameChunkPtr( pFrame );
-
-	return ChunkPtr(0,0,0);
-}
-
-ChunkPtr ChunkManager::getFrameChunkPtr( Frame * const a_pFrame )
-{
-	return ChunkPtr( RC(_BYTE*, a_pFrame), a_pFrame, a_pFrame->getName() );
-}
-
 void ChunkManager::__compress( const _INT64 a_name, const _UINT32 a_slot )
 {
 	m_pFramesInRelation[a_slot]->copyFrame(m_pFramesInRelation[m_usedChunks-1]);
 }
+
+//ChunkPtr ChunkManager::__getFrameChunkPtr( const _INT64 a_name )
+//{
+//	Frame * pFrame = getFrame( a_name );
+//	if ( pFrame )
+//		return __getFrameChunkPtr( pFrame );
+//
+//	return ChunkPtr(0,0,0);
+//}
+//
+//ChunkPtr ChunkManager::__getFrameChunkPtr( Frame * const a_pFrame )
+//{
+//	return ChunkPtr( RC(_BYTE*, a_pFrame), a_pFrame, a_pFrame->getName() );
+//}
 
 };
 };

@@ -29,12 +29,7 @@ public:
 	// gl texture of the font atlas
 	_UINT32						m_texture;
 
-#ifdef TEST_ENABLED
-public:
-#else
-protected:
-#endif
-
+selective:
 	// The library for freetype operations.
 	// STATIC: Only one needs to exist ever.
 	static FT_Library			m_library;

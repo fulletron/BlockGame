@@ -7,6 +7,11 @@
 bool g_isRunning = false;
 
 // WHENEVER THESE ARE NEEDED, THEY ARE TO BE EXTERNED
+// Globals are used for classes that should only
+// exist once. In addition, the ChunkManager class
+// needs to be accessible from everywhere, as it
+// replaces new and malloc.
+
 GS::Utilities::ChunkManager g_chunkman;
 GS::Graphics::Window g_window;
 GS::Utilities::Input g_input;

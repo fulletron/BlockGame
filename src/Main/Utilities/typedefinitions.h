@@ -138,6 +138,14 @@ public:
 #define FR_BASE CV8("basefram")
 #define FR_TRASH CV8("trash000")
 
+// IF IM TESTING THINGS, PROTECTED THINGS BECOME
+// PUBLIC!!!!!!!!
+#ifdef TEST_ENABLED
+#define selective public
+#else
+#define selective protected
+#endif
+
 namespace GS {
 namespace Utilities {
 

@@ -24,11 +24,7 @@ public:
 	TOP = 1,
 	} PLACE;
 
-#ifdef TEST_ENABLED
-public:
-#else
-protected:
-#endif
+selective:
 	_BYTE * m_pMemBlock;
 	_BYTE * m_pCurrentLoc[2];
 
@@ -40,7 +36,6 @@ protected:
 	_INT64 m_name;
 	_UINT32 m_size;
 
-	void __zerofStops(const PLACE & a_place);
 public:
 	Frame(_BYTE * a_pAddress, const _UINT32 a_size );
 	~Frame(){};
@@ -58,6 +53,10 @@ public:
 	bool isValid();
 
 	void copyFrame( Frame * const a_pFromFrame );
+
+selective:
+	void __zerofStops(const PLACE & a_place);
+
 };
 
 };

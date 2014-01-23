@@ -10,11 +10,7 @@ namespace Graphics {
 class Window
 {
 
-#ifdef TEST_ENABLED
-public:
-#else
-private:
-#endif
+selective:
 	bool			m_isOpen;
 	GLFWwindow *	m_pGLFWwindow;
 
@@ -31,7 +27,7 @@ public:
 	/// TODO :: KYLE :: MISPLACED ::
 	//glm::mat4x4 m_projMat;
 	
-private:
+selective:
 	_UINT32 __createOnlyWindow();
 };
 

@@ -12,16 +12,11 @@ namespace Graphics {
 class ShaderProgram {
 
 public:
-
 	// TEMPORARILY PUBLIC FOR EASE OF DEV
 	// gl texture of the font atlas
 	_UINT32						m_shaderProgram;
 
-#ifdef TEST_ENABLED
-public:
-#else
-protected:
-#endif
+selective:
 	// Is this font loaded?
 	_BOOL						m_inited;
 
@@ -41,8 +36,7 @@ public:
 
 	void shutdown();
 
-protected:
-
+selective:
 	_INT32 __compileShader( 
 			_UINT32 & a_shaderID, 
 			const char * a_source,

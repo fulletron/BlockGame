@@ -49,11 +49,7 @@ public:
 		}
 	};
 
-#ifdef TEST_ENABLED
-public:
-#else
-private:
-#endif
+selective:
 public:
 
 	static InputDeck inputDeck;

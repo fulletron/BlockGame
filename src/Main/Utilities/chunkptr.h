@@ -9,18 +9,12 @@ namespace Utilities {
 
 class ChunkPtr
 {
-#ifdef TEST_ENABLED
-public:
-#else
-protected:
-#endif
-
+selective:
 	_BYTE * m_pData;
 	Frame * m_pOwnerFrame;
 	_INT64 m_ownerName;
 
 public:	
-
 	ChunkPtr();
 	ChunkPtr( _BYTE * a_pData, Frame * a_pOwnerFrame, const _INT64 a_ownerName);
 
@@ -35,8 +29,7 @@ public:
 	Frame * getOwnerFrame(){return m_pOwnerFrame;}
 	_INT64 getOwnerName(){return m_ownerName;}
 
-protected:
-
+selective:
 	_BYTE * __pointer(); // fpermissive if &
 	void __update(ChunkPtr a_cpUp); // fpermissive if &
 };
@@ -44,12 +37,6 @@ protected:
 template<typename DATA_TYPE>
 class TChunkPtr : public ChunkPtr
 {
-#ifdef TEST_ENABLED
-public:
-#else
-protected:
-#endif
-
 public:	
 	DATA_TYPE & dereference()
 	{
@@ -72,8 +59,6 @@ public:
 
 		return *this;
 	}
-
-protected:
 };
 
 };

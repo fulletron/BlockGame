@@ -5,6 +5,8 @@
 #define TEST_ENABLED
 #endif
 
+extern 	GS::Utilities::ChunkManager 	g_chunkman;
+
 #include <gtest/gtest.h>
 #include <Utilities/utilities.h>
 
@@ -12,7 +14,6 @@
 class MockFrameManager : public testing::Test 
 {
 protected:
-	GS::Utilities::ChunkManager 	m_man;
 	GS::Utilities::Frame * 		m_pBaseFrame;
 	static const int		TESTSIZECHUNK = 16;
 	static const int		TESTNUMCHUNKS = 4;
@@ -31,15 +32,15 @@ public:
 	// happens every test case
 	virtual void SetUp() 
 	{
-		m_man.init(TESTNUMCHUNKS,TESTSIZECHUNK);
-		m_man.createFrame( CV8("frame001") );
-		m_pBaseFrame = m_man.getFrame( CV8("frame001") );
+		g_chunkman.init(TESTNUMCHUNKS,TESTSIZECHUNK);
+		g_chunkman.createFrame( CV8("frame001") );
+		m_pBaseFrame = g_chunkman.getFrame( CV8("frame001") );
 	}
 
 	// happens every test case
 	virtual void TearDown() 
 	{
-		m_man.shutdown();
+		g_chunkman.shutdown();
 	}
 };
 
@@ -170,13 +171,13 @@ TEST_F(MockFrameManager, allocate_test_BOT_basic)
 TEST_F(MockFrameManager, allocate_test_TOP_basic)
 {
 	char * test = reinterpret_cast<char *>(m_pBaseFrame->allocate( 1, TOP ));
-	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) + m_man.m_sizeOfChunk - 1, test );
+	EXPECT_EQ( reinterpret_cast<char *>(m_pBaseFrame->m_pMemBlock) + g_chunkman.m_sizeOfChunk - 1, test );
 
 	_BYTE * test2 = reinterpret_cast<_BYTE *>(m_pBaseFrame->allocate( 2, TOP ));
-	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + m_man.m_sizeOfChunk - 4, test2 );
+	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + g_chunkman.m_sizeOfChunk - 4, test2 );
 
 	_BYTE * test3 = reinterpret_cast<_BYTE * >(m_pBaseFrame->allocate( 4, TOP ));
-	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + m_man.m_sizeOfChunk - 8, reinterpret_cast<_BYTE * >(test3) );
+	EXPECT_EQ( reinterpret_cast<_BYTE *>(m_pBaseFrame->m_pMemBlock) + g_chunkman.m_sizeOfChunk - 8, reinterpret_cast<_BYTE * >(test3) );
 };
 
 TEST_F(MockFrameManager, allocate_test_BOT_overflow)
