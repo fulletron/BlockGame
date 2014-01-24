@@ -25,13 +25,14 @@ public:
 
 	typedef void(*GLFWerrorfun)(int, const char *);
 	static void glfwErrorCallback(int, const char *);
-	static bool errorsExist();
-	static bool glErrorExist();
+	static bool glfwErrorsExist();
+	static bool glErrorsExist();
+	static bool flaggedErrorsExist();
 
 };
 };
 };
 
-#define _CheckForErrors() GS::Utilities::ErrorCallbacks::glErrorExist()
+#define _CheckForErrors() GS::Utilities::ErrorCallbacks::flaggedErrorsExist()
 
 #endif

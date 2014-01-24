@@ -1,7 +1,10 @@
 #include <iostream>
 #include <gtest/gtest.h>
 
+#include "Utilities/chunkmanager.h"
 #include "graphicstest.h"
+
+GS::Utilities::ChunkManager g_chunkman;
 
 int main(int argc, char **argv)
 {

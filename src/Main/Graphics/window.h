@@ -19,18 +19,17 @@ private:
 	GLFWwindow *	m_pGLFWwindow;
 
 public:
-	static Window * s_pWindow;
-
 	Window();
+	~Window();
+
 	_UINT32 init();
 	bool isOpen();
 	_UINT32 shutdown();
 	void swapBuffers();
-	void setGameWindow(Window * a_pWindow);
 	GLFWwindow * getGLFWwindow();
 
 	/// TODO :: KYLE :: MISPLACED ::
-	glm::mat4x4 m_projMat;
+	//glm::mat4x4 m_projMat;
 	
 private:
 	_UINT32 __createOnlyWindow();

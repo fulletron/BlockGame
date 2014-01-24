@@ -5,8 +5,6 @@
 namespace GS {
 namespace Utilities {
 
-ChunkManager * ChunkManager::s_pChunkMan = 0;
-
 _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChunk )
 {
 	m_numChunks = a_numChunks;
@@ -24,8 +22,6 @@ _INT32 ChunkManager::init( const _UINT32 a_numChunks, const _UINT32 a_sizeOfChun
 	{
 		m_pFramesInRelation[i] = new Frame( (m_pChunk + (m_sizeOfChunk * i)), m_sizeOfChunk );
 	}
-
-	s_pChunkMan = this;
 
 	return 0;
 }

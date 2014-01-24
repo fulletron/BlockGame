@@ -7,11 +7,13 @@
 namespace GS {
 namespace Graphics {
 
-Window * Window::s_pWindow = 0;
-
 Window::Window()
 {
 	m_pGLFWwindow = 0;
+}
+
+Window::~Window()
+{
 }
 
 _UINT32 Window::__createOnlyWindow()
@@ -36,9 +38,7 @@ _UINT32 Window::__createOnlyWindow()
 _UINT32 Window::init()
 {
 	/// TODO :: KYLE :: MISPLACED ::
-	m_projMat = glm::ortho(0,SCREEN_WIDTH,0,SCREEN_HEIGHT);
-
-	GLenum error = glGetError();
+	//m_projMat = glm::ortho(0,SCREEN_WIDTH,0,SCREEN_HEIGHT);
 
 	glClearColor(0.0f,0.0f,0.0f,0.0f);
 
@@ -58,7 +58,7 @@ _UINT32 Window::init()
 	/// Set Multisample Rate
 	glfwWindowHint(GLFW_SAMPLES, 8);
 
-	if(__createOnlyWindow())
+	if( __createOnlyWindow() )
 		return 2;
 
 	//glfwSetWindowSizeCallback( _windowResizeFunction ); /// TODO ::
@@ -68,8 +68,7 @@ _UINT32 Window::init()
 	glewExperimental = GL_TRUE;
 	glewInit();
 
-	//GSU::checkForGLErrors(); /// TODO ::
-	error = glGetError();
+	_CheckForErrors();
 
 	return 0;
 }

@@ -3,6 +3,8 @@
 
 #include "utilitiestest.h"
 
+GS::Utilities::ChunkManager g_chunkman;
+
 int main(int argc, char **argv)
 {
 	::testing::InitGoogleTest(&argc,argv);

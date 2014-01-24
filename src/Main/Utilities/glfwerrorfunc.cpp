@@ -8,15 +8,13 @@ int ErrorCallbacks::g_latestGLError = 0;
 int ErrorCallbacks::g_latestErrorCode = 0;
 const char * ErrorCallbacks::g_pLatestErrorDesc = 0;
 
-//namespace ErrorCallbacks {
-
 void ErrorCallbacks::glfwErrorCallback(int a_int, const char * a_desc)
 {
 	g_latestErrorCode = a_int;
 	g_pLatestErrorDesc = a_desc;
 }
 
-bool ErrorCallbacks::errorsExist()
+bool ErrorCallbacks::glfwErrorsExist()
 {
 	if ( g_latestErrorCode != 0 )
 		return true;
@@ -24,10 +22,18 @@ bool ErrorCallbacks::errorsExist()
 	return false;
 }
 
-bool ErrorCallbacks::glErrorExist()
+bool ErrorCallbacks::glErrorsExist()
 {
 	g_latestGLError = glGetError();
 	if ( g_latestGLError != GL_NO_ERROR )
+		return true;
+
+	return false;
+}
+
+bool ErrorCallbacks::flaggedErrorsExist()
+{
+	if ( glErrorsExist() || glfwErrorsExist() )
 		return true;
 
 	return false;

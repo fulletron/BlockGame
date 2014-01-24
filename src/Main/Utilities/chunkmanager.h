@@ -34,25 +34,36 @@ protected:
 	_BYTE * 	m_pChunk;
 	Frame ** 	m_pFramesInRelation;
 
-	void __compress( const _INT64 a_name, const _UINT32 a_slot );
 public:	
 	ChunkManager(){}
 	~ChunkManager(){}
-
-	static ChunkManager * s_pChunkMan;
 	
-	_INT32 init( const _UINT32 a_numChunks = NUMCHUNKS, const _UINT32 a_sizeOfChunk = SIZECHUNK);
+	_INT32 init( 
+		const _UINT32 a_numChunks = NUMCHUNKS, 
+		const _UINT32 a_sizeOfChunk = SIZECHUNK );
+
 	void shutdown();
 
-	Frame * createFrame(const _INT64 a_name);
-	Frame * getFrame( const _INT64 a_name);
-	bool destroyFrame ( const _INT64 a_name);
+	Frame * createFrame( const _INT64 a_name );
+	Frame * getFrame( const _INT64 a_name );
+	bool destroyFrame ( const _INT64 a_name );
 
-	ChunkPtr getNewChunkPtr(ChunkPtr a_cpIn ); // fpermissive if const
+	ChunkPtr getNewChunkPtr( ChunkPtr a_cpIn ); // fpermissive if const
 	ChunkPtr getFrameChunkPtr( const _INT64 a_name );
 	ChunkPtr getFrameChunkPtr( Frame * const a_pFrame );
-	ChunkPtr allocate( const _INT64 a_frame, const _INT32 a_sizeInBytes, const GS::Utilities::Frame::PLACE & a_place );
-	ChunkPtr allocate( Frame * const a_pFrame, const _INT32 a_sizeInBytes, const GS::Utilities::Frame::PLACE & a_place );
+
+	ChunkPtr allocate( 
+		const _INT64 a_frame, 
+		const _INT32 a_sizeInBytes, 
+		const GS::Utilities::Frame::PLACE & a_place );
+
+	ChunkPtr allocate( 
+		Frame * const a_pFrame, 
+		const _INT32 a_sizeInBytes, 
+		const GS::Utilities::Frame::PLACE & a_place );
+
+protected:
+	void __compress( const _INT64 a_name, const _UINT32 a_slot );
 };
 
 };

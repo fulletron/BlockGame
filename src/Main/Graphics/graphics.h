@@ -9,5 +9,6 @@
 #include "renderer.h"
 #include "window.h"
 #include "font.h"
+#include "shaderprogram.h"
 
 #endif

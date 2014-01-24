@@ -52,12 +52,6 @@ _INT32 Font::renderText(const std::string & a_text,
 	for( _SIZET i = 0; i < vlen; i += 4 )
 	{
 		_UCHAR c = a_text[ i >> 2 ];
-		
-		if( c == '\n' )
-		{
-			right_w = a_pos.x;
-			y -= m_biggest_h;
-		}
 
 		// the actual letter
 		_UCHAR actualLetter = ( c > '~' || c < ' ' ) ? ' ' : c;
@@ -67,6 +61,15 @@ _INT32 Font::renderText(const std::string & a_text,
 		
 		// dimensions of the current letter
 		const GlyphInAtlas & glyph = m_glyphs[letterIndex];
+
+		// TODO ::
+		// MODIFY THE VALUES
+		
+		if( c == '\n' )
+		{
+			right_w = a_pos.x;
+			y -= m_biggest_h;
+		}
 
 		float left_w = right_w;
 		float h = glyph.height;
@@ -236,10 +239,6 @@ _INT32 Font::initializeLibrary()
 
 _INT32 Font::loadFile( const char * a_fontFile, const int a_size )
 {
-	// KYLE ::
-	// TODO ::
-	// move the library initialization out of this function
-	// perhaps have a static m_library and do call it here
 	FT_Error error;
 	error = initializeLibrary();
 	if( error )
@@ -401,6 +400,36 @@ _INT32 Font::loadFile( const char * a_fontFile, const int a_size )
 	m_loaded = true;
 
 	return 0;
+}
+
+void Font::destroyLibrary()
+{
+	if ( !m_libraryLoaded )
+		return;
+
+	FT_Done_FreeType( m_library );
+	m_libraryLoaded = false;
+}
+
+void Font::shutdown(bool a_killLib)
+{
+	glDeleteTextures(1, &m_texture);
+	FT_Done_Face( m_face );
+	if( a_killLib )
+	{
+		destroyLibrary();
+	}
+	m_loaded = false;
+}
+
+Font::Font()
+{
+	m_libraryLoaded = false; 
+	m_loaded = false;
+}
+
+Font::~Font()
+{
 }
 
 };

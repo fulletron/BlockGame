@@ -16,18 +16,18 @@ namespace Graphics {
 class Font {
 
 public:
-	class GlyphInAtlas
+	struct GlyphInAtlas
 	{
-	public:
 		_SHORT width;
 		_SHORT height;
 		_SHORT horizBearingX;
 		_SHORT horizBearingY;
 		_SHORT advanceX;
-
-		GlyphInAtlas(){}
-		~GlyphInAtlas(){}
 	};
+
+	// TEMPORARILY PUBLIC FOR EASE OF DEV
+	// gl texture of the font atlas
+	_UINT32						m_texture;
 
 #ifdef TEST_ENABLED
 public:
@@ -35,10 +35,8 @@ public:
 protected:
 #endif
 
-	// KYLE ::
-	// TODO ::
 	// The library for freetype operations.
-	// Only one needs to exist ever.
+	// STATIC: Only one needs to exist ever.
 	static FT_Library			m_library;
 	static _BOOL				m_libraryLoaded;
 
@@ -49,146 +47,82 @@ protected:
 	FT_Face						m_face;
 
 	// HOW MANY GLYPHS? KYLE ::
-	GlyphInAtlas				m_glyphs[256];
+	GlyphInAtlas				m_glyphs[128];
 
 	_UINT32						m_biggest_w,
 								m_biggest_h;
 
-
 	_UCHAR						m_startingChar;
 	_UCHAR						m_numOfCharsRoot;
 
-public:
-	// TEMPORARILY PUBLIC FOR EASE OF DEV
-
-	// gl texture of the font atlas
-	_UINT32						m_texture;
-
-	Font(){m_libraryLoaded = false; m_loaded = false;}
-	~Font(){}
-
-	static _INT32 initializeLibrary();
-	_INT32 loadFile( const char * a_fontFile, const int a_size = 16);
-	_INT32 renderText(	const std::string & a_text, 
-						const Vector2_t & a_pos, 
-						const Color4f_t & a_color 
-							= Color4f_t(1.0f, 1.0f, 1.0f, 1.0f));
-};
-
-#if 0
-class Font
-{
 public:
 	Font();
 	~Font();
 
 	/**
 	* Initializes the FreeType library.
-	* This should be called prior to ANY other font operations.
-	* Since it is static, no instance of CFont needs to be present,
-	* simply do:
-	* if(!CFont::Initialize())
-	* std::cerr << "FreeType 2 failed to initialize!\n";
+	* If the library has not been loaded,
+	* this function is automatically called
+	* in loadFile(). It is also static,
+	* so it can be called without an instance
+	* of the Font class.
 	*
-	* @return TRUE on success, FALSE on failure.
+	* @return 0 on success, 
+	* @return ERROR_NUMBER on failure.
 	**/
-	static bool Initialize();
- 
-	/**
-	* Loads a TrueType font.
-	* Here, all of the printable characters in the ASCII table
-	* are loaded as bitmaps, then are turned into renderable
-	* textures in GPU memory. Their dimensions are stored for
-	* rendering later on.
-	*
-	* @param std::string Font filename
-	* @param uint16_t Font size (optional=12)
-	*
-	* @pre CFont::Initialize() must have been called.
-	*
-	* @return TRUE if everything went smoothly,
-	* FALSE otherwise.
-	**/
-	bool LoadFromFile(const std::string& filename,
-	const uint16_t size = 12);
- 
-	/**
-	* Resizes the font.
-	* This stores a new font size and calls LoadFromFile()
-	* again, regenerating new bitmaps and textures for all
-	* characters.
-	* Since this can be a relatively expensive operation,
-	* it should be used sparingly. If you think you're going
-	* to be resizing a font often, consider caching multiple
-	* instances of CFont.
-	*
-	* @param uint16_t New font size
-	*
-	* @return Value of CFont::LoadFromFile()
-	**/
-	bool Resize(const uint32_t size);
- 
-	/**
-	* Renders text on the current framebuffer.
-	* Given a string, this function will render it at
-	* the given position. A VBO will be created, vertex
-	* information generated, and then each character will
-	* be rendered using its texture.
-	* The position parameter marks the bottom of the "line"
-	* to be drawn on, so parts of characters such as 'j'
-	* or 'q' will fall below the line. Think of a sheet of
-	* paper.
-	* A rectangle is returned, in case it is useful to know
-	* the overall dimensions of the text rendered.
-	*
-	* @param std::string Text to render
-	* @param math::vector2_t Position to start rendering
-	*
-	* @return Rectangle representing rendered text dimensions.
-	*
-	* @see GetTextWidth()
-	* @see GetTextHeight()
-	**/
-	Rect_t RenderText(const std::string& text,
-	const Vector2_t& Pos);
- 
-	/**
-	* Sets text color; the default is white.
-	**/
-	void SetFontColor(const float r, const float g, const float b);
+	static _INT32 initializeLibrary();
 
-#ifdef TEST_ENABLED
-public:
-#else
-private:
-#endif
+	/**
+	* Loads a TTF or OTF into this instance.
+	* It stores all the relevant information (dimensions,
+	* glyph metrics, etc) in this class, as well as turns
+	* the bitmaps into renderable textures is GPU memory.
+	*
+	* @param const char * a_fontFile
+	*	full path of the file (with filename)
+	* @param const int a_size: 
+	*	initial size in pixels (detail)
+	*
+	* @return 0 // SUCCESS!,
+	* @return ERROR_NUMBER // FAILURE!
+	**/
+	_INT32 loadFile( const char * a_fontFile, const int a_size = 16);
 
-	static FT_Library s_Library;
-	static bool s_loaded;
- 
-	// Glyph representing data for each character.
-	struct Glyph
-	{
-		// OpenGL texture handle for the bitmap
-		uint32_t texture;
-		// Dimensions and offsets.
-		Rect_t dim;
-	};
- 
-	// {Char: Glyph} dictionary.
-	std::map<char, Glyph> mp_glyphTextures;
- 
-	FT_Face m_FontFace;
-	Shader m_FontRender;
- 
-	Color4f_t m_Color;
-	std::string m_filename;
-	uint16_t m_size;
-	bool m_loaded, m_ready; 
 
+	/**
+	* Renders text to the current framebuffer.
+	* This function does not bind it's texture.
+	* 
+	*
+	* @param const std::string & a_text
+	*	Text to Render!
+	* @param const Vector2_t & a_pos
+	*	Position to render (in pixels!)
+	* @param const Color4f_t & a_color
+	*	Color of the text
+	*
+	* @return 0 // SUCCESS!,
+	* @return ERROR_NUMBER // FAILURE!
+	*
+	* @ TODO :: return the final coords (for Carat)
+	**/
+	_INT32 renderText(	const std::string & a_text, 
+						const Vector2_t & a_pos, 
+						const Color4f_t & a_color 
+							= Color4f_t(1.0f, 1.0f, 1.0f, 1.0f));
+
+	/**
+	* Destroys the font instance.
+	* Standardly, it doesn't call
+	* destroyLibrary, but can.
+	**/
+	void shutdown(bool a_killLib = false);
+
+	/**
+	* Destroys the FreeType library.
+	**/
+	static void destroyLibrary();
 };
-
-#endif
 
 
 };

@@ -2,6 +2,8 @@
 #include <Utilities/chunkmanager.h>
 #include <cstring>
 
+extern GS::Utilities::ChunkManager g_chunkman;
+
 namespace GS {
 namespace Utilities {
 
@@ -40,7 +42,7 @@ namespace Utilities {
 
 		// The data has moved
 		if ( m_pOwnerFrame->getName() != m_ownerName )
-			__update(GS::Utilities::ChunkManager::s_pChunkMan->getNewChunkPtr( ChunkPtr(m_pData, m_pOwnerFrame, m_ownerName) ));
+			__update(g_chunkman.getNewChunkPtr( ChunkPtr(m_pData, m_pOwnerFrame, m_ownerName) ));
 
 		// return data
 		return m_pData;

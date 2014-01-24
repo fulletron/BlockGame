@@ -9,13 +9,9 @@ namespace GS {
 	namespace Graphics { class Window; };
 namespace Utilities {
 
+// This class is static to allow easy syncing with GLFW
 class Input {
 
-#ifdef TEST_ENABLED
-public:
-#else
-private:
-#endif
 public:
 	struct Press {
 		int keybutton;
@@ -53,18 +49,41 @@ public:
 		}
 	};
 
-	static Input * s_pInput;
-	static InputDeck * s_pInputDeck;
-	InputDeck inputDeck;
+#ifdef TEST_ENABLED
+public:
+#else
+private:
+#endif
+public:
 
-	static void mousePosCB(GLFWwindow * a_pGLFWwindow, double a_x, double a_y){s_pInputDeck->m_x = a_x; s_pInputDeck->m_y = a_y;}
-	static void keyCB(GLFWwindow * a_pGLFWwindow, int a_key, int a_scancode, int a_action, int a_mods){s_pInputDeck->m_presses.add(Press(a_key, a_action, a_mods));}
-	static void mouseClickCB(GLFWwindow * a_pGLFWwindow, int a_button, int a_action, int a_mods){s_pInputDeck->m_presses.add(Press(a_button, a_action, a_mods));}
-	static void scrollCB(GLFWwindow * a_pGLFWwindow, double a_xOffset, double a_yOffset){s_pInputDeck->m_scrollX = a_xOffset; s_pInputDeck->m_scrollY = a_yOffset;}
+	static InputDeck inputDeck;
 
-	_INT32 init(GS::Graphics::Window * a_pWindow);
+	static _INT32 init();
 
-	static void wipe(){s_pInputDeck->wipe();}
+	static void mousePosCB( 
+			GLFWwindow * a_pGLFWwindow, 
+			double a_x, 
+			double a_y );
+
+	static void keyCB( 
+			GLFWwindow * a_pGLFWwindow, 
+			int a_key, 
+			int a_scancode, 
+			int a_action, 
+			int a_mods );
+
+	static void mouseClickCB( 
+			GLFWwindow * a_pGLFWwindow, 
+			int a_button, 
+			int a_action, 
+			int a_mods );
+	static void scrollCB( 
+			GLFWwindow * a_pGLFWwindow, 
+			double a_xOffset, 
+			double a_yOffset );
+
+	static void wipe();
+
 };
 
 };

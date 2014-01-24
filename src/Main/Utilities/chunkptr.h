@@ -19,7 +19,6 @@ protected:
 	Frame * m_pOwnerFrame;
 	_INT64 m_ownerName;
 
-
 public:	
 
 	ChunkPtr();

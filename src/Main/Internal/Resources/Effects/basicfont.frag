@@ -1,14 +1,12 @@
-#version 150
+#version 150 core
 
-in vec2 TexCoord;
+in vec2 Texcoord;
 in vec4 Color;
 out vec4 outColor;
+uniform sampler2D tex;
 
-uniform sampler2D gSampler;
-
-void main()
+void main() 
 {
-	vec4 vTexColor = texture2D(gler, TexCoord);
-    outColor = vTexColor * Color;
+	float temp = texture2D(tex, Texcoord).r;
+	outColor = vec4(Color.r, Color.g, Color.b, temp);
 }
-

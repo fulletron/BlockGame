@@ -49,24 +49,13 @@ struct Color4f_t
 	float r, g, b, a;
 };
 
+// TODO ::
+// this only requires 3 floats for color
 struct Vertex2_t
 {
 	Vector2_t Position;
 	Vector2_t TexCoord;
 	Color4f_t Color;
-
-	// /// Default constructor that sets components to 0.
-	//Vertex2_t() : x(0), y(0) {}
- //
-	///// Constructs a 2D vector from components.
-	//Vertex2_t(float x, float y) : x(x), y(y) {}
- //
-	///// Copy constructor.
-	//Vertex2_t(const Vertex2_t& Copy) : x(Copy.x), y(Copy.y) {}
- //
-	///// Assignment operator.
-	//inline Vertex2_t& operator=(const Vertex2_t& Copy)
-	//{ x = Copy.x; y = Copy.y; return (*this); }
 };
 
 
