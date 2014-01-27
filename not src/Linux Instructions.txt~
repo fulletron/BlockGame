@@ -27,6 +27,4 @@ BlockGame/src/External/boost_1_55_0
 8) Make the resulting makefile, which is in the same dir as the previous function call
 	make -f Makefile
 
-9) Run the correct program or test
-	from BlockProj/Main/Game  run ./Game
-	from BlockProj/Test/UtilitiesTester   run   ./UtilitiesTester
+9) 

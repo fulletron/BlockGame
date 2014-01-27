@@ -18,8 +18,6 @@ namespace Utilities {
 
 class Frame
 {
-friend Frame;
-
 public:
 	typedef enum {
 	BOT = 0,
