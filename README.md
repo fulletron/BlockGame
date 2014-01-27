@@ -3,18 +3,21 @@ BlockGame
 
 Example snippets of my code:
 
-{ Implementation of freetype in openGL } [font.h](https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.h) 
-[font.cpp](https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.cpp)}
+{ Implementation of freetype in openGL } 
+
+[font.h](https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.h) 
+[font.cpp](https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.cpp)
 
 { Implementation of a chunk or pool allocator, to replace New, Delete, Free, and Malloc }
+
 [chunkmanager.h](https://github.com/fulletron/BlockGame/blob/master/src/Main/Utilities/chunkmanager.h)
 [chunkmanager.cpp](https://github.com/fulletron/BlockGame/blob/master/src/Main/Utilities/chunkmanager.cpp)
 
 Want to build this project?
 
-Windows Instructions
+Windows Instructions - (instructions not written!)
 
-Linux Instructions
+[Linux Instructions](https://github.com/fulletron/BlockGame/blob/master/not%20src/Linux%20Instructions.txt)
 
 This is the newest version of my 3D game. I'm currently working on the base data structures (from Game Programming Gems books) and portability (cMake, boost, soil, glfw).
 
@@ -22,4 +25,4 @@ Unfortunately it doesn't have flashy visuals like the DirectX project does (yet)
 
 I have it compiling in Windows and Linux! Mac is having issues with boost, but I'm shelfing that.
 
-This is what the DX version looked like https://github.com/fulletron/BlockGame/wiki/What-the-DirectX-version-looked-like:
+[This is what the DX version looked like](https://github.com/fulletron/BlockGame/wiki/What-the-DirectX-version-looked-like)
