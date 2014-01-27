@@ -1,7 +1,11 @@
 BlockGame
 =========
 
-Example snippets of my code:
+Portfolio, Snippets of Code, Etc:
+
+{ Gameplay of Senior Project "Hydra", in C++ From Scratch, using DirectX  }
+
+[Youtube Footage](http://www.youtube.com/watch?v=c49Agz17ujo)
 
 { Implementation of freetype in openGL } 
 
