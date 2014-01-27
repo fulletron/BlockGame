@@ -3,15 +3,12 @@ BlockGame
 
 Example snippets of my code:
 
-{Implementation of freetype in openGL}
+{ Implementation of freetype in openGL } [font.h](https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.h) 
+[font.cpp](https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.cpp)}
 
-https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.h
-https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.cpp
-
-{Implementation of a chunk or pool allocator, to replace New, Delete, Free, and Malloc}
-
-https://github.com/fulletron/BlockGame/blob/master/src/Main/Utilities/chunkmanager.h
-https://github.com/fulletron/BlockGame/blob/master/src/Main/Utilities/chunkmanager.cpp
+{ Implementation of a chunk or pool allocator, to replace New, Delete, Free, and Malloc }
+[chunkmanager.h](https://github.com/fulletron/BlockGame/blob/master/src/Main/Utilities/chunkmanager.h)
+[chunkmanager.cpp](https://github.com/fulletron/BlockGame/blob/master/src/Main/Utilities/chunkmanager.cpp)
 
 Want to build this project?
 
