@@ -66,14 +66,14 @@ TEST_F(MockChunkPtrManager, move_test_small)
 	pUint.dereference() = 100;
 	EXPECT_EQ( 100, pUint.dereference() );
 
-	_UINT64 * pFullUintBefore = RC( _UINT64 *, pUint.m_pData );
+	_UINT64 * pFullUintBefore = RC( _UINT64 *, pUint.pointer() );
 
 	g_chunkman.destroyFrame( CV8("frame001") );
 
 	pUint.dereference() = 100;
 	EXPECT_EQ( 100, pUint.dereference() );
 
-	_UINT64 * pFullUintAfter = RC( _UINT64 *, pUint.m_pData );
+	_UINT64 * pFullUintAfter = RC( _UINT64 *, pUint.pointer() );
 
 	EXPECT_NE( pFullUintBefore, pFullUintAfter );
 };
@@ -89,14 +89,14 @@ TEST_F(MockChunkPtrManager, move_test)
 	pUint.dereference() = 100;
 	EXPECT_EQ( 100, pUint.dereference() );
 
-	_UINT64 * pFullUintBefore = RC( _UINT64 *, pUint.m_pData );
+	_UINT64 * pFullUintBefore = RC( _UINT64 *, pUint.pointer() );
 
 	g_chunkman.destroyFrame( CV8("frame001") );
 
 	pUint.dereference() = 100;
 	EXPECT_EQ( 100, pUint.dereference() );
 
-	_UINT64 * pFullUintAfter = RC( _UINT64 *, pUint.m_pData );
+	_UINT64 * pFullUintAfter = RC( _UINT64 *, pUint.pointer() );
 
 	EXPECT_NE( pFullUintBefore, pFullUintAfter );
 };

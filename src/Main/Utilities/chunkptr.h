@@ -35,7 +35,7 @@ selective:
 };
 
 template<typename DATA_TYPE>
-class TChunkPtr : public ChunkPtr
+class TChunkPtr : protected ChunkPtr
 {
 public:	
 	DATA_TYPE & dereference()

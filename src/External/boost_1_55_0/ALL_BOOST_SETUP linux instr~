@@ -1,6 +1,0 @@
-make sure that ./bootstrap.sh is executable
-make sure that ./tools/build/v2/engine/build.sh is executable
-
-bash ./bootstrap.sh --with-libraries=thread,timer,filesystem,chrono,atomic,date_time,regex,system
-
-./b2

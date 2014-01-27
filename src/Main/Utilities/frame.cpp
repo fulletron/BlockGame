@@ -23,7 +23,9 @@ void Frame::offsetfStops(const _INT64 a_offset)
 	for( int i = 0; i < 2; ++i )
 		for( int j = 0; j < MAX_FSTOPS; ++j )
 			if(m_pfStop[i][j])
+			{
 				m_pfStop[i][j] += a_offset;
+			}
 }
 
 bool Frame::setfStop(const PLACE & a_place)
@@ -39,7 +41,7 @@ bool Frame::setfStop(const PLACE & a_place)
 	return false;
 }
 
-bool Frame::freefStop(const PLACE & a_place)
+_BYTE * Frame::freefStop(const PLACE & a_place)
 {
 	// pop fStop
 	if( m_pfStop[a_place][0] )
@@ -58,9 +60,9 @@ bool Frame::freefStop(const PLACE & a_place)
 		for( int i = 1; i < MAX_FSTOPS; ++i )
 			m_pfStop[a_place][i-1] = m_pfStop[a_place][i];
 		m_pfStop[a_place][MAX_FSTOPS - 1] = 0;
-		return true;
+		return m_pCurrentLoc[a_place];
 	}
-	return false;
+	return 0;
 }
 
 _BYTE * Frame::allocate( const _INT32 a_sizeInBytes, const PLACE & a_place )
@@ -110,35 +112,37 @@ void Frame::shutdown()
 
 	__zerofStops(BOT);
 	__zerofStops(TOP);
-	// it would be faster to memset,
-	// for now do this to excersize
-	// functions
-	// TODO
-	//while(freefStop(PLACE::TOP)){}
-	//while(freefStop(PLACE::BOT)){}
-
-	//m_pMemBlock = 0;
 }
 
 void Frame::copyFrame( Frame * a_pFromFrame )
 {
+	// Find the difference between the two memory blocks
+	// the DIFF value is valid to currentLocs and fstops
+	_BYTE * pFrom = RC( _BYTE *, a_pFromFrame->getMemBlock() );
+	_BYTE * pTo = RC( _BYTE *, m_pMemBlock );
+	_INT64 diff = pFrom - pTo;
+
 	_BYTE * pMemBlock = m_pMemBlock;
 	memcpy( m_pMemBlock, a_pFromFrame->getMemBlock(), m_size );
 
-	_BYTE * pFrom = RC( _BYTE *, a_pFromFrame );
-	_BYTE * pTo = RC( _BYTE *, this );
+	m_pCurrentLoc[TOP] = a_pFromFrame->m_pCurrentLoc[TOP] - diff;
 
-	int test = sizeof(Frame);
-	_INT64 diff = pFrom - pTo;
+	m_pCurrentLoc[BOT] = a_pFromFrame->m_pCurrentLoc[BOT] - diff;
 
- 	m_pCurrentLoc[TOP] -= diff;
-	m_pCurrentLoc[BOT] -= diff;
+	__copyfStops( a_pFromFrame );
 
 	offsetfStops(-diff);
 
 	m_name = a_pFromFrame->getName();
 
 	m_pMemBlock = pMemBlock;
+}
+
+void Frame::__copyfStops( Frame * a_pFromFrame )
+{
+	for( int i = 0; i < 2; ++i )
+		for( int j = 0; j < MAX_FSTOPS; ++j )
+			m_pfStop[i][j] = a_pFromFrame->m_pfStop[i][j];
 }
 
 bool Frame::isValid()

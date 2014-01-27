@@ -124,7 +124,6 @@ public:
 
 	ChunkVector(void)
 	{
-		m_chunkPtr.clean();
 		m_curSize = 0;
 		m_allSize = 0;
 		m_inited = false;
@@ -159,12 +158,9 @@ public:
 
 	void add( DATA_TYPE a_data )
 	{
-		// assert(m_inited); // fpermissive error
-
-		if( !m_chunkPtr.isValid() )
-			return;
-
 		DATA_TYPE * pCurPlace = (m_chunkPtr.pointer());
+		if( !pCurPlace )
+			return;
 		pCurPlace[m_curSize] = a_data;
 		m_curSize++;
 	}

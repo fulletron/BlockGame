@@ -18,6 +18,8 @@ namespace Utilities {
 
 class Frame
 {
+friend Frame;
+
 public:
 	typedef enum {
 	BOT = 0,
@@ -45,7 +47,7 @@ public:
 
 	void offsetfStops(const _INT64 a_offset);
 	bool setfStop(const PLACE & a_place);
-	bool freefStop (const PLACE & a_place);
+	_BYTE * freefStop (const PLACE & a_place);
 
 	_INT32 init( const _INT64 a_name);
 	void shutdown();
@@ -56,6 +58,7 @@ public:
 
 selective:
 	void __zerofStops(const PLACE & a_place);
+	void __copyfStops( Frame * a_pFromFrame );
 
 };
 

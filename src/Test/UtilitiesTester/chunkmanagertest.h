@@ -51,10 +51,13 @@ TEST_F(MockChunkManager, two_minus_one_check_TOP)
 	test.dereference() = 19;
 
 	EXPECT_EQ( 19, test.dereference() );
+	_UINT64 * pInt = test.pointer();
 
 	g_chunkman.destroyFrame( 1 );
 
 	EXPECT_EQ( 19, test.dereference() );
+
+	EXPECT_NE( pInt, test.pointer() );
 };
 
 TEST_F(MockChunkManager, two_minus_one_check_SUC)
@@ -177,7 +180,7 @@ TEST_F(MockChunkManager, destroy_frame_test_2)
 	EXPECT_EQ( 0, pFrame4->getName() ) << "Test D Failed.";
 };
 
-TEST_F(MockChunkManager, destroy_frame_test_fStop)
+TEST_F(MockChunkManager, destroy_frame_test_currentloc)
 {
 	GS::Utilities::Frame	*pFrame = 0, 
 							*pFrame2 = 0,
@@ -186,19 +189,99 @@ TEST_F(MockChunkManager, destroy_frame_test_fStop)
 							*pFrame3 = 0,
 							*pFrame4 = 0;
 
+	g_chunkman.m_pFramesInRelation[0];
+
+
 	pFrame = g_chunkman.createFrame( CV8("frame001") );
 	pFrame2 = g_chunkman.createFrame( CV8("frame002") );
-
-	_BYTE* pFrameMemBlock = pFrame2->m_pMemBlock;
-
+	
+	pFrame->setfStop(BOT);
 	pFrame2->setfStop(BOT);
+
+	_BYTE * pFirstLoc = pFrame->m_pCurrentLoc[BOT];
 
 	bool destroyed = g_chunkman.destroyFrame( CV8("frame001") );
 	EXPECT_EQ( true, destroyed )  << "Frame 1 could not be destroyed";
 
 	pFrameFromGet = g_chunkman.getFrame( CV8("frame002") );
-	EXPECT_EQ( pFrame->m_pMemBlock, pFrameFromGet->m_pfStop[BOT][0] ) 
-		<< "Frame2's fstop was not moved correctly.";
+
+	EXPECT_EQ( pFirstLoc, pFrameFromGet->m_pCurrentLoc[BOT] )
+		<< "The currentLoc moves incorrectly.";
+};
+
+TEST_F(MockChunkManager, destroy_frame_test_fStop)
+{
+	GS::Utilities::Frame	*pFrame = 0, 
+							*pFrame2 = 0,
+							*pFrameFromGet = 0, 
+							*pFrame0 = 0;
+
+	pFrame0 = g_chunkman.createFrame( CV8("frame000") );
+	pFrame = g_chunkman.createFrame( CV8("frame001") );
+	pFrame2 = g_chunkman.createFrame( CV8("frame002") );
+
+	_TChunkPtr<_UINT64> testInt, testInt2, testInt3;
+	pFrame2->setfStop( BOT );
+	testInt = g_chunkman.allocate( CV8("frame002") , sizeof( _UINT64 ), BOT );
+	testInt.dereference() = 100;
+	pFrame2->setfStop( BOT );
+	testInt2 = g_chunkman.allocate( CV8("frame002") , sizeof( _UINT64 ), BOT );
+	testInt.dereference() = 101;
+	pFrame2->setfStop( BOT );
+	testInt3 = g_chunkman.allocate( CV8("frame002") , sizeof( _UINT64 ), BOT );
+	testInt.dereference() = 102;
+
+	_UINT64 diff1 = RC( _UINT64, pFrame2->m_pfStop[BOT][0] ) - RC( _UINT64, pFrame2->getMemBlock() );
+	_UINT64 diff2 = RC( _UINT64, pFrame2->m_pfStop[BOT][1] ) - RC( _UINT64, pFrame2->getMemBlock() );
+	_UINT64 diff3 = RC( _UINT64, pFrame2->m_pfStop[BOT][2] ) - RC( _UINT64, pFrame2->getMemBlock() );
+
+	bool destroyed = g_chunkman.destroyFrame( CV8("frame001") );
+	EXPECT_EQ( true, destroyed )  << "Frame 1 could not be destroyed";
+
+	pFrameFromGet = g_chunkman.getFrame( CV8("frame002") );
+	_UINT64 diffA = RC( _UINT64, pFrameFromGet->m_pfStop[BOT][0] ) - RC( _UINT64, pFrameFromGet->getMemBlock() );
+	_UINT64 diffB = RC( _UINT64, pFrameFromGet->m_pfStop[BOT][1] ) - RC( _UINT64, pFrameFromGet->getMemBlock() );
+	_UINT64 diffC = RC( _UINT64, pFrameFromGet->m_pfStop[BOT][2] ) - RC( _UINT64, pFrameFromGet->getMemBlock() );
+
+
+	EXPECT_EQ( diff1, diffA ) 
+		<< "Frame2's fstop did not change correctly.";
+	EXPECT_EQ( diff2, diffB ) 
+		<< "Frame2's fstop did not change correctly.";
+	EXPECT_EQ( diff3, diffC ) 
+		<< "Frame2's fstop did not change correctly.";
+};
+
+TEST_F(MockChunkManager, destroy_frame_test_fStop_2)
+{
+	GS::Utilities::Frame	*pFrame = 0, 
+							*pFrame2 = 0,
+							*pFrameFromGet = 0, 
+							*pNull = 0,
+							*pFrame3 = 0,
+							*pFrame4 = 0;
+
+	g_chunkman.m_pFramesInRelation[0];
+
+
+	pFrame = g_chunkman.createFrame( CV8("frame001") );
+	pFrame2 = g_chunkman.createFrame( CV8("frame002") );
+	
+	pFrame->setfStop(BOT);
+	_BYTE * fStopO = pFrame->m_pfStop[BOT][0];
+
+	pFrame2->setfStop(BOT);
+	_BYTE * fStopP = pFrame2->m_pfStop[BOT][0];
+
+	bool destroyed = g_chunkman.destroyFrame( CV8("frame001") );
+	EXPECT_EQ( true, destroyed )  << "Frame 1 could not be destroyed";
+
+	pFrameFromGet = g_chunkman.getFrame( CV8("frame002") );
+	EXPECT_NE( fStopP, pFrameFromGet->m_pfStop[BOT][0] ) 
+		<< "Frame2's fstop did not change";
+
+	EXPECT_EQ( fStopO, pFrameFromGet->m_pfStop[BOT][0] ) 
+		<< "Frame2's fstop did not change correctly.";
 };
 
 

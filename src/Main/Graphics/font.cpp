@@ -64,6 +64,8 @@ _INT32 Font::renderText(const std::string & a_text,
 
 		// TODO ::
 		// MODIFY THE VALUES
+		float passedHeight = 1.0f; ///
+		float dimensionMulti = (passedHeight * 600.0f) / m_biggest_h; ///
 		
 		if( c == '\n' )
 		{

@@ -48,6 +48,7 @@ int main()
 		/ "basicfont.frag").string().c_str() );
 
 	g_font.loadFile( "KaushanScript-Regular.otf", 16 );
+	g_font.loadFile( "KaushanScript-Regular.otf", 16 );
 	g_fontShaderProgram.init(vs.c_str(), fs.c_str() );
 
 	// checks for gl and glfw errors!

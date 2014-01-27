@@ -147,7 +147,7 @@ TEST_F(MockFrameManager, freefStop_test_BOT)
 
 	for(int i = 0; i < MAX_FSTOPS; ++i)
 	{
-		unset = m_pBaseFrame->freefStop(BOT);
+		unset = ( m_pBaseFrame->freefStop(BOT) ? true : false );
 		EXPECT_TRUE( unset ) 
 			<< "Could not unset the damn fstop " << i+1 << ".";
 
