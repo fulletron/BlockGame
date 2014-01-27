@@ -25,4 +25,4 @@ Unfortunately it doesn't have flashy visuals like the DirectX project does (yet)
 
 I have it compiling in Windows and Linux! Mac is having issues with boost, but I'm shelfing that.
 
-[This is what the DX version looked like](https://github.com/fulletron/BlockGame/wiki/What-the-DirectX-version-looked-like)
+[This is what the DX version looked like](https://github.com/fulletron/BlockGame/wiki/What-the-DirectX-version-looked-like:)
