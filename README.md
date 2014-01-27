@@ -2,16 +2,21 @@ BlockGame
 =========
 
 Example snippets of my code:
-<Implementation of freetype in openGL>
+
+{Implementation of freetype in openGL}
+
 https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.h
 https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.cpp
 
-<Implementation of a chunk or pool allocator, to replace New, Delete, Free, and Malloc>
+{Implementation of a chunk or pool allocator, to replace New, Delete, Free, and Malloc}
+
 https://github.com/fulletron/BlockGame/blob/master/src/Main/Utilities/chunkmanager.h
 https://github.com/fulletron/BlockGame/blob/master/src/Main/Utilities/chunkmanager.cpp
 
 Want to build this project?
+
 Windows Instructions
+
 Linux Instructions
 
 This is the newest version of my 3D game. I'm currently working on the base data structures (from Game Programming Gems books) and portability (cMake, boost, soil, glfw).
