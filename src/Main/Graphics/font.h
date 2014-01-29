@@ -30,6 +30,11 @@ public:
 	_UINT32						m_texture;
 
 selective:
+	// Create GPU buffers for vertex/index data
+	_UINT32 m_vao,
+		m_vbo,
+		m_ibo;
+
 	// The library for freetype operations.
 	// STATIC: Only one needs to exist ever.
 	static FT_Library			m_library;

@@ -27,7 +27,7 @@ namespace Utilities {
 		m_ownerName = 0;
 	}
 
-	bool ChunkPtr::isValid()
+	bool ChunkPtr::__isValid()
 	{
 		if( m_ownerName && m_pData )
 			return true;
@@ -37,7 +37,7 @@ namespace Utilities {
 
 	_BYTE * ChunkPtr::__pointer()
 	{
-		if(!isValid())
+		if(!__isValid())
 			return 0;
 
 		// The data has moved
@@ -50,7 +50,7 @@ namespace Utilities {
 
 	void ChunkPtr::__update( ChunkPtr  a_cpUp )
 	{
-		m_pData = a_cpUp.getpData();
+		m_pData = a_cpUp.__pointer();
 		m_pOwnerFrame = a_cpUp.getOwnerFrame();
 		m_ownerName = a_cpUp.getOwnerName();
 	}

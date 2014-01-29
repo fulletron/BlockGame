@@ -151,19 +151,10 @@ _INT32 Font::renderText(const std::string & a_text,
 	// KYLE ::
 	// TODO ::
 	// Enable font render shader. Perhaps	
-
-	// Create GPU buffers for vertex/index data
-	_UINT32 vao = 0,
-		vbo = 0,
-		ibo = 0;
-
-	glGenVertexArrays( 1, &vao );
-	glGenBuffers( 1, &vbo );
-	glGenBuffers( 1, &ibo );
 	
-	glBindVertexArray( vao );
-	glBindBuffer( GL_ARRAY_BUFFER, vbo );
-	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, ibo );
+	glBindVertexArray( m_vao );
+	glBindBuffer( GL_ARRAY_BUFFER, m_vbo );
+	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_ibo );
 	// Enable the vertex attributes for position, texcoord, color
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
@@ -203,6 +194,7 @@ _INT32 Font::renderText(const std::string & a_text,
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 0, NULL, GL_STATIC_DRAW);
 
 	// Unbind all the things.
+
 	//glBindTexture(GL_TEXTURE_2D, 0);
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
@@ -210,11 +202,8 @@ _INT32 Font::renderText(const std::string & a_text,
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+
 	//m_FontRender.Unbind();
-	// Delete all buffers.
-	glDeleteVertexArrays(1, &vao);
-	glDeleteBuffers(1, &vbo);
-	glDeleteBuffers(1, &ibo);
 
 	_CheckForErrors();
 
@@ -398,6 +387,11 @@ _INT32 Font::loadFile( const char * a_fontFile, const int a_size )
 	pTrash->freefStop(TOP);
 
 	glPixelStorei( GL_UNPACK_ALIGNMENT, 4 );
+
+	// Create GPU buffers for vertex/index data
+	glGenVertexArrays( 1, &m_vao );
+	glGenBuffers( 1, &m_vbo );
+	glGenBuffers( 1, &m_ibo );
 	
 	m_loaded = true;
 
@@ -415,6 +409,10 @@ void Font::destroyLibrary()
 
 void Font::shutdown(bool a_killLib)
 {
+	glDeleteVertexArrays(1, &m_vao); 
+	glDeleteBuffers(1, &m_vbo);
+	glDeleteBuffers(1, &m_ibo);
+
 	glDeleteTextures(1, &m_texture);
 	FT_Done_Face( m_face );
 	if( a_killLib )

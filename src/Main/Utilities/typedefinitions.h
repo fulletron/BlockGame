@@ -5,6 +5,9 @@
 #define FLT_MAX							3.402823466e+38F        /* max value */
 #endif
 
+//#define FPS_CAP_MS 0.016666
+#define FPS_CAP_MS -0.016666
+
 //static const float INFINITY = FLT_MAX;
 //static const float EPSILON  = 0.001f;
 

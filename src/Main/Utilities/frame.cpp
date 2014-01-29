@@ -18,7 +18,7 @@ void Frame::__zerofStops(const PLACE & a_place)
 		m_pfStop[a_place][i] = 0;
 }
 
-void Frame::offsetfStops(const _INT64 a_offset)
+void Frame::__offsetfStops(const _INT64 a_offset)
 {
 	for( int i = 0; i < 2; ++i )
 		for( int j = 0; j < MAX_FSTOPS; ++j )
@@ -114,7 +114,7 @@ void Frame::shutdown()
 	__zerofStops(TOP);
 }
 
-void Frame::copyFrame( Frame * a_pFromFrame )
+void Frame::__copyFrame( Frame * a_pFromFrame )
 {
 	// Find the difference between the two memory blocks
 	// the DIFF value is valid to currentLocs and fstops
@@ -131,7 +131,7 @@ void Frame::copyFrame( Frame * a_pFromFrame )
 
 	__copyfStops( a_pFromFrame );
 
-	offsetfStops(-diff);
+	__offsetfStops(-diff);
 
 	m_name = a_pFromFrame->getName();
 
@@ -145,7 +145,7 @@ void Frame::__copyfStops( Frame * a_pFromFrame )
 			m_pfStop[i][j] = a_pFromFrame->m_pfStop[i][j];
 }
 
-bool Frame::isValid()
+bool Frame::__isValid()
 {
 	if( m_name ) 
 		return true;

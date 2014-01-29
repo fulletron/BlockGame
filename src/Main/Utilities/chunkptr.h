@@ -4,6 +4,13 @@
 #include "typedefinitions.h"
 #include "frame.h"
 
+/**
+* _TChunkPtr is where the magic happens. Chunk Manager allocations return a
+* ChunkPtrs, the base class for a _TChunkPtr, which simply is a templated
+* ChunkPtr. You can call dereference() to set the data, call pointer() to
+* get a pointer, and assign ChunkPointers to TChunkPtrs
+**/
+
 namespace GS {
 namespace Utilities {
 
@@ -19,17 +26,17 @@ public:
 	ChunkPtr( _BYTE * a_pData, Frame * a_pOwnerFrame, const _INT64 a_ownerName);
 
 	void clean();
-	bool isValid();
 
 	void setpData( _BYTE * const a_pData){ m_pData = a_pData; }
 	void setpOwnerFrame( Frame * const a_pOwner ){ m_pOwnerFrame = a_pOwner; }
 	void setOwnerName( const _INT64 a_ownerName ){ m_ownerName = a_ownerName; }
 
-	_BYTE * getpData(){return m_pData;}
+	_BYTE * bytePointer(){return m_pData;}
 	Frame * getOwnerFrame(){return m_pOwnerFrame;}
 	_INT64 getOwnerName(){return m_ownerName;}
 
 selective:
+	bool __isValid();
 	_BYTE * __pointer(); // fpermissive if &
 	void __update(ChunkPtr a_cpUp); // fpermissive if &
 };
@@ -45,7 +52,7 @@ public:
 
 	DATA_TYPE * pointer()
 	{
-		if(isValid())
+		if(__isValid())
 			return RC( DATA_TYPE *, __pointer() );
 		else
 			return 0;
@@ -53,7 +60,7 @@ public:
 
 	TChunkPtr<DATA_TYPE> & operator=(ChunkPtr a_chunkPtr)
 	{
-		m_pData = a_chunkPtr.getpData();
+		m_pData = a_chunkPtr.bytePointer();
 		m_pOwnerFrame = a_chunkPtr.getOwnerFrame();
 		m_ownerName = a_chunkPtr.getOwnerName();
 

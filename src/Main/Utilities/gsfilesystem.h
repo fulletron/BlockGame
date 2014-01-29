@@ -3,6 +3,7 @@
 
 #include "typedefinitions.h"
 #include <boost/filesystem.hpp>
+#include <boost/lexical_cast.hpp>
 
 typedef boost::filesystem::path _GSPath;
 #define _FS GS::Utilities::FileSystem

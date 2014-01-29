@@ -20,6 +20,7 @@ GS::Utilities::Input g_input;
 // This belongs somewhere else,
 // but that somewhere else has not been
 // implemented yet (Pane/State/Resource)
+
 GS::Graphics::Font g_font;
 GS::Graphics::ShaderProgram g_fontShaderProgram;
 
@@ -48,14 +49,16 @@ int main()
 		/ "basicfont.frag").string().c_str() );
 
 	g_font.loadFile( "KaushanScript-Regular.otf", 16 );
-	g_font.loadFile( "KaushanScript-Regular.otf", 16 );
+	//g_font.loadFile( "KaushanScript-Regular.otf", 16 );
 	g_fontShaderProgram.init(vs.c_str(), fs.c_str() );
 
 	// checks for gl and glfw errors!
 	_CheckForErrors();
 
-	// game variables
+	// game variable
 	g_isRunning = true;
+
+	// total time!
 	double tt = 0.0;
 
 	while( g_isRunning && g_window.isOpen() )
@@ -63,12 +66,14 @@ int main()
 		_CheckForErrors();
 
 		double dt;
-		do{ dt = glfwGetTime(); }
-		while (dt < 0.016666); // cap the fps
+		do{ dt = glfwGetTime(); } // TODO :: something more productive
+		while (dt < FPS_CAP_MS); // cap the fps
 
 		tt += dt;
 
 		glfwSetTime(0.0);
+
+		// all of this is placeholder until pane/state are implemeneted
 
 		float ratio;
 		int width, height;
@@ -89,8 +94,14 @@ int main()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		g_font.renderText("The quick brown fox jumps over the lazy dog.", GS::Graphics::Vector2_t(-800.00f,-300.00f), GS::Graphics::Color4f_t(1.0f, 1.0f, 0.0f, 1.0f) );
-		g_font.renderText("The quick brown fox jumps over the lazy dog!@", GS::Graphics::Vector2_t(-800.00f,-600.00f), GS::Graphics::Color4f_t(0.0f, 1.0f, 0.0f, 1.0f) );
+		for ( int i = 0; i < 100; ++i ){
+		g_font.renderText("12000", GS::Graphics::Vector2_t(-800.00f,-300.00f), GS::Graphics::Color4f_t(1.0f, 1.0f, 0.0f, 1.0f) );
+		//g_font.renderText("The quick brown fox jumps over the lazy dog!@", GS::Graphics::Vector2_t(-800.00f,-600.00f), GS::Graphics::Color4f_t(0.0f, 1.0f, 0.0f, 1.0f) );
+		}
+		
+
+		std::string test = "FPS: " + boost::lexical_cast<std::string>(1/dt);
+		g_font.renderText(test, GS::Graphics::Vector2_t(-800.00f, 500.00f), GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f) );
 
 
 		g_window.swapBuffers();

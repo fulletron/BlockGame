@@ -91,7 +91,7 @@ bool ChunkManager::destroyFrame ( const _INT64 a_name)
 ChunkPtr ChunkManager::getNewChunkPtr( ChunkPtr a_cpIn )
 {
 	// set base values, and one new value.
-	ChunkPtr newChunkPtr(a_cpIn.getpData(), a_cpIn.getOwnerFrame(), a_cpIn.getOwnerName());
+	ChunkPtr newChunkPtr(a_cpIn.bytePointer(), a_cpIn.getOwnerFrame(), a_cpIn.getOwnerName());
 	Frame * pFrame = getFrame(a_cpIn.getOwnerName());
 
 	newChunkPtr.setpOwnerFrame (pFrame);
@@ -108,7 +108,7 @@ ChunkPtr ChunkManager::getNewChunkPtr( ChunkPtr a_cpIn )
 	_INT64 diff = pFrom - pTo;
 
 	// set new value for data
-	newChunkPtr.setpData( RC( _BYTE *, RC( _UINT64, a_cpIn.getpData() ) - diff ) );
+	newChunkPtr.setpData( RC( _BYTE *, RC( _UINT64, a_cpIn.bytePointer() ) - diff ) );
 
 	// return new value
 	return newChunkPtr;
@@ -134,7 +134,7 @@ ChunkPtr ChunkManager::allocate( Frame * const a_pFrame, const _INT32 a_sizeInBy
 
 void ChunkManager::__compress( const _INT64 a_name, const _UINT32 a_slot )
 {
-	m_pFramesInRelation[a_slot]->copyFrame(m_pFramesInRelation[m_usedChunks-1]);
+	m_pFramesInRelation[a_slot]->__copyFrame(m_pFramesInRelation[m_usedChunks-1]);
 }
 
 //ChunkPtr ChunkManager::__getFrameChunkPtr( const _INT64 a_name )
