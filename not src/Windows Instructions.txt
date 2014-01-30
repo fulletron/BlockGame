@@ -1,1 +1,36 @@
-this is a test
+1) Get the latest version of Git
+	http://git-scm.com/
+
+2) Create a Repo Directory (for example, ./Desktop/Repo)
+
+3) Clone the repo. ( from ./Repo )
+	git clone https://github.com/fulletron/BlockGame.git
+
+4) Build Boost by running ALL_BOOST_SETUP.bat in
+	./Repo/BlockGame/src/External/boost_1_55_0/
+
+5) Get the latest cmake
+	http://cmake.org
+
+6) Create a folder to hold the project ( for example, ./Desktop/Proj )
+
+7) Create the project using cmake
+This can be achieved using command line, or the cmake gui
+	Using Command Line, from ./Proj, call 
+		FOR VISUAL STUDIO 2010
+		cmake -G "Visual Studio 10" ../Repo/BlockGame/src
+		FOR VISUAL STUDIO 2012
+		cmake -G "Visual Studio 11" ../Repo/BlockGame/src
+		FOR VISUAL STUDIO 2013
+		cmake -G "Visual Studio 12" ../Repo/BlockGame/src
+
+8) ./Proj should now contain the VS Project.
+	The main project exe is the Game project.
+	There are at least 2 tests- they are in the Test directory, 
+	and have the suffix "Tester"
+	IE- UtilitiesTester Project.
+
+NOTE:: If these instructions fail, it is quite possibly due to the computer 
+missing opengl necessities (the biggest red flag being CMake reporting "OpenGL NOT FOUND")
+I haven't came across that yet, but it is a possibility- I'll try on a clean
+windows image soon!

@@ -19,7 +19,7 @@ Portfolio, Snippets of Code, Etc:
 
 Want to build this project?
 
-Windows Instructions - (instructions not written!)
+[Windows Instructions](https://github.com/fulletron/BlockGame/blob/master/not%20src/Linux%20Instructions.txt)
 
 [Linux Instructions](https://github.com/fulletron/BlockGame/blob/master/not%20src/Linux%20Instructions.txt)
 
