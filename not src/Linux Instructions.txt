@@ -24,6 +24,9 @@ BlockGame/src/External/boost_1_55_0
 	CMD LINE
 	cmake -G "Unix Makefiles" ../Repo/BlockGame/src/
 
+	To build with debug information
+	cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE:STRING=Debug ../Repo/BlockGame/src/
+
 8) Make the resulting makefile, which is in the same dir as the previous function call
 	make -f Makefile
 

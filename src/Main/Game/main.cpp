@@ -69,6 +69,7 @@ int main()
 		do{ dt = glfwGetTime(); } // TODO :: something more productive
 		while (dt < FPS_CAP_MS); // cap the fps
 
+		// gdb update?
 		tt += dt;
 
 		glfwSetTime(0.0);
