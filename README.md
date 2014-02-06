@@ -1,7 +1,8 @@
 Portfolio and BlockGame
 =========
 
-Portfolio, Snippets of Code, Etc:
+[LinkedIn Profile](http://www.linkedin.com/pub/kyle-pickering/42/259/b62)
+
 
 { Gameplay of Senior Project "Hydra", in C++ From Scratch, using DirectX  }
 
