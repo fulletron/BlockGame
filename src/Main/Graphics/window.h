@@ -22,6 +22,7 @@ public:
 	bool isOpen();
 	_UINT32 shutdown();
 	void swapBuffers();
+	Vec2D<_INT32> getPixDims();
 	GLFWwindow * getGLFWwindow();
 
 	/// TODO :: KYLE :: MISPLACED ::

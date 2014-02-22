@@ -3,6 +3,7 @@
 #include <Utilities/typedefinitions.h>
 #include <Utilities/utilities.h>
 #include <Graphics/graphics.h>
+#include "testpane.h"
 
 bool g_isRunning = false;
 
@@ -10,7 +11,7 @@ bool g_isRunning = false;
 // Globals are used for classes that should only
 // exist once. In addition, the ChunkManager class
 // needs to be accessible from everywhere, as it
-// replaces new and malloc.
+// replaces new and malloc
 
 GS::Utilities::ChunkManager g_chunkman;
 GS::Graphics::Window g_window;
@@ -26,6 +27,9 @@ GS::Graphics::ShaderProgram g_fontShaderProgram;
 
 int main()
 {
+	TestPane testPane;
+
+
 	// Init the chunk manager
 	g_chunkman.init();
 
