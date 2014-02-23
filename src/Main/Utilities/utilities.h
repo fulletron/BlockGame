@@ -12,5 +12,6 @@
 #include "chunkptr.h"
 #include "gsfilesystem.h"
 #include "misc.h"
+#include "net.h"
 
 #endif

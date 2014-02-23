@@ -106,6 +106,70 @@ public:
 };
 
 template<typename DATA_TYPE>
+class LimitedVector4 : public IVector<DATA_TYPE>
+{
+selective:
+	static const int MAX_SIZE = 4;
+
+	DATA_TYPE m_vector[MAX_SIZE];
+
+	_UINT32 m_curSize;
+
+public:
+
+	~LimitedVector4(){}
+
+	LimitedVector4(void)
+	{
+		clean();
+		m_curSize = 0;
+	}
+
+	_INT32 init( const _UINT32 a_allSize )
+	{
+		return 0;
+	}	
+
+	void shutdown()
+	{
+		clean();
+		m_curSize = 0;
+	}
+
+	_UINT32 getSize()
+	{
+		return m_curSize;
+	}
+
+	void add( DATA_TYPE a_data )
+	{
+		if( m_curSize + 1 < MAX_SIZE )
+			return;
+
+		m_vector[m_curSize] = a_data;
+		m_curSize++;
+	}
+
+	void clean()
+	{
+		memset(&m_vector, 0, sizeof(DATA_TYPE) * MAX_SIZE);
+	}
+
+	void remove( _UINT32 a_index )
+	{
+		if( m_curSize )
+			m_curSize--;
+		if( m_curSize )
+			m_vector[a_index] = m_vector[m_curSize];
+	}
+
+	DATA_TYPE get( _UINT32 a_index )
+	{
+		return m_vector[a_index];
+	}
+};
+
+template<typename DATA_TYPE>
 class ChunkVector : public IVector<DATA_TYPE>
 {
 #ifdef TEST_ENABLED

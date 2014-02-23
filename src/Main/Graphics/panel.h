@@ -2,17 +2,13 @@
 #define __PANEL_H_
 
 #include <Utilities/typedefinitions.h>
+#include <Graphics/openglincludes.h>
 
 namespace GS {
 namespace Graphics {
 
 class IPane {
 public:
-	/**
-	* Panes must be optionally visible
-	* @return _BOOL true if visible
-	*/
-	virtual _BOOL isVisible() = 0;
 
 	/**
 	* Panes are the graphical representation of data. If the base data
@@ -20,13 +16,6 @@ public:
 	* @return _BOOL true if dirty
 	*/
 	virtual _BOOL isDirty() = 0;
-
-	/**
-	* This function is only to be used by IPaneObj
-	* It allows for a way to have actual data tell the Pane that it has
-	* changed.
-	*/
-	virtual void makeDirty() = 0;
 	
 	/**
 	* Draws the pane. If the pane is not dirty, simply redraw the old
@@ -35,12 +24,31 @@ public:
 	virtual void draw() = 0;
 };
 
+class Pane : public IPane {
+selective:
+	GLuint m_framebuffer;
+public:
+	Pane(){}
+	~Pane(){}
+
+	virtual void draw() = 0;
+	virtual _BOOL isDirty() = 0;
+};
+
 class IPaneObj {
 public:
 	/**
-	* Tell all subscribing panes that this object has changed
+	* Check the state of the object to see if it has visually changed
 	*/
-	virtual void setDirty() = 0;
+	virtual _BOOL getDirty() = 0;
+};
+
+class PaneObj : public IPaneObj {
+selective:
+	_BOOL m_isDirty;
+public:
+	PaneObj() : m_isDirty(true) {}
+	_BOOL getDirty() const { return m_isDirty; }
 };
 
 };

@@ -2,17 +2,15 @@
 #define __TESTPANE_H_
 
 #include <Graphics/panel.h>
+#include "fpscounter.h"
 
-class TestPane : public GS::Graphics::IPane
+class TestPane : public GS::Graphics::Pane
 {
 selective:
-	_BOOL m_isDirty;
 public:
-	TestPane() : m_isDirty(true) {}	
+	TestPane(){}	
 
-	_BOOL isVisible();
 	_BOOL isDirty();
-	void makeDirty();
 	void draw();	
 };
 

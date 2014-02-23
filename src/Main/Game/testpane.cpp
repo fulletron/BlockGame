@@ -1,22 +1,13 @@
 #include "testpane.h"
 
-_BOOL TestPane::isVisible()
-{
-	return true;
-}
-
 _BOOL TestPane::isDirty()
 {
-	return m_isDirty;
-}
-
-void TestPane::makeDirty()
-{
-	m_isDirty = true;
+	// KYLE :: TODO:: 
+	// THIS FUNCTION CALLS ALL OF getDirty() functions of all the pane objects.
+	return false;
 }
 
 void TestPane::draw()
 {
 	// KYLE :: DO MAGIC
-	m_isDirty = false;
 }
