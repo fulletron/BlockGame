@@ -28,8 +28,6 @@ GS::Graphics::ShaderProgram g_fontShaderProgram;
 int main()
 {
 	TestPane testPane;
-
-
 	// Init the chunk manager
 	g_chunkman.init();
 

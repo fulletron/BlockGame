@@ -9,6 +9,7 @@ namespace Graphics {
 
 class IPane {
 public:
+
 	/**
 	* Panes are the graphical representation of data. If the base data
 	* changes, the pane that represents that data needs to redraw.
@@ -29,15 +30,6 @@ public:
 	* before collision!
 	*/
 	virtual _BOOL handledInput() = 0;
-
-selective:
-	virtual _UINT32 __glFramebufferInit() = 0;
-	virtual void	__glFramebufferDestroy() = 0;
-	virtual _UINT32 __glTexColorBufferInit() = 0;
-	virtual void 	__glTexColorBufferDestroy() = 0;
-	virtual _UINT32 __glRboDepthStencilInit() = 0;
-	virtual void	__glRboDepthStencilDestroy() = 0;
-
 };
 
 class Pane : public IPane {
@@ -49,34 +41,19 @@ public:
 
 selective:
 	GLuint m_framebuffer;
-	GLuint m_texColorBuffer;
-	GLuint m_rboDepthStencil;
 	Pane * m_pParentPane;
 	Vec4D<float> m_boxBlueprint;
 	Vec4D<_UINT32> m_boxActual;
 	_CHAR m_orientationBitFlag;
 public:
-	Pane() : 
-		m_framebuffer(0),
-		m_texColorBuffer(0),
-		m_rboDepthStencil(0),
-		m_pParentPane(0),
-		m_orientationBitFlag(0)
-		{}
-
+	Pane(){}
 	~Pane(){}
 
 	virtual void draw() = 0;
 	virtual _BOOL isDirty() = 0;
 	virtual _BOOL handledInput() = 0;
-
 selective:
-	_UINT32 __glFramebufferInit();
-	void __glFramebufferDestroy();
-	_UINT32 __glTexColorBufferInit();
-	void __glTexColorBufferDestroy();
-	_UINT32 __glRboDepthStencilInit();
-	void __glRboDepthStencilDestroy(); 
+	
 };
 
 class IPaneObj {

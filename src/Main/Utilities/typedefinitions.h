@@ -128,13 +128,33 @@ template<typename T>
 class Vec4D
 {
 public:
-	T x;
-	T y;
-	T z;
-	T a;
+	union
+	{
+		T pos_x;
+		T col_r;
+	};
+
+	union
+	{
+		T pos_y;
+		T col_g;
+	};
+
+	union
+	{
+		T pos_z;
+		T box_width;
+		T col_b;
+	};
+
+	union
+	{
+		T a;
+		T box_height;
+	};
 	
 	Vec4D(){}
-	Vec4D(T a_x, T a_y, T a_z, T a_a) : x(a_x), y(a_y), z(a_z), a(a_a){}
+	Vec4D(T a_x, T a_y, T a_z, T a_a) : pos_x(a_x), pos_y(a_y), pos_z(a_z), a(a_a){}
 };
 
 
