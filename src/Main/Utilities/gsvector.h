@@ -9,6 +9,7 @@
 namespace GS {
 namespace Utilities {
 
+/*
 template<typename DATA_TYPE>
 class IVector
 {
@@ -21,15 +22,84 @@ public:
 	//virtual void remove( DATA_TYPE a_data ) = 0;
 	virtual DATA_TYPE get( _UINT32 a_index ) = 0;
 };
+*/
 
+template<typename DATA_TYPE>
+class LimitedVector
+{
+selective:
+	DATA_TYPE * m_pData;
+	_UINT32 m_curSize;
+	_UINT32 m_maxSize;
+public:
+	~LimitedVector(){}
+	
+	LimitedVector()
+	{
+		clean();
+		m_curSize = 0;
+		m_pData = 0;
+		m_maxSize = 0;
+	}
+
+	_INT32 init( const _UINT32 a_maxSize, DATA_TYPE * a_pData )
+	{
+		m_maxSize = a_maxSize;
+		m_pData = a_pData;
+		return 0;
+	}
+
+	void shutdown()
+	{
+		clean();
+		m_curSize = 0;
+		m_maxSize = 0;
+	}
+	
+	_UINT32 getMax() const
+	{
+		return m_maxSize;
+	}
+
+	_UINT32 getSize() const
+	{
+		return m_curSize;
+	}
+
+	void add( DATA_TYPE a_data )
+	{
+		if( m_curSize + 1 < m_maxSize )
+			return;
+
+		m_pData[m_curSize] = a_data;
+		m_curSize++;
+	}
+
+	void clean()
+	{
+		memset(&m_pData, 0, sizeof(DATA_TYPE) * m_maxSize);
+	}
+
+	void remove( _UINT32 a_index )
+	{
+		if( m_curSize )
+			m_curSize--;
+		if( m_curSize )
+			m_pData[a_index] = m_pData[m_curSize + 1];
+	}
+
+	DATA_TYPE get( _UINT32 a_index )
+	{
+		return m_pData[a_index];
+	}
+
+};
+
+/*
 template<typename DATA_TYPE>
 class LimitedVector16 : public IVector<DATA_TYPE>
 {
-#ifdef TEST_ENABLED
-public:
-#else
-protected:
-#endif
+selective:
 	static const int MAX_SIZE = 16;
 
 	DATA_TYPE m_vector[MAX_SIZE];
@@ -83,20 +153,6 @@ public:
 		if( m_curSize )
 			m_vector[a_index] = m_vector[m_curSize];
 	}
-
-	/*
-	void remove( DATA_TYPE a_data )
-	{
-		int i = 0;
-		DATA_TYPE it = m_vector[i];
-
-		while( a_data !=  *it && i != m_curSize )
-			it = m_vector[++i];
-
-		if( i != m_curSize )
-			remove(i);
-	}
-	*/
 
 	DATA_TYPE get( _UINT32 a_index )
 	{
@@ -169,8 +225,10 @@ public:
 	}
 };
 
+*/
+
 template<typename DATA_TYPE>
-class ChunkVector : public IVector<DATA_TYPE>
+class ChunkVector //: public IVector<DATA_TYPE>
 {
 #ifdef TEST_ENABLED
 public:
@@ -205,6 +263,12 @@ public:
 		m_allSize = a_allSize;
 		return 0;
 	}	
+
+	_INT32 init( const _UINT32 a_allSize, ChunkPtr a_chunkPtr )
+	{
+		m_chunkPtr = a_chunkPtr;
+
+	}
 
 	void shutdown()
 	{
@@ -243,25 +307,8 @@ public:
 		if( m_curSize && m_chunkPtr.pointer() )
 			m_curSize--;
 		if( m_curSize )
-			m_chunkPtr.pointer()[a_index] = m_chunkPtr.pointer()[m_curSize];
+			m_chunkPtr.pointer()[a_index] = m_chunkPtr.pointer()[m_curSize + 1];
 	}
-
-	/*
-	void remove( DATA_TYPE a_data )
-	{
-		assert(m_inited);
-
-		int i = 0;
-		DATA_TYPE it = m_chunkPtr.pointer()[i];
-
-		a_data !=
-		while( a_data !=  *it && i != m_curSize )
-			it = m_chunkPtr.pointer()[++i];
-
-		if( i != m_curSize )
-			remove(i);
-	}
-	*/
 
 	DATA_TYPE get( _UINT32 a_index )
 	{

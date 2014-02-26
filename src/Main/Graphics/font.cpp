@@ -3,13 +3,13 @@
 extern GS::Utilities::ChunkManager g_chunkman;
 extern GS::Graphics::Window g_window;
 
-FT_Library GS::Graphics::Font::m_library = 0;
-_BOOL GS::Graphics::Font::m_libraryLoaded = false;
+FT_Library GS::Graphics::FontResource::m_library = 0;
+_BOOL GS::Graphics::FontResource::m_libraryLoaded = false;
 
 namespace GS {
 namespace Graphics {
 
-_INT32 Font::renderText(const std::string & a_text, 
+_INT32 FontResource::renderText(const std::string & a_text, 
 						const Vector2_t & a_pos, 
 						const Color4f_t & a_color)
 {
@@ -214,7 +214,7 @@ _INT32 Font::renderText(const std::string & a_text,
 	return 0;
 }
 
-_INT32 Font::initializeLibrary()
+_INT32 FontResource::initializeLibrary()
 {
 	if( m_libraryLoaded )
 		return 0;
@@ -228,7 +228,7 @@ _INT32 Font::initializeLibrary()
 	return 0;
 }
 
-_INT32 Font::loadFile( const char * a_fontFile, const int a_size )
+_INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 {
 	FT_Error error;
 	error = initializeLibrary();
@@ -398,7 +398,7 @@ _INT32 Font::loadFile( const char * a_fontFile, const int a_size )
 	return 0;
 }
 
-void Font::destroyLibrary()
+void FontResource::destroyLibrary()
 {
 	if ( !m_libraryLoaded )
 		return;
@@ -407,7 +407,7 @@ void Font::destroyLibrary()
 	m_libraryLoaded = false;
 }
 
-void Font::shutdown(bool a_killLib)
+void FontResource::shutdown(bool a_killLib)
 {
 	glDeleteVertexArrays(1, &m_vao); 
 	glDeleteBuffers(1, &m_vbo);
@@ -422,13 +422,13 @@ void Font::shutdown(bool a_killLib)
 	m_loaded = false;
 }
 
-Font::Font()
+FontResource::FontResource()
 {
 	m_libraryLoaded = false; 
 	m_loaded = false;
 }
 
-Font::~Font()
+FontResource::~FontResource()
 {
 }
 

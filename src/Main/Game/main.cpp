@@ -3,6 +3,7 @@
 #include <Utilities/typedefinitions.h>
 #include <Utilities/utilities.h>
 #include <Graphics/graphics.h>
+
 #include "testpane.h"
 
 bool g_isRunning = false;
@@ -16,13 +17,15 @@ bool g_isRunning = false;
 GS::Utilities::ChunkManager g_chunkman;
 GS::Graphics::Window g_window;
 GS::Utilities::Input g_input;
+GS::Graphics::ResourceLibrary g_lib;
+
 
 // TODO ::
 // This belongs somewhere else,
 // but that somewhere else has not been
 // implemented yet (Pane/State/Resource)
 
-GS::Graphics::Font g_font;
+GS::Graphics::FontResource g_font;
 GS::Graphics::ShaderProgram g_fontShaderProgram;
 
 int main()

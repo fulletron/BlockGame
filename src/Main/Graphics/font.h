@@ -3,7 +3,7 @@
 
 #include <Utilities/utilities.h>
 #include <Graphics/openglincludes.h>
-#include "graphics.h"
+
 
 // MORE HELP ON THE WEB
 // http://www.freetype.org/freetype2/docs/tutorial/step1.html
@@ -13,7 +13,7 @@
 namespace GS {
 namespace Graphics {
 
-class Font {
+class FontResource {
 
 public:
 	struct GlyphInAtlas
@@ -56,8 +56,8 @@ selective:
 	_UCHAR						m_numOfCharsRoot;
 
 public:
-	Font();
-	~Font();
+	FontResource();
+	~FontResource();
 
 	/**
 	* Initializes the FreeType library.

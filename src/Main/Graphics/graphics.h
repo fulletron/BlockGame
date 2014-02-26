@@ -10,5 +10,6 @@
 #include "window.h"
 #include "font.h"
 #include "shaderprogram.h"
+#include "reslib.h"
 
 #endif
