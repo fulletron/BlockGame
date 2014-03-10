@@ -1,15 +1,12 @@
 #ifndef __SHADERPROGRAM_H_
 #define __SHADERPROGRAM_H_
 
-#include <Utilities/utilities.h>
-#include <Graphics/openglincludes.h>
-#include "graphics.h"
-
+#include <Graphics/resource.h>
 
 namespace GS {
 namespace Graphics {
 
-class ShaderProgram {
+class ShaderProgramResource : public Resource {
 
 public:
 	// TEMPORARILY PUBLIC FOR EASE OF DEV
@@ -21,27 +18,22 @@ selective:
 	_BOOL						m_inited;
 
 	// shaders. consider making a different class!
-	_UINT32						m_vertexShader;
-	_UINT32						m_geometryShader; 
-	_UINT32						m_fragmentShader;
+	_UINT64						m_vsName;
+	_UINT64						m_gsName; 
+	_UINT64						m_fsName;
 
 public:
-	ShaderProgram();
-	~ShaderProgram();
+	ShaderProgramResource();
+	~ShaderProgramResource();
 
 	_INT32 init(
-			const char * a_vertexSource, 
-			const char * a_fragmentSource, 
-			const char * a_geometrySource = 0 );
+			const _UINT64 & a_vsName, 
+			const _UINT64 & a_fsName, 
+			const _UINT64 & a_gsName = 0 );
 
 	void shutdown();
 
 selective:
-	_INT32 __compileShader( 
-			_UINT32 & a_shaderID, 
-			const char * a_source,
-			const _INT32 a_shaderType );
-
 	_INT32 __validateShaderProgram();
 
 };

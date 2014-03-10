@@ -1,4 +1,5 @@
 #include "font.h"
+#include <Graphics/openglincludes.h>
 
 extern GS::Utilities::ChunkManager g_chunkman;
 extern GS::Graphics::Window g_window;

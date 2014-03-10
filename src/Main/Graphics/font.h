@@ -2,8 +2,7 @@
 #define __FONT_H_
 
 #include <Utilities/utilities.h>
-#include <Graphics/openglincludes.h>
-
+#include <Graphics/resource.h>
 
 // MORE HELP ON THE WEB
 // http://www.freetype.org/freetype2/docs/tutorial/step1.html
@@ -13,7 +12,7 @@
 namespace GS {
 namespace Graphics {
 
-class FontResource {
+class FontResource : public Resource {
 
 public:
 	struct GlyphInAtlas

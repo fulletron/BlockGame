@@ -1,40 +1,28 @@
 #include "shaderprogram.h"
+#include <Utilities/chunkmanager.h>
+#include <Graphics/window.h>
+#include <Graphics/reslib.h>
 
+extern GS::Graphics::ResourceLibrary g_lib;
 extern GS::Utilities::ChunkManager g_chunkman;
 extern GS::Graphics::Window g_window;
 
 namespace GS {
 namespace Graphics {
 
-
-ShaderProgram::ShaderProgram()
+ShaderProgramResource::ShaderProgramResource()
 {
 	m_inited = false; 	
-	m_vertexShader = 0;
-	m_geometryShader = 0; 
-	m_fragmentShader = 0;	
+	m_vsName = 0;
+	m_gsName = 0; 
+	m_fsName = 0;	
 }
 
-ShaderProgram::~ShaderProgram()
+ShaderProgramResource::~ShaderProgramResource()
 {
 }
 
-_INT32 ShaderProgram::__compileShader(_UINT32 & a_shaderID, const char * a_source, const _INT32 a_shaderType)
-{
-	_INT32 ret = 0;
-    // Create and compile the vertex shader
-    a_shaderID = glCreateShader(a_shaderType);
-    glShaderSource(a_shaderID, 1, &a_source, NULL);
-    glCompileShader(a_shaderID);
-	glGetShaderiv(a_shaderID, GL_COMPILE_STATUS, &ret);
-
-	// 1 is true (compiled)
-	// 0 is false (did not compile)
-
-	return ret;
-}
-
-_INT32 ShaderProgram::__validateShaderProgram()
+_INT32 ShaderProgramResource::__validateShaderProgram()
 {
 	_INT32 ret = 0;
 
@@ -47,7 +35,8 @@ _INT32 ShaderProgram::__validateShaderProgram()
 	return ret;
 }
 
-_INT32 ShaderProgram::init(const char * a_vertexSource, const char * a_fragmentSource, const char * a_geometrySource)
+/*
+_INT32 ShaderProgramResource::init(const char * a_vertexSource, const char * a_fragmentSource, const char * a_geometrySource)
 {
 	if( !a_vertexSource
 	||	!a_fragmentSource )
@@ -82,14 +71,17 @@ _INT32 ShaderProgram::init(const char * a_vertexSource, const char * a_fragmentS
 
 	return 0;
 }
+*/
 
-void ShaderProgram::shutdown()
+void ShaderProgramResource::shutdown()
 {
+/*
 	glDeleteShader( m_vertexShader );
 	glDeleteShader( m_fragmentShader );
 	if( m_geometryShader )
 		glDeleteShader( m_geometryShader );
 	glDeleteProgram( m_shaderProgram );
+*/
 }
 
 };

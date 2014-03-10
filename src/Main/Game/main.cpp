@@ -26,7 +26,7 @@ GS::Graphics::ResourceLibrary g_lib;
 // implemented yet (Pane/State/Resource)
 
 GS::Graphics::FontResource g_font;
-GS::Graphics::ShaderProgram g_fontShaderProgram;
+GS::Graphics::ShaderProgramResource g_fontShaderProgram;
 
 int main()
 {
@@ -55,7 +55,7 @@ int main()
 
 	g_font.loadFile( "KaushanScript-Regular.otf", 16 );
 	//g_font.loadFile( "KaushanScript-Regular.otf", 16 );
-	g_fontShaderProgram.init(vs.c_str(), fs.c_str() );
+//	g_fontShaderProgram.init(vs.c_str(), fs.c_str() );
 
 	// checks for gl and glfw errors!
 	_CheckForErrors();
@@ -99,7 +99,7 @@ int main()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
+/*
 		for ( int i = 0; i < 100; ++i ){
 		g_font.renderText("12000", GS::Graphics::Vector2_t(-800.00f,-300.00f), GS::Graphics::Color4f_t(1.0f, 1.0f, 0.0f, 1.0f) );
 		//g_font.renderText("The quick brown fox jumps over the lazy dog!@", GS::Graphics::Vector2_t(-800.00f,-600.00f), GS::Graphics::Color4f_t(0.0f, 1.0f, 0.0f, 1.0f) );
@@ -109,7 +109,7 @@ int main()
 		std::string test = "FPS: " + boost::lexical_cast<std::string>(1/dt);
 		g_font.renderText(test, GS::Graphics::Vector2_t(-800.00f, 500.00f), GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f) );
 
-
+*/
 		g_window.swapBuffers();
 
 		glfwPollEvents();
