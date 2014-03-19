@@ -11,22 +11,25 @@ namespace Graphics {
 
 class ResourceLibrary
 {
-selective:
-	static const int NUM_FONTS = 2;
-	static const int NUM_SHADERS = 2;
-	static const int NUM_SHADERPROGRAMS = 2;
-
+public:
 	enum {
 	UNKNOWN = -1,
 	FONT = 1,
 	SHADER = 2,
 	SHADERPROGRAM = 3
-	} RES_TYPE;
-	
+	};
+
+selective:
+	static const int NUM_FONTS = 2;
+	static const int NUM_SHADERS = 2;
+	static const int NUM_SHADERPROGRAMS = 2;
+
 	GS::Utilities::LimitedVector<FontResource> m_fontResources;
 	GS::Utilities::LimitedVector<ShaderResource> m_shaderResources;
 	GS::Utilities::LimitedVector<ShaderProgramResource> m_shaderProgramResources;
+	
 public:
+
 	ResourceLibrary(){}
 	~ResourceLibrary(){}
 

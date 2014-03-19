@@ -93,6 +93,11 @@ public:
 		return m_pData[a_index];
 	}
 
+	DATA_TYPE * getp( _UINT32 a_index )
+	{
+		return &m_pData[a_index];
+	}
+
 };
 
 /*

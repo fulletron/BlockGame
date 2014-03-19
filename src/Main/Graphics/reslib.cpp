@@ -1,6 +1,6 @@
 #include "reslib.h"
 
-extern GS::Utilities::ChunkManager g_chunkMan;
+extern GS::Utilities::ChunkManager g_chunkman;
 
 namespace GS {
 namespace Graphics {
@@ -9,13 +9,38 @@ template <typename T>
 _TChunkPtr<T> allocateArray( const _UINT64 a_frameName, const int a_num )
 {
 	_TChunkPtr<T> pT;
-	pT = g_chunkMan.allocate(
+	pT = g_chunkman.allocate(
 			a_frameName,
 			sizeof( T ) * a_num,
 			BOT
 			);
 	return pT;
 }
+
+/*
+template<typename T>
+T * ResourceLibrary::findResource( const _INT32 a_resType, const _UINT64 a_name )
+{
+	GS::Utilities::LimitedVector<T> * pVector = 0;
+	
+	switch(a_resType)
+	{
+	case FONT: 
+		pVector = &m_fontResources; break;
+	case SHADER: 
+		pVector = &m_shaderResources; break;
+	case SHADERPROGRAM: 
+		pVector = &m_shaderProgramResources; break;
+	
+	default: return 0;
+	}
+	for( int i = 0; i < pVector->size(); ++i )
+		if( pVector->at(i).getName() == a_name )
+			return pVector->at(i);
+
+	return 0;		
+}
+*/
 
 _UINT32 ResourceLibrary::init()
 {
@@ -56,6 +81,11 @@ _TChunkPtr<FontResource> pFontRes;
 	
 FontResource * ResourceLibrary::findFontResource( const _UINT64 a_name )
 {
+	FontResource * ret = 0;
+	for( int i = 0; i < m_fontResources.getSize(); ++i )
+		ret = ( m_fontResources.getp(i) );
+		if( ret->getName() == a_name )
+			return ret;
 	return 0;
 }
 

@@ -34,6 +34,14 @@ int main()
 	// Init the chunk manager
 	g_chunkman.init();
 
+	g_lib.init();
+
+
+	g_lib.getarray(2);
+
+	GS::Graphics::FontResource * pRes = 
+		g_lib.findFontResource( 0 );
+	
 	// build a single "frame" for scoped allocations
 	// keep track of the "frame" to truly free it later
 	GS::Utilities::Frame * pTrash = 0;
