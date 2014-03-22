@@ -41,43 +41,51 @@ public:
 	*/
 	_UINT32 init();
 
+	/*
+	template <typename T>
+	T * findResource( const _UINT32 a_type, const _UINT64 a_name );
+	*/
+	
 	/**
 	* Specifically finds a font resource by name
 	*/
-	FontResource * findFontResource( const _UINT64 a_name );
+	FontResource * findFontResource( const _INT64 a_name );
 
 	/**
 	* Specifically finds a Shader resource by name
 	*/
-	ShaderResource * findShaderResource( const _UINT64 a_name );
+	ShaderResource * findShaderResource( const _INT64 a_name );
 
 	/**
 	* Specifically find a Shader Program by name
 	*/
 	ShaderProgramResource * findShaderProgramResource( 
-						const _UINT64 a_name );
+						const _INT64 a_name );
 	
 	/**
 	* Subtracts a reference count from the resource. DOES NOT DELETE IT!
 	*/
-	_INT32 forgetResource( const _INT32 a_type, const _UINT64 a_name );
+	_INT32 forgetResource( const _INT32 a_type, const _INT64 a_name );
 
-selective:	
+selective:
+	template <typename T>
+	_INT32 __indexOfResource( GS::Utilities::LimitedVector<T> * a_pVec, const _INT64 a_name );
+
 	/**
 	* Specifically builds a font resource by name
 	*/
-	FontResource * __buildFontRes( const _UINT64 a_name );
+	FontResource * __buildFontRes( const _INT64 a_name );
 
 	/**
 	* Specifically builds a Shader Resource by name
 	*/
-	ShaderResource * __buildShaderRes( const _UINT64 a_name );
+	ShaderResource * __buildShaderRes( const _INT64 a_name );
 
 	/**
 	* Specifically build a Shader Program by name
 	*/
 	ShaderProgramResource * __buildShaderProgramRes( 
-						const _UINT64 a_name );
+						const _INT64 a_name );
 };
 
 };

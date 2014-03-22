@@ -22,6 +22,9 @@ selective:
 	_UINT64 m_name;
 	_UINT32 m_count;
 public:
+	Resource(){ m_name = 0; m_count = 0; }
+	~Resource(){}
+
 	_UINT64 getName(){ return m_name; }
 
 	void assignName( const _UINT64 a_name ) 

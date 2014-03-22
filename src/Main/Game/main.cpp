@@ -36,16 +36,13 @@ int main()
 
 	g_lib.init();
 
-
-	g_lib.getarray(2);
-
-	GS::Graphics::FontResource * pRes = 
-		g_lib.findFontResource( 0 );
+	GS::Graphics::ShaderResource * pRes =
+		g_lib.findShaderResource( 1 );
 	
 	// build a single "frame" for scoped allocations
 	// keep track of the "frame" to truly free it later
 	GS::Utilities::Frame * pTrash = 0;
-	pTrash = g_chunkman.createFrame( FR_TRASH );
+	pTrash = g_chunkman.createFrame( CV8::FRAME_TRASH );
 
 	// Global window and global input, both
 	// will only ever exist once

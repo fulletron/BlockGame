@@ -6,7 +6,7 @@ namespace GS {
 namespace Graphics {
 
 ShaderResource::ShaderResource()
-: m_shader(0), m_inited(false)
+: Resource(), m_shader(0), m_inited(false)
 {}
 
 ShaderResource::~ShaderResource()

@@ -3,6 +3,7 @@ cmake_minimum_required (VERSION 2.6)
 file(GLOB GRAPHICSSRC
     "*.h"
     "*.cpp"
+    "buildres/*.cpp"
 )
 
 add_library( Graphics ${GRAPHICSSRC} )

@@ -58,10 +58,29 @@ static const _UINT32 SIZECHUNK = 20480000;
 static const _UINT32 NUM_VARIANTS_PER_MSG = 8;
 static const _UINT32 NUM_INVESTORS = 16;
 
-_INT64 CV8(char * a_name);
+//signed constexpr CV8( char * const a_name );
+//_INT64 CV8(char * a_name);
+//_INT64 CV8(char * a_name)
+//{
+//	return *reinterpret_cast<_INT64*>(&a_name[0]);
+//}
+/*
+_INT64 constexpr CV8( char const * in ) {
+	return static_cast<_INT64>(&in[0]);
+}
+*/
 
 #define RC(x,y) reinterpret_cast<x>(y)
 #define SC(x,y) static_cast<x>(y)
+
+namespace CV8 {
+const _INT64 test = static_cast<_INT64>("testtest"[0]);
+const _INT64 RES_FONT_KASHSCRIPT = SC( _INT64, "rftkassc"[0] );
+const _INT64 RES_SP_FONTDRAW = SC( _INT64, "rspfont1"[0] );
+const _INT64 FRAME001 = static_cast<_INT64>("frame001"[0]);
+const _INT64 FRAME_TRASH = SC(_INT64,"trash000"[0]);
+const _INT64 FRAME_SMALLRES = SC( _INT64, "smallres"[0] );
+};
 
 inline _BYTE* INALIGNUP( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
 {
@@ -158,8 +177,8 @@ public:
 };
 
 
-#define FR_BASE CV8("basefram")
-#define FR_TRASH CV8("trash000")
+//#define FR_BASE CV8("basefram")
+//#define FR_TRASH CV8("trash000")
 
 // IF IM TESTING THINGS, PROTECTED THINGS BECOME
 // PUBLIC!!!!!!!!

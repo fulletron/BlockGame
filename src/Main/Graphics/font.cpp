@@ -24,7 +24,7 @@ _INT32 FontResource::renderText(const std::string & a_text,
 
 	// there will be temporary allocation in this portion of code
 	// this replaces NEW
-	GS::Utilities::Frame * pTrash = g_chunkman.getFrame( FR_TRASH );
+	GS::Utilities::Frame * pTrash = g_chunkman.getFrame( CV8::FRAME_TRASH );
 	pTrash->setfStop(TOP);
 
 	// Vertex buffer, Index buffer sizes
@@ -312,7 +312,7 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 
 	// there will be temporary allocation in this portion of code
 	// this replaces NEW
-	GS::Utilities::Frame * pTrash = g_chunkman.getFrame( FR_TRASH );
+	GS::Utilities::Frame * pTrash = g_chunkman.getFrame( CV8::FRAME_TRASH );
 	pTrash->setfStop(TOP);
 	
 	glGenTextures(1, &m_texture);

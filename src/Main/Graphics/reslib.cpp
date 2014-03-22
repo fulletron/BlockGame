@@ -6,7 +6,7 @@ namespace GS {
 namespace Graphics {
 
 template <typename T>
-_TChunkPtr<T> allocateArray( const _UINT64 a_frameName, const int a_num )
+_TChunkPtr<T> allocateArray( const _INT64 a_frameName, const int a_num )
 {
 	_TChunkPtr<T> pT;
 	pT = g_chunkman.allocate(
@@ -17,54 +17,19 @@ _TChunkPtr<T> allocateArray( const _UINT64 a_frameName, const int a_num )
 	return pT;
 }
 
-/*
-template<typename T>
-T * ResourceLibrary::findResource( const _INT32 a_resType, const _UINT64 a_name )
-{
-	GS::Utilities::LimitedVector<T> * pVector = 0;
-	
-	switch(a_resType)
-	{
-	case FONT: 
-		pVector = &m_fontResources; break;
-	case SHADER: 
-		pVector = &m_shaderResources; break;
-	case SHADERPROGRAM: 
-		pVector = &m_shaderProgramResources; break;
-	
-	default: return 0;
-	}
-	for( int i = 0; i < pVector->size(); ++i )
-		if( pVector->at(i).getName() == a_name )
-			return pVector->at(i);
-
-	return 0;		
-}
-*/
-
 _UINT32 ResourceLibrary::init()
 {
 	m_fontResources.init( 
 				NUM_FONTS, 
 				allocateArray<FontResource>( 
-					CV8("smallres"), 
+					CV8::FRAME_SMALLRES, 
 					NUM_FONTS 
 				).pointer() 
 			);
-/*	
-_TChunkPtr<FontResource> pFontRes;
-	pFontRes = g_chunkMan.allocate( 
-			CV8("resftsd0"), 
-			sizeof( FontResource ) * NUM_FONTS, 
-			BOT 
-			);
-	
-	m_fontResources.init( NUM_FONTS, pFontRes.pointer() );
-*/
 	m_shaderResources.init( 
 				NUM_SHADERS, 
 				allocateArray<ShaderResource>( 
-					CV8("smallres"), 
+					CV8::FRAME_SMALLRES, 
 					NUM_SHADERS 
 				).pointer() 
 			);
@@ -72,29 +37,96 @@ _TChunkPtr<FontResource> pFontRes;
 	m_shaderProgramResources.init( 
 				NUM_SHADERPROGRAMS, 
 				allocateArray<ShaderProgramResource>( 
-					CV8("smallres"), 
+					CV8::FRAME_SMALLRES, 
 					NUM_SHADERPROGRAMS 
 				).pointer() 
 			);
 	return 0;
 }
-	
-FontResource * ResourceLibrary::findFontResource( const _UINT64 a_name )
+
+/*
+template <typename T>
+T * ResourceLibrary::findResource( const _UINT32 a_type, const _INT64 a_name )
 {
-	FontResource * ret = 0;
-	for( int i = 0; i < m_fontResources.getSize(); ++i )
-		ret = ( m_fontResources.getp(i) );
-		if( ret->getName() == a_name )
-			return ret;
-	return 0;
+	T * ret = 0;
+
+	GS::Utilities::LimitedVector<T> * pVec = 0;
+	switch( a_type )
+	{
+	case FONT: pVec = &m_fontResources; break;
+	case SHADER: pVec = &m_shaderResources; break;
+	case SHADERPROGRAM: pVec = &m_shaderProgramResources; break;
+	default: break;
+	}
+
+	_INT32 loc = __indexOfResource<T>()
+	return ret;
+}
+*/
+
+template <typename T>
+_INT32 ResourceLibrary::__indexOfResource( 
+	GS::Utilities::LimitedVector<T> * a_pVec, 
+	const _INT64 a_name ) 
+{
+	for( int i = 0; i < a_pVec->getSize(); ++i )
+		if( a_pVec->getp(i)->getName() == a_name )
+			return i;
+	return -1;
+}
+	
+template _INT32 ResourceLibrary::__indexOfResource( 
+	GS::Utilities::LimitedVector<FontResource> * a_pVec, 
+	const _INT64 a_name );
+template _INT32 ResourceLibrary::__indexOfResource( 
+	GS::Utilities::LimitedVector<ShaderResource> * a_pVec, 
+	const _INT64 a_name );
+template _INT32 ResourceLibrary::__indexOfResource( 
+	GS::Utilities::LimitedVector<ShaderProgramResource> * a_pVec, 
+	const _INT64 a_name );
+
+FontResource * ResourceLibrary::findFontResource( const _INT64 a_name )
+{
+	_INT32 loc = __indexOfResource<FontResource>( 
+				&m_fontResources, a_name );
+
+	if( loc == -1 )
+		return __buildFontRes( a_name );
+	
+	FontResource * ret = m_fontResources.getp( loc );
+	ret->addCount();
+	return ret;
+
 }
 
-//ShaderResource * ResourceLibrary::findShaderResource( const _UINT64 a_name )
-//{
-//	return 0;
-//}
+ShaderResource * ResourceLibrary::findShaderResource( const _INT64 a_name )
+{
+	_INT32 loc = __indexOfResource<ShaderResource>( 
+				&m_shaderResources, a_name );
 
-_INT32 ResourceLibrary::forgetResource( const _INT32 a_type, const _UINT64 a_name )
+	if( loc == -1 )
+		return __buildShaderRes( a_name );
+
+	ShaderResource * ret = m_shaderResources.getp( loc );
+	ret->addCount();
+	return ret;
+}
+
+ShaderProgramResource * ResourceLibrary::findShaderProgramResource( 
+	const _INT64 a_name  )
+{
+	_INT32 loc = __indexOfResource<ShaderProgramResource>( 
+				&m_shaderProgramResources, a_name );
+
+	if( loc == -1 )
+		return __buildShaderProgramRes( a_name );
+
+	ShaderProgramResource * ret = m_shaderProgramResources.getp( loc );
+	ret->addCount();
+	return ret;
+}
+
+_INT32 ResourceLibrary::forgetResource( const _INT32 a_type, const _INT64 a_name )
 {
 	return 0;
 }
@@ -102,12 +134,12 @@ _INT32 ResourceLibrary::forgetResource( const _INT32 a_type, const _UINT64 a_nam
 
 // THESE TWO FUNCTIONS SHOULD GET THEIR OWN CPP (EACH)
 
-FontResource * ResourceLibrary::__buildFontRes( const _UINT64 a_name )
-{
-	return 0;
-}
+//FontResource * ResourceLibrary::__buildFontRes( const _INT64 a_name )
+//{
+//	return 0;
+//}
 
-//ShaderResource * ResourceLibrary::__buildShaderRes( const _UINT64 a_name )
+//ShaderResource * ResourceLibrary::__buildShaderRes( const _INT64 a_name )
 //{
 //	return 0;
 //}
