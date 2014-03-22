@@ -33,7 +33,7 @@ public:
 			ShaderResource * a_gs = 0 );
 
 	void shutdown();
-	_UINT32 getShaderProgram(){return m_shaderProgram;}
+	_UINT32 getProgram(){return m_shaderProgram;}
 
 selective:
 	_INT32 __validateShaderProgram();

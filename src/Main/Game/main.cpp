@@ -39,11 +39,8 @@ int main()
 	// instead, i have this one pane (states are groupings
 	// of panes)
 	GS::Game::TestPane testPane;
-	testPane.init();
-
-	//g_font.loadFile( "KaushanScript-Regular.otf", 16 );
-	//g_font.loadFile( "KaushanScript-Regular.otf", 16 );
-//	g_fontShaderProgram.init(vs.c_str(), fs.c_str() );
+	GS::Game::FPSCounter fpsCounter;
+	testPane.init(&fpsCounter);
 
 	// checks for gl and glfw errors!
 	_CheckForErrors();
@@ -67,6 +64,8 @@ int main()
 
 		glfwSetTime(0.0);
 
+		fpsCounter.update(dt);
+
 		// all of this is placeholder until pane/state are implemeneted
 
 		float ratio;
@@ -79,6 +78,7 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.22f,0.22f,0.22f,1.0f);
 
+		testPane.draw();		
 		/*
 		glUseProgram(g_fontShaderProgram.m_shaderProgram);
 		glActiveTexture(GL_TEXTURE0);

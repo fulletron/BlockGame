@@ -21,7 +21,7 @@ selective:
 	FPSCounter * m_pFPS;
 public:
 	TestPane():Pane(), m_pFont(0), m_pProg(0), m_pFPS(0) {}	
-	_INT32 init();
+	_INT32 init( FPSCounter * a_fpsCtr );
 	
 	_BOOL isDirty();
 	void draw();	
