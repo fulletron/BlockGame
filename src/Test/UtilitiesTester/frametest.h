@@ -33,8 +33,8 @@ public:
 	virtual void SetUp() 
 	{
 		g_chunkman.init(TESTNUMCHUNKS,TESTSIZECHUNK);
-		g_chunkman.createFrame( CV8("frame001") );
-		m_pBaseFrame = g_chunkman.getFrame( CV8("frame001") );
+		g_chunkman.createFrame( CV8::FRAME001 );
+		m_pBaseFrame = g_chunkman.getFrame( CV8::FRAME001 );
 	}
 
 	// happens every test case

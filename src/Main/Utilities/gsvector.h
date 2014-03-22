@@ -46,6 +46,7 @@ public:
 	{
 		m_maxSize = a_maxSize;
 		m_pData = a_pData;
+		clean();
 		return 0;
 	}
 
@@ -66,18 +67,21 @@ public:
 		return m_curSize;
 	}
 
-	void add( DATA_TYPE a_data )
+	_UINT32 add( DATA_TYPE & a_data )
 	{
 		if( m_curSize + 1 < m_maxSize )
-			return;
+			return -1;
 
-		m_pData[m_curSize] = a_data;
+		std::memcpy( &m_pData[m_curSize],
+				&a_data,
+				sizeof(DATA_TYPE) );
 		m_curSize++;
+		return m_curSize - 1;
 	}
 
 	void clean()
 	{
-		memset(&m_pData, 0, sizeof(DATA_TYPE) * m_maxSize);
+		memset( m_pData, 0, sizeof(DATA_TYPE) * m_maxSize);
 	}
 
 	void remove( _UINT32 a_index )
@@ -85,7 +89,9 @@ public:
 		if( m_curSize )
 			m_curSize--;
 		if( m_curSize )
-			m_pData[a_index] = m_pData[m_curSize + 1];
+			std::memcpy( &m_pData[a_index], 
+				&m_pData[m_curSize + 1], 
+				sizeof(DATA_TYPE) );
 	}
 
 	DATA_TYPE get( _UINT32 a_index )

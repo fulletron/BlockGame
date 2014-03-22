@@ -85,21 +85,23 @@ TEST(ChunkManager, init_test)
 	EXPECT_EQ( 0, ret );
 };
 
+/*
 TEST(CV8, converter_test)
 {
-	EXPECT_EQ( CV8("frame001"), CV8("frame001") );
+	EXPECT_EQ( CV8::FRAME001, CV8::FRAME001 );
 }
+*/
 
 TEST_F(MockChunkManager, create_frame_test)
 {
-	GS::Utilities::Frame * pFrame = g_chunkman.createFrame( CV8("frame001") );
+	GS::Utilities::Frame * pFrame = g_chunkman.createFrame( CV8::FRAME001 );
 	EXPECT_EQ( pFrame->m_pMemBlock, g_chunkman.m_pChunk );
 };
 
 TEST_F(MockChunkManager, create_nameclash_test )
 {
-	GS::Utilities::Frame * pFrame = g_chunkman.createFrame( CV8("frame001") );
-	pFrame = g_chunkman.createFrame( CV8("frame001") );
+	GS::Utilities::Frame * pFrame = g_chunkman.createFrame( CV8::FRAME001 );
+	pFrame = g_chunkman.createFrame( CV8::FRAME001 );
 	EXPECT_EQ( 0, pFrame );
 };
 
@@ -107,8 +109,8 @@ TEST_F(MockChunkManager, get_frame_test_1)
 {
 	GS::Utilities::Frame *pFrame = 0, *pFrameFromGet = 0, *pNull = 0;
 
-	pFrame = g_chunkman.createFrame( CV8("frame001") );
-	pFrameFromGet = g_chunkman.getFrame( CV8("frame001") );
+	pFrame = g_chunkman.createFrame( CV8::FRAME001 );
+	pFrameFromGet = g_chunkman.getFrame( CV8::FRAME001 );
 	EXPECT_EQ( pFrame, pFrameFromGet );
 };
 
@@ -116,11 +118,11 @@ TEST_F(MockChunkManager, get_frame_test_2)
 {
 	GS::Utilities::Frame *pFrame = 0, *pFrameFromGet = 0, *pNull = 0;
 
-	pFrame = g_chunkman.createFrame( CV8("frame001") );
-	pNull = g_chunkman.createFrame( CV8("frame001") );
+	pFrame = g_chunkman.createFrame( CV8::FRAME001 );
+	pNull = g_chunkman.createFrame( CV8::FRAME001 );
 	EXPECT_EQ( 0, pNull ) << "Test A Failed.";
 
-	pFrameFromGet = g_chunkman.getFrame( CV8("frame001") );
+	pFrameFromGet = g_chunkman.getFrame( CV8::FRAME001 );
 	EXPECT_EQ( pFrame, pFrameFromGet ) << "Test B Failed.";
 };
 
@@ -128,12 +130,12 @@ TEST_F(MockChunkManager, get_frame_test_3)
 {
 	GS::Utilities::Frame *pFrame = 0, *pFrameFromGet = 0, *pNull = 0;
 
-	pFrame = g_chunkman.createFrame( CV8("frame001") );
-	bool destroyed = g_chunkman.destroyFrame( CV8("frame001") );
+	pFrame = g_chunkman.createFrame( CV8::FRAME001 );
+	bool destroyed = g_chunkman.destroyFrame( CV8::FRAME001 );
 	EXPECT_EQ( true, destroyed )  
 		<< "FRAME WAS NOT DESTROYED.";
 
-	pFrameFromGet = g_chunkman.getFrame( CV8("frame001") );
+	pFrameFromGet = g_chunkman.getFrame( CV8::FRAME001 );
 	EXPECT_EQ( 0, pFrameFromGet )  
 		<< "COULD STILL INCORRECTLY GRAB FRAME.";
 };
@@ -144,13 +146,13 @@ TEST_F(MockChunkManager, destroy_frame_test_1)
 							*pFrame2 = 0,
 							*pFrameFromGet = 0;
 
-	pFrame = g_chunkman.createFrame( CV8("frame001") );
-	pFrame2 = g_chunkman.createFrame( CV8("frame002") );
+	pFrame = g_chunkman.createFrame( CV8::FRAME001 );
+	pFrame2 = g_chunkman.createFrame( CV8::FRAME002 );
 
-	bool destroyed = g_chunkman.destroyFrame( CV8("frame002") );
+	bool destroyed = g_chunkman.destroyFrame( CV8::FRAME002 );
 	EXPECT_EQ( true, destroyed )  << "Test A Failed.";
 
-	pFrameFromGet = g_chunkman.getFrame( CV8("frame002") );
+	pFrameFromGet = g_chunkman.getFrame( CV8::FRAME002 );
 	EXPECT_EQ( 0, pFrameFromGet )  << "Test B Failed.";
 };
 
@@ -163,17 +165,17 @@ TEST_F(MockChunkManager, destroy_frame_test_2)
 							*pFrame3 = 0,
 							*pFrame4 = 0;
 
-	pFrame = g_chunkman.createFrame( CV8("frame001") );
-	pFrame2 = g_chunkman.createFrame( CV8("frame002") );
-	pFrame3 = g_chunkman.createFrame( CV8("frame003") );
-	pFrame4 = g_chunkman.createFrame( CV8("frame004") );
+	pFrame = g_chunkman.createFrame( CV8::FRAME001 );
+	pFrame2 = g_chunkman.createFrame( CV8::FRAME002 );
+	pFrame3 = g_chunkman.createFrame( CV8::FRAME003 );
+	pFrame4 = g_chunkman.createFrame( CV8::FRAME004 );
 
 	_BYTE* pFrameMemBlock = pFrame2->m_pMemBlock;
 
-	bool destroyed = g_chunkman.destroyFrame( CV8("frame002") );
+	bool destroyed = g_chunkman.destroyFrame( CV8::FRAME002 );
 	EXPECT_EQ( true, destroyed )  << "Test A Failed.";
 
-	pFrameFromGet = g_chunkman.getFrame( CV8("frame004") );
+	pFrameFromGet = g_chunkman.getFrame( CV8::FRAME004 );
 	EXPECT_EQ( pFrame2, pFrameFromGet )  << "FRAME 4 WAS NOT PROPERLY MOVED.";
 
 	EXPECT_EQ( *pFrameMemBlock, *pFrameFromGet->m_pMemBlock ) << "Test C Failed.";
@@ -192,18 +194,18 @@ TEST_F(MockChunkManager, destroy_frame_test_currentloc)
 	g_chunkman.m_pFramesInRelation[0];
 
 
-	pFrame = g_chunkman.createFrame( CV8("frame001") );
-	pFrame2 = g_chunkman.createFrame( CV8("frame002") );
+	pFrame = g_chunkman.createFrame( CV8::FRAME001 );
+	pFrame2 = g_chunkman.createFrame( CV8::FRAME002 );
 	
 	pFrame->setfStop(BOT);
 	pFrame2->setfStop(BOT);
 
 	_BYTE * pFirstLoc = pFrame->m_pCurrentLoc[BOT];
 
-	bool destroyed = g_chunkman.destroyFrame( CV8("frame001") );
+	bool destroyed = g_chunkman.destroyFrame( CV8::FRAME001 );
 	EXPECT_EQ( true, destroyed )  << "Frame 1 could not be destroyed";
 
-	pFrameFromGet = g_chunkman.getFrame( CV8("frame002") );
+	pFrameFromGet = g_chunkman.getFrame( CV8::FRAME002 );
 
 	EXPECT_EQ( pFirstLoc, pFrameFromGet->m_pCurrentLoc[BOT] )
 		<< "The currentLoc moves incorrectly.";
@@ -216,29 +218,29 @@ TEST_F(MockChunkManager, destroy_frame_test_fStop)
 							*pFrameFromGet = 0, 
 							*pFrame0 = 0;
 
-	pFrame0 = g_chunkman.createFrame( CV8("frame000") );
-	pFrame = g_chunkman.createFrame( CV8("frame001") );
-	pFrame2 = g_chunkman.createFrame( CV8("frame002") );
+	pFrame0 = g_chunkman.createFrame( CV8::FRAME003 );
+	pFrame = g_chunkman.createFrame( CV8::FRAME001 );
+	pFrame2 = g_chunkman.createFrame( CV8::FRAME002 );
 
 	_TChunkPtr<_UINT64> testInt, testInt2, testInt3;
 	pFrame2->setfStop( BOT );
-	testInt = g_chunkman.allocate( CV8("frame002") , sizeof( _UINT64 ), BOT );
+	testInt = g_chunkman.allocate( CV8::FRAME002 , sizeof( _UINT64 ), BOT );
 	testInt.dereference() = 100;
 	pFrame2->setfStop( BOT );
-	testInt2 = g_chunkman.allocate( CV8("frame002") , sizeof( _UINT64 ), BOT );
+	testInt2 = g_chunkman.allocate( CV8::FRAME002 , sizeof( _UINT64 ), BOT );
 	testInt.dereference() = 101;
 	pFrame2->setfStop( BOT );
-	testInt3 = g_chunkman.allocate( CV8("frame002") , sizeof( _UINT64 ), BOT );
+	testInt3 = g_chunkman.allocate( CV8::FRAME002 , sizeof( _UINT64 ), BOT );
 	testInt.dereference() = 102;
 
 	_UINT64 diff1 = RC( _UINT64, pFrame2->m_pfStop[BOT][0] ) - RC( _UINT64, pFrame2->getMemBlock() );
 	_UINT64 diff2 = RC( _UINT64, pFrame2->m_pfStop[BOT][1] ) - RC( _UINT64, pFrame2->getMemBlock() );
 	_UINT64 diff3 = RC( _UINT64, pFrame2->m_pfStop[BOT][2] ) - RC( _UINT64, pFrame2->getMemBlock() );
 
-	bool destroyed = g_chunkman.destroyFrame( CV8("frame001") );
+	bool destroyed = g_chunkman.destroyFrame( CV8::FRAME001 );
 	EXPECT_EQ( true, destroyed )  << "Frame 1 could not be destroyed";
 
-	pFrameFromGet = g_chunkman.getFrame( CV8("frame002") );
+	pFrameFromGet = g_chunkman.getFrame( CV8::FRAME002 );
 	_UINT64 diffA = RC( _UINT64, pFrameFromGet->m_pfStop[BOT][0] ) - RC( _UINT64, pFrameFromGet->getMemBlock() );
 	_UINT64 diffB = RC( _UINT64, pFrameFromGet->m_pfStop[BOT][1] ) - RC( _UINT64, pFrameFromGet->getMemBlock() );
 	_UINT64 diffC = RC( _UINT64, pFrameFromGet->m_pfStop[BOT][2] ) - RC( _UINT64, pFrameFromGet->getMemBlock() );
@@ -264,8 +266,8 @@ TEST_F(MockChunkManager, destroy_frame_test_fStop_2)
 	g_chunkman.m_pFramesInRelation[0];
 
 
-	pFrame = g_chunkman.createFrame( CV8("frame001") );
-	pFrame2 = g_chunkman.createFrame( CV8("frame002") );
+	pFrame = g_chunkman.createFrame( CV8::FRAME001 );
+	pFrame2 = g_chunkman.createFrame( CV8::FRAME002 );
 	
 	pFrame->setfStop(BOT);
 	_BYTE * fStopO = pFrame->m_pfStop[BOT][0];
@@ -273,10 +275,10 @@ TEST_F(MockChunkManager, destroy_frame_test_fStop_2)
 	pFrame2->setfStop(BOT);
 	_BYTE * fStopP = pFrame2->m_pfStop[BOT][0];
 
-	bool destroyed = g_chunkman.destroyFrame( CV8("frame001") );
+	bool destroyed = g_chunkman.destroyFrame( CV8::FRAME001 );
 	EXPECT_EQ( true, destroyed )  << "Frame 1 could not be destroyed";
 
-	pFrameFromGet = g_chunkman.getFrame( CV8("frame002") );
+	pFrameFromGet = g_chunkman.getFrame( CV8::FRAME002 );
 	EXPECT_NE( fStopP, pFrameFromGet->m_pfStop[BOT][0] ) 
 		<< "Frame2's fstop did not change";
 

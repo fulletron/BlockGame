@@ -36,10 +36,10 @@ public:
 	{
 		g_chunkman.init(TESTNUMCHUNKS,TESTSIZECHUNK);
 
-		g_chunkman.createFrame( CV8("frame001") );
-		g_chunkman.createFrame( CV8("frame002") );
+		g_chunkman.createFrame( CV8::FRAME001 );
+		g_chunkman.createFrame( CV8::FRAME002 );
 
-		m_pBaseFrame = g_chunkman.getFrame( CV8("frame001") );
+		m_pBaseFrame = g_chunkman.getFrame( CV8::FRAME001 );
 	}
 
 	// happens every test case
@@ -52,7 +52,7 @@ public:
 TEST_F(MockChunkPtrManager, init_test)
 {
 	_TChunkPtr<_UINT64> pUint;
-	pUint = g_chunkman.allocate( CV8("frame001"), 8, TOP );
+	pUint = g_chunkman.allocate( CV8::FRAME001, 8, TOP );
 
 	pUint.dereference() = 100;
 	EXPECT_EQ( 100, pUint.dereference() );
@@ -61,14 +61,14 @@ TEST_F(MockChunkPtrManager, init_test)
 TEST_F(MockChunkPtrManager, move_test_small)
 {
 	_TChunkPtr<_UINT64> pUint;
-	pUint = g_chunkman.allocate( CV8("frame002"), 8, TOP );
+	pUint = g_chunkman.allocate( CV8::FRAME002, 8, TOP );
 
 	pUint.dereference() = 100;
 	EXPECT_EQ( 100, pUint.dereference() );
 
 	_UINT64 * pFullUintBefore = RC( _UINT64 *, pUint.pointer() );
 
-	g_chunkman.destroyFrame( CV8("frame001") );
+	g_chunkman.destroyFrame( CV8::FRAME001 );
 
 	pUint.dereference() = 100;
 	EXPECT_EQ( 100, pUint.dereference() );
@@ -80,18 +80,18 @@ TEST_F(MockChunkPtrManager, move_test_small)
 
 TEST_F(MockChunkPtrManager, move_test)
 {
-	g_chunkman.createFrame( CV8("frame003") );
-	g_chunkman.createFrame( CV8("frame004") );
+	g_chunkman.createFrame( CV8::FRAME003 );
+	g_chunkman.createFrame( CV8::FRAME004 );
 
 	_TChunkPtr<_UINT64> pUint;
-	pUint = g_chunkman.allocate( CV8("frame004"), 8, TOP );
+	pUint = g_chunkman.allocate( CV8::FRAME004, 8, TOP );
 
 	pUint.dereference() = 100;
 	EXPECT_EQ( 100, pUint.dereference() );
 
 	_UINT64 * pFullUintBefore = RC( _UINT64 *, pUint.pointer() );
 
-	g_chunkman.destroyFrame( CV8("frame001") );
+	g_chunkman.destroyFrame( CV8::FRAME001 );
 
 	pUint.dereference() = 100;
 	EXPECT_EQ( 100, pUint.dereference() );

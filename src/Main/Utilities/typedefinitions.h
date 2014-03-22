@@ -74,12 +74,17 @@ _INT64 constexpr CV8( char const * in ) {
 #define SC(x,y) static_cast<x>(y)
 
 namespace CV8 {
-const _INT64 test = static_cast<_INT64>("testtest"[0]);
-const _INT64 RES_FONT_KASHSCRIPT = SC( _INT64, "rftkassc"[0] );
-const _INT64 RES_SP_FONTDRAW = SC( _INT64, "rspfont1"[0] );
-const _INT64 FRAME001 = static_cast<_INT64>("frame001"[0]);
-const _INT64 FRAME_TRASH = SC(_INT64,"trash000"[0]);
-const _INT64 FRAME_SMALLRES = SC( _INT64, "smallres"[0] );
+const _INT64 test = 0000000000001;
+const _INT64 RES_FONT_KASHSCRIPT = 8243404172493550435; // rftkassc
+const _INT64 RES_SP_FONTDRAW = 1001;
+const _INT64 RES_SH_BASEFONTVS = 1002;
+const _INT64 RES_SH_BASEFONTFS = 1003;
+const _INT64 FRAME001 = 100001;
+const _INT64 FRAME002 = 100002;
+const _INT64 FRAME003 = 100003;
+const _INT64 FRAME004 = 100004;
+const _INT64 FRAME_TRASH = 100005;
+const _INT64 FRAME_SMALLRES = 100006;
 };
 
 inline _BYTE* INALIGNUP( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)

@@ -36,9 +36,6 @@ int main()
 
 	g_lib.init();
 
-	GS::Graphics::ShaderResource * pRes =
-		g_lib.findShaderResource( 1 );
-	
 	// build a single "frame" for scoped allocations
 	// keep track of the "frame" to truly free it later
 	GS::Utilities::Frame * pTrash = 0;
@@ -48,6 +45,10 @@ int main()
 	// will only ever exist once
 	g_window.init();
 	g_input.init();
+
+	GS::Graphics::ShaderResource * pRes =
+		g_lib.findShaderResource( CV8::RES_SH_BASEFONTFS );
+	
 
 	// font and shader loading here because 
 	// state & panel is not implemented

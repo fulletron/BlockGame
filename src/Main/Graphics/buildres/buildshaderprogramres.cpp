@@ -22,8 +22,9 @@ ShaderProgramResource * ResourceLibrary::__buildShaderProgramRes( const _INT64 a
 
 	//newRes.init( src.c_str(), type );
 	newRes.assignName( a_name );
-	m_shaderProgramResources.add( newRes );
-	return m_shaderProgramResources.getp( a_name );
+	newRes.addCount();
+	_UINT32 loc = m_shaderProgramResources.add( newRes );
+	return m_shaderProgramResources.getp( loc );
 }
 
 };

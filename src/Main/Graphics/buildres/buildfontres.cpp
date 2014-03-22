@@ -16,8 +16,9 @@ FontResource * ResourceLibrary::__buildFontRes( const _INT64 a_name )
 
 	//newRes.init( src.c_str(), type );
 	newRes.assignName( a_name );
-	m_fontResources.add( newRes );
-	return m_fontResources.getp( a_name );
+	newRes.addCount();
+	_UINT32 loc = m_fontResources.add( newRes );
+	return m_fontResources.getp( loc );
 }
 
 };

@@ -12,7 +12,7 @@ public:
 
 	_BOOL isDirty();
 	void draw();	
-	_BOOL handledInput(){}
+	_BOOL handledInput(){return false;}
 };
 
 #endif

@@ -69,7 +69,7 @@ _INT32 ResourceLibrary::__indexOfResource(
 	GS::Utilities::LimitedVector<T> * a_pVec, 
 	const _INT64 a_name ) 
 {
-	for( int i = 0; i < a_pVec->getSize(); ++i )
+	for( int i = 0; i < SC( _INT32, a_pVec->getSize() ); ++i )
 		if( a_pVec->getp(i)->getName() == a_name )
 			return i;
 	return -1;
@@ -130,19 +130,6 @@ _INT32 ResourceLibrary::forgetResource( const _INT32 a_type, const _INT64 a_name
 {
 	return 0;
 }
-
-
-// THESE TWO FUNCTIONS SHOULD GET THEIR OWN CPP (EACH)
-
-//FontResource * ResourceLibrary::__buildFontRes( const _INT64 a_name )
-//{
-//	return 0;
-//}
-
-//ShaderResource * ResourceLibrary::__buildShaderRes( const _INT64 a_name )
-//{
-//	return 0;
-//}
 
 };
 };

@@ -33,8 +33,8 @@ public:
 	virtual void SetUp() 
 	{
 		m_man.init(TESTNUMCHUNKS,TESTSIZECHUNK);
-		m_man.createFrame( CV8("frame001") );
-		m_pBaseFrame = m_man.getFrame( CV8("frame001") );
+		m_man.createFrame( CV8::FRAME001 );
+		m_pBaseFrame = m_man.getFrame( CV8::FRAME001 );
 	}
 
 	// happens every test case

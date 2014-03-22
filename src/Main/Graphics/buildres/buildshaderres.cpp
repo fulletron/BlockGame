@@ -3,9 +3,6 @@
 namespace GS {
 namespace Graphics {
 
-#define R_SH_BASEFTVS 1
-#define R_SH_BASEFTFS 2
-
 ShaderResource * ResourceLibrary::__buildShaderRes( const _INT64 a_name )
 {
 	ShaderResource newRes;
@@ -14,13 +11,13 @@ ShaderResource * ResourceLibrary::__buildShaderRes( const _INT64 a_name )
 
 	switch(a_name)
 	{
-	case R_SH_BASEFTVS :
+	case CV8::RES_SH_BASEFONTVS :
 		type = GL_VERTEX_SHADER;
 		src = _FS::loadFile( ( _FS::getCurrentFullPath() 
 		/ "Internal/" / "Resources/" / "Effects/" 
 		/ "basicfont.vert").string().c_str() );
 		break;
-	case R_SH_BASEFTFS: 
+	case CV8::RES_SH_BASEFONTFS: 
 		type = GL_FRAGMENT_SHADER;
 		src = _FS::loadFile( ( _FS::getCurrentFullPath() 
 		/ "Internal/" / "Resources/" / "Effects/" 
@@ -31,10 +28,10 @@ ShaderResource * ResourceLibrary::__buildShaderRes( const _INT64 a_name )
 
 	newRes.init( src.c_str(), type );
 	newRes.assignName( a_name );
-	m_shaderResources.add( newRes );
-	return m_shaderResources.getp( a_name );
+	newRes.addCount();
+	_UINT32 loc = m_shaderResources.add( newRes );
+	return m_shaderResources.getp( loc );
 }
-
-};
 };
 
+};
