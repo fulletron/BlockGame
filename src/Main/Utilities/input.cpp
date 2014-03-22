@@ -28,12 +28,14 @@ void Input::mousePosCB( GLFWwindow * a_pGLFWwindow, double a_x, double a_y )
 
 void Input::keyCB( GLFWwindow * a_pGLFWwindow, int a_key, int a_scancode, int a_action, int a_mods )
 {
-	inputDeck.m_presses.add(Press(a_key, a_action, a_mods));
+	Press press(a_key, a_action, a_mods);
+	inputDeck.m_presses.add(press);
 }
 
 void Input::mouseClickCB( GLFWwindow * a_pGLFWwindow, int a_button, int a_action, int a_mods )
 {
-	inputDeck.m_presses.add(Press(a_button, a_action, a_mods));
+	Press press(a_button, a_action, a_mods);
+	inputDeck.m_presses.add(press);
 }
 
 void Input::scrollCB( GLFWwindow * a_pGLFWwindow, double a_xOffset, double a_yOffset )

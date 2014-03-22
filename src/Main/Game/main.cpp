@@ -19,21 +19,10 @@ GS::Graphics::Window g_window;
 GS::Utilities::Input g_input;
 GS::Graphics::ResourceLibrary g_lib;
 
-
-// TODO ::
-// This belongs somewhere else,
-// but that somewhere else has not been
-// implemented yet (Pane/State/Resource)
-
-GS::Graphics::FontResource g_font;
-GS::Graphics::ShaderProgramResource g_fontShaderProgram;
-
 int main()
 {
-	TestPane testPane;
 	// Init the chunk manager
 	g_chunkman.init();
-
 	g_lib.init();
 
 	// build a single "frame" for scoped allocations
@@ -46,20 +35,13 @@ int main()
 	g_window.init();
 	g_input.init();
 
-	GS::Graphics::ShaderResource * pRes =
-		g_lib.findShaderResource( CV8::RES_SH_BASEFONTFS );
-	
+	// For now, the game states do not exist
+	// instead, i have this one pane (states are groupings
+	// of panes)
+	GS::Game::TestPane testPane;
+	testPane.init();
 
-	// font and shader loading here because 
-	// state & panel is not implemented
-	std::string vs = _FS::loadFile( ( _FS::getCurrentFullPath() 
-		/ "Internal/" / "Resources/" / "Effects/" 
-		/ "basicfont.vert").string().c_str() );
-	std::string fs = _FS::loadFile( ( _FS::getCurrentFullPath() 
-		/ "Internal/" / "Resources/" / "Effects/" 
-		/ "basicfont.frag").string().c_str() );
-
-	g_font.loadFile( "KaushanScript-Regular.otf", 16 );
+	//g_font.loadFile( "KaushanScript-Regular.otf", 16 );
 	//g_font.loadFile( "KaushanScript-Regular.otf", 16 );
 //	g_fontShaderProgram.init(vs.c_str(), fs.c_str() );
 
@@ -97,6 +79,7 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.22f,0.22f,0.22f,1.0f);
 
+		/*
 		glUseProgram(g_fontShaderProgram.m_shaderProgram);
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, g_font.m_texture);
@@ -105,7 +88,7 @@ int main()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-/*
+
 		for ( int i = 0; i < 100; ++i ){
 		g_font.renderText("12000", GS::Graphics::Vector2_t(-800.00f,-300.00f), GS::Graphics::Color4f_t(1.0f, 1.0f, 0.0f, 1.0f) );
 		//g_font.renderText("The quick brown fox jumps over the lazy dog!@", GS::Graphics::Vector2_t(-800.00f,-600.00f), GS::Graphics::Color4f_t(0.0f, 1.0f, 0.0f, 1.0f) );
@@ -121,8 +104,8 @@ int main()
 		glfwPollEvents();
 	}
 
-	g_fontShaderProgram.shutdown();
-	g_font.shutdown();
+	//g_fontShaderProgram.shutdown();
+	//g_font.shutdown();
 
 	// input has no shutdown
 	// g_input.shutdown();

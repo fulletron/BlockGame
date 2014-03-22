@@ -20,6 +20,7 @@ public:
 			const _INT32 a_type );
 
 	void shutdown();
+	_UINT32 getShader(){return m_shader;}
 
 selective:
 	_INT32 __compileShader(	const char * a_source, _INT32 a_type );	

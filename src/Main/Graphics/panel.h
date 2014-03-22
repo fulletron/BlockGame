@@ -28,7 +28,7 @@ public:
 	* also have panes check for the kinds of input they accept
 	* before collision!
 	*/
-	virtual _BOOL handledInput() = 0;
+	virtual _BOOL handleInput() = 0;
 
 selective:
 	virtual _UINT32 __glFramebufferInit() = 0;
@@ -68,7 +68,7 @@ public:
 
 	virtual void draw() = 0;
 	virtual _BOOL isDirty() = 0;
-	virtual _BOOL handledInput() = 0;
+	virtual _BOOL handleInput() = 0;
 
 selective:
 	_UINT32 __glFramebufferInit();

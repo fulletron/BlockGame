@@ -6,6 +6,7 @@
 namespace GS {
 namespace Graphics {
 
+class ShaderResource;
 class ShaderProgramResource : public Resource {
 
 public:
@@ -18,20 +19,21 @@ selective:
 	_BOOL						m_inited;
 
 	// shaders. consider making a different class!
-	_UINT64						m_vsName;
-	_UINT64						m_gsName; 
-	_UINT64						m_fsName;
+	ShaderResource *						m_pVS;
+	ShaderResource *					m_pGS; 
+	ShaderResource *					m_pFS;
 
 public:
 	ShaderProgramResource();
 	~ShaderProgramResource();
 
 	_INT32 init(
-			const _UINT64 & a_vsName, 
-			const _UINT64 & a_fsName, 
-			const _UINT64 & a_gsName = 0 );
+			ShaderResource * a_vs, 
+			ShaderResource * a_fs, 
+			ShaderResource * a_gs = 0 );
 
 	void shutdown();
+	_UINT32 getShaderProgram(){return m_shaderProgram;}
 
 selective:
 	_INT32 __validateShaderProgram();

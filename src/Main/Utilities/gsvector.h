@@ -72,7 +72,7 @@ public:
 		if( m_curSize + 1 < m_maxSize )
 			return -1;
 
-		std::memcpy( &m_pData[m_curSize],
+		memcpy( &m_pData[m_curSize],
 				&a_data,
 				sizeof(DATA_TYPE) );
 		m_curSize++;
@@ -89,7 +89,7 @@ public:
 		if( m_curSize )
 			m_curSize--;
 		if( m_curSize )
-			std::memcpy( &m_pData[a_index], 
+			memcpy( &m_pData[a_index], 
 				&m_pData[m_curSize + 1], 
 				sizeof(DATA_TYPE) );
 	}

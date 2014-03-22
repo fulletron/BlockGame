@@ -2,6 +2,7 @@
 #include <Utilities/chunkmanager.h>
 #include <Graphics/window.h>
 #include <Graphics/reslib.h>
+#include <Graphics/shader.h>
 
 extern GS::Graphics::ResourceLibrary g_lib;
 extern GS::Utilities::ChunkManager g_chunkman;
@@ -13,9 +14,9 @@ namespace Graphics {
 ShaderProgramResource::ShaderProgramResource()
 {
 	m_inited = false; 	
-	m_vsName = 0;
-	m_gsName = 0; 
-	m_fsName = 0;	
+	m_pVS = 0;
+	m_pGS = 0; 
+	m_pFS = 0;	
 }
 
 ShaderProgramResource::~ShaderProgramResource()
@@ -35,30 +36,24 @@ _INT32 ShaderProgramResource::__validateShaderProgram()
 	return ret;
 }
 
-/*
-_INT32 ShaderProgramResource::init(const char * a_vertexSource, const char * a_fragmentSource, const char * a_geometrySource)
+_INT32 ShaderProgramResource::init( ShaderResource * a_vs, ShaderResource * a_fs, ShaderResource * a_gs)
 {
-	if( !a_vertexSource
-	||	!a_fragmentSource )
+	if(!a_vs
+	|| !a_fs )
 		return -1;
 
-	if(!__compileShader( m_vertexShader, a_vertexSource, GL_VERTEX_SHADER ))
-		return -2;
-	if(!__compileShader( m_fragmentShader, a_fragmentSource, GL_FRAGMENT_SHADER ))
-		return -3;
-
-	if( a_geometrySource )
-		if(!__compileShader( m_geometryShader, a_geometrySource, GL_GEOMETRY_SHADER ))
-			return -4;
+	m_pVS = a_vs;
+	m_pGS = a_gs;
+	m_pFS = a_fs;
 
     // Link the vertex and fragment shader into a shader program
     m_shaderProgram = glCreateProgram();
-	glAttachShader(m_shaderProgram, m_vertexShader);
-	glAttachShader(m_shaderProgram, m_fragmentShader);
+	glAttachShader(m_shaderProgram, a_vs->getShader() );
+	glAttachShader(m_shaderProgram, a_fs->getShader() );
 
 	// link geo shader if there is one
-	if(m_geometryShader)
-		glAttachShader(m_shaderProgram, m_geometryShader);
+	if( a_gs )
+		glAttachShader(m_shaderProgram, a_gs->getShader() );
 
     glLinkProgram(m_shaderProgram);
 
@@ -71,7 +66,6 @@ _INT32 ShaderProgramResource::init(const char * a_vertexSource, const char * a_f
 
 	return 0;
 }
-*/
 
 void ShaderProgramResource::shutdown()
 {
