@@ -36,12 +36,16 @@ _INT32 ShaderProgramResource::__validateShaderProgram()
 	return ret;
 }
 
-_INT32 ShaderProgramResource::init( ShaderResource * a_vs, ShaderResource * a_fs, ShaderResource * a_gs)
+_INT32 ShaderProgramResource::init( ShaderResource * const a_vs, ShaderResource * const a_fs, ShaderResource * const a_gs)
 {
 	if(!a_vs
 	|| !a_fs )
 		return -1;
 
+	if( !a_vs->getShader() 
+	|| !a_fs->getShader() )
+		return -2;
+		
 	m_pVS = a_vs;
 	m_pGS = a_gs;
 	m_pFS = a_fs;

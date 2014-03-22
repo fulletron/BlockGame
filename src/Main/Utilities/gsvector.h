@@ -69,7 +69,7 @@ public:
 
 	_UINT32 add( DATA_TYPE & a_data )
 	{
-		if( m_curSize + 1 < m_maxSize )
+		if( m_curSize + 1 > m_maxSize )
 			return -1;
 
 		memcpy( &m_pData[m_curSize],
