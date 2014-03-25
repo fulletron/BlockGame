@@ -7,6 +7,7 @@
 namespace GS {
 namespace Graphics {
 
+class Pane;
 class IPane {
 public:
 	/**
@@ -30,7 +31,19 @@ public:
 	*/
 	virtual _BOOL handleInput() = 0;
 
+	/**
+	* Sets the parent pane and calculates the actual dimensions.
+	*/
+	virtual _INT32 initPaneBlues( Pane * const a_pParentPane, const Vec4D<float> & a_blueprint ) = 0;
+
+	/**
+	* Calls all of the __gl private functions that setup the framebuffer
+	*/
+	virtual _UINT32 initFramebuffer() = 0;
+
 selective:
+
+	virtual _INT32 __calculateDimActual() = 0;
 	virtual _UINT32 __glFramebufferInit() = 0;
 	virtual void	__glFramebufferDestroy() = 0;
 	virtual _UINT32 __glTexColorBufferInit() = 0;
@@ -48,6 +61,11 @@ public:
 	static const int ORIGIN_LEFT = 1 >> 3;
 
 selective:
+
+	static _BOOL m_screenLoaded;
+	static GLuint m_vaoQuad;
+	static GLuint m_vboQuad;
+
 	GLuint m_framebuffer;
 	GLuint m_texColorBuffer;
 	GLuint m_rboDepthStencil;
@@ -56,7 +74,7 @@ selective:
 	Vec4D<_UINT32> m_boxActual;
 	_CHAR m_orientationBitFlag;
 public:
-	Pane() : 
+	Pane() :
 		m_framebuffer(0),
 		m_texColorBuffer(0),
 		m_rboDepthStencil(0),
@@ -70,13 +88,23 @@ public:
 	virtual _BOOL isDirty() = 0;
 	virtual _BOOL handleInput() = 0;
 
+	_UINT32 initFramebuffer();
+	_INT32 initPaneBlues( 
+		Pane * const a_pParentPane, 
+		const Vec4D<float> & a_blueprint );
+
 selective:
+	_INT32 __calculateDimActual();
 	_UINT32 __glFramebufferInit();
 	void __glFramebufferDestroy();
 	_UINT32 __glTexColorBufferInit();
 	void __glTexColorBufferDestroy();
 	_UINT32 __glRboDepthStencilInit();
 	void __glRboDepthStencilDestroy(); 
+
+	static _INT32 __initScreenVAOVBO();
+	static void __shutdownScreenVAOVBO();
+
 };
 
 class IPaneObj {

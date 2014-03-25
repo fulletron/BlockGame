@@ -1,5 +1,6 @@
 #include "shaderprogram.h"
 #include <Utilities/chunkmanager.h>
+#include <Utilities/glfwerrorfunc.h>
 #include <Graphics/window.h>
 #include <Graphics/reslib.h>
 #include <Graphics/shader.h>
@@ -38,6 +39,9 @@ _INT32 ShaderProgramResource::__validateShaderProgram()
 
 _INT32 ShaderProgramResource::init( ShaderResource * const a_vs, ShaderResource * const a_fs, ShaderResource * const a_gs)
 {
+	if( _CheckForErrors() )
+		return -100;
+
 	if(!a_vs
 	|| !a_fs )
 		return -1;
@@ -65,6 +69,8 @@ _INT32 ShaderProgramResource::init( ShaderResource * const a_vs, ShaderResource 
 		return -5;
 
 	//glBindFragDataLocation(m_shaderProgram, 0, "outColor");
+	if( _CheckForErrors() )
+		return -101;
 
 	m_inited = true;
 

@@ -1,5 +1,5 @@
 #include "shader.h"
-
+#include <Utilities/glfwerrorfunc.h>
 #include <Graphics/openglincludes.h>
 
 namespace GS {
@@ -18,7 +18,14 @@ _INT32 ShaderResource::init( const char * a_source, const _INT32 a_type )
 		return -1;
 	if( __compileShader( a_source, a_type ) )
 		m_inited = true;
+	if( _CheckForErrors() )
+		return -101;
 	return 0;
+}
+
+void ShaderResource::bindFragDataLoc( const int a_loc, const char * a_str )
+{
+	glBindFragDataLocation( m_shader, a_loc, a_str );
 }
 
 _INT32 ShaderResource::__compileShader( const char * a_source, const _INT32 a_type )

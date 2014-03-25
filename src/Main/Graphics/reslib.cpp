@@ -41,6 +41,21 @@ _UINT32 ResourceLibrary::init()
 					NUM_SHADERPROGRAMS 
 				).pointer() 
 			);
+	m_textureResources.init( 
+				NUM_TEXTURES, 
+				allocateArray<TextureResource>( 
+					CV8::FRAME_SMALLRES, 
+					NUM_TEXTURES 
+				).pointer() 
+			);
+	m_meshResources.init(
+				NUM_MESHES,
+				allocateArray<MeshResource>(
+					CV8::FRAME_SMALLRES,
+					NUM_MESHES
+				).pointer()
+			);
+
 	return 0;
 }
 
@@ -84,6 +99,12 @@ template _INT32 ResourceLibrary::__indexOfResource(
 template _INT32 ResourceLibrary::__indexOfResource( 
 	GS::Utilities::LimitedVector<ShaderProgramResource> * a_pVec, 
 	const _INT64 a_name );
+template _INT32 ResourceLibrary::__indexOfResource( 
+	GS::Utilities::LimitedVector<TextureResource> * a_pVec, 
+	const _INT64 a_name );
+template _INT32 ResourceLibrary::__indexOfResource( 
+	GS::Utilities::LimitedVector<MeshResource> * a_pVec, 
+	const _INT64 a_name );
 
 FontResource * ResourceLibrary::findFontResource( const _INT64 a_name )
 {
@@ -122,6 +143,34 @@ ShaderProgramResource * ResourceLibrary::findShaderProgramResource(
 		return __buildShaderProgramRes( a_name );
 
 	ShaderProgramResource * ret = m_shaderProgramResources.getp( loc );
+	ret->addCount();
+	return ret;
+}
+
+TextureResource * ResourceLibrary::findTextureResource( 
+	const _INT64 a_name  )
+{
+	_INT32 loc = __indexOfResource<TextureResource>( 
+				&m_textureResources, a_name );
+
+	if( loc == -1 )
+		return __buildTextureRes( a_name );
+
+	TextureResource * ret = m_textureResources.getp( loc );
+	ret->addCount();
+	return ret;
+}
+
+MeshResource * ResourceLibrary::findMeshResource(
+	const _INT64 a_name )
+{
+	_INT32 loc = __indexOfResource<MeshResource>(
+		&m_meshResources, a_name );
+
+	if( loc == -1 )
+		return __buildMeshRes( a_name );
+
+	MeshResource * ret = m_meshResources.getp( loc );
 	ret->addCount();
 	return ret;
 }

@@ -5,6 +5,8 @@
 #include <Graphics/font.h>
 #include <Graphics/shaderprogram.h>
 #include <Graphics/shader.h>
+#include <Graphics/texture.h>
+#include <Graphics/mesh.h>
 
 namespace GS {
 namespace Graphics {
@@ -16,18 +18,29 @@ public:
 	UNKNOWN = -1,
 	FONT = 1,
 	SHADER = 2,
-	SHADERPROGRAM = 3
+	SHADERPROGRAM = 3,
+	TEXTURE = 4,
+	MESH = 5
 	};
 
 selective:
-	static const int NUM_FONTS = 2;
-	static const int NUM_SHADERS = 2;
-	static const int NUM_SHADERPROGRAMS = 2;
+	static const int NUM_FONTS = 1;
+	static const int NUM_SHADERS = 6;
+	static const int NUM_SHADERPROGRAMS = 3;
+	static const int NUM_TEXTURES = 1;
+	static const int NUM_MESHES = 2;
 
-	GS::Utilities::LimitedVector<FontResource> m_fontResources;
-	GS::Utilities::LimitedVector<ShaderResource> m_shaderResources;
-	GS::Utilities::LimitedVector<ShaderProgramResource> m_shaderProgramResources;
-	
+	GS::Utilities::LimitedVector<FontResource> 
+		m_fontResources;
+	GS::Utilities::LimitedVector<ShaderResource> 
+		m_shaderResources;
+	GS::Utilities::LimitedVector<ShaderProgramResource> 
+		m_shaderProgramResources;
+	GS::Utilities::LimitedVector<TextureResource> 
+		m_textureResources;
+	GS::Utilities::LimitedVector<MeshResource> 
+		m_meshResources;
+
 public:
 
 	ResourceLibrary(){}
@@ -61,7 +74,9 @@ public:
 	*/
 	ShaderProgramResource * findShaderProgramResource( 
 						const _INT64 a_name );
-	
+
+	TextureResource * findTextureResource( const _INT64 a_name );
+	MeshResource * findMeshResource( const _INT64 a_name );
 	/**
 	* Subtracts a reference count from the resource. DOES NOT DELETE IT!
 	*/
@@ -86,6 +101,9 @@ selective:
 	*/
 	ShaderProgramResource * __buildShaderProgramRes( 
 						const _INT64 a_name );
+
+	TextureResource * __buildTextureRes( const _INT64 a_name );
+	MeshResource * __buildMeshRes( const _INT64 a_name );
 };
 
 };

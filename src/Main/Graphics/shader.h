@@ -21,6 +21,7 @@ public:
 
 	void shutdown();
 	_UINT32 getShader(){return m_shader;}
+	void bindFragDataLoc( const int a_loc, const char * a_str );
 
 selective:
 	_INT32 __compileShader(	const char * a_source, _INT32 a_type );	

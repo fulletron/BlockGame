@@ -34,6 +34,9 @@ int main()
 	// will only ever exist once
 	g_window.init();
 	g_input.init();
+	
+	if ( _CheckForErrors() )
+		return -1;
 
 	// For now, the game states do not exist
 	// instead, i have this one pane (states are groupings
@@ -43,7 +46,8 @@ int main()
 	testPane.init(&fpsCounter);
 
 	// checks for gl and glfw errors!
-	_CheckForErrors();
+	if ( _CheckForErrors() )
+		return -1;
 
 	// game variable
 	g_isRunning = true;
@@ -53,7 +57,8 @@ int main()
 
 	while( g_isRunning && g_window.isOpen() )
 	{
-		_CheckForErrors();
+		if ( _CheckForErrors() )
+			return -1;
 
 		double dt;
 		do{ dt = glfwGetTime(); } // TODO :: something more productive
@@ -75,37 +80,16 @@ int main()
 			
 		ratio = width / (float) height;
 		glViewport(0, 0, width, height);
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.22f,0.22f,0.22f,1.0f);
 
 		testPane.draw();		
-		/*
-		glUseProgram(g_fontShaderProgram.m_shaderProgram);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, g_font.m_texture);
-		glUniform1i(glGetUniformLocation(g_fontShaderProgram.m_shaderProgram, "tex"), 0);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		for ( int i = 0; i < 100; ++i ){
-		g_font.renderText("12000", GS::Graphics::Vector2_t(-800.00f,-300.00f), GS::Graphics::Color4f_t(1.0f, 1.0f, 0.0f, 1.0f) );
-		//g_font.renderText("The quick brown fox jumps over the lazy dog!@", GS::Graphics::Vector2_t(-800.00f,-600.00f), GS::Graphics::Color4f_t(0.0f, 1.0f, 0.0f, 1.0f) );
-		}
-		
-
-		std::string test = "FPS: " + boost::lexical_cast<std::string>(1/dt);
-		g_font.renderText(test, GS::Graphics::Vector2_t(-800.00f, 500.00f), GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f) );
-
-*/
 		g_window.swapBuffers();
-
 		glfwPollEvents();
 	}
 
-	//g_fontShaderProgram.shutdown();
-	//g_font.shutdown();
 
 	// input has no shutdown
 	// g_input.shutdown();

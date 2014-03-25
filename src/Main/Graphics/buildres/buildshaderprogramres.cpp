@@ -17,6 +17,14 @@ ShaderProgramResource * ResourceLibrary::__buildShaderProgramRes( const _INT64 a
 		vs = findShaderResource( CV8::RES_SH_BASEFONTVS );
 		fs = findShaderResource( CV8::RES_SH_BASEFONTFS );
 		break;
+	case CV8::RES_SP_FBDRAW :
+		vs = findShaderResource( CV8::RES_SH_BASEFBVS );
+		fs = findShaderResource( CV8::RES_SH_BASEFBFS );
+		break;
+	case CV8::RES_SP_TEXRECTDRAW :
+		vs = findShaderResource( CV8::RES_SH_TEXRECTVS );
+		fs = findShaderResource( CV8::RES_SH_TEXRECTFS );
+		break;
 	default: return 0; 
 	}
 

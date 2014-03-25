@@ -23,6 +23,30 @@ ShaderResource * ResourceLibrary::__buildShaderRes( const _INT64 a_name )
 		/ "Internal/" / "Resources/" / "Effects/" 
 		/ "basicfont.frag").string().c_str() );
 		break;
+	case CV8::RES_SH_BASEFBVS: 
+		type = GL_VERTEX_SHADER;
+		src = _FS::loadFile( ( _FS::getCurrentFullPath() 
+		/ "Internal/" / "Resources/" / "Effects/" 
+		/ "basicframebuffer.vert").string().c_str() );
+		break;
+	case CV8::RES_SH_BASEFBFS: 
+		type = GL_FRAGMENT_SHADER;
+		src = _FS::loadFile( ( _FS::getCurrentFullPath() 
+		/ "Internal/" / "Resources/" / "Effects/" 
+		/ "basicframebuffer.frag").string().c_str() );
+		break;
+	case CV8::RES_SH_TEXRECTVS: 
+		type = GL_VERTEX_SHADER;
+		src = _FS::loadFile( ( _FS::getCurrentFullPath() 
+		/ "Internal/" / "Resources/" / "Effects/" 
+		/ "texrect.vert").string().c_str() );
+		break;
+	case CV8::RES_SH_TEXRECTFS: 
+		type = GL_FRAGMENT_SHADER;
+		src = _FS::loadFile( ( _FS::getCurrentFullPath() 
+		/ "Internal/" / "Resources/" / "Effects/" 
+		/ "texrect.frag").string().c_str() );
+		break;
 	default: return 0; 
 	}
 
