@@ -5,7 +5,7 @@ namespace Graphics {
 
 ShaderResource * ResourceLibrary::__buildShaderRes( const _INT64 a_name )
 {
-	ShaderResource newRes;
+	ShaderResource * newRes = new ShaderResource();
 	std::string src = "";
 	_INT32 type = 0;
 
@@ -50,11 +50,11 @@ ShaderResource * ResourceLibrary::__buildShaderRes( const _INT64 a_name )
 	default: return 0; 
 	}
 
-	newRes.init( src.c_str(), type );
-	newRes.assignName( a_name );
-	newRes.addCount();
-	_UINT32 loc = m_shaderResources.add( newRes );
-	return m_shaderResources.getp( loc );
+	newRes->init( src.c_str(), type );
+	newRes->assignName( a_name );
+	newRes->addCount();
+	m_pShaderResources.push_back( newRes );
+	return newRes;
 }
 };
 

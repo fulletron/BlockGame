@@ -1,23 +1,6 @@
 Portfolio and BlockGame
 =========
 
-[LinkedIn Profile](http://www.linkedin.com/pub/kyle-pickering/42/259/b62)
-
-
-{ Gameplay of Senior Project "Hydra", in C++ From Scratch, using DirectX  }
-
-[Youtube Footage](http://www.youtube.com/watch?v=c49Agz17ujo)
-
-{ Implementation of freetype in openGL } 
-
-[font.h](https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.h) 
-[font.cpp](https://github.com/fulletron/BlockGame/blob/master/src/Main/Graphics/font.cpp)
-
-{ Implementation of a chunk or pool allocator, to replace New, Delete, Free, and Malloc }
-
-[chunkmanager.h](https://github.com/fulletron/BlockGame/blob/master/src/Main/Utilities/chunkmanager.h)
-[chunkmanager.cpp](https://github.com/fulletron/BlockGame/blob/master/src/Main/Utilities/chunkmanager.cpp)
-
 Want to build this project?
 
 [Windows Instructions](https://github.com/fulletron/BlockGame/blob/master/not%20src/Linux%20Instructions.txt)

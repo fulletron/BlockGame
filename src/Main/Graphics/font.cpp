@@ -1,7 +1,6 @@
 #include "font.h"
 #include <Graphics/openglincludes.h>
 
-extern GS::Utilities::ChunkManager g_chunkman;
 extern GS::Graphics::Window g_window;
 
 FT_Library GS::Graphics::FontResource::m_library = 0;
@@ -22,24 +21,19 @@ _INT32 FontResource::renderText(const std::string & a_text,
 	if( a_text.empty() )
 		return -3;
 
-	// there will be temporary allocation in this portion of code
-	// this replaces NEW
-	GS::Utilities::Frame * pTrash = g_chunkman.getFrame( CV8::FRAME_TRASH );
-	pTrash->setfStop(TOP);
-
 	// Vertex buffer, Index buffer sizes
 	_USHORT vlen = a_text.length() << 2;
 	_USHORT ilen = a_text.length() * ( ( 1 << 2 ) + 2  );
 
 	// allocate verts and inds. use custom allocation
-	_TChunkPtr<Vertex2_t> verts;
-	verts = g_chunkman.allocate(pTrash, sizeof( Vertex2_t ) * vlen, TOP);
+	Vertex2_t * verts = new Vertex2_t[vlen];
+	//verts = g_chunkman.allocate(pTrash, sizeof( Vertex2_t ) * vlen, TOP);
 
-	_TChunkPtr<_USHORT> inds;
-	inds = g_chunkman.allocate(pTrash, sizeof( _USHORT ) * ilen, TOP);
+	_USHORT * inds = new _USHORT[ilen];
+	//inds = g_chunkman.allocate(pTrash, sizeof( _USHORT ) * ilen, TOP);
 
-	memset( inds.pointer(), 0, sizeof( _USHORT ) * ilen );
-	memset( verts.pointer(), 0, sizeof( Vertex2_t ) * vlen );
+	memset( inds, 0, sizeof( _USHORT ) * ilen );
+	memset( verts, 0, sizeof( Vertex2_t ) * vlen );
 
 	// Track max width & height
 	_INT32 max_w = 0, max_h = 0;
@@ -85,16 +79,16 @@ _INT32 FontResource::renderText(const std::string & a_text,
 		// TODO ::
 		// divide by a non magic number, alternatively, decide
 		// how much customization i want in xy values
-		verts.pointer()[i+0].Position = 
+		verts[i+0].Position = 
 			Vector2_t( ( left_w + glyph.horizBearingX ) / 800.0f,
 			(y + glyph.horizBearingY) / 600.0f);
-		verts.pointer()[i+1].Position = 
+		verts[i+1].Position = 
 			Vector2_t( ( left_w + glyph.width + glyph.horizBearingX ) / 800.0f,
 			(y + glyph.horizBearingY) / 600.0f);
-		verts.pointer()[i+2].Position = 
+		verts[i+2].Position = 
 			Vector2_t( ( left_w + glyph.width + glyph.horizBearingX ) / 800.0f, // as opposed to right
 			(y + glyph.horizBearingY - glyph.height) / 600.0f);
-		verts.pointer()[i+3].Position = 
+		verts[i+3].Position = 
 			Vector2_t( ( left_w + glyph.horizBearingX ) / 800.0f,
 			(y + glyph.horizBearingY - glyph.height) / 600.0f);
 		
@@ -119,15 +113,15 @@ _INT32 FontResource::renderText(const std::string & a_text,
 			* (SC(float, (glyph.height)) / SC(float, m_biggest_h));
 		
 		// declare the tex coords
-		verts.pointer()[i+0].TexCoord = Vector2_t(tx, ty);
-		verts.pointer()[i+1].TexCoord = Vector2_t(tx + thisCharWidth, ty);
-		verts.pointer()[i+2].TexCoord = Vector2_t(
+		verts[i+0].TexCoord = Vector2_t(tx, ty);
+		verts[i+1].TexCoord = Vector2_t(tx + thisCharWidth, ty);
+		verts[i+2].TexCoord = Vector2_t(
 				tx + thisCharWidth, ty + thisCharHeight);
-		verts.pointer()[i+3].TexCoord = Vector2_t(tx, ty + thisCharHeight);
+		verts[i+3].TexCoord = Vector2_t(tx, ty + thisCharHeight);
 
 		// Set the color!
 		for( size_t j = i; j < i + 4; ++j )
-			verts.pointer()[j].Color = a_color;
+			verts[j].Color = a_color;
 
 		// Assuming vert 0 is top left and verts are 
 		// clockwise, texture quads are indices
@@ -138,12 +132,12 @@ _INT32 FontResource::renderText(const std::string & a_text,
 		// character needs 6 indices.
 		_USHORT x = ( i >> 2 ) * 6;
 
-		inds.pointer()[x+0] = i + 0;
-		inds.pointer()[x+1] = i + 1;
-		inds.pointer()[x+2] = i + 3;
-		inds.pointer()[x+3] = i + 3;
-		inds.pointer()[x+4] = i + 2;
-		inds.pointer()[x+5] = i + 1;
+		inds[x+0] = i + 0;
+		inds[x+1] = i + 1;
+		inds[x+2] = i + 3;
+		inds[x+3] = i + 3;
+		inds[x+4] = i + 2;
+		inds[x+5] = i + 1;
 		
 		// keep track of overall dims
 		max_w += glyph.height;
@@ -162,8 +156,8 @@ _INT32 FontResource::renderText(const std::string & a_text,
 	glEnableVertexAttribArray(2);
 	
 	// Give data to GPU
-	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex2_t) * vlen, verts.pointer(), GL_STATIC_DRAW);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_USHORT) * ilen, inds.pointer(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex2_t) * vlen, verts, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_USHORT) * ilen, inds, GL_STATIC_DRAW);
 	// Vertices are arranged in memory like so:
 	// [ p0, p1, t0, t1, c0, c1, c2, c3 ]
 
@@ -209,7 +203,8 @@ _INT32 FontResource::renderText(const std::string & a_text,
 	_CheckForErrors();
 
 	// Reset trash frames allocation back to top!
-	pTrash->freefStop(TOP);
+	delete [] verts;
+	delete [] inds;
 
 	// Give back the total dimensions of the text rendered.
 	return 0;
@@ -310,25 +305,24 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 		FT_Done_Glyph( glyph );
 	}
 
-	// there will be temporary allocation in this portion of code
-	// this replaces NEW
-	GS::Utilities::Frame * pTrash = g_chunkman.getFrame( CV8::FRAME_TRASH );
-	pTrash->setfStop(TOP);
-	
 	glGenTextures(1, &m_texture);
 	glBindTexture(GL_TEXTURE_2D, m_texture);
 
 	// CUSTOM ALLOCATION!
-	_TChunkPtr<_UCHAR> data;
-	data = g_chunkman.allocate( pTrash, 
-							sizeof( _UCHAR ) * 
-							m_biggest_w * 
+	_UCHAR * data = new _UCHAR[m_biggest_w * 
 							m_biggest_h * 
 							m_numOfCharsRoot * 
-							m_numOfCharsRoot,
-							TOP);
+							m_numOfCharsRoot];
 
-	memset(data.pointer(), 0, m_biggest_w * 
+	//data = g_chunkman.allocate( pTrash, 
+		//					sizeof( _UCHAR ) * 
+			//				m_biggest_w * 
+				//			m_biggest_h * 
+					//		m_numOfCharsRoot * 
+						//	m_numOfCharsRoot,
+							//TOP);
+
+	memset(data, 0, m_biggest_w * 
 			m_biggest_h * 
 			m_numOfCharsRoot * 
 			m_numOfCharsRoot *
@@ -339,7 +333,7 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 		m_biggest_w * m_numOfCharsRoot,
 		m_biggest_h * m_numOfCharsRoot,
 		0, GL_RED, GL_UNSIGNED_BYTE,
-		data.pointer() );
+		data );
 
 	_UINT32 w = 0;
 	_UINT32 h = 0;
@@ -369,7 +363,7 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 		
 		// put the glyph bitmap buffer in the texture
 		size_t biggest_char = ( m_biggest_h * m_biggest_w );
-		memcpy( 	data.pointer() + biggest_char * glyphNumCur, 
+		memcpy( 	data + biggest_char * glyphNumCur, 
 				bitmap.buffer, 
 				sizeof(unsigned char) * w * h );
 
@@ -379,13 +373,12 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 			m_biggest_w * ( SC(int, glyphNumCur) % 10 ),
 			m_biggest_h * ( SC(int, glyphNumCur) / 10 ),
 			w, h, GL_RED, GL_UNSIGNED_BYTE,
-			data.pointer() + biggest_char * glyphNumCur );
+			data + biggest_char * glyphNumCur );
 	}
 
 	_CheckForErrors();
 
-	// reset allocated memory
-	pTrash->freefStop(TOP);
+	delete [] data;
 
 	glPixelStorei( GL_UNPACK_ALIGNMENT, 4 );
 

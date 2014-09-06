@@ -6,7 +6,6 @@
 #include <Graphics/shader.h>
 
 extern GS::Graphics::ResourceLibrary g_lib;
-extern GS::Utilities::ChunkManager g_chunkman;
 extern GS::Graphics::Window g_window;
 
 namespace GS {
@@ -37,7 +36,7 @@ _INT32 ShaderProgramResource::__validateShaderProgram()
 	return ret;
 }
 
-_INT32 ShaderProgramResource::init( ShaderResource * const a_vs, ShaderResource * const a_fs, ShaderResource * const a_gs)
+_INT32 ShaderProgramResource::init( ShaderResource * a_vs, ShaderResource * a_fs, ShaderResource * a_gs)
 {
 	if( _CheckForErrors() )
 		return -100;

@@ -73,6 +73,9 @@ _INT64 constexpr CV8( char const * in ) {
 #define RC(x,y) reinterpret_cast<x>(y)
 #define SC(x,y) static_cast<x>(y)
 
+#include <vector>
+#define _VECTOR std::vector
+
 namespace CV8 {
 const _INT64 test = 0000000000001;
 const _INT64 RES_FONT_KASHSCRIPT = 8243404172493550435; // rftkassc

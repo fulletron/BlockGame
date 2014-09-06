@@ -9,7 +9,6 @@ namespace Game {
 _INT32 TestPane::init( FPSCounter * const a_fpsCtr )
 {
 	initPaneBlues( 0, Vec4D<float>(0.0f,0.0f,1.0f,1.0f) );
-	initFramebuffer();
 
 	m_pTex = g_lib.findTextureResource( CV8::RES_TEX_PANEBKG );	
 	m_pScreenProg = g_lib.findShaderProgramResource( CV8::RES_SP_FBDRAW );
@@ -33,13 +32,16 @@ void TestPane::draw()
 {
 	if( isDirty() )
 	{	
-        	glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
+        glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.50f,0.20f,0.20f,1.0f);
         	//glEnable(GL_DEPTH_TEST);
 		//glEnable(GL_STENCIL_TEST);
 		//glDisable(GL_STENCIL_TEST);
 		
+		//glUseProgram( m_pProg->
+
+
 		std::string fps = "FIRST!";
 		fps= "FPS: " + boost::lexical_cast<std::string>( m_pFPS->getFPS() );
 
@@ -68,21 +70,30 @@ void TestPane::draw()
 	}
 
 
-       	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	// BIND ALL THE CRAP
 	glBindVertexArray( m_pScreenMesh->getVAO() );
 	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_pScreenMesh->getEBO() );
 	glUseProgram( m_pTexProg->getProgram() );
 	glActiveTexture( GL_TEXTURE0 );
 	glBindTexture( GL_TEXTURE_2D, m_texColorBuffer );
-	glUniform1i( glGetUniformLocation( m_pTexProg->getProgram(), "tex" ), 0 );
+
+	static GLint S_TEXLOC = glGetUniformLocation( m_pTexProg->getProgram(), "tex" );
+	glUniform1i( S_TEXLOC, 0 );
+
+	static GLint S_TRANSLOC = glGetUniformLocation( m_pTexProg->getProgram(), "trans");
+	glm::mat4 trans;
+	trans = glm::scale(trans, glm::vec3(0.5f, 0.5f, 1.0f));
+	trans = glm::translate(trans, glm::vec3( -1.0f, 1.0f, 0.0f ));
+	glUniformMatrix4fv( S_TRANSLOC, 1, GL_FALSE, glm::value_ptr(trans) );
+
   	// THESE NEED TO BE SPECIFIED EVERYTIME
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
   	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	
 }
 

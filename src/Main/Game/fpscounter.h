@@ -2,7 +2,6 @@
 #define __FPSCOUNTER_H_
 
 #include <Utilities/typedefinitions.h>
-#include <Utilities/gsvector.h>
 #include <Graphics/panel.h>
 
 namespace GS { 

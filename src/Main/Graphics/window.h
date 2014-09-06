@@ -25,9 +25,6 @@ public:
 	Vec2D<_INT32> getPixDims();
 	GLFWwindow * getGLFWwindow();
 
-	/// TODO :: KYLE :: MISPLACED ::
-	//glm::mat4x4 m_projMat;
-	
 selective:
 	_UINT32 __createOnlyWindow();
 };

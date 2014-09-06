@@ -5,7 +5,7 @@ namespace Graphics {
 
 MeshResource * ResourceLibrary::__buildMeshRes( const _INT64 a_name )
 {
-	MeshResource newRes;
+	MeshResource * newRes = new MeshResource();
 	
 	switch(a_name)
 	{
@@ -21,13 +21,13 @@ MeshResource * ResourceLibrary::__buildMeshRes( const _INT64 a_name )
 			2, 3, 0
 		};
 	
-		newRes.build( 
+		newRes->build( 
 			vertices, 
 			sizeof(vertices), 
 			elements,
 			sizeof(elements) );
-		newRes.enableVertexAttribArray(0, 2, 4, 0);
-		newRes.enableVertexAttribArray(1, 2, 4, 2);
+		newRes->enableVertexAttribArray(0, 2, 4, 0);
+		newRes->enableVertexAttribArray(1, 2, 4, 2);
 		} break;
 	case CV8::RES_MSH_SCREEN: {
 		_FLOAT vertices[] = {
@@ -41,21 +41,21 @@ MeshResource * ResourceLibrary::__buildMeshRes( const _INT64 a_name )
 			2, 3, 0
 		};
 	
-		newRes.build( 
+		newRes->build( 
 			vertices, 
 			sizeof(vertices), 
 			elements,
 			sizeof(elements) );
-		newRes.enableVertexAttribArray(0, 2, 4, 0);
-		newRes.enableVertexAttribArray(1, 2, 4, 2);
+		newRes->enableVertexAttribArray(0, 2, 4, 0);
+		newRes->enableVertexAttribArray(1, 2, 4, 2);
 		} break;
 	default: return 0; 
 	}
 
-	newRes.assignName( a_name );
-	newRes.addCount();
-	_UINT32 loc = m_meshResources.add( newRes );
-	return m_meshResources.getp( loc );
+	newRes->assignName( a_name );
+	newRes->addCount();
+	m_pMeshResources.push_back( newRes );
+	return newRes;
 }
 
 };

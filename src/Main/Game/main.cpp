@@ -8,27 +8,13 @@
 
 bool g_isRunning = false;
 
-// WHENEVER THESE ARE NEEDED, THEY ARE TO BE EXTERNED
-// Globals are used for classes that should only
-// exist once. In addition, the ChunkManager class
-// needs to be accessible from everywhere, as it
-// replaces new and malloc
-
-GS::Utilities::ChunkManager g_chunkman;
 GS::Graphics::Window g_window;
 GS::Utilities::Input g_input;
 GS::Graphics::ResourceLibrary g_lib;
 
 int main()
 {
-	// Init the chunk manager
-	g_chunkman.init();
 	g_lib.init();
-
-	// build a single "frame" for scoped allocations
-	// keep track of the "frame" to truly free it later
-	GS::Utilities::Frame * pTrash = 0;
-	pTrash = g_chunkman.createFrame( CV8::FRAME_TRASH );
 
 	// Global window and global input, both
 	// will only ever exist once
@@ -94,8 +80,6 @@ int main()
 	// input has no shutdown
 	// g_input.shutdown();
 	g_window.shutdown();
-	pTrash->shutdown();
-	g_chunkman.shutdown();
 
 	return 0;
 }

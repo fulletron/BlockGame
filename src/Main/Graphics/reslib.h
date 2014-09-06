@@ -1,7 +1,7 @@
 #ifndef __RESOURCELIB_H_
 #define __RESOURCELIB_H_
 
-#include <Utilities/gsvector.h>
+#include <Utilities/typedefinitions.h>
 #include <Graphics/font.h>
 #include <Graphics/shaderprogram.h>
 #include <Graphics/shader.h>
@@ -30,16 +30,11 @@ selective:
 	static const int NUM_TEXTURES = 1;
 	static const int NUM_MESHES = 2;
 
-	GS::Utilities::LimitedVector<FontResource> 
-		m_fontResources;
-	GS::Utilities::LimitedVector<ShaderResource> 
-		m_shaderResources;
-	GS::Utilities::LimitedVector<ShaderProgramResource> 
-		m_shaderProgramResources;
-	GS::Utilities::LimitedVector<TextureResource> 
-		m_textureResources;
-	GS::Utilities::LimitedVector<MeshResource> 
-		m_meshResources;
+	_VECTOR<FontResource*>					m_pFontResources;
+	_VECTOR<ShaderResource*>				m_pShaderResources;
+	_VECTOR<ShaderProgramResource*>			m_pShaderProgramResources;
+	_VECTOR<TextureResource*>				m_pTextureResources;
+	_VECTOR<MeshResource*>					m_pMeshResources;
 
 public:
 
@@ -83,8 +78,9 @@ public:
 	_INT32 forgetResource( const _INT32 a_type, const _INT64 a_name );
 
 selective:
+
 	template <typename T>
-	_INT32 __indexOfResource( GS::Utilities::LimitedVector<T> * a_pVec, const _INT64 a_name );
+	_INT32 __indexOfResource( _VECTOR<T> * a_pVec, const _INT64 a_name );
 
 	/**
 	* Specifically builds a font resource by name

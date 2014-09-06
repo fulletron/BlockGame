@@ -36,12 +36,12 @@ public:
 	*/
 	virtual _INT32 initPaneBlues( Pane * const a_pParentPane, const Vec4D<float> & a_blueprint ) = 0;
 
+selective:
+
 	/**
 	* Calls all of the __gl private functions that setup the framebuffer
 	*/
-	virtual _UINT32 initFramebuffer() = 0;
-
-selective:
+	virtual _UINT32 __initFramebuffer() = 0;
 
 	virtual _INT32 __calculateDimActual() = 0;
 	virtual _UINT32 __glFramebufferInit() = 0;
@@ -88,12 +88,13 @@ public:
 	virtual _BOOL isDirty() = 0;
 	virtual _BOOL handleInput() = 0;
 
-	_UINT32 initFramebuffer();
 	_INT32 initPaneBlues( 
 		Pane * const a_pParentPane, 
 		const Vec4D<float> & a_blueprint );
 
 selective:
+	_UINT32 __initFramebuffer();
+
 	_INT32 __calculateDimActual();
 	_UINT32 __glFramebufferInit();
 	void __glFramebufferDestroy();

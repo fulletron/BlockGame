@@ -19,7 +19,7 @@ selective:
 	_BOOL						m_inited;
 
 	// shaders. consider making a different class!
-	ShaderResource *						m_pVS;
+	ShaderResource *					m_pVS;
 	ShaderResource *					m_pGS; 
 	ShaderResource *					m_pFS;
 

@@ -15,11 +15,14 @@ _INT32 Pane::initPaneBlues( Pane * const a_pParentPane, const Vec4D<float> & a_b
 {
 	m_pParentPane = a_pParentPane;
 	m_boxBlueprint = a_blueprint;
+
 	__calculateDimActual();
+	__initFramebuffer();
+
 	return 0;
 }
 
-_UINT32 Pane::initFramebuffer()
+_UINT32 Pane::__initFramebuffer()
 {
 	if( __glFramebufferInit() )
 		return 1;
@@ -28,10 +31,10 @@ _UINT32 Pane::initFramebuffer()
 	if( __glRboDepthStencilInit() )
 		return 3;
 	if ( __initScreenVAOVBO() )
-		return 5;
+		return 4;
 	if( glCheckFramebufferStatus(GL_FRAMEBUFFER)
 		!= GL_FRAMEBUFFER_COMPLETE)
-		return 4;
+		return 5;
 	return 0;
 }
 

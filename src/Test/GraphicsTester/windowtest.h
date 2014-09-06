@@ -16,7 +16,6 @@ protected:
 	GS::Graphics::Window m_window;
 
 	bool m_errors;
-		//GS::Utilities::ChunkManager m_man;	
 
 public:
 	// happens once

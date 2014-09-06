@@ -5,7 +5,7 @@ namespace Graphics {
 
 ShaderProgramResource * ResourceLibrary::__buildShaderProgramRes( const _INT64 a_name )
 {
-	ShaderProgramResource newRes;
+	ShaderProgramResource * newRes = new ShaderProgramResource();
 
 	ShaderResource * vs = 0;
 	ShaderResource * gs = 0;
@@ -28,11 +28,11 @@ ShaderProgramResource * ResourceLibrary::__buildShaderProgramRes( const _INT64 a
 	default: return 0; 
 	}
 
-	newRes.init( vs, fs, gs );
-	newRes.assignName( a_name );
-	newRes.addCount();
-	_UINT32 loc = m_shaderProgramResources.add( newRes );
-	return m_shaderProgramResources.getp( loc );
+	newRes->init( vs, fs, gs );
+	newRes->assignName( a_name );
+	newRes->addCount();
+	m_pShaderProgramResources.push_back( newRes );
+	return newRes;
 }
 
 };

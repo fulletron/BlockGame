@@ -61,7 +61,6 @@ _UINT32 Window::init()
 	if( __createOnlyWindow() )
 		return 2;
 
-	//glfwSetWindowSizeCallback( _windowResizeFunction ); /// TODO ::
 	glfwSwapInterval(0);
 
 	// Initialize GLEW
@@ -91,7 +90,7 @@ Vec2D<_INT32> Window::getPixDims()
 {
 	Vec2D<_INT32> dims; // KYLE :: THIS MIGHT GET PERMISSIVE ON
 				// DIFF BIT MACHINE
-	glfwGetFramebufferSize(m_pGLFWwindow, &dims.x, &dims.y);
+	glfwGetWindowSize(m_pGLFWwindow, &dims.x, &dims.y);
 	return dims;
 }
 

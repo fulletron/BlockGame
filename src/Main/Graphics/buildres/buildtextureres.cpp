@@ -6,7 +6,7 @@ namespace Graphics {
 
 TextureResource * ResourceLibrary::__buildTextureRes( const _INT64 a_name )
 {
-	TextureResource newRes;
+	TextureResource * newRes = new TextureResource();
 	std::string filename = "";
 	
 	switch(a_name)
@@ -19,11 +19,11 @@ TextureResource * ResourceLibrary::__buildTextureRes( const _INT64 a_name )
 	default: return 0; 
 	}
 
-	newRes.loadFile( filename );
-	newRes.assignName( a_name );
-	newRes.addCount();
-	_UINT32 loc = m_textureResources.add( newRes );
-	return m_textureResources.getp( loc );
+	newRes->loadFile( filename );
+	newRes->assignName( a_name );
+	newRes->addCount();
+	m_pTextureResources.push_back( newRes );
+	return newRes;
 }
 
 };
