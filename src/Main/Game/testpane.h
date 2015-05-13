@@ -42,6 +42,7 @@ public:
 	_BOOL isDirty();
 	void draw();	
 	_BOOL handleInput(){return false;}
+	void shutdown(){}
 };
 
 };

@@ -52,6 +52,7 @@ ShaderResource * ResourceLibrary::__buildShaderRes( const _INT64 a_name )
 
 	newRes->init( src.c_str(), type );
 	newRes->assignName( a_name );
+	newRes->assignType( ResourceLibrary::SHADER );
 	newRes->addCount();
 	m_pShaderResources.push_back( newRes );
 	return newRes;

@@ -1,8 +1,8 @@
 #include "window.h"
 #include "Utilities/utilities.h"
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1200
 
 namespace GS {
 namespace Graphics {
@@ -86,7 +86,12 @@ void Window::swapBuffers()
 	glfwSwapBuffers(m_pGLFWwindow);
 }
 
-Vec2D<_INT32> Window::getPixDims()
+GLuint Window::getFramebuffer() const
+{
+	return 0;
+}
+
+Vec2D<_INT32> Window::getPixelDimensions() const
 {
 	Vec2D<_INT32> dims; // KYLE :: THIS MIGHT GET PERMISSIVE ON
 				// DIFF BIT MACHINE

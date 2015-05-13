@@ -1,8 +1,11 @@
 #include "panel.h"
 #include <Graphics/openglincludes.h>
 #include <Graphics/window.h>
+#include <Graphics/reslib.h>
 
 extern GS::Graphics::Window g_window;
+extern GS::Graphics::ResourceLibrary g_lib;
+
 
 namespace GS {
 namespace Graphics {
@@ -10,6 +13,35 @@ namespace Graphics {
 _BOOL Pane::m_screenLoaded = false;
 GLuint Pane::m_vaoQuad = 0;
 GLuint Pane::m_vboQuad = 0;
+
+GLuint Pane::getFramebuffer() const
+{
+	return m_framebuffer;
+}
+
+_INT32 Pane::init()
+{
+	m_pTex = g_lib.findTextureResource( CV8::RES_TEX_PANEBKG );	
+	m_pMesh = g_lib.findMeshResource( CV8::RES_MSH_RECT );
+	m_pTexProg = g_lib.findShaderProgramResource( CV8::RES_SP_TEXRECTDRAW );
+	m_pScreenMesh = g_lib.findMeshResource( CV8::RES_MSH_SCREEN );
+
+	m_texloc = glGetUniformLocation( m_pTexProg->getProgram(), "tex" );
+	m_transloc = glGetUniformLocation( m_pTexProg->getProgram(), "trans");
+
+	return __postInit();
+}
+
+Vec2D<_INT32> Pane::getPixelDimensions() const
+{
+	Vec2D<_INT32> dims;
+	dims.x = m_boxActual.box_width;
+	dims.y = m_boxActual.box_height;
+
+	return dims;
+	// KYLE :: THIS MIGHT GET PERMISSIVE ON ERROR!
+	//return Vec2D<_INT32>(m_boxActual.box_width, m_boxActual.box_height);
+}
 
 _INT32 Pane::initPaneBlues( Pane * const a_pParentPane, const Vec4D<float> & a_blueprint )
 {
@@ -70,6 +102,109 @@ _INT32 Pane::__initScreenVAOVBO()
 	return 0;
 }
 
+void Pane::draw( GS::Graphics::IDimensionable * const a_dimensionable )
+{
+	if ( !a_dimensionable )
+		return;
+
+	if( isDirty() )
+	{	
+		glViewport(0, 0, m_boxActual.box_width, m_boxActual.box_height);
+        glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
+		glClear(GL_COLOR_BUFFER_BIT);
+		glClearColor(0.50f,0.20f,0.20f,1.0f);
+        //glEnable(GL_DEPTH_TEST);
+		//glEnable(GL_STENCIL_TEST);
+		//glDisable(GL_STENCIL_TEST);
+		
+		for( std::vector<IPaneAsset *>::iterator it_asset = m_paneAssets.begin(); 
+			it_asset != m_paneAssets.end();
+			++it_asset )
+			(*it_asset)->draw( this );
+	}
+
+	Vec2D<_INT32> dims = a_dimensionable->getPixelDimensions();
+
+	glViewport(0, 0, dims.x, dims.y);
+	glBindFramebuffer( GL_FRAMEBUFFER, a_dimensionable->getFramebuffer() );
+	// BIND ALL THE CRAP
+	glBindVertexArray( m_pScreenMesh->getVAO() );
+	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_pScreenMesh->getEBO() );
+	glUseProgram( m_pTexProg->getProgram() );
+	glActiveTexture( GL_TEXTURE0 );
+	glBindTexture( GL_TEXTURE_2D, m_texColorBuffer );
+
+	//static GLint S_TEXLOC = glGetUniformLocation( m_pTexProg->getProgram(), "tex" );
+	//glUniform1i( S_TEXLOC, 0 );
+	glUniform1i( m_texloc, 0 );
+
+	//static GLint S_TRANSLOC = glGetUniformLocation( m_pTexProg->getProgram(), "trans");
+	glm::mat4 trans;
+	//trans = glm::scale(trans, glm::vec3(0.5f, 0.5f, 1.0f));
+	trans = glm::scale(trans, glm::vec3(m_boxBlueprint.box_width, m_boxBlueprint.box_height, 1.0f));
+	//trans = glm::translate(trans, glm::vec3( -1.0f, 1.0f, 0.0f ));
+	trans = glm::translate(trans, glm::vec3( m_boxBlueprint.pos_x * 2.0f, m_boxBlueprint.pos_y * 2.0f, 0.0f ));
+	//glUniformMatrix4fv( S_TRANSLOC, 1, GL_FALSE, glm::value_ptr(trans) );
+	glUniformMatrix4fv( m_transloc, 1, GL_FALSE, glm::value_ptr(trans) );
+
+  	// THESE NEED TO BE SPECIFIED EVERYTIME
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	
+}
+
+_BOOL Pane::isDirty() const
+{
+	// Go through all of this panels PaneAssets
+	for( std::vector<IPaneAsset *>::const_iterator it_asset = m_paneAssets.begin(); 
+		it_asset != m_paneAssets.end();
+		++it_asset )
+		// If any asset is dirty, return true
+		if ( (*it_asset)->isDirty() )
+			return true;
+
+	// If no asset is dirty, the panel itself is clean
+	return false;
+}
+
+_BOOL Pane::handleInput()
+{
+	// Go through all of this panels PaneAssets
+	for( std::vector<IPaneAsset *>::const_iterator it_asset = m_paneAssets.begin(); 
+		it_asset != m_paneAssets.end();
+		++it_asset )
+		// If any asset is dirty, return true
+		if ( (*it_asset)->handleInput() )
+			return true;
+
+	// If no asset is dirty, the panel itself is clean
+	return false;
+}
+
+
+void Pane::update( const _DOUBLE a_dt )
+{
+	for( std::vector<IPaneAsset *>::iterator it_asset = m_paneAssets.begin(); 
+		it_asset != m_paneAssets.end();
+		++it_asset )
+		(*it_asset)->update( a_dt );
+}
+
+void Pane::shutdown()
+{
+	__preShutdown();
+
+	g_lib.forgetResource( m_pTex->getType(), m_pTex->getName() );
+	g_lib.forgetResource( m_pScreenProg->getType(), m_pScreenProg->getName() );
+	g_lib.forgetResource( m_pTexProg->getType(), m_pTexProg->getName() );
+	g_lib.forgetResource( m_pMesh->getType(), m_pMesh->getName() );
+	g_lib.forgetResource( m_pScreenMesh->getType(), m_pScreenMesh->getName() );
+}
+
 void Pane::__shutdownScreenVAOVBO()
 {
 	if( !m_screenLoaded )
@@ -88,16 +223,16 @@ _INT32 Pane::__calculateDimActual()
 {
 	if( m_pParentPane ) {
 		Vec4D<_UINT32> * pParentActual = &(m_pParentPane->m_boxActual);
-		m_boxActual.box_width = pParentActual->box_width * m_boxBlueprint.box_width;
-		m_boxActual.box_height = pParentActual->box_height * m_boxBlueprint.box_height;
-		m_boxActual.pos_x = pParentActual->box_width * m_boxBlueprint.pos_x;
-		m_boxActual.pos_y = pParentActual->box_height * m_boxBlueprint.pos_y;
+		m_boxActual.box_width = SC(_UINT32, pParentActual->box_width * m_boxBlueprint.box_width);
+		m_boxActual.box_height = SC(_UINT32, pParentActual->box_height * m_boxBlueprint.box_height);
+		m_boxActual.pos_x = SC(_UINT32, pParentActual->box_width * m_boxBlueprint.pos_x);
+		m_boxActual.pos_y = SC(_UINT32, pParentActual->box_height * m_boxBlueprint.pos_y);
 	} else {
-		Vec2D<_INT32> winDim = g_window.getPixDims();
-		m_boxActual.box_width = winDim.x * m_boxBlueprint.box_width;
-		m_boxActual.box_height = winDim.y * m_boxBlueprint.box_width;
-		m_boxActual.pos_x = winDim.x * m_boxBlueprint.pos_x;
-		m_boxActual.pos_y = winDim.y * m_boxBlueprint.pos_y;
+		Vec2D<_INT32> winDim = g_window.getPixelDimensions();
+		m_boxActual.box_width = SC(_UINT32, winDim.x * m_boxBlueprint.box_width);
+		m_boxActual.box_height = SC(_UINT32, winDim.y * m_boxBlueprint.box_width);
+		m_boxActual.pos_x = SC(_UINT32, winDim.x * m_boxBlueprint.pos_x);
+		m_boxActual.pos_y = SC(_UINT32, winDim.y * m_boxBlueprint.pos_y);
 	}
 	return 0;
 }

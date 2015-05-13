@@ -79,6 +79,9 @@ public:
 
 selective:
 
+	/**
+	* Looks up the index of a resource in a vector by name
+	*/
 	template <typename T>
 	_INT32 __indexOfResource( _VECTOR<T> * a_pVec, const _INT64 a_name );
 

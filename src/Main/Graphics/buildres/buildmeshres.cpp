@@ -53,6 +53,7 @@ MeshResource * ResourceLibrary::__buildMeshRes( const _INT64 a_name )
 	}
 
 	newRes->assignName( a_name );
+	newRes->assignType( ResourceLibrary::MESH );
 	newRes->addCount();
 	m_pMeshResources.push_back( newRes );
 	return newRes;

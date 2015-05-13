@@ -23,19 +23,23 @@ _INT32 TestPane::init( FPSCounter * const a_fpsCtr )
 
 _BOOL TestPane::isDirty()
 {
-	if( m_pFPS->getDirty() )
-		return true;
+	//if( m_pFPS->getDirty() )
+	//	return true;
 	return false;
 }
 
 void TestPane::draw()
 {
+	// CHECK ALL OF YOUR PANEASSETS
+	// IF ANY ARE DIRTY, REDRAW ALL OF THEM TO THIS FRAMEBUFFER
+	// DRAW THIS FRAMEBUFFER
+
 	if( isDirty() )
 	{	
         glBindFramebuffer(GL_FRAMEBUFFER, m_framebuffer);
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.50f,0.20f,0.20f,1.0f);
-        	//glEnable(GL_DEPTH_TEST);
+        //glEnable(GL_DEPTH_TEST);
 		//glEnable(GL_STENCIL_TEST);
 		//glDisable(GL_STENCIL_TEST);
 		
@@ -55,12 +59,14 @@ void TestPane::draw()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
+		/*
 		for(int i = 0; i < 2000; ++i)
 			m_pFont->renderText( "Test!", 
 				GS::Graphics::Vector2_t( 0.0f, 500.0f - ((float)i/3.0f) ), 
 				GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f) 
 			);
-		
+		*/
+
 		m_pFont->renderText( 
 			fps, 
 			GS::Graphics::Vector2_t(-800.00f, 500.00f), 
@@ -84,7 +90,7 @@ void TestPane::draw()
 	static GLint S_TRANSLOC = glGetUniformLocation( m_pTexProg->getProgram(), "trans");
 	glm::mat4 trans;
 	trans = glm::scale(trans, glm::vec3(0.5f, 0.5f, 1.0f));
-	trans = glm::translate(trans, glm::vec3( -1.0f, 1.0f, 0.0f ));
+	//trans = glm::translate(trans, glm::vec3( -1.0f, 1.0f, 0.0f ));
 	glUniformMatrix4fv( S_TRANSLOC, 1, GL_FALSE, glm::value_ptr(trans) );
 
   	// THESE NEED TO BE SPECIFIED EVERYTIME

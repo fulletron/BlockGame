@@ -48,7 +48,9 @@ selective:
 	// HOW MANY GLYPHS? KYLE ::
 	GlyphInAtlas				m_glyphs[128];
 
+	// Biggest Width of loaded font in pixels
 	_UINT32						m_biggest_w,
+	// Biggest Height of loaded font in pixels
 								m_biggest_h;
 
 	_UCHAR						m_startingChar;
@@ -109,6 +111,11 @@ public:
 						const Vector2_t & a_pos, 
 						const Color4f_t & a_color 
 							= Color4f_t(1.0f, 1.0f, 1.0f, 1.0f));
+
+	/**
+	* Get the tallest character height in pixels
+	*/
+	_UINT32 getHeight() { return m_biggest_h; }
 
 	/**
 	* Destroys the font instance.

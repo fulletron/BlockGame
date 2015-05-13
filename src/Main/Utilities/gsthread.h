@@ -18,6 +18,8 @@ typedef boost::mutex GSMutex;
 #define GSCref boost::cref
 #define GSLock boost::lock
 #define GSRef boost::ref
+#define GSScopedLock boost::mutex::scoped_lock
+
 };
 /*
 

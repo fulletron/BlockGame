@@ -39,7 +39,7 @@ _INT32 FontResource::renderText(const std::string & a_text,
 	_INT32 max_w = 0, max_h = 0;
 
 	// The x-position to start the next character at
-	_INT32 right_w = a_pos.x;
+	_INT32 right_w = SC(_INT32, a_pos.x);
 
 	// The y pos of the starting character
 	float y = a_pos.y;
@@ -64,14 +64,14 @@ _INT32 FontResource::renderText(const std::string & a_text,
 		
 		if( c == '\n' )
 		{
-			right_w = a_pos.x;
+			right_w = SC(_INT32,a_pos.x);
 			y -= m_biggest_h;
 		}
 
-		float left_w = right_w;
+		float left_w = SC(float, right_w);
 		float h = glyph.height;
 		float hby = glyph.horizBearingY;
-		right_w = left_w + glyph.advanceX;
+		right_w = SC(_INT32, (left_w + glyph.advanceX));
 
 
 		// Set the vertices
@@ -141,7 +141,7 @@ _INT32 FontResource::renderText(const std::string & a_text,
 		
 		// keep track of overall dims
 		max_w += glyph.height;
-		max_h = ( max_h > glyph.horizBearingY + h ) ? max_h : glyph.horizBearingY + h ;
+		max_h = SC(_INT32, ( max_h > glyph.horizBearingY + h ) ? max_h : glyph.horizBearingY + h );
 	}	
 	// KYLE ::
 	// TODO ::

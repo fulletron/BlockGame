@@ -1,5 +1,4 @@
 #include "shaderprogram.h"
-#include <Utilities/chunkmanager.h>
 #include <Utilities/glfwerrorfunc.h>
 #include <Graphics/window.h>
 #include <Graphics/reslib.h>

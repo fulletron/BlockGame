@@ -3,11 +3,12 @@
 
 #include "openglincludes.h"
 #include <Utilities/typedefinitions.h>
+#include <Graphics/panel.h>
 
 namespace GS {
 namespace Graphics {
 
-class Window
+class Window : public IDimensionable
 {
 
 selective:
@@ -22,7 +23,17 @@ public:
 	bool isOpen();
 	_UINT32 shutdown();
 	void swapBuffers();
-	Vec2D<_INT32> getPixDims();
+
+	/**
+	* Get the Pixel Dimensions of the current master window
+	*/
+	Vec2D<_INT32> getPixelDimensions() const;
+
+	/**
+	* returns the window's framebuffer (always 0)
+	*/
+	GLuint getFramebuffer() const;
+
 	GLFWwindow * getGLFWwindow();
 
 selective:

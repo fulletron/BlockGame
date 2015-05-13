@@ -16,6 +16,7 @@ FontResource * ResourceLibrary::__buildFontRes( const _INT64 a_name )
 	}
 
 	newRes->assignName( a_name );
+	newRes->assignType( ResourceLibrary::FONT );
 	newRes->addCount();
 	m_pFontResources.push_back( newRes );
 	return newRes;

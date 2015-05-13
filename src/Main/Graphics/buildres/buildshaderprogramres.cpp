@@ -30,6 +30,7 @@ ShaderProgramResource * ResourceLibrary::__buildShaderProgramRes( const _INT64 a
 
 	newRes->init( vs, fs, gs );
 	newRes->assignName( a_name );
+	newRes->assignType( ResourceLibrary::SHADERPROGRAM );
 	newRes->addCount();
 	m_pShaderProgramResources.push_back( newRes );
 	return newRes;

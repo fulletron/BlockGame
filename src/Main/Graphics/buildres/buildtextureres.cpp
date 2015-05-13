@@ -21,6 +21,7 @@ TextureResource * ResourceLibrary::__buildTextureRes( const _INT64 a_name )
 
 	newRes->loadFile( filename );
 	newRes->assignName( a_name );
+	newRes->assignType( ResourceLibrary::TEXTURE );
 	newRes->addCount();
 	m_pTextureResources.push_back( newRes );
 	return newRes;

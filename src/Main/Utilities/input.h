@@ -3,7 +3,6 @@
 
 #include <Graphics/openglincludes.h>
 #include <Utilities/typedefinitions.h>
-#include <Utilities/gsvector.h>
 
 namespace GS {
 	namespace Graphics { class Window; };
@@ -35,7 +34,7 @@ public:
 		~InputDeck(){}
 
 		double m_x, m_y, m_scrollX, m_scrollY;
-		GS::Utilities::LimitedVector<Press> m_presses;	
+		_VECTOR<Press> m_presses;	
 		/// THIS COULD QUITE POSSIBLY BE BETTER KYLE :: TODO ::
 		// I MEANT THE USE OF A LIMITEDVECTOR, AND ITS CHUNK NECESSITY
 		char m_mods;
@@ -47,7 +46,7 @@ public:
 			m_scrollX = 0;
 			m_scrollY = 0;
 			m_mods = 0;
-			m_presses.clean();
+			m_presses.clear();
 		}
 	};
 

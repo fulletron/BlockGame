@@ -5,8 +5,8 @@
 #define FLT_MAX							3.402823466e+38F        /* max value */
 #endif
 
-//#define FPS_CAP_MS 0.016666
-#define FPS_CAP_MS -0.016666
+#define FPS_CAP_MS 0.016666
+//#define FPS_CAP_MS -0.016666
 
 //static const float INFINITY = FLT_MAX;
 //static const float EPSILON  = 0.001f;
@@ -70,8 +70,8 @@ _INT64 constexpr CV8( char const * in ) {
 }
 */
 
-#define RC(x,y) reinterpret_cast<x>(y)
-#define SC(x,y) static_cast<x>(y)
+#define RC(NEW_TYPE,CASTABLE_VALUE) reinterpret_cast<NEW_TYPE>(CASTABLE_VALUE)
+#define SC(NEW_TYPE,CASTABLE_VALUE) static_cast<NEW_TYPE>(CASTABLE_VALUE)
 
 #include <vector>
 #define _VECTOR std::vector
@@ -91,12 +91,12 @@ const _INT64 RES_SH_TEXRECTFS = 1007;
 const _INT64 RES_TEX_PANEBKG = 3001;
 const _INT64 RES_MSH_RECT = 5001;
 const _INT64 RES_MSH_SCREEN = 5002;
-const _INT64 FRAME001 = 100001;
-const _INT64 FRAME002 = 100002;
-const _INT64 FRAME003 = 100003;
-const _INT64 FRAME004 = 100004;
-const _INT64 FRAME_TRASH = 100005;
-const _INT64 FRAME_SMALLRES = 100006;
+//const _INT64 FRAME001 = 100001;
+//const _INT64 FRAME002 = 100002;
+//const _INT64 FRAME003 = 100003;
+//const _INT64 FRAME004 = 100004;
+//const _INT64 FRAME_TRASH = 100005;
+//const _INT64 FRAME_SMALLRES = 100006;
 };
 
 inline _BYTE* INALIGNUP( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
