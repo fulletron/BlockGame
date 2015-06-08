@@ -13,7 +13,7 @@ _INT32 TestPane::init( FPSCounter * const a_fpsCtr )
 	m_pTex = g_lib.findTextureResource( CV8::RES_TEX_PANEBKG );	
 	m_pScreenProg = g_lib.findShaderProgramResource( CV8::RES_SP_FBDRAW );
 	m_pProg = g_lib.findShaderProgramResource( CV8::RES_SP_FONTDRAW );
-	m_pFont = g_lib.findFontResource( CV8::RES_FONT_KASHSCRIPT );
+	m_pFont = g_lib.findFontResource( CV8::RES_FONT_KASHSCRIPT_16 );
 	m_pMesh = g_lib.findMeshResource( CV8::RES_MSH_RECT );
 	m_pTexProg = g_lib.findShaderProgramResource( CV8::RES_SP_TEXRECTDRAW );
 	m_pScreenMesh = g_lib.findMeshResource( CV8::RES_MSH_SCREEN );

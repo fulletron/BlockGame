@@ -9,7 +9,7 @@ namespace Game {
 _INT32 FPSCounter::init()
 {
 	m_pProg = g_lib.findShaderProgramResource( CV8::RES_SP_FONTDRAW );
-	m_pFont = g_lib.findFontResource( CV8::RES_FONT_KASHSCRIPT );
+	m_pFont = g_lib.findFontResource( CV8::RES_FONT_KASHSCRIPT_16 );
 
 	return 0;
 }

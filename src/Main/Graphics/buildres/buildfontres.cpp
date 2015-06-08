@@ -9,8 +9,11 @@ FontResource * ResourceLibrary::__buildFontRes( const _INT64 a_name )
 
 	switch(a_name)
 	{
-	case CV8::RES_FONT_KASHSCRIPT:
+	case CV8::RES_FONT_KASHSCRIPT_16:
 		newRes->loadFile( "KaushanScript-Regular.otf", 16);
+		break;
+	case CV8::RES_FONT_KASHSCRIPT_64:
+		newRes->loadFile( "KaushanScript-Regular.otf", 64);
 		break;
 	default: return 0; 
 	}
