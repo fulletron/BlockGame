@@ -1,9 +1,6 @@
 #include "window.h"
 #include "Utilities/utilities.h"
 
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1200
-
 namespace GS {
 namespace Graphics {
 

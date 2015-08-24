@@ -19,7 +19,7 @@ _INT32 ResourceLibrary::__indexOfResource(
 	_VECTOR<T> * a_pVec, 
 	const _INT64 a_name ) 
 {
-	for( int i = 0; i < SC( _INT32, a_pVec->size() ); ++i )
+	for( int i = 0; i < STATIC_CAST( _INT32, a_pVec->size() ); ++i )
 		if( a_pVec->at(i)->getName() == a_name )
 			return i;
 	return -1;

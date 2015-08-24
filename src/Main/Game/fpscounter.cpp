@@ -37,7 +37,7 @@ void FPSCounter::shutdown()
 void FPSCounter::draw( GS::Graphics::IDimensionable * const a_dims )
 {
 	std::string fps = "FIRST!";
-	fps= "FPS: " + boost::lexical_cast<std::string>( getFPS() );
+	fps= "I need to change what is written FPS: " + boost::lexical_cast<std::string>( getFPS() );
 
 	glUseProgram( m_pProg->getProgram() );
 	glActiveTexture( GL_TEXTURE0 );
@@ -49,17 +49,20 @@ void FPSCounter::draw( GS::Graphics::IDimensionable * const a_dims )
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
+	/*
 	for(int i = 0; i < 2000; ++i)
 		m_pFont->renderText( "Test!", 
 			GS::Graphics::Vector2_t( 0.0f, 500.0f - ((float)i/3.0f) ), 
 			GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f) 
 		);
+	*/
 
-	Vec2D<_INT32> dims = a_dims->getPixelDimensions();
 	m_pFont->renderText(
 		fps, 
-		//GS::Graphics::Vector2_t( SC(_FLOAT, -dims.x), SC(_FLOAT, (dims.y-m_pFont->getHeight() ) ) ), 
-		GS::Graphics::Vector2_t( -400.0f, 600.0f-m_pFont->getHeight() ), 
+		//GS::Graphics::Vector2_t( STATIC_CAST(_FLOAT, -dims.x), STATIC_CAST(_FLOAT, (dims.y-m_pFont->getHeight() ) ) ), 
+		GS::Graphics::Vector2_t(-800.0f, 600.0f), 
+		a_dims->getPixelDimensions(),
+		1.0f,
 		GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f) 
 	);
 }

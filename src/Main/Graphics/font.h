@@ -98,7 +98,9 @@ public:
 	* @param const std::string & a_text
 	*	Text to Render!
 	* @param const Vector2_t & a_pos
-	*	Position to render (in pixels!)
+	*	Position to render (in pixels!)(TOP LEFT)
+	* @param const Vec2D<_INT32> & a_dims
+	*   Dimensions (In Pixels) of the parent panel
 	* @param const Color4f_t & a_color
 	*	Color of the text
 	*
@@ -109,6 +111,9 @@ public:
 	**/
 	_INT32 renderText(	const std::string & a_text, 
 						const Vector2_t & a_pos, 
+						const Vec2D<_INT32> & a_dims,
+						const float & a_heightMultiplier
+							= 1.0f,
 						const Color4f_t & a_color 
 							= Color4f_t(1.0f, 1.0f, 1.0f, 1.0f));
 

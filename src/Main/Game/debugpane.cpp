@@ -10,8 +10,8 @@ namespace Game {
 
 _INT32 DebugPane::__postInit()
 {
-	//initPaneBlues( 0, Vec4D<float>(0.00f,-0.00f,0.50f,0.50f) );
-	initPaneBlues( 0, Vec4D<float>(0.00f,-0.00f,1.00f,1.00f) );
+	//initPaneBlues( NO_PARENT, Vec4D<float>(0.00f,-0.00f,0.50f,0.50f) );
+	initPaneBlues( NO_PARENT, Vec4D<float>(0.00f,-0.00f,1.00f,1.00f) );
 
 	// FPS COUNTER!
 	FPSCounter * fpsCounter = new FPSCounter();

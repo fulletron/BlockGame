@@ -5,6 +5,9 @@
 #define FLT_MAX							3.402823466e+38F        /* max value */
 #endif
 
+#define SCREEN_WIDTH 800 //1920
+#define SCREEN_HEIGHT 600 //1200
+
 #define FPS_CAP_MS 0.016666
 //#define FPS_CAP_MS -0.016666
 
@@ -71,7 +74,7 @@ _INT64 constexpr CV8( char const * in ) {
 */
 
 #define RC(NEW_TYPE,CASTABLE_VALUE) reinterpret_cast<NEW_TYPE>(CASTABLE_VALUE)
-#define SC(NEW_TYPE,CASTABLE_VALUE) static_cast<NEW_TYPE>(CASTABLE_VALUE)
+#define STATIC_CAST(NEW_TYPE,CASTABLE_VALUE) static_cast<NEW_TYPE>(CASTABLE_VALUE)
 
 #include <vector>
 #define _VECTOR std::vector

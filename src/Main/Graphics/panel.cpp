@@ -13,6 +13,7 @@ namespace Graphics {
 _BOOL Pane::m_screenLoaded = false;
 GLuint Pane::m_vaoQuad = 0;
 GLuint Pane::m_vboQuad = 0;
+Pane * Pane::NO_PARENT = 0;
 
 GLuint Pane::getFramebuffer() const
 {
@@ -223,16 +224,16 @@ _INT32 Pane::__calculateDimActual()
 {
 	if( m_pParentPane ) {
 		Vec4D<_UINT32> * pParentActual = &(m_pParentPane->m_boxActual);
-		m_boxActual.box_width = SC(_UINT32, pParentActual->box_width * m_boxBlueprint.box_width);
-		m_boxActual.box_height = SC(_UINT32, pParentActual->box_height * m_boxBlueprint.box_height);
-		m_boxActual.pos_x = SC(_UINT32, pParentActual->box_width * m_boxBlueprint.pos_x);
-		m_boxActual.pos_y = SC(_UINT32, pParentActual->box_height * m_boxBlueprint.pos_y);
+		m_boxActual.box_width = STATIC_CAST(_UINT32, pParentActual->box_width * m_boxBlueprint.box_width);
+		m_boxActual.box_height = STATIC_CAST(_UINT32, pParentActual->box_height * m_boxBlueprint.box_height);
+		m_boxActual.pos_x = STATIC_CAST(_UINT32, pParentActual->box_width * m_boxBlueprint.pos_x);
+		m_boxActual.pos_y = STATIC_CAST(_UINT32, pParentActual->box_height * m_boxBlueprint.pos_y);
 	} else {
 		Vec2D<_INT32> winDim = g_window.getPixelDimensions();
-		m_boxActual.box_width = SC(_UINT32, winDim.x * m_boxBlueprint.box_width);
-		m_boxActual.box_height = SC(_UINT32, winDim.y * m_boxBlueprint.box_width);
-		m_boxActual.pos_x = SC(_UINT32, winDim.x * m_boxBlueprint.pos_x);
-		m_boxActual.pos_y = SC(_UINT32, winDim.y * m_boxBlueprint.pos_y);
+		m_boxActual.box_width = STATIC_CAST(_UINT32, winDim.x * m_boxBlueprint.box_width);
+		m_boxActual.box_height = STATIC_CAST(_UINT32, winDim.y * m_boxBlueprint.box_width);
+		m_boxActual.pos_x = STATIC_CAST(_UINT32, winDim.x * m_boxBlueprint.pos_x);
+		m_boxActual.pos_y = STATIC_CAST(_UINT32, winDim.y * m_boxBlueprint.pos_y);
 	}
 	return 0;
 }

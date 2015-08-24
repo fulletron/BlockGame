@@ -126,6 +126,8 @@ public:
 	static const int ORIGIN_TOP = 1 >> 2;
 	static const int ORIGIN_LEFT = 1 >> 3;
 
+	static GS::Graphics::Pane * NO_PARENT;
+
 selective:
 
 	static _BOOL m_screenLoaded;

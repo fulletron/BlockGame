@@ -11,6 +11,8 @@ namespace Graphics {
 
 _INT32 FontResource::renderText(const std::string & a_text, 
 						const Vector2_t & a_pos, 
+						const Vec2D<_INT32> & a_dims,
+						const float & a_heightMultiplier,
 						const Color4f_t & a_color)
 {
 	// if it isn't ready, don't do it!
@@ -39,7 +41,7 @@ _INT32 FontResource::renderText(const std::string & a_text,
 	_INT32 max_w = 0, max_h = 0;
 
 	// The x-position to start the next character at
-	_INT32 right_w = SC(_INT32, a_pos.x);
+	_INT32 right_w = STATIC_CAST(_INT32, a_pos.x);
 
 	// The y pos of the starting character
 	float y = a_pos.y;
@@ -56,61 +58,73 @@ _INT32 FontResource::renderText(const std::string & a_text,
 		
 		// dimensions of the current letter
 		const GlyphInAtlas & glyph = m_glyphs[letterIndex];
-
-		// TODO ::
-		// MODIFY THE VALUES
-		float passedHeight = 1.0f; ///
-		float dimensionMulti = (passedHeight * 600.0f) / m_biggest_h; ///
 		
+		// THIS SHOULD PROBABLY NEVER BE USED- ONLY PRESENT INFORMATION ON SINGLE LINES.
 		if( c == '\n' )
 		{
-			right_w = SC(_INT32,a_pos.x);
+			right_w = STATIC_CAST(_INT32,a_pos.x);
 			y -= m_biggest_h;
 		}
 
-		float left_w = SC(float, right_w);
-		float h = glyph.height;
-		float hby = glyph.horizBearingY;
-		right_w = SC(_INT32, (left_w + glyph.advanceX));
+		// MODIFY THE VALUES
+		float passedHeightMultiplier = a_heightMultiplier; /// TODO :: THIS NEEDS TO BE A PARAMETER
+		float MAGIC_X = 800.0f; //8000.0f; // THESE TWO MAGIC NUMBERS ARE RELATIVE TO THE ENTRANT NUMBERS THAT I USE FOR PARAMETER POS
+		float MAGIC_Y = 600.0f; //6000.0f;
+		float passedHeightMultiplierX = passedHeightMultiplier * MAGIC_X / STATIC_CAST(float,a_dims.x);
+		float passedHeightMultiplierY = passedHeightMultiplier * MAGIC_Y / STATIC_CAST(float,a_dims.y); 
+        
 
+		float left_w = STATIC_CAST(float, right_w);
+		float h = glyph.height;
+		//float hby = glyph.horizBearingY;
+		right_w = STATIC_CAST(_INT32, (left_w + glyph.advanceX * passedHeightMultiplierX));
+
+		//horizBearingX is the x-axis distance between the origin and the beginning of the character in video memory
+		//horizBearingY is the y-axis distance between the origin and the top of the character in video memory
+		//glyph.width is the x-axis distance from the characters left start and right end
+		//glyph.height is the y-axis distance from the characters top start and bottom end
+		//glyph.advanceX is the distance between each origin of a character in video memory
 
 		// Set the vertices
-		// KYLE ::
-		// TODO ::
-		// divide by a non magic number, alternatively, decide
-		// how much customization i want in xy values
+		// top left (remember, this is not the top left of the text box, but just the top left of the letter)
 		verts[i+0].Position = 
-			Vector2_t( ( left_w + glyph.horizBearingX ) / 800.0f,
-			(y + glyph.horizBearingY) / 600.0f);
+			Vector2_t( ( left_w + glyph.horizBearingX * passedHeightMultiplierX ) / MAGIC_X,
+			(y + STATIC_CAST(int,(-m_biggest_h + glyph.horizBearingY)) * passedHeightMultiplierY) / MAGIC_Y);
+
+		// top right
 		verts[i+1].Position = 
-			Vector2_t( ( left_w + glyph.width + glyph.horizBearingX ) / 800.0f,
-			(y + glyph.horizBearingY) / 600.0f);
+			Vector2_t( ( left_w + (glyph.width + glyph.horizBearingX) * passedHeightMultiplierX ) / MAGIC_X,
+			(y + STATIC_CAST(int,(-m_biggest_h + glyph.horizBearingY)) * passedHeightMultiplierY) / MAGIC_Y);
+
+		// bottom right
 		verts[i+2].Position = 
-			Vector2_t( ( left_w + glyph.width + glyph.horizBearingX ) / 800.0f, // as opposed to right
-			(y + glyph.horizBearingY - glyph.height) / 600.0f);
+			Vector2_t( ( left_w + (glyph.width + glyph.horizBearingX) * passedHeightMultiplierX ) / MAGIC_X,
+			(y + STATIC_CAST(int,(-m_biggest_h + glyph.horizBearingY - glyph.height)) * passedHeightMultiplierY) / MAGIC_Y);
+
+		// bottom left (bottom left of that very same letter, not the textbox.
 		verts[i+3].Position = 
-			Vector2_t( ( left_w + glyph.horizBearingX ) / 800.0f,
-			(y + glyph.horizBearingY - glyph.height) / 600.0f);
-		
-	
+			Vector2_t( ( left_w + glyph.horizBearingX * passedHeightMultiplierX) / MAGIC_X,
+			(y + STATIC_CAST(int,(-m_biggest_h + glyph.horizBearingY - glyph.height)) * passedHeightMultiplierY) / MAGIC_Y );
+
+
 		// The relative width OR height of any given character
 		// cell on the texture
-		float singleCharDim = 1.0f / SC( float, m_numOfCharsRoot );
+		float singleCharDim = 1.0f / STATIC_CAST( float, m_numOfCharsRoot );
 
-		_UCHAR numCharsRootI = SC( _UCHAR, m_numOfCharsRoot );
+		_UCHAR numCharsRootI = STATIC_CAST( _UCHAR, m_numOfCharsRoot );
 		_USHORT charIndex = letterIndex;
 		
 		// this letters beginning cell w, h
-		float tx = SC(float,( charIndex % numCharsRootI )) 
+		float tx = STATIC_CAST(float,( charIndex % numCharsRootI )) 
 				* singleCharDim;
-		float ty = SC(float,( charIndex / numCharsRootI )) 
+		float ty = STATIC_CAST(float,( charIndex / numCharsRootI )) 
 				* singleCharDim;
 
 		// current letters w, h in relation to entire (partial cell)
 		float thisCharWidth = singleCharDim 
-			* (SC(float, glyph.width) / SC(float, m_biggest_w));
+			* (STATIC_CAST(float, glyph.width) / STATIC_CAST(float, m_biggest_w));
 		float thisCharHeight = singleCharDim 
-			* (SC(float, (glyph.height)) / SC(float, m_biggest_h));
+			* (STATIC_CAST(float, (glyph.height)) / STATIC_CAST(float, m_biggest_h));
 		
 		// declare the tex coords
 		verts[i+0].TexCoord = Vector2_t(tx, ty);
@@ -141,7 +155,7 @@ _INT32 FontResource::renderText(const std::string & a_text,
 		
 		// keep track of overall dims
 		max_w += glyph.height;
-		max_h = SC(_INT32, ( max_h > glyph.horizBearingY + h ) ? max_h : glyph.horizBearingY + h );
+		max_h = STATIC_CAST(_INT32, ( max_h > glyph.horizBearingY + h ) ? max_h : glyph.horizBearingY + h );
 	}	
 	// KYLE ::
 	// TODO ::
@@ -355,11 +369,11 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 		h = bitmap.rows;
 
 		// store the needed glyph information in m_glyphs
-		m_glyphs[glyphNumCur].horizBearingX = SC(_SHORT, slot->metrics.horiBearingX >> 6);
-		m_glyphs[glyphNumCur].horizBearingY = SC( _SHORT, slot->metrics.horiBearingY >> 6);
-		m_glyphs[glyphNumCur].advanceX = SC( _SHORT, slot->advance.x >> 6 );
-		m_glyphs[glyphNumCur].height = SC( _SHORT, h );
-		m_glyphs[glyphNumCur].width = SC( _SHORT, w );
+		m_glyphs[glyphNumCur].horizBearingX = STATIC_CAST(_SHORT, slot->metrics.horiBearingX >> 6);
+		m_glyphs[glyphNumCur].horizBearingY = STATIC_CAST( _SHORT, slot->metrics.horiBearingY >> 6);
+		m_glyphs[glyphNumCur].advanceX = STATIC_CAST( _SHORT, slot->advance.x >> 6 );
+		m_glyphs[glyphNumCur].height = STATIC_CAST( _SHORT, h );
+		m_glyphs[glyphNumCur].width = STATIC_CAST( _SHORT, w );
 		
 		// put the glyph bitmap buffer in the texture
 		size_t biggest_char = ( m_biggest_h * m_biggest_w );
@@ -370,8 +384,8 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 		// Perhaps an OpenGL Error Check Here? TODO ::
 
 		glTexSubImage2D( GL_TEXTURE_2D, 0,
-			m_biggest_w * ( SC(int, glyphNumCur) % 10 ),
-			m_biggest_h * ( SC(int, glyphNumCur) / 10 ),
+			m_biggest_w * ( STATIC_CAST(int, glyphNumCur) % 10 ),
+			m_biggest_h * ( STATIC_CAST(int, glyphNumCur) / 10 ),
 			w, h, GL_RED, GL_UNSIGNED_BYTE,
 			data + biggest_char * glyphNumCur );
 	}

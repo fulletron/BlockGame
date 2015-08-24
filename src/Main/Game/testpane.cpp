@@ -8,7 +8,7 @@ namespace Game {
 
 _INT32 TestPane::init( FPSCounter * const a_fpsCtr )
 {
-	initPaneBlues( 0, Vec4D<float>(0.0f,0.0f,1.0f,1.0f) );
+	initPaneBlues( NO_PARENT, Vec4D<float>(0.0f,0.0f,1.0f,1.0f) );
 
 	m_pTex = g_lib.findTextureResource( CV8::RES_TEX_PANEBKG );	
 	m_pScreenProg = g_lib.findShaderProgramResource( CV8::RES_SP_FBDRAW );
@@ -66,10 +66,11 @@ void TestPane::draw()
 				GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f) 
 			);
 		*/
-
 		m_pFont->renderText( 
 			fps, 
 			GS::Graphics::Vector2_t(-800.00f, 500.00f), 
+			getPixelDimensions(),
+			1.0f,
 			GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f) 
 		);
 		//glDisable(GL_DEPTH_TEST);
