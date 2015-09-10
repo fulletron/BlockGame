@@ -3,7 +3,7 @@
 namespace GS {
 namespace Graphics {
 
-MeshResource * ResourceLibrary::__buildMeshRes( const _INT64 a_name )
+MeshResource * ResourceLibrary::__buildMeshRes( const _UINT64 a_name )
 {
 	MeshResource * newRes = new MeshResource();
 	

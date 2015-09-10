@@ -15,33 +15,33 @@ _UINT32 ResourceLibrary::init()
 }
 
 template <typename T>
-_INT32 ResourceLibrary::__indexOfResource( 
+_UINT32 ResourceLibrary::__indexOfResource( 
 	_VECTOR<T> * a_pVec, 
-	const _INT64 a_name ) 
+	const _UINT64 a_name ) 
 {
-	for( int i = 0; i < STATIC_CAST( _INT32, a_pVec->size() ); ++i )
+	for( int i = 0; i < STATIC_CAST( _UINT32, a_pVec->size() ); ++i )
 		if( a_pVec->at(i)->getName() == a_name )
 			return i;
 	return -1;
 }
 	
-template _INT32 ResourceLibrary::__indexOfResource( 
+template _UINT32 ResourceLibrary::__indexOfResource( 
 	_VECTOR<FontResource*> * a_pVec, 
-	const _INT64 a_name );
-template _INT32 ResourceLibrary::__indexOfResource( 
+	const _UINT64 a_name );
+template _UINT32 ResourceLibrary::__indexOfResource( 
 	_VECTOR<ShaderResource*> * a_pVec, 
-	const _INT64 a_name );
-template _INT32 ResourceLibrary::__indexOfResource( 
+	const _UINT64 a_name );
+template _UINT32 ResourceLibrary::__indexOfResource( 
 	_VECTOR<ShaderProgramResource*> * a_pVec, 
-	const _INT64 a_name );
-template _INT32 ResourceLibrary::__indexOfResource( 
+	const _UINT64 a_name );
+template _UINT32 ResourceLibrary::__indexOfResource( 
 	_VECTOR<TextureResource*> * a_pVec, 
-	const _INT64 a_name );
-template _INT32 ResourceLibrary::__indexOfResource( 
+	const _UINT64 a_name );
+template _UINT32 ResourceLibrary::__indexOfResource( 
 	_VECTOR<MeshResource*> * a_pVec, 
-	const _INT64 a_name );
+	const _UINT64 a_name );
 
-FontResource * ResourceLibrary::findFontResource( const _INT64 a_name )
+FontResource * ResourceLibrary::findFontResource( const _UINT64 a_name )
 {
 	_INT32 loc = __indexOfResource<FontResource*>( 
 				&m_pFontResources, a_name );
@@ -55,7 +55,7 @@ FontResource * ResourceLibrary::findFontResource( const _INT64 a_name )
 
 }
 
-ShaderResource * ResourceLibrary::findShaderResource( const _INT64 a_name )
+ShaderResource * ResourceLibrary::findShaderResource( const _UINT64 a_name )
 {
 	_INT32 loc = __indexOfResource<ShaderResource*>( 
 				&m_pShaderResources, a_name );
@@ -69,7 +69,7 @@ ShaderResource * ResourceLibrary::findShaderResource( const _INT64 a_name )
 }
 
 ShaderProgramResource * ResourceLibrary::findShaderProgramResource( 
-	const _INT64 a_name  )
+	const _UINT64 a_name  )
 {
 	_INT32 loc = __indexOfResource<ShaderProgramResource*>( 
 				&m_pShaderProgramResources, a_name );
@@ -83,7 +83,7 @@ ShaderProgramResource * ResourceLibrary::findShaderProgramResource(
 }
 
 TextureResource * ResourceLibrary::findTextureResource( 
-	const _INT64 a_name  )
+	const _UINT64 a_name  )
 {
 	_INT32 loc = __indexOfResource<TextureResource*>( 
 				&m_pTextureResources, a_name );
@@ -97,7 +97,7 @@ TextureResource * ResourceLibrary::findTextureResource(
 }
 
 MeshResource * ResourceLibrary::findMeshResource(
-	const _INT64 a_name )
+	const _UINT64 a_name )
 {
 	_INT32 loc = __indexOfResource<MeshResource*>(
 		&m_pMeshResources, a_name );
@@ -110,9 +110,15 @@ MeshResource * ResourceLibrary::findMeshResource(
 	return ret;
 }
 
-_INT32 ResourceLibrary::forgetResource( const _INT32 a_type, const _INT64 a_name )
+// TODO :: IMPLEMENT FORGET
+_INT32 ResourceLibrary::forgetResource( const _UINT32 a_type, const _UINT64 a_name )
 {
 	return 0;
+}
+
+_INT32 ResourceLibrary::forgetResource( IResource * a_pResource )
+{
+	return forgetResource( a_pResource->getType(), a_pResource->getName());
 }
 
 };

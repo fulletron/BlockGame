@@ -1,0 +1,27 @@
+=============== 9/4/2015 ===============
+I'm using a singleton as of right now for the game "brain" (all logic, non graphical elements). The reason is to 
+easily access brain members (read-only) from the panel side to access member variables of varying data 
+types. This causes a lot of old code to break (panel assets don't exist anymore, but will in a new incarnation
+if this method is followed).
+
+Ideally I wouldn't use a singleton, and instead, I would add a:
+_UNION8 getPresentationElement8(int)
+_UNION16 getPresentationElement16(int)
+to IPresentable. This would allow me to get copies (COPY) of the pertinent data without having to have a 
+Class * defined for every IPresentable object I was using (instead I could use the IPresentable/IPanelAsset list 
+exclusively, making a lot of stuff less directly connected (I could get away from the singleton/top down)
+
+This doesn't solve having to probe the brain for the IPresentable to add it to the list- essentially, I'd have to 
+have a fairly encompassing brain function that accepted some kind of key and deep dived (top down) to find
+the specific IPresentable. It would only happen once though. And it still is probably cleaner than having
+a singleton, but I can change that later- that is backend stuff that doesn't result in seeable changes, and
+I'm in need of some instant gratification.
+
+
+
+===================== 9/9/2015 =============================
+Create a "PaneAsset" base class
+Create the "BackgroundPaneAsset" class
+Implement that class and the pulsing announcement class
+Send messages from the brain to the announcement panel. Announcement queue?
+Get a pane to draw on a pane.

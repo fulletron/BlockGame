@@ -57,25 +57,26 @@ public:
 	/**
 	* Specifically finds a font resource by name
 	*/
-	FontResource * findFontResource( const _INT64 a_name );
+	FontResource * findFontResource( const _UINT64 a_name );
 
 	/**
 	* Specifically finds a Shader resource by name
 	*/
-	ShaderResource * findShaderResource( const _INT64 a_name );
+	ShaderResource * findShaderResource( const _UINT64 a_name );
 
 	/**
 	* Specifically find a Shader Program by name
 	*/
 	ShaderProgramResource * findShaderProgramResource( 
-						const _INT64 a_name );
+						const _UINT64 a_name );
 
-	TextureResource * findTextureResource( const _INT64 a_name );
-	MeshResource * findMeshResource( const _INT64 a_name );
+	TextureResource * findTextureResource( const _UINT64 a_name );
+	MeshResource * findMeshResource( const _UINT64 a_name );
 	/**
 	* Subtracts a reference count from the resource. DOES NOT DELETE IT!
 	*/
-	_INT32 forgetResource( const _INT32 a_type, const _INT64 a_name );
+	_INT32 forgetResource( const _UINT32 a_type, const _UINT64 a_name );
+	_INT32 forgetResource( IResource * a_pResource );
 
 selective:
 
@@ -83,26 +84,26 @@ selective:
 	* Looks up the index of a resource in a vector by name
 	*/
 	template <typename T>
-	_INT32 __indexOfResource( _VECTOR<T> * a_pVec, const _INT64 a_name );
+	_UINT32 __indexOfResource( _VECTOR<T> * a_pVec, const _UINT64 a_name );
 
 	/**
 	* Specifically builds a font resource by name
 	*/
-	FontResource * __buildFontRes( const _INT64 a_name );
+	FontResource * __buildFontRes( const _UINT64 a_name );
 
 	/**
 	* Specifically builds a Shader Resource by name
 	*/
-	ShaderResource * __buildShaderRes( const _INT64 a_name );
+	ShaderResource * __buildShaderRes( const _UINT64 a_name );
 
 	/**
 	* Specifically build a Shader Program by name
 	*/
 	ShaderProgramResource * __buildShaderProgramRes( 
-						const _INT64 a_name );
+						const _UINT64 a_name );
 
-	TextureResource * __buildTextureRes( const _INT64 a_name );
-	MeshResource * __buildMeshRes( const _INT64 a_name );
+	TextureResource * __buildTextureRes( const _UINT64 a_name );
+	MeshResource * __buildMeshRes( const _UINT64 a_name );
 };
 
 };

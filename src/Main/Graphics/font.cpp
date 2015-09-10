@@ -68,8 +68,8 @@ _INT32 FontResource::renderText(const std::string & a_text,
 
 		// MODIFY THE VALUES
 		float passedHeightMultiplier = a_heightMultiplier; /// TODO :: THIS NEEDS TO BE A PARAMETER
-		float MAGIC_X = 800.0f; //8000.0f; // THESE TWO MAGIC NUMBERS ARE RELATIVE TO THE ENTRANT NUMBERS THAT I USE FOR PARAMETER POS
-		float MAGIC_Y = 600.0f; //6000.0f;
+		float MAGIC_X = 1000.0f; //8000.0f; // THESE TWO MAGIC NUMBERS ARE RELATIVE TO THE ENTRANT NUMBERS THAT I USE FOR PARAMETER POS
+		float MAGIC_Y = 1000.0f; //6000.0f;
 		float passedHeightMultiplierX = passedHeightMultiplier * MAGIC_X / STATIC_CAST(float,a_dims.x);
 		float passedHeightMultiplierY = passedHeightMultiplier * MAGIC_Y / STATIC_CAST(float,a_dims.y); 
         

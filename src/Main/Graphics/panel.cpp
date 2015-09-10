@@ -20,9 +20,10 @@ GLuint Pane::getFramebuffer() const
 	return m_framebuffer;
 }
 
-_INT32 Pane::init()
+_INT32 Pane::init( Pane * const a_pParent  )
 {
-	m_pTex = g_lib.findTextureResource( CV8::RES_TEX_PANEBKG );	
+	m_pParentPane = a_pParent;
+	//m_pTex = g_lib.findTextureResource( CV8::RES_TEX_PANEBKG );	
 	m_pMesh = g_lib.findMeshResource( CV8::RES_MSH_RECT );
 	m_pTexProg = g_lib.findShaderProgramResource( CV8::RES_SP_TEXRECTDRAW );
 	m_pScreenMesh = g_lib.findMeshResource( CV8::RES_MSH_SCREEN );
@@ -44,9 +45,9 @@ Vec2D<_INT32> Pane::getPixelDimensions() const
 	//return Vec2D<_INT32>(m_boxActual.box_width, m_boxActual.box_height);
 }
 
-_INT32 Pane::initPaneBlues( Pane * const a_pParentPane, const Vec4D<float> & a_blueprint )
+_INT32 Pane::initBlueprints( const Vec4D<float> & a_blueprint )
 {
-	m_pParentPane = a_pParentPane;
+	//m_pParentPane = a_pParentPane;
 	m_boxBlueprint = a_blueprint;
 
 	__calculateDimActual();
@@ -117,11 +118,14 @@ void Pane::draw( GS::Graphics::IDimensionable * const a_dimensionable )
         //glEnable(GL_DEPTH_TEST);
 		//glEnable(GL_STENCIL_TEST);
 		//glDisable(GL_STENCIL_TEST);
-		
+
 		for( std::vector<IPaneAsset *>::iterator it_asset = m_paneAssets.begin(); 
 			it_asset != m_paneAssets.end();
 			++it_asset )
 			(*it_asset)->draw( this );
+
+		__draw( this );
+		
 	}
 
 	Vec2D<_INT32> dims = a_dimensionable->getPixelDimensions();
@@ -169,11 +173,12 @@ _BOOL Pane::isDirty() const
 			return true;
 
 	// If no asset is dirty, the panel itself is clean
-	return false;
+	return __isDirty();
 }
 
 _BOOL Pane::handleInput()
 {
+	/*
 	// Go through all of this panels PaneAssets
 	for( std::vector<IPaneAsset *>::const_iterator it_asset = m_paneAssets.begin(); 
 		it_asset != m_paneAssets.end();
@@ -183,6 +188,7 @@ _BOOL Pane::handleInput()
 			return true;
 
 	// If no asset is dirty, the panel itself is clean
+	*/
 	return false;
 }
 
@@ -199,7 +205,7 @@ void Pane::shutdown()
 {
 	__preShutdown();
 
-	g_lib.forgetResource( m_pTex->getType(), m_pTex->getName() );
+	//g_lib.forgetResource( m_pTex->getType(), m_pTex->getName() );
 	g_lib.forgetResource( m_pScreenProg->getType(), m_pScreenProg->getName() );
 	g_lib.forgetResource( m_pTexProg->getType(), m_pTexProg->getName() );
 	g_lib.forgetResource( m_pMesh->getType(), m_pMesh->getName() );

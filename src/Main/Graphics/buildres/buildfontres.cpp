@@ -3,7 +3,7 @@
 namespace GS {
 namespace Graphics {
 
-FontResource * ResourceLibrary::__buildFontRes( const _INT64 a_name )
+FontResource * ResourceLibrary::__buildFontRes( const _UINT64 a_name )
 {
 	FontResource * newRes = new FontResource();
 

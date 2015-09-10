@@ -3,7 +3,7 @@
 namespace GS {
 namespace Graphics {
 
-ShaderResource * ResourceLibrary::__buildShaderRes( const _INT64 a_name )
+ShaderResource * ResourceLibrary::__buildShaderRes( const _UINT64 a_name )
 {
 	ShaderResource * newRes = new ShaderResource();
 	std::string src = "";

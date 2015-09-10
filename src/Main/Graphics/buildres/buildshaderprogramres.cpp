@@ -3,7 +3,7 @@
 namespace GS {
 namespace Graphics {
 
-ShaderProgramResource * ResourceLibrary::__buildShaderProgramRes( const _INT64 a_name )
+ShaderProgramResource * ResourceLibrary::__buildShaderProgramRes( const _UINT64 a_name )
 {
 	ShaderProgramResource * newRes = new ShaderProgramResource();
 

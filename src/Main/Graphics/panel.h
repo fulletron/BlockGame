@@ -11,6 +11,7 @@ class FontResource;
 class ShaderProgramResource;
 class TextureResource;
 class MeshResource;
+class Pane;
 
 class IDimensionable {
 public:
@@ -20,6 +21,11 @@ public:
 
 class IPaneAsset {
 public:
+	/**
+	* init the paneasset resources
+	*/
+	virtual _INT32 init( Pane * const a_pParent ) = 0;
+
 	/**
 	* Check the state of an object to see if it needs to be redrawn
 	*/
@@ -77,7 +83,7 @@ public:
 	/**
 	* Sets the parent pane and calculates the actual dimensions.
 	*/
-	virtual _INT32 initPaneBlues( Pane * const a_pParentPane, const Vec4D<float> & a_blueprint ) = 0;
+	virtual _INT32 initBlueprints( const Vec4D<float> & a_blueprint ) = 0;
 
 	/**
 	* Updates the Pane.
@@ -104,6 +110,8 @@ public:
 
 selective:
 
+	// ALSO, I MAY WANT ACCESS TO THESE TO DO CERTAIN THINGS
+privatized:
 	/**
 	* Calls all of the __gl private functions that setup the framebuffer
 	*/
@@ -129,7 +137,6 @@ public:
 	static GS::Graphics::Pane * NO_PARENT;
 
 selective:
-
 	static _BOOL m_screenLoaded;
 	static GLuint m_vaoQuad;
 	static GLuint m_vboQuad;
@@ -146,9 +153,10 @@ selective:
 	std::vector<IPaneAsset *> m_paneAssets;
 
 
-	// MAY NOT BELONG IN OVERARCHING PANE
+	// MAY NOT BELONG IN OVERARCHING PANE, BUT THESE ARE IN EVERY PANE
 	// KYLE ::
-	GS::Graphics::TextureResource *				m_pTex;
+	// ALSO, I MAY WANT ACCESS TO THESE TO DO CERTAIN THINGS
+privatized:
 	GS::Graphics::ShaderProgramResource *		m_pScreenProg;
 	GS::Graphics::ShaderProgramResource *		m_pTexProg;
 	GS::Graphics::MeshResource *				m_pMesh;
@@ -164,7 +172,7 @@ public:
 		m_rboDepthStencil(0),
 		m_pParentPane(0),
 		m_orientationBitFlag(0),
-		m_pTex(0),
+		//m_pTex(0),
 		m_pScreenProg(0), 
 		m_pTexProg(0),
 		m_pMesh(0),
@@ -203,8 +211,7 @@ public:
 	* Screen percentage and size in relation to parent
 	* Screen pixel dimensions in relation to parent
 	*/
-	_INT32 initPaneBlues( 
-		Pane * const a_pParentPane, 
+	_INT32 initBlueprints( 
 		const Vec4D<float> & a_blueprint );
 
 	/**
@@ -215,6 +222,7 @@ public:
 	virtual void shutdown();
 
 	/**
+	* TODO :: THIS MAY NOT BE NEEDED 
 	* Updates all paneAssets by a_dt
 	* THIS WILL CALL update() FOREACH m_paneAssets
 	*/
@@ -224,7 +232,7 @@ public:
 	* Initializes the standard Pane library resources
 	* THIS WILL CALL postInit()
 	*/
-	virtual _INT32 init();
+	virtual _INT32 init( Pane * const a_pParent );
 
 	/**
 	* Get the dimensions of the given IDimensionable 
@@ -252,6 +260,20 @@ selective:
 	*/
 	virtual void __preShutdown() {}
 
+	/**
+	* Empty function for the base class
+	* Override to draw panel specific presentables
+	*/
+	virtual void __draw( GS::Graphics::IDimensionable * const a_dimensionable ) {}
+
+	/**
+	* Empty function for the base class
+	* Override to properly tell specific panels they are dirty
+	*/
+	virtual _BOOL __isDirty() const {return false;}
+
+
+
 
 	_UINT32 __initFramebuffer();
 
@@ -267,124 +289,6 @@ selective:
 	static void __shutdownScreenVAOVBO();
 
 };
-
-// KYLE :: OLD STYLE WORKING
-//class Pane;
-//class IPane {
-//public:
-//	/**
-//	* Panes are the graphical representation of data. If the base data
-//	* changes, the pane that represents that data needs to redraw.
-//	* @return _BOOL true if dirty
-//	*/
-//	virtual _BOOL isDirty() = 0;
-//	
-//	/**
-//	* Draws the pane. If the pane is not dirty, simply redraw the old
-//	* framebuffer. If it is dirty, redraw based on data.
-//	*/
-//	virtual void draw() = 0;
-//
-//	/**
-//	* Panes handle input to minimize input effort.
-//	* TODO :: ACCEPT INPUT OF SOME FORM!
-//	* also have panes check for the kinds of input they accept
-//	* before collision!
-//	*/
-//	virtual _BOOL handleInput() = 0;
-//
-//	/**
-//	* Sets the parent pane and calculates the actual dimensions.
-//	*/
-//	virtual _INT32 initPaneBlues( Pane * const a_pParentPane, const Vec4D<float> & a_blueprint ) = 0;
-//
-//selective:
-//
-//	/**
-//	* Calls all of the __gl private functions that setup the framebuffer
-//	*/
-//	virtual _UINT32 __initFramebuffer() = 0;
-//
-//	virtual _INT32 __calculateDimActual() = 0;
-//	virtual _UINT32 __glFramebufferInit() = 0;
-//	virtual void	__glFramebufferDestroy() = 0;
-//	virtual _UINT32 __glTexColorBufferInit() = 0;
-//	virtual void 	__glTexColorBufferDestroy() = 0;
-//	virtual _UINT32 __glRboDepthStencilInit() = 0;
-//	virtual void	__glRboDepthStencilDestroy() = 0;
-//
-//};
-//
-//class Pane : public IPane {
-//public:
-//	static const int CENTERED_X = 1 >> 0;
-//	static const int CENTERED_Y = 1 >> 1;
-//	static const int ORIGIN_TOP = 1 >> 2;
-//	static const int ORIGIN_LEFT = 1 >> 3;
-//
-//selective:
-//
-//	static _BOOL m_screenLoaded;
-//	static GLuint m_vaoQuad;
-//	static GLuint m_vboQuad;
-//
-//	GLuint m_framebuffer;
-//	GLuint m_texColorBuffer;
-//	GLuint m_rboDepthStencil;
-//	Pane * m_pParentPane;
-//	Vec4D<float> m_boxBlueprint;
-//	Vec4D<_UINT32> m_boxActual;
-//	_CHAR m_orientationBitFlag;
-//public:
-//	Pane() :
-//		m_framebuffer(0),
-//		m_texColorBuffer(0),
-//		m_rboDepthStencil(0),
-//		m_pParentPane(0),
-//		m_orientationBitFlag(0)
-//		{}
-//
-//	~Pane(){}
-//
-//	virtual void draw() = 0;
-//	virtual _BOOL isDirty() = 0;
-//	virtual _BOOL handleInput() = 0;
-//
-//	_INT32 initPaneBlues( 
-//		Pane * const a_pParentPane, 
-//		const Vec4D<float> & a_blueprint );
-//
-//selective:
-//	_UINT32 __initFramebuffer();
-//
-//	_INT32 __calculateDimActual();
-//	_UINT32 __glFramebufferInit();
-//	void __glFramebufferDestroy();
-//	_UINT32 __glTexColorBufferInit();
-//	void __glTexColorBufferDestroy();
-//	_UINT32 __glRboDepthStencilInit();
-//	void __glRboDepthStencilDestroy(); 
-//
-//	static _INT32 __initScreenVAOVBO();
-//	static void __shutdownScreenVAOVBO();
-//
-//};
-//
-//class IPaneObj {
-//public:
-//	/**
-//	* Check the state of the object to see if it has visually changed
-//	*/
-//	virtual _BOOL getDirty() const = 0;
-//};
-//
-//class PaneObj : public IPaneObj {
-//selective:
-//	_BOOL m_isDirty;
-//public:
-//	PaneObj() : m_isDirty(true) {}
-//	_BOOL getDirty() const { return m_isDirty; }
-//};
 
 };
 };

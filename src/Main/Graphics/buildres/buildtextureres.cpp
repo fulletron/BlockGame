@@ -4,7 +4,7 @@
 namespace GS {
 namespace Graphics {
 
-TextureResource * ResourceLibrary::__buildTextureRes( const _INT64 a_name )
+TextureResource * ResourceLibrary::__buildTextureRes( const _UINT64 a_name )
 {
 	TextureResource * newRes = new TextureResource();
 	std::string filename = "";
@@ -15,6 +15,11 @@ TextureResource * ResourceLibrary::__buildTextureRes( const _INT64 a_name )
 		filename = ( _FS::getCurrentFullPath() 
 		/ "Internal/" / "Resources/" / "Textures/" 
 		/ "smallpanelbacking.png").string().c_str();
+		break;
+	case CV8::RES_TEX_FADEBAR:
+		filename = ( _FS::getCurrentFullPath() 
+		/ "Internal/" / "Resources/" / "Textures/" 
+		/ "gradiantfadebar.png").string().c_str();
 		break;
 	default: return 0; 
 	}

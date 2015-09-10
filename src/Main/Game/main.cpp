@@ -5,7 +5,8 @@
 #include <Graphics/graphics.h>
 
 //#include "testpane.h"
-#include "debugpane.h"
+#include <Graphics/panes/debugpane.h>
+#include "brain.h"
 
 bool g_isRunning = false;
 
@@ -28,12 +29,11 @@ int main()
 	// For now, the game states do not exist
 	// instead, i have this one pane (states are groupings
 	// of panes)
-	GS::Game::DebugPane debugPane;
-	debugPane.init();
-	//GS::Game::TestPane testPane;
-	//GS::Game::FPSCounter fpsCounter;
-	//testPane.init(&fpsCounter);
-
+	GS::Graphics::DebugPane debugPane;
+	debugPane.init(0);
+	GS::Game::Brain * brain = &GS::Game::Brain::getInstance();
+	brain->init();
+	//s_brain = &brain;
 	// checks for gl and glfw errors!
 	if ( _CheckForErrors() )
 		return -1;
@@ -59,6 +59,7 @@ int main()
 		glfwSetTime(0.0);
 
 		//fpsCounter.update(dt);
+		brain->update(dt);
 
 		// all of this is placeholder until pane/state are implemeneted
 
@@ -75,7 +76,6 @@ int main()
 
 		debugPane.update(dt);
 		debugPane.draw( &g_window );
-		//testPane.draw();		
 
 		g_window.swapBuffers();
 		glfwPollEvents();

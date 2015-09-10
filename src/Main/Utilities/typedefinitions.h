@@ -9,6 +9,7 @@
 #define SCREEN_HEIGHT 600 //1200
 
 #define FPS_CAP_MS 0.016666
+
 //#define FPS_CAP_MS -0.016666
 
 //static const float INFINITY = FLT_MAX;
@@ -55,6 +56,22 @@ typedef bool							_BOOL;
 
 #endif
 
+union _UNION8 {
+	_CHAR		asChar;
+	_UCHAR		asUChar;
+	_BYTE		asByte;
+	_SHORT		asShort;
+	_USHORT		asUShort;
+	_INT32		asInt32;
+	_INT64		asInt64;
+	_UINT32		asUInt32;
+	_UINT64		asUInt64;
+	_DOUBLE		asDouble;
+	_LONG		asLong;
+	_FLOAT		asFloat;
+	_BOOL		asBool;
+};
+
 // This may be in the wrong spot
 static const _UINT32 NUMCHUNKS = 24;
 static const _UINT32 SIZECHUNK = 20480000;
@@ -93,6 +110,7 @@ const _INT64 RES_SH_BASEFBFS = 1005;
 const _INT64 RES_SH_TEXRECTVS = 1006;
 const _INT64 RES_SH_TEXRECTFS = 1007;
 const _INT64 RES_TEX_PANEBKG = 3001;
+const _INT64 RES_TEX_FADEBAR = 3002;
 const _INT64 RES_MSH_RECT = 5001;
 const _INT64 RES_MSH_SCREEN = 5002;
 //const _INT64 FRAME001 = 100001;
@@ -101,6 +119,11 @@ const _INT64 RES_MSH_SCREEN = 5002;
 //const _INT64 FRAME004 = 100004;
 //const _INT64 FRAME_TRASH = 100005;
 //const _INT64 FRAME_SMALLRES = 100006;
+
+namespace TEX {
+const _INT64 PANEBKG = 3001;
+const _INT64 FADEBAR = 3002;
+};
 };
 
 inline _BYTE* INALIGNUP( _BYTE* a_pAddress, _UINT32 a_sizeInBytes)
@@ -207,6 +230,12 @@ public:
 #define selective public
 #else
 #define selective protected
+#endif
+
+#ifdef TEST_ENABLED
+#define privatized public
+#else
+#define privatized private
 #endif
 
 namespace GS {
