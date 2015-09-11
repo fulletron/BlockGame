@@ -1,27 +1,16 @@
 cmake_minimum_required (VERSION 2.6)
 
+#turn this into a macro
 file(GLOB GRAPHICSSRC
     "*.h"
     "*.cpp"
-    "buildres/*.cpp"
-	"panes/*.h"
-	"panes/*.cpp"
+    "BuildRes/*.cpp"
+    "Panes/DebugPane/*.h"
+    "Panes/DebugPane/*.cpp"
 )
 
-macro(GroupSources curdir)
-	file(GLOB children RELATIVE ${PROJECT_SOURCE_DIR}/${curdir}
-	${PROJECT_SOURCE_DIR}/${curdir}/*)
-	foreach(child ${children})
-		if(IS_DIRECTORY ${PROJECT_SOURCE_DIR}/${curdir}/${child})
-			GroupSources(${curdir}/${child})
-		else()
-			string(REPLACE "/" "\\" groupname ${curdir})
-                  		string(REPLACE "src" "Common" groupname ${groupname})
-             			source_group(${groupname} FILES
- 			${PROJECT_SOURCE_DIR}/${curdir}/${child})
-		endif()
-   	endforeach()
-endmacro()
+#message( "CALLING GROUPSOURCES on" ${CMAKE_CURRENT_SOURCE_DIR}  )
+GroupSources( ${CMAKE_CURRENT_SOURCE_DIR} "GENERAL" )
 
 #SOURCE_GROUP(buildres FILES "buildres/*.cpp")
 #SOURCE_GROUP(panes FILES "panes/*.cpp" "panes/*h")

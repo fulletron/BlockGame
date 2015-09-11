@@ -5,6 +5,8 @@ file(GLOB GAMESRC
     "*.cpp"
 )
 
+##GroupSources( ${CMAKE_CURRENT_SOURCE_DIR} "GENERAL" )
+
 add_executable(Game ${GAMESRC} )
 
 target_link_libraries(Game

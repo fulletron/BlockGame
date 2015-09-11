@@ -5,6 +5,8 @@ file(GLOB UTILITIESSRC
     "*.cpp"
 )
 
+##GroupSources( ${CMAKE_CURRENT_SOURCE_DIR} "GENERAL" )
+
 add_library( Utilities ${UTILITIESSRC} )
 
 target_link_libraries( Utilities

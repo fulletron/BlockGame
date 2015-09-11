@@ -1,5 +1,5 @@
-#ifndef __TESTANNOUNCEMENTPANEASSET_H_
-#define __TESTANNOUNCEMENTPANEASSET_H_
+#ifndef __TESTANNOUNCEMENTPASSET_H_
+#define __TESTANNOUNCEMENTPASSET_H_
 
 #include <Graphics/panel.h>
 
@@ -11,7 +11,7 @@ class IPresentable;
 namespace Graphics {
 
 
-class TestAnnouncementPaneAsset : public GS::Graphics::IPaneAsset
+class TestAnnouncementPasset : public GS::Graphics::IPaneAsset
 {
 selective:
 	GS::Graphics::TextureResource * m_pFadeBar;
@@ -21,7 +21,7 @@ selective:
 	GS::Graphics::IPane * m_pParentPane;
 	_BOOL m_isDirty;
 public:
-	TestAnnouncementPaneAsset():
+	TestAnnouncementPasset():
 		    m_pFadeBar(0),
 			m_timer(0),
 			m_pParentPane(0),

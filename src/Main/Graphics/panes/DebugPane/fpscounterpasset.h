@@ -1,5 +1,5 @@
-#ifndef __FPSCOUNTERPANEASSET_H_
-#define __FPSCOUNTERPANEASSET_H_
+#ifndef __FPSCOUNTERPASSET_H_
+#define __FPSCOUNTERPASSET_H_
 
 #include <Graphics/panel.h>
 
@@ -11,7 +11,7 @@ class IPresentable;
 namespace Graphics {
 
 
-class FPSCounterPaneAsset : public GS::Graphics::IPaneAsset
+class FPSCounterPasset : public GS::Graphics::IPaneAsset
 {
 selective:
 	GS::Graphics::FontResource * m_pFpsFont;
@@ -22,7 +22,7 @@ selective:
 	GS::Graphics::IPane * m_pParentPane;
 	_BOOL m_isDirty;
 public:
-	FPSCounterPaneAsset():
+	FPSCounterPasset():
 		    m_pFpsFont(0),
 			m_pFontDrawingProg(0),
 			m_pFPSCounterPresentable(0),

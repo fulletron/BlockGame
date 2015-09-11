@@ -1,6 +1,6 @@
 #include <Graphics/reslib.h>
 
-#include <Graphics/panes/fpscounterpaneasset.h>
+#include <Graphics/Panes/DebugPane/fpscounterpasset.h>
 #include <Game/brain.h> // TODO :: REMOVE! ONCE SINGLETON IS NO LONGER USED
 
 extern GS::Graphics::ResourceLibrary g_lib;
@@ -11,7 +11,7 @@ namespace Graphics {
 /**
 * init the paneasset resources
 */
-_INT32 FPSCounterPaneAsset::init( Pane * const a_pParent )
+_INT32 FPSCounterPasset::init( Pane * const a_pParent )
 {
 	m_pParentPane = a_pParent;
 
@@ -26,7 +26,7 @@ _INT32 FPSCounterPaneAsset::init( Pane * const a_pParent )
 }
 
 
-_BOOL FPSCounterPaneAsset::isDirty() const
+_BOOL FPSCounterPasset::isDirty() const
 {
 	if (m_pFPSCounterPresentable->isDirty())
 		return true;
@@ -36,7 +36,7 @@ _BOOL FPSCounterPaneAsset::isDirty() const
 /**
 * Tells the PaneAsset to clean up
 */ 
-void FPSCounterPaneAsset::shutdown()
+void FPSCounterPasset::shutdown()
 {
 	// RELEVANT TO FPS COUNTER ASSET
 	g_lib.forgetResource( m_pFontDrawingProg );
@@ -46,7 +46,7 @@ void FPSCounterPaneAsset::shutdown()
 /**
 * Draws the PaneAsset.
 */
-void FPSCounterPaneAsset::draw( GS::Graphics::IDimensionable * const a_dims )
+void FPSCounterPasset::draw( GS::Graphics::IDimensionable * const a_dims )
 {
 	std::string fps = "FIRST!";
 	fps= "I need to change what is written FPS: " + boost::lexical_cast<std::string>( m_pFPSCounterPresentable->getPresentationElement8(0).asInt32 );
@@ -80,7 +80,7 @@ void FPSCounterPaneAsset::draw( GS::Graphics::IDimensionable * const a_dims )
 /**
 * Updates the PaneAsset by dt.
 */
-void FPSCounterPaneAsset::update(const _DOUBLE a_dt)
+void FPSCounterPasset::update(const _DOUBLE a_dt)
 {
 
 }

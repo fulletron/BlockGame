@@ -5,7 +5,7 @@
 #include <Graphics/graphics.h>
 
 //#include "testpane.h"
-#include <Graphics/panes/debugpane.h>
+#include <Graphics/Panes/DebugPane/debugpane.h>
 #include "brain.h"
 
 bool g_isRunning = false;
