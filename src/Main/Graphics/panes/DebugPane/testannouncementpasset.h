@@ -40,7 +40,7 @@ public:
 
 	/**
 	* Tells the PaneAsset to clean up
-	*/ 
+	*/
 	void shutdown();
 
 	/**

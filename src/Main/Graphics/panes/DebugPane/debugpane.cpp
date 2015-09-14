@@ -15,12 +15,7 @@ _INT32 DebugPane::__postInit()
 {
 	initBlueprints( Vec4D<float>(0.00f,-0.00f,1.00f,1.00f) );
 
-	// LINK ALL THE THINGS
-	IPaneAsset * fpsPaneAsset = new FPSCounterPasset();
-	fpsPaneAsset->init(this);
-	m_paneAssets.push_back(fpsPaneAsset);
-
-	// KYLE :: TODO
+	// LINK ALL THE THINGS, FROM BACK TO FRONT
 	IPaneAsset * backgroundPictureAsset = new BkgPicPasset();
 	backgroundPictureAsset->init(this);
 	m_paneAssets.push_back(backgroundPictureAsset);
@@ -28,6 +23,10 @@ _INT32 DebugPane::__postInit()
 	IPaneAsset * testAnnouncementAsset = new TestAnnouncementPasset();
 	testAnnouncementAsset->init(this);
 	m_paneAssets.push_back(testAnnouncementAsset);
+
+	IPaneAsset * fpsPaneAsset = new FPSCounterPasset();
+	fpsPaneAsset->init(this);
+	m_paneAssets.push_back(fpsPaneAsset);
 
 	return 0;
 }

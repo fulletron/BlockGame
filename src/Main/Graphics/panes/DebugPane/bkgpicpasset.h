@@ -14,15 +14,22 @@ namespace Graphics {
 class BkgPicPasset : public GS::Graphics::IPaneAsset
 {
 selective:
-	GS::Graphics::TextureResource * m_pTex;
-	GS::Graphics::ShaderProgramResource * m_pTexRectProg;
+	GS::Graphics::TextureResource *				m_pTex;
+	GS::Graphics::ShaderProgramResource *		m_pTexProg;
+	GS::Graphics::MeshResource *				m_pScreenMesh;
+
+	GLint										m_texloc;
+	GLint										m_transloc;
 
 	GS::Graphics::IPane * m_pParentPane;
 	_BOOL m_isDirty;
 public:
 	BkgPicPasset():
 		    m_pTex(0),
-			m_pTexRectProg(0),
+			m_pTexProg(0),
+			m_pScreenMesh(0),
+			m_texloc(-1),
+			m_transloc(-1),
 			m_pParentPane(0),
 			m_isDirty(true)
 			{}

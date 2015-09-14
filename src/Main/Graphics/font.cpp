@@ -261,9 +261,9 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 	error = FT_Set_Char_Size(
 				m_face,		
 				0,		//char_width 1/64th of point
-				a_size * 64,	//char_height ''''
+				a_size * 64 * (SCREEN_HEIGHT/1200.0f),	//char_height ''''
 				300,		//horizontal device res
-				300 ); 		//vertical device res
+				300); 		//vertical device res
 
 	if( error )
 		return error;

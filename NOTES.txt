@@ -1,17 +1,23 @@
+*Create a "PaneAsset" base class -- OPTIONAL
+*Implement the pulsing announcement class
+*Send messages from the brain to the announcement panel. Announcement queue?
+*Get a pane to draw on a pane.
+*Decide how to handle drawing in different resolutions ( currently things scale, which may end up being what i want )
+*Make CMAKE know how to traverse the filepath itself
+*Alter text to not change pixel resolution upon loading
+*Make CMAKE copy internal files to the correct directory when building the project
+
+======================9/13/2015============================
+A background picture now draws. not a very good one, but that doesn't matter at this point (art related).
+Also, text now is LOADED based on screen res... maybe this is wrong? (probably wrong).
+
 ===================== 9/10/2015 ============================
 CMake now properly sorts files into a folder hierarchy in visual studio (matching that of the source code
 folder structure). I can probably mimic the macro I made and create a deepdiving way to find/add all the
 src .h and .cpp files as well. I also created the bkgpicpasset, but it isn't functional yet.
-*Create a "PaneAsset" base class
-*Implement the rest of the debug pane
-*Get a pane to draw on a pane
 
 ===================== 9/9/2015 =============================
-*Create a "PaneAsset" base class
-*Create the "BackgroundPaneAsset" class
-*Implement that class and the pulsing announcement class
-*Send messages from the brain to the announcement panel. Announcement queue?
-*Get a pane to draw on a pane.
+Added the TO DO list on the top here
 
 
 =============== 9/4/2015 ===============

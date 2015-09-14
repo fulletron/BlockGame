@@ -5,8 +5,8 @@
 #define FLT_MAX							3.402823466e+38F        /* max value */
 #endif
 
-#define SCREEN_WIDTH 800 //1920
-#define SCREEN_HEIGHT 600 //1200
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
 
 #define FPS_CAP_MS 0.016666
 
@@ -95,6 +95,10 @@ _INT64 constexpr CV8( char const * in ) {
 
 #include <vector>
 #define _VECTOR std::vector
+
+#include <cassert> // KYLE :: TODO :: WIN32 ONLY?
+//#define GS_ASSERT(BOOL_WE_WANT, BOOL_TO_TEST,RET) assert(BOOL_WE_WANT == BOOL_TO_TEST)
+#define GS_ASSERT(BOOL_WE_WANT, BOOL_TO_TEST,RET) if( BOOL_WE_WANT != BOOL_TO_TEST ) return RET;
 
 namespace CV8 {
 const _INT64 test = 0000000000001;

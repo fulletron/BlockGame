@@ -13,6 +13,30 @@ Window::~Window()
 {
 }
 
+void (*GLFWwindowsizefun)(GLFWwindow*, int, int);
+
+void windowResizeCallback(GLFWwindow* window, int width, int height)
+{
+	//1.77f == 16:9
+	//1.6f == 16:10
+	//1.5f == 3:2
+	//1.33f == 4:3
+	// Returns monitor that is currently fullscreening the window- this is 0 if windowed mode
+	if (glfwGetWindowMonitor(window))
+		return;
+
+	float imperfect_aspect_ratio = (float)width / (float)height;
+
+	if (imperfect_aspect_ratio > 1.69f )
+		glfwSetWindowSize( window, height * 1.77, height ); 
+	else if (imperfect_aspect_ratio > 1.55f )
+		glfwSetWindowSize( window, height * 1.6f, height );
+	else if (imperfect_aspect_ratio > 1.41f )
+		glfwSetWindowSize( window, height * 1.5f, height );
+	else
+		glfwSetWindowSize( window, height * 1.33f, height );
+}
+
 _UINT32 Window::__createOnlyWindow()
 {
 	/// TODO :: add loading of a pref, add fullscreen using glfwGetPrimaryMonitor();
@@ -63,6 +87,9 @@ _UINT32 Window::init()
 	// Initialize GLEW
 	glewExperimental = GL_TRUE;
 	glewInit();
+
+	// SET WINDOW RESIZE CALLBACK
+	glfwSetWindowSizeCallback(m_pGLFWwindow, windowResizeCallback);
 
 	_CheckForErrors();
 

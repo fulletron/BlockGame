@@ -23,8 +23,7 @@ int main()
 	g_window.init();
 	g_input.init();
 	
-	if ( _CheckForErrors() )
-		return -1;
+	GS_ASSERT ( false, _CheckForErrors(), -1 );
 
 	// For now, the game states do not exist
 	// instead, i have this one pane (states are groupings
@@ -51,6 +50,7 @@ int main()
 
 		double dt;
 		do{ dt = glfwGetTime(); } // TODO :: something more productive
+		//while (0); // cap the fps
 		while (dt < FPS_CAP_MS); // cap the fps
 
 		// gdb update?
