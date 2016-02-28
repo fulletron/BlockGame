@@ -38,8 +38,8 @@ else()
 	add_definitions(-DGTEST_HAS_PTHREAD=0)
 endif()
 
-#]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
-
+##TEMPORARILY REMOVING BOOST
+#[[
 set( Boost_USE_STATIC_LIBS ON )
 set( Boost_USE_MULTITHREADED ON )
 set( Boost_USE_STATIC_RUNTIME OFF )
@@ -69,8 +69,7 @@ endif()
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR})	
 
-#[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
-
+]]
 
 #========================================
 find_package(OpenGL)

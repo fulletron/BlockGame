@@ -1,6 +1,8 @@
 #ifndef __GSTHREAD_H_
 #define __GSTHREAD_H_
 
+/** DON'T DEAL WITH MULTITHREADING YET
+
 #include "typedefinitions.h"
 #include <boost/thread.hpp>
 
@@ -21,19 +23,10 @@ typedef boost::mutex GSMutex;
 #define GSScopedLock boost::mutex::scoped_lock
 
 };
-/*
 
-class GSThread
-{
-private:
-public:
-	boost::thread m_thread;
-	int test();
+};
 };
 
 */
-
-};
-};
 
 #endif

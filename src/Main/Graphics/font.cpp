@@ -245,13 +245,19 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 	if( error )
 		return error;
 
+	// BOOST BASED
+	//_GSPath path = GS::Utilities::FileSystem::getCurrentFullPath();	
+	//path /= "./Internal/Resources/Fonts/";
+	//path /= a_fontFile;
+
 	_GSPath path = GS::Utilities::FileSystem::getCurrentFullPath();	
-	path /= "./Internal/Resources/Fonts/";
-	path /= a_fontFile;
+	path.append("./Internal/Resources/Fonts/");
+	path.append("a_fontFile");
 
 	// m_face is the handle to the entire set of characters
-	error = FT_New_Face(	m_library,
-				path.string().c_str(),
+	error = FT_New_Face(m_library,
+				// BOOSTBASED path.string().c_str(),
+				path.c_str(),
 				0,
 				&m_face );
 	

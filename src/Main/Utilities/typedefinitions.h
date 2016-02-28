@@ -5,8 +5,10 @@
 #define FLT_MAX							3.402823466e+38F        /* max value */
 #endif
 
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1080
+#define SCREEN_WIDTH 800
+//1920
+#define SCREEN_HEIGHT 600
+//1080
 
 #define FPS_CAP_MS 0.016666
 

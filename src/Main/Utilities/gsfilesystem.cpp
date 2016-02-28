@@ -4,14 +4,27 @@
 #include <string>
 #include <sstream>
 
+// THIS IS FOR FILESYSTEM.
+#ifdef WIN32
+#include <windows.h>
+#else
+// OTHER DEFS
+#endif
+
 namespace GS {
 namespace Utilities {
 namespace FileSystem {
 
 _GSPath getCurrentFullPath()
 {
-	_GSPath full_path( boost::filesystem::current_path() );
-	return full_path;
+#ifdef WIN32
+	char buffer[MAX_PATH];
+	GetModuleFileName(NULL, buffer, MAX_PATH);
+	std::string::size_type pos = std::string(buffer).find_last_of("\\/");
+	return std::string(buffer).substr(0, pos);
+#else
+	return "KYLE :: TODO :: IMPLEMENT";
+#endif
 }
 
 std::string loadFile(const char *fname)

@@ -13,7 +13,7 @@ target_link_libraries( Utilities
 	${OPENGL_LIBRARIES}
 	GLEW
 	glfw
-	${Boost_LIBRARIES}
+	# TEMP REM ${Boost_LIBRARIES}
 	freetype
 	SOIL
 )
@@ -22,7 +22,7 @@ add_library( UtilitiesTest ${UTILITIESSRC} )
 target_link_libraries( UtilitiesTest
 	${OPENGL_LIBRARIES}
 	GLEW
-	${Boost_LIBRARIES}
+	# TEMP REM ${Boost_LIBRARIES}
 	glfw
 	freetype
 	SOIL

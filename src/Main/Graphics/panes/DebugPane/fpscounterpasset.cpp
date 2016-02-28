@@ -49,7 +49,11 @@ void FPSCounterPasset::shutdown()
 void FPSCounterPasset::draw( GS::Graphics::IDimensionable * const a_dims )
 {
 	std::string fps = "FIRST!";
-	fps= "I need to change what is written FPS: " + boost::lexical_cast<std::string>( m_pFPSCounterPresentable->getPresentationElement8(0).asInt32 );
+	//fps= "I need to change what is written FPS: " + boost::lexical_cast<std::string>( m_pFPSCounterPresentable->getPresentationElement8(0).asInt32 );
+
+	fps = "FPS : ";
+	std::string num = std::to_string(m_pFPSCounterPresentable->getPresentationElement8(0).asInt32);
+	fps.append(num);
 
 	glUseProgram( m_pFontDrawingProg->getProgram() );
 	glActiveTexture( GL_TEXTURE0 );
