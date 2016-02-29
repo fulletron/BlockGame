@@ -47,7 +47,7 @@ public:
 */
 
 namespace ThreadTestNS {
-
+	/*
 class MockObject2
 {
 private:
@@ -161,7 +161,7 @@ TEST(Thread, basicthread)
 {
 	boop();
 }
-
+*/
 /*
 TEST(Thread, init)
 {
@@ -185,7 +185,7 @@ TEST(Thread, init)
 	test++;
 }
 */
-
+/*
 void dotest( MockPresenterObject * pres )
 {
 	for (int i = 0; i < TEST_NUM; ++i)
@@ -193,7 +193,8 @@ void dotest( MockPresenterObject * pres )
 
 	while (!pres->isDoneProcessing()){}
 }
-
+*/
+/*
 TEST(Thread, mutex)
 {
 	MockPresenterObject pres;
@@ -209,7 +210,7 @@ TEST(Thread, mutex)
 	presthread.join();
 }
 
-
+*/
 };
 
 #endif

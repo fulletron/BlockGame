@@ -8,19 +8,18 @@ TextureResource * ResourceLibrary::__buildTextureRes( const _UINT64 a_name )
 {
 	TextureResource * newRes = new TextureResource();
 	std::string filename = "";
-	std::string src_textures = "Internal/Resources/Textures/";
+	std::string src_textures = "/Internal/Resources/Textures/";
+	std::string src_file = _FS::getCurrentFullPath();
+	src_file.append(src_textures);
+	filename.append(src_file);
 	
 	switch(a_name)
 	{
 	case CV8::RES_TEX_PANEBKG:
-	filename = ( _FS::getCurrentFullPath()
-	.append(src_textures)
-	.append("smallpanelbacking.png").c_str());
+	filename.append("smallpanelbacking.png");
 	break;
 	case CV8::RES_TEX_FADEBAR:
-	filename = (_FS::getCurrentFullPath()
-	.append(src_textures)
-	.append("gradiantfadebar.png").c_str());
+	filename.append("gradiantfadein.png");
 	break;
 	default: return 0;
 	}

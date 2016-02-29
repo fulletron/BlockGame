@@ -38,39 +38,6 @@ else()
 	add_definitions(-DGTEST_HAS_PTHREAD=0)
 endif()
 
-##TEMPORARILY REMOVING BOOST
-#[[
-set( Boost_USE_STATIC_LIBS ON )
-set( Boost_USE_MULTITHREADED ON )
-set( Boost_USE_STATIC_RUNTIME OFF )
-
-###set( Boost_DEBUG ON )
-
-set(Boost_LIBRARY_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_55_0/stage/lib)
-set(BOOST_LIBRARYDIR ${CMAKE_SOURCE_DIR}/External/boost_1_55_0/stage/lib)
-set(Boost_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/External/boost_1_55_0)
-set(BOOST_ROOT ${CMAKE_SOURCE_DIR}/External/boost_1_55_0)
-
-if(WIN32)
-    find_package( Boost 1.55.0 COMPONENTS system regex filesystem atomic chrono thread timer date_time REQUIRED )
-elseif(APPLE)
-    find_package(Boost)
-else()
-    add_definitions( -DBOOST_ALL_NO_LIB )
-    find_package( Boost 1.55.0 COMPONENTS system regex filesystem atomic chrono thread timer date_time)
-endif()
-
-if(Boost_FOUND)
-    MESSAGE("BOOST Found!")
-else()
-    MESSAGE("BOOST not found")
-endif()
-
-include_directories(${Boost_INCLUDE_DIR})
-link_directories(${Boost_LIBRARY_DIR})	
-
-]]
-
 #========================================
 find_package(OpenGL)
 if (OPENGL_FOUND)

@@ -45,8 +45,7 @@ int main()
 
 	while( g_isRunning && g_window.isOpen() )
 	{
-		if ( _CheckForErrors() )
-			return -1;
+		GS_ASSERT(false, _CheckForErrors(), -1);
 
 		double dt;
 		do{ dt = glfwGetTime(); } // TODO :: something more productive
@@ -61,6 +60,8 @@ int main()
 		//fpsCounter.update(dt);
 		brain->update(dt);
 
+		GS_ASSERT(false, _CheckForErrors(), -1);
+
 		// all of this is placeholder until pane/state are implemeneted
 
 		float ratio;
@@ -74,11 +75,20 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.22f,0.22f,0.52f,1.0f);
 
+		GS_ASSERT(false, _CheckForErrors(), -1);
+
 		debugPane.update(dt);
+
+		GS_ASSERT(false, _CheckForErrors(), -1);
+
 		debugPane.draw( &g_window );
+
+		GS_ASSERT(false, _CheckForErrors(), -1);
 
 		g_window.swapBuffers();
 		glfwPollEvents();
+
+		GS_ASSERT(false, _CheckForErrors(), -1);
 	}
 
 

@@ -252,7 +252,7 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 
 	_GSPath path = GS::Utilities::FileSystem::getCurrentFullPath();	
 	path.append("./Internal/Resources/Fonts/");
-	path.append("a_fontFile");
+	path.append(a_fontFile);
 
 	// m_face is the handle to the entire set of characters
 	error = FT_New_Face(m_library,
@@ -388,12 +388,13 @@ _INT32 FontResource::loadFile( const char * a_fontFile, const int a_size )
 				sizeof(unsigned char) * w * h );
 
 		// Perhaps an OpenGL Error Check Here? TODO ::
-
+		GS_ASSERT(false, _CheckForErrors(), -1);
 		glTexSubImage2D( GL_TEXTURE_2D, 0,
 			m_biggest_w * ( STATIC_CAST(int, glyphNumCur) % 10 ),
 			m_biggest_h * ( STATIC_CAST(int, glyphNumCur) / 10 ),
 			w, h, GL_RED, GL_UNSIGNED_BYTE,
 			data + biggest_char * glyphNumCur );
+		GS_ASSERT(false, _CheckForErrors(), -1);
 	}
 
 	_CheckForErrors();
