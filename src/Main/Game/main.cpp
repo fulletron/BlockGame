@@ -40,6 +40,14 @@ int main()
 	// game variable
 	g_isRunning = true;
 
+	// TEST DRAWING OF PICTURE
+	GS::Graphics::TextureResource * test_Tex = g_lib.findTextureResource(CV8::TEX::PANEBKG);
+	GS::Graphics::ShaderProgramResource * test_TexProg = g_lib.findShaderProgramResource(CV8::RES_SP_TEXRECTDRAW);
+	GS::Graphics::MeshResource * test_Mesh = g_lib.findMeshResource(CV8::RES_MSH_SCREEN);
+
+	GLint texloc = glGetUniformLocation(test_TexProg->getProgram(), "tex");
+	GLint transloc = glGetUniformLocation(test_TexProg->getProgram(), "trans");
+
 	// TEST DRAWING OF TEXT
 	GS::Graphics::ShaderProgramResource * test_SPR = g_lib.findShaderProgramResource(CV8::RES_SP_FONTDRAW);
 	GS::Graphics::FontResource * test_Font = g_lib.findFontResource(CV8::RES_FONT_KASHSCRIPT_16);
@@ -78,8 +86,41 @@ int main()
 		glBindFramebuffer(GL_FRAMEBUFFER, g_window.getFramebuffer() );
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.22f,0.22f,0.52f,1.0f);
+// TEST PIC DRAWING [[[[[[[[[[[[[[[[[[[[[[[[[[[
 
-		// TEST FONT DRAWING
+		glUseProgram(test_TexProg->getProgram());
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, test_Tex->getTexture());
+		glUniform1i(texloc, 0);
+
+		// BIND ALL THE CRAP
+		glBindVertexArray(test_Mesh->getVAO());
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, test_Mesh->getEBO());
+		glUseProgram(test_TexProg->getProgram());
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, test_Tex->getTexture());
+
+		glUniform1i(texloc, 0);
+
+		glm::mat4 trans;
+		trans = glm::scale(trans, glm::vec3(1.0f, 1.0f, 1.0f));
+		trans = glm::translate(trans, glm::vec3(0.0f * 2.0f, 0.0f * 2.0f, 0.0f));
+		glUniformMatrix4fv(transloc, 1, GL_FALSE, glm::value_ptr(trans));
+
+		// THESE NEED TO BE SPECIFIED EVERYTIME
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // GL_REPEAT, GL_MIRRORED_REPEAT, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_BORDER
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+		_CheckForErrors();
+
+// ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+// TEST FONT DRAWING [[[[[[[[[[[[[[[[[[[[[[[
 		std::string test_str = "THIS IS A TEST!";
 
 		glUseProgram(test_SPR->getProgram());
@@ -92,9 +133,9 @@ int main()
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		GLint transloc = glGetUniformLocation(test_SPR->getProgram(), "trans");
-		glm::mat4 trans;
-		glUniformMatrix4fv(transloc, 1, GL_FALSE, glm::value_ptr(trans));
+		GLint transloc2 = glGetUniformLocation(test_SPR->getProgram(), "trans");
+		glm::mat4 trans2;
+		glUniformMatrix4fv(transloc2, 1, GL_FALSE, glm::value_ptr(trans2));
 
 		test_Font->renderText(
 			test_str,
@@ -104,7 +145,7 @@ int main()
 			1.0f,
 			GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f)
 			);
-
+// ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 		/*
 
 		GS_ASSERT(false, _CheckForErrors(), -1);
