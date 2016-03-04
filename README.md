@@ -3,7 +3,7 @@ Portfolio and BlockGame
 
 Want to build this project?
 
-[Windows Instructions](https://github.com/fulletron/BlockGame/blob/master/not%20src/Linux%20Instructions.txt)
+[Windows Instructions](https://github.com/fulletron/BlockGame/blob/master/not%20src/Windows%20Instructions.txt)
 
 [Linux Instructions](https://github.com/fulletron/BlockGame/blob/master/not%20src/Linux%20Instructions.txt)
 
