@@ -18,8 +18,6 @@ _INT32 ShaderResource::init( const char * a_source, const _INT32 a_type )
 		return -1;
 	if( __compileShader( a_source, a_type ) )
 		m_inited = true;
-	if( _CheckForErrors() )
-		return -101;
 	return 0;
 }
 
@@ -36,6 +34,11 @@ _INT32 ShaderResource::__compileShader( const char * a_source, const _INT32 a_ty
 	glCompileShader( m_shader );
 
 	glGetShaderiv( m_shader, GL_COMPILE_STATUS, &ret );
+
+	if (!ret)
+	{
+		///MAKE NOISE
+	}
 
 	return ret;
 }

@@ -18,6 +18,8 @@ public:
 
 	_INT32 init( 	const char * a_source,
 			const _INT32 a_type );
+	_INT32 init(std::string * a_source,
+		const _INT32 a_type);
 
 	void shutdown();
 	_UINT32 getShader(){return m_shader;}

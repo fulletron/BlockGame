@@ -1,4 +1,4 @@
-#version 150
+#version 150 core
 
 in vec2 Texcoord;
 in vec4 Color;
@@ -7,6 +7,7 @@ uniform sampler2D tex;
 
 void main() 
 {
-	float temp = texture2D(tex, Texcoord).r;
+	float temp = texture(tex, Texcoord).r;
 	outColor = vec4(Color.r, Color.g, Color.b, temp);
-}
+//	outColor = vec4(Color.r, Color.g, Color.b, 1.0f);
+};
