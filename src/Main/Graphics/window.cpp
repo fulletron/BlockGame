@@ -47,9 +47,9 @@ _UINT32 Window::__createOnlyWindow()
 		glfwTerminate();
 		return 101;
 	}
-
 	/// Make the window the opengl context
 	glfwMakeContextCurrent(m_pGLFWwindow);
+	_CheckForErrors();
 
 	/// All systems go
 	m_isOpen = true;
@@ -60,36 +60,51 @@ _UINT32 Window::init()
 {
 	/// TODO :: KYLE :: MISPLACED ::
 	//m_projMat = glm::ortho(0,SCREEN_WIDTH,0,SCREEN_HEIGHT);
-
-	glClearColor(0.0f,0.0f,0.0f,0.0f);
-
 	if(!glfwInit())
 		return 1;
 
-	// SET STANDARD ERROR CALLBACK
-	glfwSetErrorCallback(GS::Utilities::ErrorCallbacks::glfwErrorCallback);
 
 	/// Set GLFW Version
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	/// SOIL USES DEPRECATED CALLS(IN CERTAIN FUNCTIONS). IT IS POSSIBLE YOU WILL NOT BE ABLE TO FORWARD COMPAT!
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	/// Set Multisample Rate
-	glfwWindowHint(GLFW_SAMPLES, 8);
+	//glfwWindowHint(GLFW_SAMPLES, 8);
 
 	if( __createOnlyWindow() )
 		return 2;
 
+	_CheckForErrors();
+
 	glfwSwapInterval(0);
 
+	_CheckForErrors();
 	// Initialize GLEW
 	glewExperimental = GL_TRUE;
+
+	_CheckForErrors();
+
 	glewInit();
+	// THIS ALWAYS FAILS WITH 1282
+	_CheckForErrors();
 
 	// SET WINDOW RESIZE CALLBACK
 	glfwSetWindowSizeCallback(m_pGLFWwindow, windowResizeCallback);
+
+	_CheckForErrors();
+
+	// SET STANDARD ERROR CALLBACK
+	glfwSetErrorCallback(GS::Utilities::ErrorCallbacks::glfwErrorCallback);
+
+	_CheckForErrors();
+
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 	_CheckForErrors();
 

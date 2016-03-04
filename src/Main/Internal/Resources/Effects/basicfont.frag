@@ -1,4 +1,4 @@
-#version 150 core
+#version 150
 
 in vec2 Texcoord;
 in vec4 Color;

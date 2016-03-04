@@ -16,11 +16,12 @@ GS::Graphics::ResourceLibrary g_lib;
 
 int main()
 {
-	g_lib.init();
-
 	// Global window and global input, both
 	// will only ever exist once
 	g_window.init();
+	_CheckForErrors();
+
+	g_lib.init();
 	g_input.init();
 	
 	GS_ASSERT ( false, _CheckForErrors(), -1 );
@@ -28,10 +29,10 @@ int main()
 	// For now, the game states do not exist
 	// instead, i have this one pane (states are groupings
 	// of panes)
-	GS::Graphics::DebugPane debugPane;
-	debugPane.init(0);
-	GS::Game::Brain * brain = &GS::Game::Brain::getInstance();
-	brain->init();
+	//GS::Graphics::DebugPane debugPane;
+	//debugPane.init(0);
+	//GS::Game::Brain * brain = &GS::Game::Brain::getInstance();
+	//brain->init();
 	//s_brain = &brain;
 	// checks for gl and glfw errors!
 	if ( _CheckForErrors() )
@@ -70,7 +71,7 @@ int main()
 		glfwSetTime(0.0);
 
 		//fpsCounter.update(dt);
-		brain->update(dt);
+		//brain->update(dt);
 
 		GS_ASSERT(false, _CheckForErrors(), -1);
 
@@ -122,20 +123,25 @@ int main()
 // ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 // TEST FONT DRAWING [[[[[[[[[[[[[[[[[[[[[[[
 		std::string test_str = "THIS IS A TEST!";
-
-		glUseProgram(test_SPR->getProgram());
+		_CheckForErrors();
+		if ( test_SPR != test_TexProg )
+		   glUseProgram(test_SPR->getProgram());
+		_CheckForErrors();
 		glActiveTexture(GL_TEXTURE0);
+		_CheckForErrors();
 		glBindTexture(GL_TEXTURE_2D, test_Font->m_texture);
 		//glUniform1i( glGetUniformLocation( m_pFontDrawingProg->getProgram(), "tex" ), 0 );
-
+		_CheckForErrors();
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
+		_CheckForErrors();
 		GLint transloc2 = glGetUniformLocation(test_SPR->getProgram(), "trans");
 		glm::mat4 trans2;
 		glUniformMatrix4fv(transloc2, 1, GL_FALSE, glm::value_ptr(trans2));
+
+		_CheckForErrors();
 
 		test_Font->renderText(
 			test_str,
@@ -145,6 +151,7 @@ int main()
 			1.0f,
 			GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f)
 			);
+		_CheckForErrors();
 // ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
 		/*
 
