@@ -40,6 +40,10 @@ int main()
 	// game variable
 	g_isRunning = true;
 
+	// TEST DRAWING OF TEXT
+	GS::Graphics::ShaderProgramResource * test_SPR = g_lib.findShaderProgramResource(CV8::RES_SP_FONTDRAW);
+	GS::Graphics::FontResource * test_Font = g_lib.findFontResource(CV8::RES_FONT_KASHSCRIPT_16);
+
 	// total time!
 	double tt = 0.0;
 
@@ -75,6 +79,34 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.22f,0.22f,0.52f,1.0f);
 
+		// TEST FONT DRAWING
+		std::string test_str = "THIS IS A TEST!";
+
+		glUseProgram(test_SPR->getProgram());
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, test_Font->m_texture);
+		//glUniform1i( glGetUniformLocation( m_pFontDrawingProg->getProgram(), "tex" ), 0 );
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		GLint transloc = glGetUniformLocation(test_SPR->getProgram(), "trans");
+		glm::mat4 trans;
+		glUniformMatrix4fv(transloc, 1, GL_FALSE, glm::value_ptr(trans));
+
+		test_Font->renderText(
+			test_str,
+			//GS::Graphics::Vector2_t( STATIC_CAST(_FLOAT, -dims.x), STATIC_CAST(_FLOAT, (dims.y-m_pFont->getHeight() ) ) ), 
+			GS::Graphics::Vector2_t(0.0f, 0.0f),
+			g_window.getPixelDimensions(),
+			1.0f,
+			GS::Graphics::Color4f_t(0.0f, 1.0f, 1.0f, 1.0f)
+			);
+
+		/*
+
 		GS_ASSERT(false, _CheckForErrors(), -1);
 
 		debugPane.update(dt);
@@ -84,7 +116,7 @@ int main()
 		debugPane.draw( &g_window );
 
 		GS_ASSERT(false, _CheckForErrors(), -1);
-
+		*/
 		g_window.swapBuffers();
 		glfwPollEvents();
 
