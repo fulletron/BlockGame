@@ -58,12 +58,16 @@ void FPSCounterPasset::draw( GS::Graphics::IDimensionable * const a_dims )
 	glUseProgram( m_pFontDrawingProg->getProgram() );
 	glActiveTexture( GL_TEXTURE0 );
 	glBindTexture( GL_TEXTURE_2D, m_pFpsFont->m_texture );
-	glUniform1i( glGetUniformLocation( m_pFontDrawingProg->getProgram(), "tex" ), 0 );
+	//glUniform1i( glGetUniformLocation( m_pFontDrawingProg->getProgram(), "tex" ), 0 );
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	GLint transloc = glGetUniformLocation(m_pFontDrawingProg->getProgram(), "trans");
+	glm::mat4 trans;
+	glUniformMatrix4fv(transloc, 1, GL_FALSE, glm::value_ptr(trans));
 	
 	//for(int i = 0; i < 2000; ++i)
 	//	m_pFont->renderText( "Test!", 
