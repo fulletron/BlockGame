@@ -2,6 +2,7 @@
 #define __UTILITIES_H_
 
 #include "typedefinitions.h"
+#include "Graphics/openglincludes.h"
 #include "gsvariant.h"
 #include "gsthread.h"
 #include "input.h"

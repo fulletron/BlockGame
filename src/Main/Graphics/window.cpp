@@ -6,13 +6,13 @@ namespace Graphics {
 
 Window::Window()
 {
-	m_pGLFWwindow = 0;
+//	m_pGLFWwindow = 0;
 }
 
 Window::~Window()
 {
 }
-
+/*
 void (*GLFWwindowsizefun)(GLFWwindow*, int, int);
 
 void windowResizeCallback(GLFWwindow* window, int width, int height)
@@ -55,9 +55,10 @@ _UINT32 Window::__createOnlyWindow()
 	m_isOpen = true;
 	return 0;
 }
-
+*/
 _UINT32 Window::init()
 {
+	/*
 	/// TODO :: KYLE :: MISPLACED ::
 	//m_projMat = glm::ortho(0,SCREEN_WIDTH,0,SCREEN_HEIGHT);
 	if(!glfwInit())
@@ -75,7 +76,7 @@ _UINT32 Window::init()
 	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	/// Set Multisample Rate
-	//glfwWindowHint(GLFW_SAMPLES, 8);
+	glfwWindowHint(GLFW_SAMPLES, 8);
 
 	if( __createOnlyWindow() )
 		return 2;
@@ -83,28 +84,28 @@ _UINT32 Window::init()
 	_CheckForErrors();
 
 	glfwSwapInterval(0);
-
+	*/
 	_CheckForErrors();
 	// Initialize GLEW
-	glewExperimental = GL_TRUE;
+	//glewExperimental = GL_TRUE;
 
 	_CheckForErrors();
 
-	glewInit();
+	//glewInit();
 	// THIS ALWAYS FAILS WITH 1282
 	_CheckForErrors();
 
 	// SET WINDOW RESIZE CALLBACK
-	glfwSetWindowSizeCallback(m_pGLFWwindow, windowResizeCallback);
+	//glfwSetWindowSizeCallback(m_pGLFWwindow, windowResizeCallback);
 
 	_CheckForErrors();
 
 	// SET STANDARD ERROR CALLBACK
-	glfwSetErrorCallback(GS::Utilities::ErrorCallbacks::glfwErrorCallback);
+	//glfwSetErrorCallback(GS::Utilities::ErrorCallbacks::glfwErrorCallback);
 
 	_CheckForErrors();
 
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	//glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 	_CheckForErrors();
 
@@ -113,44 +114,45 @@ _UINT32 Window::init()
 
 _UINT32 Window::shutdown()
 {
-	glfwDestroyWindow(m_pGLFWwindow);
+	//glfwDestroyWindow(m_pGLFWwindow);
 	m_isOpen = false;
-	glfwTerminate();
+	//glfwTerminate();
 
 	return 0;
 }
 
 void Window::swapBuffers()
 {
-	glfwSwapBuffers(m_pGLFWwindow);
+	//glfwSwapBuffers(m_pGLFWwindow);
 }
 
-GLuint Window::getFramebuffer() const
-{
-	return 0;
-}
+//GLuint Window::getFramebuffer() const
+//{
+//	return 0;
+//}
 
 Vec2D<_INT32> Window::getPixelDimensions() const
 {
 	Vec2D<_INT32> dims; // KYLE :: THIS MIGHT GET PERMISSIVE ON
 				// DIFF BIT MACHINE
-	glfwGetWindowSize(m_pGLFWwindow, &dims.x, &dims.y);
+	//glfwGetWindowSize(m_pGLFWwindow, &dims.x, &dims.y);
 	return dims;
 }
 
 bool Window::isOpen()
 {
-	if(glfwWindowShouldClose(m_pGLFWwindow)
-	|| !m_isOpen )
-		return false;
+	//if(glfwWindowShouldClose(m_pGLFWwindow)
+	//|| !m_isOpen )
+	//	return false;
 
 	return true;
 }
-
+/*
 GLFWwindow * Window::getGLFWwindow()
 {
 	return m_pGLFWwindow;
 }
+*/
 
 };
 };

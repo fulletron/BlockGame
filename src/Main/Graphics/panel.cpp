@@ -9,7 +9,7 @@ extern GS::Graphics::ResourceLibrary g_lib;
 
 namespace GS {
 namespace Graphics {
-
+	/*
 _BOOL Pane::m_screenLoaded = false;
 GLuint Pane::m_vaoQuad = 0;
 GLuint Pane::m_vboQuad = 0;
@@ -178,17 +178,17 @@ _BOOL Pane::isDirty() const
 
 _BOOL Pane::handleInput()
 {
-	/*
-	// Go through all of this panels PaneAssets
-	for( std::vector<IPaneAsset *>::const_iterator it_asset = m_paneAssets.begin(); 
-		it_asset != m_paneAssets.end();
-		++it_asset )
-		// If any asset is dirty, return true
-		if ( (*it_asset)->handleInput() )
-			return true;
-
-	// If no asset is dirty, the panel itself is clean
-	*/
+	
+	//// Go through all of this panels PaneAssets
+	//for( std::vector<IPaneAsset *>::const_iterator it_asset = m_paneAssets.begin(); 
+	//	it_asset != m_paneAssets.end();
+	//	++it_asset )
+	//	// If any asset is dirty, return true
+	//	if ( (*it_asset)->handleInput() )
+	//		return true;
+//
+//	// If no asset is dirty, the panel itself is clean
+	
 	return false;
 }
 
@@ -260,32 +260,32 @@ void Pane::__glFramebufferDestroy()
 	if( m_framebuffer )
 		glDeleteFramebuffers(1, &m_framebuffer);
 }
-/* REFERENCE
-    // Create frame buffer
-    GLuint frameBuffer;
-    glGenFramebuffers(1, &frameBuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
+ //REFERENCE
+    //// Create frame buffer
+    //GLuint frameBuffer;
+    //glGenFramebuffers(1, &frameBuffer);
+    //glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 
-    // Create texture to hold color buffer
-    GLuint texColorBuffer;
-    glGenTextures(1, &texColorBuffer);
-    glBindTexture(GL_TEXTURE_2D, texColorBuffer);
+    //// Create texture to hold color buffer
+    //GLuint texColorBuffer;
+    //glGenTextures(1, &texColorBuffer);
+    //glBindTexture(GL_TEXTURE_2D, texColorBuffer);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 800, 600, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texColorBuffer, 0);
+    //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, texColorBuffer, 0);
 
-    // Create Renderbuffer Object to hold depth and stencil buffers
-    GLuint rboDepthStencil;
-    glGenRenderbuffers(1, &rboDepthStencil);
-    glBindRenderbuffer(GL_RENDERBUFFER, rboDepthStencil);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rboDepthStencil);
+    //// Create Renderbuffer Object to hold depth and stencil buffers
+    //GLuint rboDepthStencil;
+    //glGenRenderbuffers(1, &rboDepthStencil);
+    //glBindRenderbuffer(GL_RENDERBUFFER, rboDepthStencil);
+    //glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, 800, 600);
+    //glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rboDepthStencil);
 
-*/
+
 _UINT32 Pane::__glTexColorBufferInit()
 {
 	if( m_texColorBuffer )
@@ -364,6 +364,6 @@ void Pane::__glRboDepthStencilDestroy()
 	if( m_rboDepthStencil )
 		glDeleteRenderbuffers( 1, &m_rboDepthStencil );
 }
-
+*/
 };
 };

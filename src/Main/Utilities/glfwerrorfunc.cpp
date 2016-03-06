@@ -11,7 +11,7 @@ namespace Utilities {
 int ErrorCallbacks::g_latestGLError = 0;
 int ErrorCallbacks::g_latestErrorCode = 0;
 const char * ErrorCallbacks::g_pLatestErrorDesc = 0;
-
+/*
 void ErrorCallbacks::glfwErrorCallback(int a_int, const char * a_desc)
 {
 	g_latestErrorCode = a_int;
@@ -30,10 +30,12 @@ bool ErrorCallbacks::glfwErrorsExist()
 
 	return false;
 }
+*/
 
 bool ErrorCallbacks::glErrorsExist()
 {
-	g_latestGLError = glGetError();
+	/*
+	g_latestGLError = 0 glGetError();
 	if (g_latestGLError != GL_NO_ERROR)
 	{
 #ifdef WIN32
@@ -41,7 +43,7 @@ bool ErrorCallbacks::glErrorsExist()
 #endif
 		return true;
 	}
-
+	*/
 	return false;
 }
 
@@ -50,8 +52,8 @@ bool ErrorCallbacks::flaggedErrorsExist()
 	bool returnable = false;
 	if (glErrorsExist())
 		returnable = true;
-	if (glfwErrorsExist())
-		returnable = true;
+	//if (glfwErrorsExist())
+	//	returnable = true;
 
 	return returnable;
 }

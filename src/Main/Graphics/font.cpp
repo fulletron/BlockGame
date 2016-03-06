@@ -160,7 +160,7 @@ _INT32 FontResource::renderText(const std::string & a_text,
 	// KYLE ::
 	// TODO ::
 	// Enable font render shader. Perhaps	
-	
+	/*
 	glBindVertexArray( m_vao );
 	glBindBuffer( GL_ARRAY_BUFFER, m_vbo );
 	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, m_ibo );
@@ -215,6 +215,7 @@ _INT32 FontResource::renderText(const std::string & a_text,
 	//m_FontRender.Unbind();
 
 	_CheckForErrors();
+	*/
 
 	// Reset trash frames allocation back to top!
 	delete [] verts;
@@ -424,11 +425,11 @@ void FontResource::destroyLibrary()
 
 void FontResource::shutdown(bool a_killLib)
 {
-	glDeleteVertexArrays(1, &m_vao); 
-	glDeleteBuffers(1, &m_vbo);
-	glDeleteBuffers(1, &m_ibo);
+	//glDeleteVertexArrays(1, &m_vao); 
+	//glDeleteBuffers(1, &m_vbo);
+	//glDeleteBuffers(1, &m_ibo);
 
-	glDeleteTextures(1, &m_texture);
+	//glDeleteTextures(1, &m_texture);
 	FT_Done_Face( m_face );
 	if( a_killLib )
 	{

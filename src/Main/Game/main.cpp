@@ -1,30 +1,154 @@
 #include <iostream>
 
-#include <Utilities/typedefinitions.h>
-#include <Utilities/utilities.h>
-#include <Graphics/graphics.h>
+#include "Graphics/openglincludes.h"
+
+//#include <Utilities/typedefinitions.h>
+//#include <Utilities/utilities.h>
+//#include <Graphics/graphics.h>
 
 //#include "testpane.h"
-#include <Graphics/Panes/DebugPane/debugpane.h>
-#include "brain.h"
+//#include <Graphics/Panes/DebugPane/debugpane.h>
+//#include "brain.h"
+//#pragma warning( disable : 4005 )
+//#include "gl/glew.h"
+//#include <SDL/SDL_opengl.h>
 
-bool g_isRunning = false;
+//bool g_isRunning = false;
 
-GS::Graphics::Window g_window;
-GS::Utilities::Input g_input;
-GS::Graphics::ResourceLibrary g_lib;
+//GS::Graphics::Window g_window;
+//GS::Utilities::Input g_input;
+//GS::Graphics::ResourceLibrary g_lib;
 
-int main()
+int main(int argc, char * argv[])
 {
+	int error = 0;
+	SDL_Init(SDL_INIT_VIDEO);
+
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+
+	SDL_Window * window = SDL_CreateWindow("TEST!", 100, 100, 800, 600, SDL_WINDOW_OPENGL);
+	SDL_GLContext context = SDL_GL_CreateContext(window);
+
+	glewExperimental = true;
+	glewInit();
+	error = glGetError();
+
+	/////////////////////// BEGIN
+
+	float vertices[] = {
+		0.0f, 0.5f, // Vertex 1 (TOP)
+		0.5f, -0.5f, // Vertex 2 (BOT RIGHT)
+		-0.5f, -0.5f // Vertex 3 (BOT LEFT)
+	};
+
+	GLuint vbo;
+	glGenBuffers(1, &vbo);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	// GL_STATIC_DRAW (NEVER CHANGE), GL_DYNAMIC_DRAW (SOMETIMES), GL_STREAM_DRAW (EVERYTIME)
+	error = glGetError();
+	static const char * srcVert[] =
+	{
+		"#version 150									\n"
+		"in vec2 position;								\n"
+		"												\n"
+		"void main()									\n"
+		"{												\n"
+		"    gl_Position = vec4(position, 0.0, 1.0);	\n"
+		"}												\n"
+	};
+
+	static const char * srcFrag[] =
+	{
+		"#version 150									\n"
+		"out vec4 outColor;								\n"
+		"												\n"
+		"void main()									\n"
+		"{												\n"
+		"    outColor = vec4(1.0, 1.0, 1.0, 1.0);		\n"
+		"}												\n"
+	};
+
+	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(vertexShader, 1, srcVert, NULL);
+	glCompileShader(vertexShader);
+	error = glGetError();
+	GLint status;
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);
+
+	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fragmentShader, 1, srcFrag, NULL);
+	glCompileShader(fragmentShader);
+	error = glGetError();
+	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &status);
+
+	GLuint shaderProgram = glCreateProgram();
+	glAttachShader(shaderProgram, vertexShader);
+	glAttachShader(shaderProgram, fragmentShader);
+	error = glGetError();
+	glBindFragDataLocation(shaderProgram, 0, "outColor");
+
+	glLinkProgram(shaderProgram);
+	glUseProgram(shaderProgram);
+	error = glGetError();
+
+	GLuint vao;
+	glGenVertexArrays(1, &vao);
+	error = glGetError();
+	glBindVertexArray(vao);
+	error = glGetError();
+
+	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
+	error = glGetError();
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	error = glGetError();
+	glEnableVertexAttribArray(posAttrib);
+	error = glGetError();
+	glDrawArrays(GL_TRIANGLES, 0, 3);
+	error = glGetError();
+	//GLuint vertexBuffer;
+	//glGenBuffers(1, &vertexBuffer);
+	//printf("%u\n", vertexBuffer);
+
+	///////////////////// END
+
+	SDL_Event windowEvent;
+	while (true)
+	{
+		if (SDL_PollEvent(&windowEvent))
+		{
+			if (windowEvent.type == SDL_QUIT)
+				break;
+			if (windowEvent.type == SDL_KEYUP
+				&& windowEvent.key.keysym.sym == SDLK_ESCAPE)
+				break;
+		}
+		glDrawArrays(GL_TRIANGLES, 0, 3);
+		SDL_GL_SwapWindow(window);
+	}
+
+	SDL_Delay(1000);
+
+	SDL_GL_DeleteContext(context);
+	SDL_Quit();
+
+	return 0;
+}
+
+//int main2()
+//{
 	// Global window and global input, both
 	// will only ever exist once
-	g_window.init();
-	_CheckForErrors();
+	//g_window.init();
+	//_CheckForErrors();
 
-	g_lib.init();
-	g_input.init();
+	//g_lib.init();
+	//g_input.init();
 	
-	GS_ASSERT ( false, _CheckForErrors(), -1 );
+	//GS_ASSERT ( false, _CheckForErrors(), -1 );
 
 	// For now, the game states do not exist
 	// instead, i have this one pane (states are groupings
@@ -35,9 +159,9 @@ int main()
 	//brain->init();
 	//s_brain = &brain;
 	// checks for gl and glfw errors!
-	if ( _CheckForErrors() )
-		return -1;
-
+	//if ( _CheckForErrors() )
+	//	return -1;
+/*
 	// game variable
 	g_isRunning = true;
 
@@ -61,14 +185,14 @@ int main()
 		GS_ASSERT(false, _CheckForErrors(), -1);
 
 		double dt;
-		do{ dt = glfwGetTime(); } // TODO :: something more productive
+		//do{ dt = glfwGetTime(); } // TODO :: something more productive
 		//while (0); // cap the fps
 		while (dt < FPS_CAP_MS); // cap the fps
 
 		// gdb update?
 		tt += dt;
 
-		glfwSetTime(0.0);
+		//glfwSetTime(0.0);
 
 		//fpsCounter.update(dt);
 		//brain->update(dt);
@@ -80,11 +204,15 @@ int main()
 		float ratio;
 		int width, height;
 
+		/*
+
+
 		glfwGetFramebufferSize(g_window.getGLFWwindow(), &width, &height);
 			
 		ratio = width / (float) height;
 		glViewport(0, 0, width, height);
-		glBindFramebuffer(GL_FRAMEBUFFER, g_window.getFramebuffer() );
+		//glBindFramebuffer(GL_FRAMEBUFFER, g_window.getFramebuffer() );
+		glBindFramebuffer(GL_FRAMEBUFFER, 0 );
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClearColor(0.22f,0.22f,0.52f,1.0f);
 // TEST PIC DRAWING [[[[[[[[[[[[[[[[[[[[[[[[[[[
@@ -153,6 +281,7 @@ int main()
 			);
 		_CheckForErrors();
 // ]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]
+*/
 		/*
 
 		GS_ASSERT(false, _CheckForErrors(), -1);
@@ -164,9 +293,9 @@ int main()
 		debugPane.draw( &g_window );
 
 		GS_ASSERT(false, _CheckForErrors(), -1);
-		*/
+		*//*
 		g_window.swapBuffers();
-		glfwPollEvents();
+		//glfwPollEvents();
 
 		GS_ASSERT(false, _CheckForErrors(), -1);
 	}

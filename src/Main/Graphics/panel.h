@@ -16,7 +16,7 @@ class Pane;
 class IDimensionable {
 public:
 	virtual Vec2D<_INT32> getPixelDimensions() const = 0;
-	virtual GLuint getFramebuffer() const = 0;
+	//virtual GLuint getFramebuffer() const = 0;
 };
 
 class IPaneAsset {
@@ -106,7 +106,7 @@ public:
 	/**
 	* Get the Pane's framebuffer.
 	*/
-	virtual GLuint getFramebuffer() const = 0;
+//	virtual GLuint getFramebuffer() const = 0;
 
 selective:
 
@@ -138,12 +138,12 @@ public:
 
 selective:
 	static _BOOL m_screenLoaded;
-	static GLuint m_vaoQuad;
-	static GLuint m_vboQuad;
+//	static GLuint m_vaoQuad;
+//	static GLuint m_vboQuad;
 
-	GLuint m_framebuffer;
-	GLuint m_texColorBuffer;
-	GLuint m_rboDepthStencil;
+//	GLuint m_framebuffer;
+//	GLuint m_texColorBuffer;
+//	GLuint m_rboDepthStencil;
 	Pane * m_pParentPane;
 	Vec4D<float> m_boxBlueprint;
 	Vec4D<_UINT32> m_boxActual;
@@ -162,23 +162,23 @@ privatized:
 	GS::Graphics::MeshResource *				m_pMesh;
 	GS::Graphics::MeshResource *				m_pScreenMesh;
 
-	GLint										m_texloc;
-	GLint										m_transloc;
+//	GLint										m_texloc;
+//	GLint										m_transloc;
 
 public:
 	Pane() :
-		m_framebuffer(0),
-		m_texColorBuffer(0),
-		m_rboDepthStencil(0),
+//		m_framebuffer(0),
+//		m_texColorBuffer(0),
+//		m_rboDepthStencil(0),
 		m_pParentPane(0),
 		m_orientationBitFlag(0),
 		//m_pTex(0),
 		m_pScreenProg(0), 
 		m_pTexProg(0),
 		m_pMesh(0),
-		m_pScreenMesh(0),
-		m_texloc(0),
-		m_transloc(0)
+		m_pScreenMesh(0)//,
+//		m_texloc(0),
+//		m_transloc(0)
 		{}
 
 	~Pane(){}
@@ -243,7 +243,7 @@ public:
 	/**
 	* Get the Pane's framebuffer.
 	*/
-	virtual GLuint getFramebuffer() const;
+//	virtual GLuint getFramebuffer() const;
 
 
 selective:

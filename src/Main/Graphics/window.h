@@ -13,7 +13,7 @@ class Window : public IDimensionable
 
 selective:
 	bool			m_isOpen;
-	GLFWwindow *	m_pGLFWwindow;
+	//GLFWwindow *	m_pGLFWwindow;
 
 public:
 	Window();
@@ -32,9 +32,9 @@ public:
 	/**
 	* returns the window's framebuffer (always 0)
 	*/
-	GLuint getFramebuffer() const;
+//	GLuint getFramebuffer() const;
 
-	GLFWwindow * getGLFWwindow();
+//	GLFWwindow * getGLFWwindow();
 
 selective:
 	_UINT32 __createOnlyWindow();

@@ -56,7 +56,7 @@ public:
 	static InputDeck inputDeck;
 
 	static _INT32 init();
-
+	/*
 	static void mousePosCB( 
 			GLFWwindow * a_pGLFWwindow, 
 			double a_x, 
@@ -78,7 +78,7 @@ public:
 			GLFWwindow * a_pGLFWwindow, 
 			double a_xOffset, 
 			double a_yOffset );
-
+	*/
 	static void wipe();
 
 };

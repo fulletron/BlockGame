@@ -10,16 +10,16 @@ Input::InputDeck Input::inputDeck;
 
 _INT32 Input::init()
 {
-	GLFWwindow * pGLFWwindow = g_window.getGLFWwindow();
+	//GLFWwindow * pGLFWwindow = g_window.getGLFWwindow();
 
-	glfwSetKeyCallback( pGLFWwindow, keyCB );
-	glfwSetCursorPosCallback( pGLFWwindow, mousePosCB );
-	glfwSetMouseButtonCallback( pGLFWwindow, mouseClickCB );
-	glfwSetScrollCallback( pGLFWwindow, scrollCB );
+	//glfwSetKeyCallback( pGLFWwindow, keyCB );
+	//glfwSetCursorPosCallback( pGLFWwindow, mousePosCB );
+	//glfwSetMouseButtonCallback( pGLFWwindow, mouseClickCB );
+	//glfwSetScrollCallback( pGLFWwindow, scrollCB );
 
 	return 0;
 };
-
+/*
 void Input::mousePosCB( GLFWwindow * a_pGLFWwindow, double a_x, double a_y )
 {
 	inputDeck.m_x = a_x; 
@@ -42,6 +42,7 @@ void Input::scrollCB( GLFWwindow * a_pGLFWwindow, double a_xOffset, double a_yOf
 {
 	inputDeck.m_scrollX = a_xOffset; inputDeck.m_scrollY = a_yOffset;
 }
+*/
 
 void Input::wipe()
 {
