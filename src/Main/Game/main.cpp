@@ -1,4 +1,6 @@
 #include <iostream>
+#include <chrono>
+
 
 #include "Graphics/openglincludes.h"
 
@@ -36,12 +38,21 @@ int main(int argc, char * argv[])
 	error = glGetError();
 
 	/////////////////////// BEGIN
+	
+	// WITHOUT COLOR
+	//float vertices[] = {
+	//	0.0f, 0.5f, // Vertex 1 (TOP)
+	//	0.5f, -0.5f, // Vertex 2 (BOT RIGHT)
+	//	-0.5f, -0.5f // Vertex 3 (BOT LEFT)
+	//};
 
+	// POS2v, COLOR3v
 	float vertices[] = {
-		0.0f, 0.5f, // Vertex 1 (TOP)
-		0.5f, -0.5f, // Vertex 2 (BOT RIGHT)
-		-0.5f, -0.5f // Vertex 3 (BOT LEFT)
+		0.0f, 0.5f, 1.0f, 0.0f, 0.0f, // Vertex 1 (TOP)
+		0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // Vertex 2 (BOT RIGHT)
+		-0.5f, -0.5f, 0.0f, 0.0f, 1.0f // Vertex 3 (BOT LEFT)
 	};
+
 
 	GLuint vbo;
 	glGenBuffers(1, &vbo);
@@ -54,23 +65,29 @@ int main(int argc, char * argv[])
 	{
 		"#version 150									\n"
 		"in vec2 position;								\n"
+		"in vec3 color;									\n"
+		"out vec3 Color;								\n"
 		"												\n"
 		"void main()									\n"
 		"{												\n"
-		"    gl_Position = vec4(position, 0.0, 1.0);	\n"
+		"	Color = color;								\n"
+		"	gl_Position = vec4(position, 0.0, 1.0);		\n"
 		"}												\n"
 	};
 
 	static const char * srcFrag[] =
 	{
 		"#version 150									\n"
+		"in vec3 Color;									\n"
 		"out vec4 outColor;								\n"
 		"												\n"
 		"void main()									\n"
 		"{												\n"
-		"    outColor = vec4(1.0, 1.0, 1.0, 1.0);		\n"
+		"    outColor = vec4(Color, 1.0);				\n"
 		"}												\n"
 	};
+	//"uniform vec3 triangleColor;					\n"
+	// outColor = vec4(triangleColor, 1.0);
 
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, srcVert, NULL);
@@ -95,6 +112,9 @@ int main(int argc, char * argv[])
 	glUseProgram(shaderProgram);
 	error = glGetError();
 
+	GLint uniColor = glGetUniformLocation(shaderProgram, "triangleColor");
+	glUniform3f(uniColor, 1.0f, 0.0f, 0.0f);
+
 	GLuint vao;
 	glGenVertexArrays(1, &vao);
 	error = glGetError();
@@ -103,10 +123,18 @@ int main(int argc, char * argv[])
 
 	GLint posAttrib = glGetAttribLocation(shaderProgram, "position");
 	error = glGetError();
-	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE,5*sizeof(float), 0);
 	error = glGetError();
 	glEnableVertexAttribArray(posAttrib);
 	error = glGetError();
+
+	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
+	error = glGetError();
+	glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2*sizeof(float)));
+	error = glGetError();
+	glEnableVertexAttribArray(colAttrib);
+	error = glGetError();
+
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	error = glGetError();
 	//GLuint vertexBuffer;
@@ -114,6 +142,8 @@ int main(int argc, char * argv[])
 	//printf("%u\n", vertexBuffer);
 
 	///////////////////// END
+
+	//auto t_start = std::chrono::high_resolution_clock::now();
 
 	SDL_Event windowEvent;
 	while (true)
@@ -126,6 +156,9 @@ int main(int argc, char * argv[])
 				&& windowEvent.key.keysym.sym == SDLK_ESCAPE)
 				break;
 		}
+		//auto t_now = std::chrono::high_resolution_clock::now();
+		//float time = std::chrono::duration_cast<std::chrono::duration<float>>(t_now - t_start).count();
+		//glUniform3f(uniColor, (sin(time*4.0f) + 1.0f)/2.0f, 0.0f, 0.0f);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		SDL_GL_SwapWindow(window);
 	}
