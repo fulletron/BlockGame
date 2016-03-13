@@ -78,7 +78,7 @@ int main(int argc, char * argv[])
 
 	int width, height;
 	unsigned char* image =
-		SOIL_load_image("./Internal/Resources/Textures/smallpanelbacking.png", &width, &height, 0, SOIL_LOAD_RGB);
+		SOIL_load_image("sample.png", &width, &height, 0, SOIL_LOAD_RGB);
 	error = glGetError();
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
 	error = glGetError();
@@ -114,6 +114,7 @@ int main(int argc, char * argv[])
 		"void main()									\n"
 		"{												\n"
 		"    outColor = texture(tex, Texcoord) * vec4(Color, 1.0);				\n"
+//		"    outColor =  vec4(Color, 1.0);				\n"
 		"}												\n"
 	};
 	//"uniform vec3 triangleColor;					\n"
