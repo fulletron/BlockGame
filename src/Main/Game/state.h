@@ -6,14 +6,14 @@
 namespace GS {
 namespace State {
 
+template <class T>
 class IState
 {
 public:
-	virtual _INT32 init() = 0;
-	virtual _INT32 update(double a_dt) = 0;
-	virtual _INT32 input() = 0;
-	virtual _INT32 render() = 0;
-	virtual _INT32 shutdown() = 0;
+	virtual ~IState(){}
+	virtual _INT32 onEnter(T *) = 0;
+	virtual _INT32 onUpdate(T *) = 0;
+	virtual _INT32 onExit(T *) = 0;
 };
 
 };

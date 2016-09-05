@@ -3,6 +3,10 @@ cmake_minimum_required (VERSION 2.6)
 file(GLOB GAMESRC
     "*.h"
     "*.cpp"
+	"charactercreationstates/*.h"
+	"charactercreationstates/*.cpp"
+	"characterchosenstates/*.h"
+	"characterchosenstates/*.cpp"	
 )
 
 ##GroupSources( ${CMAKE_CURRENT_SOURCE_DIR} "GENERAL" )

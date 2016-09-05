@@ -1,16 +1,17 @@
-#ifndef __STATE_H_
-#define __STATE_H_
+#ifndef __STATEMACHINE_H_
+#define __STATEMACHINE_H_
 
 #include <Utilities/typedefinitions.h>
+#include "state.h"
 
 namespace GS {
 namespace State {
 
 template <class T>
-class IFSMachine
+class IStateMachine
 {
 public:
-	virtual ~IFSMachine(){}
+	virtual ~IStateMachine(){}
 	virtual IState<T> * getState() = 0;
 	virtual void changeState(const IState<T> *) = 0;
 };

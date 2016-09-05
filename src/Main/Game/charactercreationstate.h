@@ -1,55 +1,47 @@
-#ifndef __STATE_H_
-#define __STATE_H_
+#ifndef __CHARACTERCREATIONSTATE_H_
+#define __CHARACTERCREATIONSTATE_H_
 
 #include <Utilities/typedefinitions.h>
+#include "state.h"
+#include "game.h"
 
 namespace GS {
 namespace State {
 
-class CharacterCreationState : public IState<Game>
+class CharacterCreationState : public IState<Game>, IStateMachine<CharacterCreationState>
 {
+#pragma region STATE FUNCTIONALITY
+// CharacterCreationState is itself a state of Game.
 selective:
 public:
-	virtual _INT32 onEnter(Game * a_g)
+	virtual _INT32 onEnter(Game * a_g);
+	virtual _INT32 onUpdate(Game * a_g);
+	virtual _INT32 onExit(Game * a_g);
+#pragma endregion
+
+#pragma region STATE MACHINE FUNCTIONALITY
+	/// ================ STATE MACHINE FUNCTIONALITY =======================
+selective :
+	typedef CharacterCreationState CURRENT_TEMPLATE;
+	// I can just change this one typedef and it will be a different class template
+	// this block will be copy-pasted. If I create a base class that isn't an 
+	// interface, I risk accidentally implementing multiple inheritance, which
+	// would be bad.
+	State::IState<CURRENT_TEMPLATE> * m_pCurrentState;
+
+public:
+	virtual State::IState<CURRENT_TEMPLATE> * getState()
 	{
-		// Load all the proper model files for character appearance customization
-		// Load whatever temporary structure needing to exist to ensure when the player is done everything is saved.
-		return 0;
+		return m_pCurrentState;
 	}
 
-	virtual _INT32 onUpdate(Game * a_g)
+	virtual void changeState(State::IState<CURRENT_TEMPLATE> * a_newState)
 	{
-		// Change temp struct to match that of any customizations.
-
-		// BASED ON INPUT
-		if (PLAYER_IS_DONE_CREATING)
-		{
-			// dump the struct into the selected character
-			a_g->setCharacter(this new char);
-
-			// start playing it
-			a_g->changeState(new CharacterChosenState());
-		}
-		else if (PLAYER_CANCELS_CREATION)
-		{
-			// trash the struct
-			a_g->setCharacter(null);
-
-			// go back to the list of characters
-			a_g->changeState(new CharacterSelectState());
-		}
-		return 0;
+		delete m_pCurrentState;
+		m_pCurrentState = a_newState;
 	}
-
-	virtual _INT32 onExit(Game * a_g)
-	{
-		// BY THIS POINT, the game should be able to handle either
-		// playing the newly built character OR trashing it and heading back to
-		// the selection list.
-
-		// Delete all this states' temp stuff
-		return 0;
-	}
+	/// ===================================================================
+#pragma endregion
 };
 
 };
