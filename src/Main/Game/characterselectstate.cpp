@@ -27,7 +27,7 @@ _INT32 CharacterSelectState::onUpdate(Game * a_g)
 	if (CHARACTER_IS_PICKED)
 	{
 		// Load character data into player data (probably located in GAME) for the CharacterChosenState to handle
-		a_g->setCharacter(this char);
+		//a_g->setCharacter(this char);
 
 		// Change the state to CharacterChosenState
 		a_g->changeState(new CharacterChosenState());

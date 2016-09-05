@@ -7,13 +7,13 @@
 namespace GS {
 namespace State {
 
-template <class T>
+template <typename T>
 class IStateMachine
 {
 public:
 	virtual ~IStateMachine(){}
 	virtual IState<T> * getState() = 0;
-	virtual void changeState(const IState<T> *) = 0;
+	virtual void changeState(IState<T> *) = 0;
 };
 
 };

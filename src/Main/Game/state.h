@@ -6,7 +6,7 @@
 namespace GS {
 namespace State {
 
-template <class T>
+template <typename T>
 class IState
 {
 public:

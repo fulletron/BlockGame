@@ -21,12 +21,3 @@ public:
 };
 
 #endif
-
-/*
-public:
-virtual _INT32 init() {}
-virtual _INT32 update(double a_dt) {}
-virtual _INT32 input() {}
-virtual _INT32 render() {}
-virtual _INT32 shutdown() {}
-*/

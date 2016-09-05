@@ -2,7 +2,7 @@
 #define __DEBUGPANE_H_
 
 #include <Graphics/panel.h>
-#include <Game/fpscounter.h>
+//#include <Game/fpscounter.h>
 
 namespace GS {
 namespace Graphics {

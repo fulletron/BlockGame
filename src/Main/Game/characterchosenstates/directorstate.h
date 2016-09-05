@@ -1,29 +1,25 @@
-//#ifndef __CHARACTERCREATIONSTATE_H_
-//#define __CHARACTERCREATIONSTATE_H_
+#ifndef __DIRECTORSTATE_H_
+#define __DIRECTORSTATE_H_
 
 #include <Utilities/typedefinitions.h>
-#include "state.h"
-#include "game.h"
+#include "../characterchosenstate.h"
 
 namespace GS {
 namespace State {
 
-/*
-class CharacterCreationState : public IState<Game>
+class DirectorState : public IState<CharacterChosenState>
 {
 #pragma region STATE FUNCTIONALITY
-// CharacterCreationState is itself a state of Game.
 selective:
 public:
-	virtual _INT32 onEnter(Game * a_g);
-	virtual _INT32 onUpdate(Game * a_g);
-	virtual _INT32 onExit(Game * a_g);
+	virtual _INT32 onEnter(CharacterChosenState * a_g);
+	virtual _INT32 onUpdate(CharacterChosenState * a_g);
+	virtual _INT32 onExit(CharacterChosenState * a_g);
 #pragma endregion
 
 };
-*/
 
 };
 };
 
-//#endif
+#endif

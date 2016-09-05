@@ -1,7 +1,7 @@
 #include <Graphics/reslib.h>
 
 #include <Graphics/Panes/DebugPane/fpscounterpasset.h>
-#include <Game/brain.h> // TODO :: REMOVE! ONCE SINGLETON IS NO LONGER USED
+//#include <Game/brain.h> // TODO :: REMOVE! ONCE SINGLETON IS NO LONGER USED
 
 extern GS::Graphics::ResourceLibrary g_lib;
 
@@ -19,8 +19,8 @@ _INT32 FPSCounterPasset::init( Pane * const a_pParent )
 	m_pFontDrawingProg = g_lib.findShaderProgramResource( CV8::RES_SP_FONTDRAW );
 	m_pFpsFont = g_lib.findFontResource( CV8::RES_FONT_KASHSCRIPT_16 );
 
-	GS::Game::Brain * pBrain = &GS::Game::Brain::getInstance();
-	m_pFPSCounterPresentable = pBrain->getFpsCounter();
+	//GS::Game::Brain * pBrain = &GS::Game::Brain::getInstance();
+	//m_pFPSCounterPresentable = pBrain->getFpsCounter();
 
 	return 0;
 }
@@ -28,8 +28,8 @@ _INT32 FPSCounterPasset::init( Pane * const a_pParent )
 
 _BOOL FPSCounterPasset::isDirty() const
 {
-	if (m_pFPSCounterPresentable->isDirty())
-		return true;
+	//if (m_pFPSCounterPresentable->isDirty())
+	//	return true;
 	return false;
 }
 
@@ -52,7 +52,7 @@ void FPSCounterPasset::draw( GS::Graphics::IDimensionable * const a_dims )
 	//fps= "I need to change what is written FPS: " + boost::lexical_cast<std::string>( m_pFPSCounterPresentable->getPresentationElement8(0).asInt32 );
 
 	fps = "FPS : ";
-	std::string num = std::to_string(m_pFPSCounterPresentable->getPresentationElement8(0).asInt32);
+	std::string num = "0"; //std::to_string(m_pFPSCounterPresentable->getPresentationElement8(0).asInt32);
 	fps.append(num);
 
 	glUseProgram( m_pFontDrawingProg->getProgram() );

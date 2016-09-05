@@ -35,7 +35,7 @@ public:
 		return m_pCurrentState;
 	}
 
-	virtual void changeState(State::IState<CURRENT_TEMPLATE> * a_newState)
+	virtual void IStateMachine<CharacterCreationState>::changeState(State::IState<CURRENT_TEMPLATE> * a_newState)
 	{
 		delete m_pCurrentState;
 		m_pCurrentState = a_newState;

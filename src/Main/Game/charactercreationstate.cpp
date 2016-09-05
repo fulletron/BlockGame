@@ -22,7 +22,7 @@ _INT32 CharacterCreationState::onUpdate(Game * a_g)
 	if (PLAYER_IS_DONE_CREATING)
 	{
 		// dump the struct into the selected character
-		a_g->setCharacter(this new char);
+		//a_g->setCharacter(this new char);
 
 		// start playing it
 		a_g->changeState(new CharacterChosenState());
@@ -31,7 +31,7 @@ _INT32 CharacterCreationState::onUpdate(Game * a_g)
 	else if (PLAYER_CANCELS_CREATION)
 	{
 		// trash the struct
-		a_g->setCharacter(null);
+		//a_g->setCharacter(null);
 
 		// go back to the list of characters
 		a_g->changeState(new CharacterSelectState());

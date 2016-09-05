@@ -1,29 +1,26 @@
-//#ifndef __CHARACTERCREATIONSTATE_H_
-//#define __CHARACTERCREATIONSTATE_H_
+#ifndef __CHOOSELOOKSSTATE_H_
+#define __CHOOSELOOKSSTATE_H_
 
 #include <Utilities/typedefinitions.h>
-#include "state.h"
-#include "game.h"
+#include "../charactercreationstate.h"
 
 namespace GS {
 namespace State {
 
-/*
-class CharacterCreationState : public IState<Game>
+class ChooseLooksState : public IState<CharacterCreationState>
 {
 #pragma region STATE FUNCTIONALITY
 // CharacterCreationState is itself a state of Game.
 selective:
 public:
-	virtual _INT32 onEnter(Game * a_g);
-	virtual _INT32 onUpdate(Game * a_g);
-	virtual _INT32 onExit(Game * a_g);
+	virtual _INT32 onEnter(CharacterCreationState *);
+	virtual _INT32 onUpdate(CharacterCreationState *);
+	virtual _INT32 onExit(CharacterCreationState *);
 #pragma endregion
 
 };
-*/
 
 };
 };
 
-//#endif
+#endif
