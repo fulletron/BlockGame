@@ -31,7 +31,8 @@ int main(int argc, char * argv[])
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 
-	SDL_Window * window = SDL_CreateWindow("TEST!", 100, 100, 800, 600, SDL_WINDOW_OPENGL);
+	//SDL_Window * window = SDL_CreateWindow("TEST!", 100, 100, 800, 600, SDL_WINDOW_OPENGL);
+	SDL_Window * window = SDL_CreateWindow("TEST!", 100, 100, 1920, 1080, SDL_WINDOW_OPENGL);
 	SDL_GLContext context = SDL_GL_CreateContext(window);
 
 	glewExperimental = true;
@@ -40,6 +41,7 @@ int main(int argc, char * argv[])
 
 	/////////////////////// BEGIN
 
+	/*
 	// VERTEX DECL ///////////////////
 	// POS2v, COLOR3v
 	float vertices[] = {
@@ -48,6 +50,19 @@ int main(int argc, char * argv[])
 		0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Vertex 1 (TOP RIGHT)
 		0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Vertex 2 (BOT RIGHT)
 		-0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f // Vertex 3 (BOT LEFT)
+	};
+	*/
+
+	float testval = 1.0f;
+
+	// VERTEX DECL ///////////////////
+	// POS2v, COLOR3v
+	float vertices[] = {
+		// POSITION,	COLOR,		TEXCOORDS
+		-testval, testval, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Vertex 1 (TOP LEFT)
+		testval, testval, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Vertex 1 (TOP RIGHT)
+		testval, -testval, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Vertex 2 (BOT RIGHT)
+		-testval, -testval, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f // Vertex 3 (BOT LEFT)
 	};
 
 
@@ -80,7 +95,8 @@ int main(int argc, char * argv[])
 
 	int width, height;
 	unsigned char* image =
-		SOIL_load_image("sample.png", &width, &height, 0, SOIL_LOAD_RGBA);
+		//SOIL_load_image( "./Debug/Internal/Resources/Textures/sample.png", &width, &height, 0, SOIL_LOAD_RGBA);
+		SOIL_load_image("./Debug/Internal/Resources/Textures/sample3.png", &width, &height, 0, SOIL_LOAD_RGBA);
 	error = glGetError();
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	error = glGetError();
