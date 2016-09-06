@@ -7,9 +7,24 @@ file(GLOB GAMESRC
 	"charactercreationstates/*.cpp"
 	"characterchosenstates/*.h"
 	"characterchosenstates/*.cpp"	
+	"characterchosenstates/menustates/*.h"
+	"characterchosenstates/menustates/*.cpp"
 )
 
-##GroupSources( ${CMAKE_CURRENT_SOURCE_DIR} "GENERAL" )
+#set(
+#    source_list
+#    "*.h"
+#    "*.cpp"
+#	"charactercreationstates/*.h"
+#	"charactercreationstates/*.cpp"
+#	"characterchosenstates/*.h"
+#	"characterchosenstates/*.cpp"	
+#	"characterchosenstates/menustates/*.h"
+#	"characterchosenstates/menustates/*.cpp"
+#)
+
+#maybe this will help?
+GroupSources( ${CMAKE_CURRENT_SOURCE_DIR} "GENERAL" )	
 
 add_executable(Game ${GAMESRC} )
 

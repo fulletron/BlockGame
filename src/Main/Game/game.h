@@ -9,10 +9,18 @@ namespace GS {
 class Game : public State::IStateMachine<Game>
 {
 selective:
+	// I also will need a second thread for loading/unloading
+	// This second thread needs to talk to opengl to share contexts
+	// if I don't want my game knowing about opengl, then I can't put it here.
+
 	// Because of my fsm, i can't chain pass the dt unless all FSMs 
 	// have dt in their update. Best to just save it at the top and 
 	// access it when necessary
 	_DOUBLE dt;
+
+public:
+	// SET the initial state. load basic loading screen assets.
+	_INT32 init();
 
 // =============== BASIC LOOP ======================
 public:
@@ -41,7 +49,7 @@ public:
 		return m_pCurrentState;
 	}
 
-	virtual void IStateMachine<Game>::changeState(State::IState<CURRENT_TEMPLATE> * a_newState)
+	virtual void IStateMachine<CURRENT_TEMPLATE>::changeState(State::IState<CURRENT_TEMPLATE> * a_newState)
 	{
 		delete m_pCurrentState;
 		m_pCurrentState = a_newState;
