@@ -10,6 +10,9 @@ _INT32 ChooseLooksState::onEnter(CharacterCreationState * a_g)
 
 _INT32 ChooseLooksState::onUpdate(CharacterCreationState * a_g)
 {
+	// Possible Outs:
+	// ChooseDisciplineState (from accepting and moving forward)
+	// CharacterSelectState (from canceling creation and moving back)
 	return 0;
 }
 

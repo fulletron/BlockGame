@@ -10,6 +10,9 @@ _INT32 ChooseDisciplineState::onEnter(CharacterCreationState * a_g)
 
 _INT32 ChooseDisciplineState::onUpdate(CharacterCreationState * a_g)
 {
+	// Possible Outs:
+	// CharacterChosenState (from accepting and moving forward)
+	// CharacterSelectState (from canceling creation and moving back)
 	return 0;
 }
 
