@@ -10,11 +10,13 @@ namespace State {
 class SettingsState : public IState<MenuState>
 {
 #pragma region STATE FUNCTIONALITY
-selective :
+	typedef MenuState CURRENT_ISTATE_TEMPLATE;
+	// This is itself a state for the CURRENT_ISTATE_TEMPLATE State Machine.
+selective:
 public:
-	virtual _INT32 onEnter(MenuState *);
-	virtual _INT32 onUpdate(MenuState *);
-	virtual _INT32 onExit(MenuState *);
+	virtual _INT32 onEnter(CURRENT_ISTATE_TEMPLATE *);
+	virtual _INT32 onUpdate(CURRENT_ISTATE_TEMPLATE *);
+	virtual _INT32 onExit(CURRENT_ISTATE_TEMPLATE *);
 #pragma endregion
 
 };

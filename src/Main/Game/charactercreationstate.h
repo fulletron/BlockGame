@@ -11,12 +11,13 @@ namespace State {
 class CharacterCreationState : public IState<Game>, IStateMachine<CharacterCreationState>
 {
 #pragma region STATE FUNCTIONALITY
-// CharacterCreationState is itself a state of Game.
+	typedef Game CURRENT_ISTATE_TEMPLATE;
+	// This is itself a state for the CURRENT_ISTATE_TEMPLATE State Machine.
 selective:
 public:
-	virtual _INT32 onEnter(Game * a_g);
-	virtual _INT32 onUpdate(Game * a_g);
-	virtual _INT32 onExit(Game * a_g);
+	virtual _INT32 onEnter(CURRENT_ISTATE_TEMPLATE *);
+	virtual _INT32 onUpdate(CURRENT_ISTATE_TEMPLATE *);
+	virtual _INT32 onExit(CURRENT_ISTATE_TEMPLATE *);
 #pragma endregion
 
 #pragma region STATE MACHINE FUNCTIONALITY

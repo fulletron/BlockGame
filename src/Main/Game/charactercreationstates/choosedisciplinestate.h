@@ -10,12 +10,13 @@ namespace State {
 class ChooseDisciplineState : public IState<CharacterCreationState>
 {
 #pragma region STATE FUNCTIONALITY
-// CharacterCreationState is itself a state of Game.
+	typedef CharacterCreationState CURRENT_ISTATE_TEMPLATE;
+	// This is itself a state for the CURRENT_ISTATE_TEMPLATE State Machine.
 selective:
 public:
-	virtual _INT32 onEnter(CharacterCreationState * a_g);
-	virtual _INT32 onUpdate(CharacterCreationState * a_g);
-	virtual _INT32 onExit(CharacterCreationState * a_g);
+	virtual _INT32 onEnter(CURRENT_ISTATE_TEMPLATE *);
+	virtual _INT32 onUpdate(CURRENT_ISTATE_TEMPLATE *);
+	virtual _INT32 onExit(CURRENT_ISTATE_TEMPLATE *);
 #pragma endregion
 
 };
