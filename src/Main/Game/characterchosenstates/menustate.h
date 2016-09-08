@@ -35,10 +35,16 @@ public:
 
 	virtual void IStateMachine<CURRENT_TEMPLATE>::changeState(State::IState<CURRENT_TEMPLATE> * a_newState)
 	{
+		// Exit the Old State.
+		m_pCurrentState->onExit(this);
+
+		// Clean it up
 		delete m_pCurrentState;
 		m_pCurrentState = a_newState;
+
+		// Enter the New State.
+		m_pCurrentState->onEnter(this);
 	}
-	/// ===================================================================
 #pragma endregion
 
 };

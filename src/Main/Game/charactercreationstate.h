@@ -21,7 +21,7 @@ public:
 
 #pragma region STATE MACHINE FUNCTIONALITY
 	/// ================ STATE MACHINE FUNCTIONALITY =======================
-selective :
+selective:
 	typedef CharacterCreationState CURRENT_TEMPLATE;
 	// I can just change this one typedef and it will be a different class template
 	// this block will be copy-pasted. If I create a base class that isn't an 
@@ -35,12 +35,18 @@ public:
 		return m_pCurrentState;
 	}
 
-	virtual void IStateMachine<CharacterCreationState>::changeState(State::IState<CURRENT_TEMPLATE> * a_newState)
+	virtual void IStateMachine<CURRENT_TEMPLATE>::changeState(State::IState<CURRENT_TEMPLATE> * a_newState)
 	{
+		// Exit the Old State.
+		m_pCurrentState->onExit(this);
+
+		// Clean it up
 		delete m_pCurrentState;
 		m_pCurrentState = a_newState;
+
+		// Enter the New State.
+		m_pCurrentState->onEnter(this);
 	}
-	/// ===================================================================
 #pragma endregion
 };
 
