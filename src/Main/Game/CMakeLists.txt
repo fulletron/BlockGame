@@ -9,6 +9,8 @@ file(GLOB GAMESRC
 	"characterchosenstates/*.cpp"	
 	"characterchosenstates/menustates/*.h"
 	"characterchosenstates/menustates/*.cpp"
+	"characterchosenstates/directorstates/*.h"
+	"characterchosenstates/directorstates/*.cpp"
 )
 
 #set(

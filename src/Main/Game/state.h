@@ -16,7 +16,7 @@ public:
 	virtual _INT32 onExit(T *) = 0;
 };
 
-
+/*
 template<typename T> class A { int x; }; // primary template
 template<class T> class A<T*> { long x; }; // partial specialization
 
@@ -34,6 +34,7 @@ template<template<typename> class IS> class IFState
 {
 	IS<T> y;
 };
+*/
 
 };
 };

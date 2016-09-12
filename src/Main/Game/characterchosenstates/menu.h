@@ -1,5 +1,5 @@
-#ifndef __MENUSTATE_H_
-#define __MENUSTATE_H_
+#ifndef __MENU_H_
+#define __MENU_H_
 
 #include <Utilities/typedefinitions.h>
 #include "../characterchosenstate.h"
@@ -7,7 +7,11 @@
 namespace GS {
 namespace State {
 
-class MenuState : public IState<CharacterChosenState>, IStateMachine<MenuState>
+// The Menu class should NOT have to know anything about any state it is being called from. If the menu is closed
+// via the menu button, then it is force-quitted from the state that instatiated it. If the menu is dismissed,
+// it can be cleaned up at a later point? Cleanup, as in, when "dismiss" is issued, convert it to a menu button press
+// which will be caught by the current state to force-quit (hack).
+class Menu : public IStateMachine<Menu>
 {
 #pragma region STATE FUNCTIONALITY
 	typedef CharacterChosenState CURRENT_ISTATE_TEMPLATE;
@@ -22,7 +26,7 @@ public:
 #pragma region STATE MACHINE FUNCTIONALITY
 	/// ================ STATE MACHINE FUNCTIONALITY =======================
 selective :
-	typedef MenuState CURRENT_TEMPLATE;
+	typedef Menu CURRENT_TEMPLATE;
 	// I can just change this one typedef and it will be a different class template
 	// this block will be copy-pasted. If I create a base class that isn't an 
 	// interface, I risk accidentally implementing multiple inheritance, which

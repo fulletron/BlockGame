@@ -2,15 +2,15 @@
 #define __INVENTORYSTATE_H_
 
 #include <Utilities/typedefinitions.h>
-#include "../menustate.h"
+#include "../menu.h"
 
 namespace GS {
 namespace State {
 
-class InventoryState : public IState<MenuState>
+class InventoryState : public IState<Menu>
 {
 #pragma region STATE FUNCTIONALITY
-	typedef MenuState CURRENT_ISTATE_TEMPLATE;
+	typedef Menu CURRENT_ISTATE_TEMPLATE;
 	// This is itself a state for the CURRENT_ISTATE_TEMPLATE State Machine.
 selective:
 public:

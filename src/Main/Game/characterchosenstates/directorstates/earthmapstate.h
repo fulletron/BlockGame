@@ -1,16 +1,16 @@
-#ifndef __QUESTSSTATE_H_
-#define __QUESTSSTATE_H_
+#ifndef __EARTHMAPSTATE_H_
+#define __EARTHMAPSTATE_H_
 
 #include <Utilities/typedefinitions.h>
-#include "../menu.h"
+#include "../directorstate.h"
 
 namespace GS {
 namespace State {
 
-class QuestsState : public IState<Menu>
+class EarthMapState : public IState<DirectorState>
 {
 #pragma region STATE FUNCTIONALITY
-	typedef Menu CURRENT_ISTATE_TEMPLATE;
+	typedef DirectorState CURRENT_ISTATE_TEMPLATE;
 	// This is itself a state for the CURRENT_ISTATE_TEMPLATE State Machine.
 selective:
 public:

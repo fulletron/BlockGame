@@ -2,15 +2,15 @@
 #define __SETTINGSSTATE_H_
 
 #include <Utilities/typedefinitions.h>
-#include "../menustate.h"
+#include "../menu.h"
 
 namespace GS {
 namespace State {
 
-class SettingsState : public IState<MenuState>
+class SettingsState : public IState<Menu>
 {
 #pragma region STATE FUNCTIONALITY
-	typedef MenuState CURRENT_ISTATE_TEMPLATE;
+	typedef Menu CURRENT_ISTATE_TEMPLATE;
 	// This is itself a state for the CURRENT_ISTATE_TEMPLATE State Machine.
 selective:
 public:

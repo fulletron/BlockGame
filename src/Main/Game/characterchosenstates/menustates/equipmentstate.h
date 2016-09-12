@@ -2,15 +2,15 @@
 #define __EQUIPMENTSTATE_H_
 
 #include <Utilities/typedefinitions.h>
-#include "../menustate.h"
+#include "../menu.h"
 
 namespace GS {
 namespace State {
 
-class EquipmentState : public IState<MenuState>
+class EquipmentState : public IState<Menu>
 {
 #pragma region STATE FUNCTIONALITY
-	typedef MenuState CURRENT_ISTATE_TEMPLATE;
+	typedef Menu CURRENT_ISTATE_TEMPLATE;
 	// This is itself a state for the CURRENT_ISTATE_TEMPLATE State Machine.
 selective:
 public:
