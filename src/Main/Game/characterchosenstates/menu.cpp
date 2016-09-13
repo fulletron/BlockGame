@@ -9,6 +9,8 @@ _INT32 Menu::onEnter(CharacterChosenState * a_g)
 {
 	// When opening the menu, the initial state is the MenuCharacterState
 	m_pCurrentState = new EquipmentState();
+
+	// perhaps have a flag here to open as either equipment state or as inspect player state.
 	return 0;
 }
 

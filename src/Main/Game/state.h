@@ -16,6 +16,15 @@ public:
 	virtual _INT32 onExit(T *) = 0;
 };
 
+
+// ENSURE the \ is the last character
+#define IMPLEMENT_ISTATE(MACHINE)		\
+public:									\
+	virtual _INT32 onEnter(MACHINE *);	\
+	virtual _INT32 onUpdate(MACHINE *);	\
+	virtual _INT32 onExit(MACHINE *);	\
+
+
 /*
 template<typename T> class A { int x; }; // primary template
 template<class T> class A<T*> { long x; }; // partial specialization
