@@ -1,24 +1,31 @@
 #include "directorstate.h"
-#include "directorstates/worldmapstate.h"
+#include "directorstates/launchpadstate.h"
 
 namespace GS {
 namespace State {
 
 _INT32 DirectorState::onEnter(CharacterChosenState * a_g)
 {
-	m_pCurrentState = new WorldMapState();
+	// No mission is selected when initially entering this state.
+	m_selectedMission = 0;
+
+	// This state starts in the LaunchPadState();
+	m_pCurrentState = new LaunchPadState();
 	return 0;
 }
 
 _INT32 DirectorState::onUpdate(CharacterChosenState * a_g)
 {
-	// Update the current map it is on.
-	m_pCurrentState->onUpdate(this);
+	// have the menu only react to the director state.
+	if (m_pCurrentMenu)
+		m_pCurrentMenu->onUpdate(this);
+	else
+		m_pCurrentState->onUpdate(this);
 
 	// If the menu button is pressed, allow it to happen
 //	if (MENU_OPENED)
 //	{
-//		m_pMenu = new Menu<>()
+//		m_pCurrentMenu = new Menu<>()
 //	}
 
 	return 0;
