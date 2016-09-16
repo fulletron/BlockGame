@@ -3,12 +3,17 @@
 
 #include <Utilities/typedefinitions.h>
 #include "../characterchosenstate.h"
+#include "menu.h"
 
 namespace GS {
 namespace State {
 
 class DirectorState : public IState<CharacterChosenState>, IStateMachine<DirectorState>
 {
+// move to an IMPLEMENT define?
+selective:
+	Menu m_pCurrentMenu;
+
 selective:
 	_UINT64 m_selectedMission;
 public:
