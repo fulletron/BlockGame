@@ -25,6 +25,16 @@ public:									\
 	virtual _INT32 onExit(MACHINE *);	\
 
 
+// I AM NOT A FAN OF THIS IMPL
+#define IMPLEMENT_ISTATE2(MACHINE)		\
+selective:								\
+	MACHINE * m_pParentStateMachine;	\
+public:									\
+	void setParentStateMachine(MACHINE * a_m) {m_pParentStateMachine = a_m;} \
+	virtual _INT32 onEnter(MACHINE *);	\
+	virtual _INT32 onUpdate(MACHINE *);	\
+	virtual _INT32 onExit(MACHINE *);	\
+
 /*
 template<typename T> class A { int x; }; // primary template
 template<class T> class A<T*> { long x; }; // partial specialization
