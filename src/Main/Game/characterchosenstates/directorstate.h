@@ -10,34 +10,6 @@ namespace State {
 
 class DirectorState : public IState<CharacterChosenState>, IStateMachine<DirectorState>
 {
-// move to an IMPLEMENT define?
-selective:
-	Menu * m_pCurrentMenu;
-public:
-	_BOOL menuIsOpen() { 
-		if (m_pCurrentMenu) 
-			return true; 
-		return false; 
-	}
-
-	void menuOpen() 
-	{
-		if (!m_pCurrentMenu)
-		{
-			m_pCurrentMenu = new Menu();
-			m_pCurrentMenu->onEnter(0);
-		}
-	}
-
-	void menuClose() 
-	{
-		if (m_pCurrentMenu)
-		{
-			m_pCurrentMenu->onExit(0);
-			delete m_pCurrentMenu;
-			m_pCurrentMenu = 0;
-		}
-	}
 
 selective:
 	_UINT64 m_selectedMission;
@@ -47,6 +19,7 @@ public:
 
 	IMPLEMENT_ISTATE(CharacterChosenState);
 	IMPLEMENT_ISTATEMACHINE(DirectorState);
+	IMPLEMENT_IMENU;
 };
 
 };
