@@ -18,15 +18,9 @@ _INT32 DirectorState::onUpdate(CharacterChosenState * a_g)
 {
 	// have the menu only react to the director state.
 	if (menuIsOpen())
-		m_pCurrentMenu->onUpdate(0);
+		m_pCurrentMenu->onUpdate();
 	else
 		m_pCurrentState->onUpdate(this);
-
-	// If the menu button is pressed, allow it to happen
-//	if (MENU_OPENED)
-//	{
-//		m_pCurrentMenu = new Menu<>()
-//	}
 
 	return 0;
 }

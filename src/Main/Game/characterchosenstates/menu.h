@@ -14,15 +14,27 @@ namespace State {
 class Menu : public IStateMachine<Menu>
 {
 	// Implementing these function because I happen to use them, not because I need them.
-	IMPLEMENT_ISTATE(CharacterChosenState);
+	//IMPLEMENT_ISTATE(CharacterChosenState);
+public:									
+	_INT32 onEnter();
+	_INT32 onUpdate();
+	_INT32 onExit();
 
 	IMPLEMENT_ISTATEMACHINE(Menu);
 };
 
+class IMenuable
+{
+public:
+	virtual _BOOL menuIsOpen() = 0;
+	virtual void menuOpen() = 0;
+	virtual void menuClose() = 0;
+};
+
 };
 };
 
-#define IMPLEMENT_IMENU						\
+#define IMPLEMENT_IMENUABLE					\
 selective:									\
 Menu * m_pCurrentMenu;						\
 public:										\
@@ -36,14 +48,14 @@ public:										\
 		if (!m_pCurrentMenu)				\
 		{									\
 			m_pCurrentMenu = new Menu();	\
-			m_pCurrentMenu->onEnter(0);		\
+			m_pCurrentMenu->onEnter();		\
 		}									\
 	}										\
 	void menuClose()						\
 	{										\
 		if (m_pCurrentMenu)					\
 		{									\
-			m_pCurrentMenu->onExit(0);		\
+			m_pCurrentMenu->onExit();		\
 			delete m_pCurrentMenu;			\
 			m_pCurrentMenu = 0;				\
 		}									\

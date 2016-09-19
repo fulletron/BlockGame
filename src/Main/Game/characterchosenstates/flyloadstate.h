@@ -3,13 +3,15 @@
 
 #include <Utilities/typedefinitions.h>
 #include "../characterchosenstate.h"
+#include "menu.h"
 
 namespace GS {
 namespace State {
 
-class FlyLoadState : public IState<CharacterChosenState>
+class FlyLoadState : public IState<CharacterChosenState>, IMenuable
 {
 	IMPLEMENT_ISTATE(CharacterChosenState);
+	IMPLEMENT_IMENUABLE;
 };
 
 };

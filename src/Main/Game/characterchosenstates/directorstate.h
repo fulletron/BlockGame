@@ -8,7 +8,9 @@
 namespace GS {
 namespace State {
 
-class DirectorState : public IState<CharacterChosenState>, IStateMachine<DirectorState>
+class DirectorState : public IState<CharacterChosenState>, 
+	IStateMachine<DirectorState>, 
+	IMenuable
 {
 
 selective:
@@ -19,7 +21,7 @@ public:
 
 	IMPLEMENT_ISTATE(CharacterChosenState);
 	IMPLEMENT_ISTATEMACHINE(DirectorState);
-	IMPLEMENT_IMENU;
+	IMPLEMENT_IMENUABLE;
 };
 
 };

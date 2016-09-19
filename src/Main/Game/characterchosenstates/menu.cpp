@@ -5,7 +5,7 @@
 namespace GS {
 namespace State {
 
-_INT32 Menu::onEnter(CharacterChosenState * a_g)
+_INT32 Menu::onEnter()
 {
 	// When opening the menu, the initial state is the MenuCharacterState
 	m_pCurrentState = new EquipmentState();
@@ -14,7 +14,7 @@ _INT32 Menu::onEnter(CharacterChosenState * a_g)
 	return 0;
 }
 
-_INT32 Menu::onUpdate(CharacterChosenState * a_g)
+_INT32 Menu::onUpdate()
 {
 	// If the menu has no state, we should be prepping for a close somewhere else
 	if (!m_pCurrentState)
@@ -25,7 +25,7 @@ _INT32 Menu::onUpdate(CharacterChosenState * a_g)
 	return 0;
 }
 
-_INT32 Menu::onExit(CharacterChosenState * a_g)
+_INT32 Menu::onExit()
 {
 	// When closing the menu, you can delete whatever menu specific state currently exists.
 	delete m_pCurrentState;
