@@ -18,7 +18,10 @@ _INT32 Menu::onUpdate()
 {
 	// If the menu has no state, we should be prepping for a close somewhere else
 	if (!m_pCurrentState)
+	{
+		m_pOwner->menuClose();
 		return 0;
+	}
 
 	m_pCurrentState->onUpdate(this);
 

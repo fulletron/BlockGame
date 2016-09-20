@@ -15,6 +15,9 @@ class Menu : public IStateMachine<Menu>
 {
 	// Implementing these function because I happen to use them, not because I need them.
 	//IMPLEMENT_ISTATE(CharacterChosenState);
+selective:
+	IMenuable * m_pOwner;
+
 public:									
 	_INT32 onEnter();
 	_INT32 onUpdate();
