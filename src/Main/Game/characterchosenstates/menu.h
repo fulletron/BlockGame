@@ -26,6 +26,8 @@ public:
 	IMPLEMENT_ISTATEMACHINE(Menu);
 };
 
+
+// move this to its own file.
 class IMenuable
 {
 public:
