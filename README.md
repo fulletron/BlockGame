@@ -10,4 +10,5 @@ Want to build this project?
 Trying a completely new way of handling game input and states, logic, and graphics. Strongly based on the menu system
 presented in destiny.
 
+OLD::
 [This is what the DX version looked like](https://github.com/fulletron/BlockGame/wiki/What-the-DirectX-version-looked-like:)
