@@ -8,6 +8,7 @@
 namespace GS {
 namespace State {
 
+// Flying loading screen state ala destiny.
 class FlyLoadState : public IState<CharacterChosenState>, IMenuable
 {
 	IMPLEMENT_ISTATE(CharacterChosenState);
