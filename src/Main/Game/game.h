@@ -6,6 +6,7 @@
 
 namespace GS {
 
+// make this a singleton?
 class Game : public State::IStateMachine<Game>
 {
 selective:
