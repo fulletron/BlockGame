@@ -7,6 +7,9 @@
 namespace GS {
 namespace State {
 
+// NOTE :: The menu state should not live from CharacterChosenState to CharacterChosenState- meaning, it should die 
+// when switching from director to flyload and from flyload to play, etc.S
+
 // The Menu class should NOT have to know anything about any state it is being called from. If the menu is closed
 // via the menu button, then it is force-quitted from the state that instatiated it. If the menu is dismissed,
 // it can be cleaned up at a later point? Cleanup, as in, when "dismiss" is issued, convert it to a menu button press
