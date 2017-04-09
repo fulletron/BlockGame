@@ -8,7 +8,8 @@
 #include "gl/GL.h"
 #pragma warning( disable : 4005 )
 
-#define USING_SDL
+//#define USING_SDL
+#define USING_GLFW
 
 #ifdef USING_SDL
 #include "SDL/SDL.h"

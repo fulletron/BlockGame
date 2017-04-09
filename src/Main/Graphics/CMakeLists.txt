@@ -1,12 +1,19 @@
 cmake_minimum_required (VERSION 2.6)
 
 #turn this into a macro
+# file(GLOB GRAPHICSSRC
+    # "*.h"
+    # "*.cpp"
+    # "BuildRes/*.cpp"
+    # "Panes/DebugPane/*.h"
+    # "Panes/DebugPane/*.cpp"
+# )
+
 file(GLOB GRAPHICSSRC
     "*.h"
     "*.cpp"
-    "BuildRes/*.cpp"
-    "Panes/DebugPane/*.h"
-    "Panes/DebugPane/*.cpp"
+	"window/*.h"
+	"window/*.cpp"
 )
 
 #message( "CALLING GROUPSOURCES on" ${CMAKE_CURRENT_SOURCE_DIR}  )

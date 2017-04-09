@@ -1,0 +1,88 @@
+cmake_minimum_required (VERSION 2.8)
+project( Standalones )
+
+add_definitions(-D_VARIADIC_MAX=10)
+
+message(BUILDING STANDALONES)
+
+include_directories( ${CMAKE_SOURCE_DIR}/Standalones )
+include_directories( ${CMAKE_SOURCE_DIR}/External/include )
+include_directories( ${CMAKE_SOURCE_DIR}/External/include/freetype )
+
+SET_PROPERTY(GLOBAL PROPERTY USE_FOLDERS ON)
+
+if(WIN32)
+	message(TEST:: WIN32)
+	set(TARGET_OS windows)
+	# set(LIB_PREFIX )
+	if(CMAKE_SIZEOF_VOID_P MATCHES "4") 
+		set(ARCH_BITS 32)
+	elseif(CMAKE_SIZEOF_VOID_P MATCHES "8")
+		set(ARCH_BITS 64)
+	endif()
+	set(STATIC_LIB_SUFFIX  .lib)
+	set(DYANMIC_LIB_SUFFIX .dll) 
+elseif(APPLE)
+	message(TEST:: APPLE)
+	set(TARGET_OS darwin)
+	set(LIB_PREFIX lib)
+	set(STATIC_LIB_SUFFIX  .a)
+	set(DYANMIC_LIB_SUFFIX .dylib) 
+	add_definitions(-g)
+else()
+	message(TEST:: UNIX)
+	set(TARGET_OS linux)
+	set(LIB_PREFIX lib)
+	set(STATIC_LIB_SUFFIX  .a)
+	set(DYANMIC_LIB_SUFFIX .so) 
+
+	add_definitions(-g)
+	add_definitions(-DGTEST_HAS_PTHREAD=0)
+endif()
+
+#========================================
+find_package(OpenGL)
+if (OPENGL_FOUND)
+    MESSAGE("OpenGL Correctly Found")
+    #include_directories(${OPENGL_INCLUDE_DIR})
+else (OPENGL_FOUND)
+    MESSAGE("OpenGL environment missing")
+endif (OPENGL_FOUND)
+#========================================
+
+
+if(APPLE)
+	# On Mac systems, we need to explicitly enable C++11 extensions and runtime
+	#set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
+	set(CMAKE_CXX_FLAGS "-std=c++0x" )
+elseif(WIN32)
+	###set ( CMAKE_CXX_FLAGS "-L/GitRepos/BlockGame/src/External/boost_1_54_0/stage/lib -I/GitRepos/BlockGame/src/External/boost_1_54_0" )
+else()
+	set( CMAKE_CXX_FLAGS "-std=c++0x -g -Wno-write-strings -Wl,--no-as-needed -lrt -lX11 -lXxf86vm -lXrandr -lpthread -lXi" ) #-lglfw3
+# -L/GitRepos/BlockGame/src/External/boost_1_54_0/stage/lib -I/GitRepos/BlockGame/src/External/boost_1_54_0" )
+endif()
+
+#MAKE VISUAL STUDIO PRETTY!
+macro(GroupSources curdir dirname)
+                  file(GLOB children RELATIVE ${curdir} ${curdir}/*)
+                  message( "children is " ${children} )
+	foreach(child ${children})
+		if(IS_DIRECTORY ${curdir}/${child})
+			if(${child} STREQUAL "NOTA")
+				message("IGNORING THIS ENTRY")
+			else()
+				GroupSources(${curdir}/${child} ${child})
+			endif()
+		else()
+			if(${dirname} STREQUAL "GENERAL")
+				message("IGNORING THIS ENTRY")
+			else()
+                                                      	message("ADDING " ${curdir}/${child} " TO " ${dirname})
+                                                      	SOURCE_GROUP( ${dirname} FILES ${curdir}/${child} )
+			endif()
+		endif()
+   	endforeach()
+endmacro()
+
+add_subdirectory( External )
+add_subdirectory( Standalones )

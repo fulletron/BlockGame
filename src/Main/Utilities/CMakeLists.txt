@@ -12,9 +12,9 @@ add_library( Utilities ${UTILITIESSRC} )
 target_link_libraries( Utilities
 	${OPENGL_LIBRARIES}
 	GLEW
-	#glfw
-	SDL2main
-	SDL2-static
+	glfw
+	#SDL2main
+	#SDL2-static
 	# TEMP REM ${Boost_LIBRARIES}
 	freetype
 	SOIL
@@ -25,9 +25,9 @@ target_link_libraries( UtilitiesTest
 	${OPENGL_LIBRARIES}
 	GLEW
 	# TEMP REM ${Boost_LIBRARIES}
-	#glfw
-	SDL2main
-	SDL2-static
+	glfw
+	#SDL2main
+	#SDL2-static
 	freetype
 	SOIL
 )

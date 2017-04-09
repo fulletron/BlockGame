@@ -1,16 +1,21 @@
 cmake_minimum_required (VERSION 2.6)
 
+#file(GLOB GAMESRC
+#    "*.h"
+#    "*.cpp"
+#	"charactercreationstates/*.h"
+#	"charactercreationstates/*.cpp"
+#	"characterchosenstates/*.h"
+#	"characterchosenstates/*.cpp"	
+#	"characterchosenstates/menustates/*.h"
+#	"characterchosenstates/menustates/*.cpp"
+#	"characterchosenstates/directorstates/*.h"
+#	"characterchosenstates/directorstates/*.cpp"
+#)
+
 file(GLOB GAMESRC
     "*.h"
     "*.cpp"
-	"charactercreationstates/*.h"
-	"charactercreationstates/*.cpp"
-	"characterchosenstates/*.h"
-	"characterchosenstates/*.cpp"	
-	"characterchosenstates/menustates/*.h"
-	"characterchosenstates/menustates/*.cpp"
-	"characterchosenstates/directorstates/*.h"
-	"characterchosenstates/directorstates/*.cpp"
 )
 
 #set(
