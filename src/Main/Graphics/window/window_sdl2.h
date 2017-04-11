@@ -7,7 +7,7 @@ namespace GS {
 namespace Graphics {
 
 #ifdef USING_SDL
-class Window : public IDimensionable
+class Window_SDL2 : public IDimensionable
 {
 
 selective:
@@ -35,6 +35,9 @@ public:
 
 	//	GLFWwindow * getGLFWwindow();
 };
+
+typedef Window_SDL Window;
+
 #endif
 
 };

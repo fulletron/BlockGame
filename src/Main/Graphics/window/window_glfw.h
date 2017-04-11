@@ -40,6 +40,9 @@ public:
 selective:
 	_UINT32 __createOnlyWindow();
 };
+
+typedef Window_GLFW Window;
+
 #endif
 
 };

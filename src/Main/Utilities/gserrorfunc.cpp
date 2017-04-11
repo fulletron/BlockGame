@@ -32,17 +32,17 @@ bool ErrorCallbacks::glfwErrorsExist()
 }
 */
 
-bool ErrorCallbacks::glErrorsExist()
+int ErrorCallbacks::glErrorsExist()
 {
 	g_latestGLError = glGetError();
-	if (g_latestGLError != GL_NO_ERROR)
+	if (g_latestGLError)
 	{
 #ifdef WIN32
 		std::cout << "GL ERROR CODE " << g_latestGLError << std::endl;
 #endif
-		return true;
+		return g_latestGLError;
 	}
-	return false;
+	return GL_NO_ERROR;
 }
 
 bool ErrorCallbacks::flaggedErrorsExist()
@@ -54,6 +54,26 @@ bool ErrorCallbacks::flaggedErrorsExist()
 	//	returnable = true;
 
 	return returnable;
+}
+
+bool ErrorCallbacks::specificErrorExists(int x)
+{
+	if (x == glErrorsExist())
+		return true;
+	//if (glfwErrorsExist())
+	//	returnable = true;
+
+	return false;
+}
+
+bool ErrorCallbacks::checkForNoErrorOrSpecificError(int x)
+{
+	int error_code = glErrorsExist();
+	if (error_code == 0
+		|| error_code == x)
+		return true;
+	else
+		return false;
 }
 
 };

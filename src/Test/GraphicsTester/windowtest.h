@@ -6,16 +6,14 @@
 #endif
 
 #include <gtest/gtest.h>
-#include <Graphics/window.h>
-#include <Utilities/glfwerrorfunc.h>
+#include <Graphics/window/window.h>
+#include <Utilities/gserrorfunc.h>
 
 // To use a test fixture, derive a class from testing::Test.
 class MockWindowManager : public testing::Test 
 {
 protected:
-	GS::Graphics::Window m_window;
-
-	bool m_errors;
+	GS::Graphics::IWindow * m_pWindow;
 
 public:
 	// happens once
@@ -31,32 +29,36 @@ public:
 	// happens every test case
 	virtual void SetUp() 
 	{
-		m_errors = false;
-		//m_man.init(4,16);
 	}
 
 	// happens every test case
 	virtual void TearDown() 
 	{
-		//m_man.shutdown();
 	}
 };
 
 TEST_F(MockWindowManager, init_test)
 {
-	EXPECT_EQ(0, m_window.init() );
+	m_pWindow = new GS::Graphics::Window();
 
-	//m_errors = GS::Utilities::ErrorCallbacks::glfwErrorsExist();
-	//EXPECT_EQ( false, m_errors ); // bizarre -Wconversion-null warning
-	//EXPECT_FALSE( m_errors );
+	EXPECT_TRUE(G_CheckForNoErrorOrSpecificError(1282));
 
-	EXPECT_TRUE( m_window.isOpen() );
+	EXPECT_EQ(0, m_pWindow->init() );
 
-	m_window.shutdown();
+	EXPECT_TRUE(G_CheckForNoErrorOrSpecificError(1280));
 
-	//m_errors = GS::Utilities::ErrorCallbacks::glfwErrorsExist();
-	EXPECT_FALSE( m_errors );
-	EXPECT_FALSE( m_window.isOpen() );
+	EXPECT_TRUE( m_pWindow->isOpen() );
+
+	EXPECT_FALSE(G_CheckForErrors());
+
+	EXPECT_EQ(0, m_pWindow->shutdown());
+
+	// KYLE :: WHY 1282 HERE?
+	EXPECT_TRUE(G_CheckForNoErrorOrSpecificError(1282));
+
+	EXPECT_FALSE( m_pWindow->isOpen() );
+
+	delete m_pWindow;
 };
 
 

@@ -3,20 +3,16 @@
 
 #include <Graphics\window\window.h>
 
-GS::Graphics::IWindow * g_window;
+GS::Graphics::IWindow * g_pWindow;
 bool g_isRunning = false;
 
 int main(int argc, char * argv[])
 {
 	g_isRunning = true;
 
-#ifdef USING_GLFW
-	g_window = new GS::Graphics::Window_GLFW ();
-#else
-	g_window = 0;
-#endif
+	g_pWindow = new GS::Graphics::Window ();
 
-	g_window->init();
+	g_pWindow->init();
 
 	//while (g_isRunning)
 	//{
@@ -24,8 +20,8 @@ int main(int argc, char * argv[])
 		_getch();
 	//}
 
-	g_window->shutdown();
-	delete g_window;
+	g_pWindow->shutdown();
+	delete g_pWindow;
 
 	return 0;
 }
