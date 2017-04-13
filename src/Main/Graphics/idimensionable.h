@@ -8,7 +8,7 @@ namespace Graphics {
 
 class IDimensionable {
 public:
-	virtual Vec2D<_INT32> getPixelDimensions() const = 0;
+	virtual _VEC2D<_INT32> getPixelDimensions() const = 0;
 };
 
 

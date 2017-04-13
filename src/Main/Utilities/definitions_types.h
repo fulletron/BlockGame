@@ -69,30 +69,30 @@ union _UNION8 {
 #define GS_ASSERT(BOOL_WE_WANT, BOOL_TO_TEST,RET) if( BOOL_WE_WANT != BOOL_TO_TEST ) return RET;
 
 template<typename T>
-class Vec2D
+class _VEC2D
 {
 public:
 	T x;
 	T y;
 	
-	Vec2D(){}
-	Vec2D(T a_x, T a_y) : x(a_x), y(a_y){}
+	_VEC2D(){}
+	_VEC2D(T a_x, T a_y) : x(a_x), y(a_y){}
 };
 
 template<typename T>
-class Vec3D
+class _VEC3D
 {
 public:
 	T x;
 	T y;
 	T z;
 	
-	Vec3D(){}
-	Vec3D(T a_x, T a_y, T a_z) : x(a_x), y(a_y), z(a_z){}
+	_VEC3D(){}
+	_VEC3D(T a_x, T a_y, T a_z) : x(a_x), y(a_y), z(a_z){}
 };
 
 template<typename T>
-class Vec4D
+class _VEC4D
 {
 public:
 	union
@@ -120,9 +120,10 @@ public:
 		T box_height;
 	};
 	
-	Vec4D(){}
-	Vec4D(T a_x, T a_y, T a_z, T a_a) : pos_x(a_x), pos_y(a_y), pos_z(a_z), a(a_a){}
+	_VEC4D(){}
+	_VEC4D(T a_x, T a_y, T a_z, T a_a) : pos_x(a_x), pos_y(a_y), pos_z(a_z), a(a_a){}
 };
+
 
 
 // IF IM TESTING THINGS, PROTECTED THINGS BECOME

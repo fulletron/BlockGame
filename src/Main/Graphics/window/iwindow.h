@@ -16,7 +16,7 @@ public:
 	virtual _UINT32 init() = 0;
 	virtual _BOOL isOpen() = 0;
 	virtual _UINT32 shutdown() = 0;
-	virtual Vec2D<_INT32> getPixelDimensions() const = 0;
+	virtual _VEC2D<_INT32> getPixelDimensions() const = 0;
 };
 
 };

@@ -3,9 +3,12 @@ cmake_minimum_required ( VERSION 2.6 )
 file(GLOB UTILITIESSRC
     "*.h"
     "*.cpp"
+	"input/*.h"
+	"input/*.cpp"
 )
 
-##GroupSources( ${CMAKE_CURRENT_SOURCE_DIR} "GENERAL" )
+## KYLE :: GroupSources CALL MAKES FOLDERS A THING IN VISUAL STUDIO! AWESOME!
+GroupSources( ${CMAKE_CURRENT_SOURCE_DIR} "GENERAL" )
 
 add_library( Utilities ${UTILITIESSRC} )
 

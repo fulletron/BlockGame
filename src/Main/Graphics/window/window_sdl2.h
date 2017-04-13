@@ -26,7 +26,7 @@ public:
 	/**
 	* Get the Pixel Dimensions of the current master window
 	*/
-	Vec2D<_INT32> getPixelDimensions() const;
+	_VEC2D<_INT32> getPixelDimensions() const;
 
 	/**
 	* returns the window's framebuffer (always 0)

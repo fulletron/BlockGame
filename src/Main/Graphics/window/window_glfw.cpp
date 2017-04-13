@@ -107,9 +107,9 @@ void Window_GLFW::swapBuffers()
 	glfwSwapBuffers(m_pGLFWwindow);
 }
 
-Vec2D<_INT32> Window_GLFW::getPixelDimensions() const
+_VEC2D<_INT32> Window_GLFW::getPixelDimensions() const
 {
-	Vec2D<_INT32> dims; // KYLE :: THIS MIGHT GET PERMISSIVE ON
+	_VEC2D<_INT32> dims; // KYLE :: THIS MIGHT GET PERMISSIVE ON
 				// DIFF BIT MACHINE
 	glfwGetWindowSize(m_pGLFWwindow, &dims.x, &dims.y);
 	return dims;
