@@ -23,7 +23,11 @@ public:
 	_UINT32 init();
 	bool isOpen();
 	_UINT32 shutdown();
-	void swapBuffers();
+
+	/**
+	* Presents the current window
+	*/
+	virtual void swapBuffers();
 
 	/**
 	* Get the Pixel Dimensions of the current master window
@@ -35,7 +39,11 @@ public:
 	*/
 //	GLuint getFramebuffer() const;
 
-//	GLFWwindow * getGLFWwindow();
+	/**
+	* returns pointer to glfw window.
+	* good for glfw input.
+	*/
+	GLFWwindow * getGLFWwindow();
 
 selective:
 	_UINT32 __createOnlyWindow();

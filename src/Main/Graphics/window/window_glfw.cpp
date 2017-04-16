@@ -95,6 +95,8 @@ _UINT32 Window_GLFW::init()
 
 _UINT32 Window_GLFW::shutdown()
 {
+	glfwSetWindowShouldClose(m_pGLFWwindow, 1); // 1 == GLFW_TRUE
+
 	glfwDestroyWindow(m_pGLFWwindow);
 	m_isOpen = false;
 	glfwTerminate();
@@ -102,6 +104,9 @@ _UINT32 Window_GLFW::shutdown()
 	return 0;
 }
 
+/**
+* draws the screen
+*/
 void Window_GLFW::swapBuffers()
 {
 	glfwSwapBuffers(m_pGLFWwindow);
@@ -125,12 +130,15 @@ bool Window_GLFW::isOpen()
 }
 
 #endif
-/*
+
+/**
+* This is specifically useful for getting a handle to the GLFW input
+*/
 GLFWwindow * Window::getGLFWwindow()
 {
 	return m_pGLFWwindow;
 }
-*/
+
 
 /*
 void (*GLFWwindowsizefun)(GLFWwindow*, int, int);

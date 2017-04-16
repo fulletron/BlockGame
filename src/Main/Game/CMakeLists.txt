@@ -16,6 +16,11 @@ cmake_minimum_required (VERSION 2.6)
 file(GLOB GAMESRC
     "*.h"
     "*.cpp"
+	"state/*.h"
+	"overstate/*.h"
+	"overstate/*.cpp"
+	"overstate/teststates/*.h"
+	"overstate/teststates/*.cpp"
 )
 
 #set(
