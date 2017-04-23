@@ -1,5 +1,5 @@
-#ifndef __TEST2STATE_H_
-#define __TEST2STATE_H_
+#ifndef __TEST3STATE_H_
+#define __TEST3STATE_H_
 
 #include <Utilities/definitions_types.h>
 #include "../overstate.h"
@@ -9,7 +9,7 @@
 namespace GS {
 namespace State {
 
-class Test2State : public IState<OverState>, public IStateTransitioner<OverState>
+class Test3State : public IState<OverState>, public IStateTransitioner<OverState>
 {
 	IMPLEMENT_ISTATE(OverState);
 	IMPLEMENT_ISTATETRANSITIONER(OverState);

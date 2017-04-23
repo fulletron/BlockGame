@@ -17,6 +17,10 @@ public:
 };
 
 // ENSURE \ IS THE LAST CHARACTER
+/*
+* ADDS MEMBER VARIABLE::
+* State::IState<MACHINE> * m_pCurrentState;
+*/
 #define IMPLEMENT_ISTATEMACHINE(MACHINE)							\
 selective:															\
 State::IState<MACHINE> * m_pCurrentState;							\

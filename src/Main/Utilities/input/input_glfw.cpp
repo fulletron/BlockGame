@@ -17,6 +17,7 @@ namespace Utilities {
 
 Input_GLFW::Input_GLFW()
 {
+	m_pGLFWwindow = 0;
 }
 
 Input_GLFW::~Input_GLFW()

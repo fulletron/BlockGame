@@ -5,6 +5,8 @@ file(GLOB UTILITIESSRC
     "*.cpp"
 	"input/*.h"
 	"input/*.cpp"
+	"time/*.h"
+	"time/*.cpp"
 )
 
 ## KYLE :: GroupSources CALL MAKES FOLDERS A THING IN VISUAL STUDIO! AWESOME!

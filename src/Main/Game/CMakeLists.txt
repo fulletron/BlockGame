@@ -21,6 +21,8 @@ file(GLOB GAMESRC
 	"overstate/*.cpp"
 	"overstate/teststates/*.h"
 	"overstate/teststates/*.cpp"
+	"state/statetransitioner/*.h"
+	"state/statetransitioner/*.cpp"
 )
 
 #set(

@@ -140,4 +140,13 @@ public:
 #define privatized private
 #endif
 
+// KYLE :: NOT WELL PLACED, BUT IT WORKS
+#define DEBUG_OUTPUT_ENABLED
+
+#ifdef DEBUG_OUTPUT_ENABLED
+#define DEBUG_OUT(x) std::cout << x << std::endl;
+#else
+#define DEBUG_OUT(x) ;
+#endif
+
 #endif

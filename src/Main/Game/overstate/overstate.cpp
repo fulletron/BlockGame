@@ -1,5 +1,7 @@
 #include "overstate.h"
-#include "teststates/test1state.h"
+
+// STARTING STATE
+#include "teststates/test3state.h"
 
 
 #include <iostream>
@@ -15,7 +17,17 @@ _UINT32 OverState::init()
 	m_isRunning = true;
 	// Director is first state
 	// call it, and enter it.
-	m_pCurrentState = new Test1State();
+	Test3State * pNextState = new Test3State();
+
+	StateTransitioner<OverState>::TransRecipe transIn(
+		StateTransitioner<OverState>::TransDirection::TRANS_NODIR,
+		StateTransitioner<OverState>::TransEffect::TRANS_FADE,
+		0.0);
+	pNextState->getStateTransitioner()->setRecipe(
+		StateTransitioner<OverState>::TransStatus::TRANS_IN,
+		transIn
+		);
+	m_pCurrentState = pNextState;
 	m_pCurrentState->onEnter(this);
 	return 0;
 }

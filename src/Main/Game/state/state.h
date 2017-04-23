@@ -9,25 +9,36 @@ namespace State {
 	/**
 	* This is a State of the machine provided by the template.
 	*/
-template <typename T> class IState
+template <typename MACHINE> class IState
 {
 public:
 	virtual ~IState(){}
-	virtual _UINT32 onEnter(T *) = 0;
-	virtual _UINT32 onUpdate(T *) = 0;
-	virtual _UINT32 onExit(T *) = 0;
+	virtual _UINT32 onEnter(MACHINE *) = 0;
+	virtual _UINT32 onUpdate(MACHINE *) = 0;
+	virtual _UINT32 onExit(MACHINE *) = 0;
 };
 
 
 // ENSURE the \ is the last character
 /**
+* ADDS NO MEMBER VARIABLES
 * Creates the virtual functions for all of IState.
 */
 #define IMPLEMENT_ISTATE(MACHINE)		\
 public:									\
 	virtual _UINT32 onEnter(MACHINE *);	\
 	virtual _UINT32 onUpdate(MACHINE *);	\
-	virtual _UINT32 onExit(MACHINE *);	\
+	virtual _UINT32 onExit(MACHINE *);
+
+/**
+* ADDS NO MEMBER VARIABLES
+* Creates the virtual functions for all of IState.
+* EXCEPT UPDATE, EXPECTATION IS TO BE OVERWRITTEN
+*/
+#define IMPLEMENT_ISTATE_NOUPDATE(MACHINE)		\
+public:									\
+	virtual _UINT32 onEnter(MACHINE *);	\
+	virtual _UINT32 onExit(MACHINE *);
 
 
 
