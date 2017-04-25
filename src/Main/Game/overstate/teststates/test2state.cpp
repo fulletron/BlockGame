@@ -26,13 +26,13 @@ _UINT32 Test2State::onUpdate(OverState * a_sm)
 
 	if (g_pInput->isPressed(49))
 	{
-		StateTransitioner<OverState>::TransRecipe transOut
-			(StateTransitioner<OverState>::TransDirection::TRANS_RIGHT, 
-			StateTransitioner<OverState>::TransEffect::TRANS_FADE,
+		GS::Transition::TransRecipe transOut(
+			GS::Transition::TransDirection::TRANS_RIGHT,
+			GS::Transition::TransEffect::TRANS_FADE,
 			0.25);
-		StateTransitioner<OverState>::TransRecipe transIn
-			(StateTransitioner<OverState>::TransDirection::TRANS_LEFT,
-			StateTransitioner<OverState>::TransEffect::TRANS_FADE,
+		GS::Transition::TransRecipe transIn(
+			GS::Transition::TransDirection::TRANS_LEFT,
+			GS::Transition::TransEffect::TRANS_FADE,
 			0.25);
 		Test3State * pNextState = new Test3State();
 		m_stateTransitioner.armForTransitions(transOut, pNextState, pNextState, transIn);

@@ -6,6 +6,7 @@
 
 #include <iostream>
 
+
 #include "Utilities/input/iinput.h"
 extern GS::Utilities::IInput * g_pInput;
 
@@ -19,12 +20,12 @@ _UINT32 OverState::init()
 	// call it, and enter it.
 	Test3State * pNextState = new Test3State();
 
-	StateTransitioner<OverState>::TransRecipe transIn(
-		StateTransitioner<OverState>::TransDirection::TRANS_NODIR,
-		StateTransitioner<OverState>::TransEffect::TRANS_FADE,
+	GS::Transition::TransRecipe transIn(
+		GS::Transition::TransDirection::TRANS_NODIR,
+		GS::Transition::TransEffect::TRANS_FADE,
 		0.0);
 	pNextState->getStateTransitioner()->setRecipe(
-		StateTransitioner<OverState>::TransStatus::TRANS_IN,
+		GS::Transition::TransStatus::TRANS_IN,
 		transIn
 		);
 	m_pCurrentState = pNextState;
