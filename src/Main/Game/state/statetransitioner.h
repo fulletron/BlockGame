@@ -16,55 +16,6 @@ extern GS::Utilities::ITime * g_pTime;
 
 namespace GS {
 namespace State {
-	/*
-const enum TransStatus {
-	TRANS_STA_UNKNOWN = 0,
-	TRANS_IN = 1,
-	TRANS_OUT = 2,
-	TRANS_UPDATE = 3
-};
-
-const enum TransDirection {
-	TRANS_DIR_UNKNOWN = 0,
-	TRANS_UP = 1,
-	TRANS_DOWN = 2,
-	TRANS_LEFT = 3,
-	TRANS_RIGHT = 4,
-	TRANS_NODIR = 5
-};
-
-const enum TransEffect {
-	TRANS_EFF_UNKNOWN = 0,
-	TRANS_FADE = 1,
-	TRANS_NOFADE = 2
-};
-
-struct TransRecipe
-{
-	TransDirection dir;
-	TransEffect eff;
-	_DOUBLE duration;
-	TransRecipe()
-	{
-		dir = TRANS_DIR_UNKNOWN;
-		eff = TRANS_EFF_UNKNOWN;
-		duration = 0.0;
-	}
-	TransRecipe(TransDirection a_dir, TransEffect a_eff, _DOUBLE a_dur)
-	{
-		dir = a_dir;
-		eff = a_eff;
-		duration = a_dur;
-	}
-};
-
-class ITransitioner
-{
-public:
-	virtual TransRecipe getCurrentRecipe() const = 0;
-	virtual _DOUBLE getCurrentPercentageComplete( const TransStatus &) const = 0;
-};
-*/
 
 template <typename MACHINE> class StateTransitioner : public GS::Transition::ITransitioner
 {
@@ -169,16 +120,13 @@ public:
 		return true;
 	}
 
-	_UINT32 StateTransitioner<MACHINE>::armForTransitions(GS::Transition::TransRecipe a_currentOut, IState<MACHINE> * a_pNextState, IStateTransitioner<MACHINE> * a_pNextStateTrans, GS::Transition::TransRecipe a_nextIn)
+	_UINT32 StateTransitioner<MACHINE>::armForTransitions(GS::Transition::TransRecipe a_currentOut, IState<MACHINE> * a_pNextState, GS::Transition::IHasTransitioner * a_pNextTrans, GS::Transition::TransRecipe a_nextIn)
 	{
 		setRecipe(GS::Transition::TransStatus::TRANS_OUT, a_currentOut);
 		m_pNextState = a_pNextState;
 
-		if (a_pNextStateTrans)
-		{
-			StateTransitioner<MACHINE> * pNextTrans = a_pNextStateTrans->getStateTransitioner();
-			pNextTrans->setRecipe(GS::Transition::TransStatus::TRANS_IN, a_nextIn);
-		}
+		if (a_pNextTrans)
+			a_pNextTrans->setTransitionersRecipe(GS::Transition::TransStatus::TRANS_IN, a_nextIn);
 
 		return 0;
 	}

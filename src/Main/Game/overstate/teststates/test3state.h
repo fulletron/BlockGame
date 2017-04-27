@@ -9,10 +9,10 @@
 namespace GS {
 namespace State {
 
-class Test3State : public IState<OverState>, public IStateTransitioner<OverState>
+class Test3State : public IState<OverState>, public GS::Transition::IHasTransitioner
 {
 	IMPLEMENT_ISTATE(OverState);
-	IMPLEMENT_ISTATETRANSITIONER(OverState);
+	IMPLEMENT_IHASTRANSITIONER(OverState);
 };
 
 };

@@ -6,18 +6,19 @@
 namespace GS {
 namespace State {
 
-template <typename MACHINE> class StateTransitioner;
+//template <typename MACHINE> class StateTransitioner;
 
 /**
 * This is a State of the machine provided by the template.
 */
+/*
 template <typename MACHINE>
 class IStateTransitioner
 {
 public:
 	virtual StateTransitioner<MACHINE> * getStateTransitioner() = 0;
 };
-
+*/
 
 // ENSURE the \ is the last character
 /**
@@ -25,12 +26,14 @@ public:
 * StateTransitioner m_stateTransitioner;
 * Creates the implementation of getStateTransitioner();
 */
+/*
 #define IMPLEMENT_ISTATETRANSITIONER(MACHINE)		\
 selective: \
 	StateTransitioner<MACHINE> m_stateTransitioner; \
 public:									\
 	virtual StateTransitioner<MACHINE> * getStateTransitioner() \
 	{ return &m_stateTransitioner; }
+*/
 
 };
 };

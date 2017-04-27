@@ -24,7 +24,7 @@ _UINT32 OverState::init()
 		GS::Transition::TransDirection::TRANS_NODIR,
 		GS::Transition::TransEffect::TRANS_FADE,
 		0.0);
-	pNextState->getStateTransitioner()->setRecipe(
+	pNextState->setTransitionersRecipe(
 		GS::Transition::TransStatus::TRANS_IN,
 		transIn
 		);
