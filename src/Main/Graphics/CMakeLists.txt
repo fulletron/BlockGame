@@ -14,6 +14,10 @@ file(GLOB GRAPHICSSRC
     "*.cpp"
 	"window/*.h"
 	"window/*.cpp"
+	"library/*.h"
+	"library/*.cpp"
+	"resource/*.h"
+	"resource/*.cpp"
 )
 
 #message( "CALLING GROUPSOURCES on" ${CMAKE_CURRENT_SOURCE_DIR}  )
