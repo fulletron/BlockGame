@@ -18,6 +18,10 @@ file(GLOB GRAPHICSSRC
 	"library/*.cpp"
 	"resource/*.h"
 	"resource/*.cpp"
+	"builders/*.h"
+	"builders/*.cpp"
+	"backloader/*.h"
+	"backloader/*.cpp"
 )
 
 #message( "CALLING GROUPSOURCES on" ${CMAKE_CURRENT_SOURCE_DIR}  )
@@ -27,8 +31,10 @@ GroupSources( ${CMAKE_CURRENT_SOURCE_DIR} "GENERAL" )
 #SOURCE_GROUP(panes FILES "panes/*.cpp" "panes/*h")
 
 
-add_library( Graphics ${GRAPHICSSRC} )
+add_library( Graphics STATIC ${GRAPHICSSRC} )
 target_link_libraries( Graphics
+		Framework
+		Game
 		Utilities
 )
 

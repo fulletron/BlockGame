@@ -14,14 +14,7 @@ cmake_minimum_required (VERSION 2.6)
 #)
 
 file(GLOB LAUNCHPADSRC
-    "*.h"
     "*.cpp"
-	"state/*.h"
-	"stage/*.h"
-	"stage/*.cpp"
-	"stage/teststages/*.h"
-	"stage/teststages/*.cpp"
-	"transition/*.h"
 )
 
 #set(
@@ -45,6 +38,7 @@ target_link_libraries(Launchpad
 		Game
 		Graphics
 		Utilities
+		Framework
 )
 
 #message(STATUS "Target File Dir :: " $<TARGET_FILE_DIR:Launchpad>)

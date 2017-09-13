@@ -1,7 +1,4 @@
 #include "input_GLFW.h"
-#include "Graphics/window/window.h"
-
-extern GS::Graphics::Window * g_pWindow;
 
 namespace GS {
 namespace Utilities {
@@ -24,9 +21,9 @@ Input_GLFW::~Input_GLFW()
 {
 }
 
-_UINT32 Input_GLFW::init(void)
+_UINT32 Input_GLFW::init(GS::Graphics::Window * a_pWindow)
 {
-	m_pGLFWwindow = g_pWindow->getGLFWwindow();
+	m_pGLFWwindow = a_pWindow->getGLFWwindow();
 
 	// Whenever you poll state, you risk missing the state change you are 
 	// looking for. If a pressed key is released again before you poll its 

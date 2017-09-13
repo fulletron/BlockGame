@@ -18,7 +18,8 @@
 
 //static const float INFINITY = FLT_MAX;
 //static const float EPSILON  = 0.001f;
-
+int contextsharetest(void * a_window);
+int doThreads(void);
 
 namespace CV8 {
 const _INT64 test = 0000000000001;

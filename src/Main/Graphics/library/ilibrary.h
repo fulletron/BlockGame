@@ -7,6 +7,25 @@ namespace GS {
 namespace Library {
 
 /**
+* All the functionality necessary from the stage regarding the library.
+*/
+class IStageToLibraryLiaison
+{
+public:
+	/**
+	* Tells the library to prepare a resource from the game
+	* files located on the computer.
+	*/
+	virtual _UINT32 subscribe(const _UINT64 & a_id) = 0;
+
+	/**
+	* Tells the library it needs a resource in one less place.
+	*/
+	virtual _UINT32 unsubscribe(const _UINT64 & a_id) = 0;
+};
+
+
+/**
 * ILibrary is the Resource library.
 */
 class ILibrary
@@ -26,32 +45,34 @@ public:
 	* Tells the library to prepare a resource from the game
 	* files located on the computer.
 	*/
-	virtual _UINT32 subscribe( const _UINT64 & a_id ) = 0;
+	//virtual _UINT32 subscribe( const _UINT64 & a_id ) = 0;
 
 	/**
 	* Tells the library it needs a resource in one less place.
 	*/
-	virtual _UINT32 unsubscribe( const _UINT64 & a_id ) = 0;
+	//virtual _UINT32 unsubscribe( const _UINT64 & a_id ) = 0;
 };
 
-
 /**
-* All the functionality necessary from the stage regarding the library.
+* Derived objects can subscribe and unsubscribe to resources in the library
 */
-class IStageToLibraryLiaison
+class ISubscriber
 {
-public:
+selective:
 	/**
 	* Tells the library to prepare a resource from the game
 	* files located on the computer.
 	*/
-	virtual _UINT32 subscribe(const _UINT64 & a_id) = 0;
+	virtual _UINT32 __subscribe(const _UINT64 & a_id) = 0;
+//	virtual _UINT32 __subscribe(ILibrary * a_lib, const _UINT64 & a_id) = 0;
 
 	/**
 	* Tells the library it needs a resource in one less place.
 	*/
-	virtual _UINT32 unsubscribe(const _UINT64 & a_id) = 0;
+	virtual _UINT32 __unsubscribe(const _UINT64 & a_id) = 0;
+//	virtual _UINT32 __unsubscribe(ILibrary * a_lib, const _UINT64 & a_id) = 0;
 };
+
 
 
 };

@@ -86,7 +86,9 @@ _UINT32 Window_GLFW::init()
 
 	_CheckForErrors();
 
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.13f, 0.13f, 0.13f, 1.0f);
+	glClearDepthf(1.0f); //1 is default
+	glClearStencil(0); // 0 is default
 
 	_CheckForErrors();
 

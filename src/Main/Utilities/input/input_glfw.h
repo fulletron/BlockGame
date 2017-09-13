@@ -2,6 +2,7 @@
 #define __INPUT_GLFW_H_
 
 #include "iinput.h"
+#include <Graphics/window/window.h>
 #include "../../Graphics/openglincludes.h"
 
 namespace GS {
@@ -14,7 +15,7 @@ public:
 	Input_GLFW();
 	~Input_GLFW();
 
-	virtual _UINT32 init(void);
+	_UINT32 init(GS::Graphics::Window *);
 	virtual _UINT32 shutdown(void);
 	virtual _UINT32 intake(void);
 	//virtual _UINT32 clear(void);

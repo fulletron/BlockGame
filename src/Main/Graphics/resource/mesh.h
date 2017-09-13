@@ -1,12 +1,14 @@
 #ifndef __MESH_H_
 #define __MESH_H_
 
-#include "iresource.h"
+#include <Graphics/resource/resource.h>
 
 namespace GS {
 namespace Resource {
 
-class MeshResource : public IResource {
+class MeshResource : public Resource {
+
+	//IMPLEMENT_IRESOURCE;
 
 selective:
 	_UINT32 m_vao;
@@ -17,7 +19,7 @@ public:
 	MeshResource();
 	~MeshResource();
 
-	_UINT32 init();
+	_UINT32 init(const _UINT64 & a_name);
 	_UINT32 shutdown();
 	
 	_UINT32 build( 	_FLOAT * a_verts, 

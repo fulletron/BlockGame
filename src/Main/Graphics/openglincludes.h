@@ -3,6 +3,11 @@
 #ifndef __OPENGLINCLUDES_H_
 #define __OPENGLINCLUDES_H_
 
+#ifdef _WIN32
+#define GLFW_EXPOSE_NATIVE_WIN32
+#define GLFW_EXPOSE_NATIVE_WGL
+#endif
+
 #define GLEW_STATIC
 #include "gl/glew.h"
 #include "gl/GL.h"

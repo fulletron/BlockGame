@@ -15,7 +15,7 @@ public:
 	/**
 	* Setup the Input. call once ever.
 	*/
-	virtual _UINT32 init(void) = 0;
+	//virtual _UINT32 init(void) = 0;
 
 	/**
 	* Teardown the Input. call once ever.

@@ -7,12 +7,20 @@ file(GLOB UTILITIESSRC
 	"input/*.cpp"
 	"time/*.h"
 	"time/*.cpp"
+	"filepath/*.h"
+	"filepath/*.cpp"
+	"thread/*.h"
+	"thread/*.cpp"
+	"commclient/*.h"
+	"commclient/*.cpp"
+	"commserver/*.h"
+	"commserver/*.cpp"
 )
 
 ## KYLE :: GroupSources CALL MAKES FOLDERS A THING IN VISUAL STUDIO! AWESOME!
 GroupSources( ${CMAKE_CURRENT_SOURCE_DIR} "GENERAL" )
 
-add_library( Utilities ${UTILITIESSRC} )
+add_library( Utilities STATIC ${UTILITIESSRC} )
 
 target_link_libraries( Utilities
 	${OPENGL_LIBRARIES}
@@ -23,6 +31,9 @@ target_link_libraries( Utilities
 	# TEMP REM ${Boost_LIBRARIES}
 	freetype
 	SOIL
+	Graphics
+	Game
+	Framework
 )
 
 add_library( UtilitiesTest ${UTILITIESSRC} )

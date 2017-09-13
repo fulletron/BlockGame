@@ -1,14 +1,14 @@
 #ifndef __TEXTURE_H_
 #define __TEXTURE_H_
 
-#include "iresource.h"
+#include <Graphics/resource/resource.h>
 
 namespace GS {
 namespace Resource {
 
-class TextureResource : public IResource 
+class TextureResource : public Resource 
 {
-	IMPLEMENT_IRESOURCE;
+	//IMPLEMENT_IRESOURCE;
 
 selective:
 	_UINT32 m_texture;
@@ -19,10 +19,9 @@ public:
 
 	_INT32 loadFile( const std::string & a_filename );
 
-	_UINT32 init();
+	_UINT32 init(const _UINT64 & a_name);
 	_UINT32 shutdown();
 	_UINT32 getTexture(){return m_texture;}
-
 };
 
 };
