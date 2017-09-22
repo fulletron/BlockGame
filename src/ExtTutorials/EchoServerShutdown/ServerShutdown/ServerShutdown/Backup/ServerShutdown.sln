@@ -1,0 +1,53 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerShutdown", "ServerShutdown.vcproj", "{47E6CB82-6D8E-4EE5-87CD-F67DAF80F036}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Win32Tools", "..\JetByteTools\Win32Tools\Win32Tools.vcproj", "{EA3AB0C0-AFE3-44BE-8CE1-71087E95FA22}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccProjectUniqueName0 = ServerShutdown.vcproj
+		SccLocalPath0 = .
+		CanCheckoutShared = false
+		SccProjectUniqueName1 = ..\\JetByteTools\\Win32Tools\\Win32Tools.vcproj
+		SccProjectName1 = \u0022$/Web\u0020Articles/SocketServers/ServerShutdown/JetByteTools/Win32Tools\u0022,\u0020CNAAAAAA
+		SccLocalPath1 = ..\\JetByteTools\\Win32Tools
+		CanCheckoutShared = false
+		SccProjectName2 = \u0022$/Web\u0020Articles/SocketServers/ServerShutdown/ServerShutdown\u0022,\u0020XNAAAAAA
+		SccLocalPath2 = .
+		SccProvider2 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+		CanCheckoutShared = false
+		SolutionUniqueID = {C2955550-62E1-4C92-8701-F80C96BCF2AA}
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+		ConfigName.2 = Unicode Debug
+		ConfigName.3 = Unicode Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+		{47E6CB82-6D8E-4EE5-87CD-F67DAF80F036}.0 = {EA3AB0C0-AFE3-44BE-8CE1-71087E95FA22}
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{47E6CB82-6D8E-4EE5-87CD-F67DAF80F036}.Debug.ActiveCfg = Debug|Win32
+		{47E6CB82-6D8E-4EE5-87CD-F67DAF80F036}.Debug.Build.0 = Debug|Win32
+		{47E6CB82-6D8E-4EE5-87CD-F67DAF80F036}.Release.ActiveCfg = Release|Win32
+		{47E6CB82-6D8E-4EE5-87CD-F67DAF80F036}.Release.Build.0 = Release|Win32
+		{47E6CB82-6D8E-4EE5-87CD-F67DAF80F036}.Unicode Debug.ActiveCfg = Debug|Win32
+		{47E6CB82-6D8E-4EE5-87CD-F67DAF80F036}.Unicode Debug.Build.0 = Debug|Win32
+		{47E6CB82-6D8E-4EE5-87CD-F67DAF80F036}.Unicode Release.ActiveCfg = Release|Win32
+		{47E6CB82-6D8E-4EE5-87CD-F67DAF80F036}.Unicode Release.Build.0 = Release|Win32
+		{EA3AB0C0-AFE3-44BE-8CE1-71087E95FA22}.Debug.ActiveCfg = Debug|Win32
+		{EA3AB0C0-AFE3-44BE-8CE1-71087E95FA22}.Debug.Build.0 = Debug|Win32
+		{EA3AB0C0-AFE3-44BE-8CE1-71087E95FA22}.Release.ActiveCfg = Release|Win32
+		{EA3AB0C0-AFE3-44BE-8CE1-71087E95FA22}.Release.Build.0 = Release|Win32
+		{EA3AB0C0-AFE3-44BE-8CE1-71087E95FA22}.Unicode Debug.ActiveCfg = Unicode Debug|Win32
+		{EA3AB0C0-AFE3-44BE-8CE1-71087E95FA22}.Unicode Debug.Build.0 = Unicode Debug|Win32
+		{EA3AB0C0-AFE3-44BE-8CE1-71087E95FA22}.Unicode Release.ActiveCfg = Unicode Release|Win32
+		{EA3AB0C0-AFE3-44BE-8CE1-71087E95FA22}.Unicode Release.Build.0 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

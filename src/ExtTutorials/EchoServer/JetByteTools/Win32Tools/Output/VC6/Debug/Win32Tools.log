@@ -1,0 +1,27 @@
+﻿Build started 8/13/2017 3:25:00 PM.
+     1>Project "C:\EchoServer\JetByteTools\Win32Tools\Win32Tools.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\..\ /ZI /nologo /W3 /WX- /Od /Oy- /D _DEBUG /D _LIB /D WIN32 /D _WIN32_WINNT=0x0400 /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /Gy- /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Output\VC6\Debug\\" /Fd".\Output\VC6\Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SocketServer.cpp
+         SocketServer.cpp
+     1>c:\echoserver\jetbytetools\win32tools\socketserver.cpp(434): warning C4996: 'WSASocketA': Use WSASocketW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(3457) : see declaration of 'WSASocketA'
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:".\Output\VC6\Debug\Win32Tools.lib" /NOLOGO .\Output\VC6\Debug\CriticalSection.obj
+         .\Output\VC6\Debug\Event.obj
+         .\Output\VC6\Debug\Exception.obj
+         .\Output\VC6\Debug\IOBuffer.obj
+         .\Output\VC6\Debug\IOCompletionPort.obj
+         .\Output\VC6\Debug\ManualResetEvent.obj
+         .\Output\VC6\Debug\NodeList.obj
+         .\Output\VC6\Debug\Socket.obj
+         .\Output\VC6\Debug\SocketServer.obj
+         .\Output\VC6\Debug\Thread.obj
+         .\Output\VC6\Debug\UsesWinsock.obj
+         .\Output\VC6\Debug\Utils.obj
+         .\Output\VC6\Debug\Win32Exception.obj
+         Win32Tools.vcxproj -> C:\EchoServer\JetByteTools\Win32Tools\.\Output\VC6\Debug\Win32Tools.lib
+     1>Done Building Project "C:\EchoServer\JetByteTools\Win32Tools\Win32Tools.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.61

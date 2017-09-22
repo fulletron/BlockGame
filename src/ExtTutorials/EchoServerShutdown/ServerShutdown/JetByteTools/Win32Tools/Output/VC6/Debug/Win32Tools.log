@@ -1,0 +1,9 @@
+﻿Build started 8/13/2017 8:00:38 PM.
+     1>Project "C:\EchoServerShutdown\ServerShutdown\JetByteTools\Win32Tools\Win32Tools.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
+         Win32Tools.vcxproj -> C:\EchoServerShutdown\ServerShutdown\JetByteTools\Win32Tools\.\Output\VC6\Debug\Win32Tools.lib
+     1>Done Building Project "C:\EchoServerShutdown\ServerShutdown\JetByteTools\Win32Tools\Win32Tools.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.07

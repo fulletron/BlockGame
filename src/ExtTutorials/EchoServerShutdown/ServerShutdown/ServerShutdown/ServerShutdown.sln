@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerShutdown", "ServerShutdown.vcxproj", "{991B14A6-C50A-4950-A31E-949F58A1884B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Win32Tools", "..\JetByteTools\Win32Tools\Win32Tools.vcxproj", "{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		Template|Win32 = Template|Win32
+		Unicode Debug|Win32 = Unicode Debug|Win32
+		Unicode Release|Win32 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{991B14A6-C50A-4950-A31E-949F58A1884B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{991B14A6-C50A-4950-A31E-949F58A1884B}.Debug|Win32.Build.0 = Debug|Win32
+		{991B14A6-C50A-4950-A31E-949F58A1884B}.Release|Win32.ActiveCfg = Release|Win32
+		{991B14A6-C50A-4950-A31E-949F58A1884B}.Release|Win32.Build.0 = Release|Win32
+		{991B14A6-C50A-4950-A31E-949F58A1884B}.Template|Win32.ActiveCfg = Release|Win32
+		{991B14A6-C50A-4950-A31E-949F58A1884B}.Template|Win32.Build.0 = Release|Win32
+		{991B14A6-C50A-4950-A31E-949F58A1884B}.Unicode Debug|Win32.ActiveCfg = Debug|Win32
+		{991B14A6-C50A-4950-A31E-949F58A1884B}.Unicode Debug|Win32.Build.0 = Debug|Win32
+		{991B14A6-C50A-4950-A31E-949F58A1884B}.Unicode Release|Win32.ActiveCfg = Release|Win32
+		{991B14A6-C50A-4950-A31E-949F58A1884B}.Unicode Release|Win32.Build.0 = Release|Win32
+		{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}.Debug|Win32.Build.0 = Debug|Win32
+		{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}.Release|Win32.ActiveCfg = Release|Win32
+		{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}.Release|Win32.Build.0 = Release|Win32
+		{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}.Template|Win32.ActiveCfg = Template|Win32
+		{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}.Template|Win32.Build.0 = Template|Win32
+		{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}.Unicode Debug|Win32.ActiveCfg = Unicode Debug|Win32
+		{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}.Unicode Debug|Win32.Build.0 = Unicode Debug|Win32
+		{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}.Unicode Release|Win32.ActiveCfg = Unicode Release|Win32
+		{7EBD40F1-74D2-40AE-9E93-0805F7E746D9}.Unicode Release|Win32.Build.0 = Unicode Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
