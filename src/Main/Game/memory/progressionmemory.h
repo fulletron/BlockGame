@@ -52,7 +52,7 @@
 namespace GS {
 namespace Memory {
 
-class LongTermMemory : public IMemory
+class ProgressionMemory : public IMemory
 {
 selective:
 	_UINT32 m_character;

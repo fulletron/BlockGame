@@ -1,10 +1,10 @@
-#include "longtermmemory.h"
+#include "progressionmemory.h"
 
 namespace GS {
 namespace Memory {
 
 /* This destroys any memories */
-void LongTermMemory::clearMemories()
+void ProgressionMemory::clearMemories()
 {
 }
 

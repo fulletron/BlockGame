@@ -1,0 +1,36 @@
+﻿Build started 11/18/2017 6:33:36 PM.
+     1>Project "C:\TestCode\Positroner\Positroner\Positroner\Positroner.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\testcode\positroner\positroner\positroner\main.cpp(32): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\testcode\positroner\positroner\positroner\main.cpp(52): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\testcode\positroner\positroner\positroner\main.cpp(63): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\testcode\positroner\positroner\positroner\main.cpp(253): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\testcode\positroner\positroner\positroner\main.cpp(272): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\vector(837): warning C4503: 'std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>::_Insert_nohint' : decorated name length exceeded, name was truncated
+                 with
+                 [
+                     _Kty=int
+         ,            _Ty=ConfigMap *
+         ,            _Pr=std::less<int>
+         ,            _Alloc=std::allocator<std::pair<const int,std::map<std::string,std::vector<std::string,std::allocator<std::string>>,std::less<std::string>,std::allocator<std::pair<const std::string,std::vector<std::string,std::allocator<std::string>>>>> >>
+                 ]
+     1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\vector(837): warning C4503: 'std::_Tree<std::_Tmap_traits<_Kty,_Ty,_Pr,_Alloc,false>>::_Insert_at' : decorated name length exceeded, name was truncated
+                 with
+                 [
+                     _Kty=int
+         ,            _Ty=ConfigMap *
+         ,            _Pr=std::less<int>
+         ,            _Alloc=std::allocator<std::pair<const int,std::map<std::string,std::vector<std::string,std::allocator<std::string>>,std::less<std::string>,std::allocator<std::pair<const std::string,std::vector<std::string,std::allocator<std::string>>>>> >>
+                 ]
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\TestCode\Positroner\Positroner\Debug\Positroner.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\TestCode\Positroner\Positroner\Debug\Positroner.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\TestCode\Positroner\Positroner\Debug\Positroner.lib" /MACHINE:X86 Debug\main.obj
+         Debug\plate.obj
+         Debug\player.obj
+         Positroner.vcxproj -> C:\TestCode\Positroner\Positroner\Debug\Positroner.exe
+     1>Done Building Project "C:\TestCode\Positroner\Positroner\Positroner\Positroner.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.93

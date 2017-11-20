@@ -29,6 +29,7 @@ _UINT32 Server::addUser(_UINT32 * a_pUser)
 
 	// Either put the user in an existant shard, or make a new one
 	///__attemptToPlaceNewUser(a_pUser);
+	return 0;
 }
 
 _UINT32 Server::shutdown()
