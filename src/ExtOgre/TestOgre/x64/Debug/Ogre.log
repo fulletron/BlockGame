@@ -1,0 +1,870 @@
+19:15:20: Creating resource group General
+19:15:20: Creating resource group Internal
+19:15:20: Creating resource group Autodetect
+19:15:20: SceneManagerFactory for type 'DefaultSceneManager' registered.
+19:15:20: Registering ResourceManager for type Material
+19:15:20: Registering ResourceManager for type Mesh
+19:15:20: Registering ResourceManager for type Mesh2
+19:15:20: Registering ResourceManager for type OldSkeleton
+19:15:20: MovableObjectFactory for type 'ParticleSystem' registered.
+19:15:20: ArchiveFactory for archive type FileSystem registered.
+19:15:20: ArchiveFactory for archive type Zip registered.
+19:15:20: ArchiveFactory for archive type EmbeddedZip registered.
+19:15:20: DDS codec registering
+19:15:20: FreeImage version: 3.15.3
+19:15:20: This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+19:15:20: Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2,pfm,pct,pict,pic
+19:15:20: ETC codec registering
+19:15:20: OITD codec registering
+19:15:20: Registering ResourceManager for type HighLevelGpuProgram
+19:15:20: MovableObjectFactory for type 'Entity' registered.
+19:15:20: MovableObjectFactory for type 'Item' registered.
+19:15:20: MovableObjectFactory for type 'Light' registered.
+19:15:20: MovableObjectFactory for type 'BillboardSet' registered.
+19:15:20: MovableObjectFactory for type 'ManualObject2' registered.
+19:15:20: MovableObjectFactory for type 'BillboardChain' registered.
+19:15:20: MovableObjectFactory for type 'RibbonTrail' registered.
+19:15:20: MovableObjectFactory for type 'WireAabb' registered.
+19:15:20: Loading library .\RenderSystem_Direct3D11_d
+19:15:20: Installing plugin: D3D11 RenderSystem
+19:15:20: D3D11 : Direct3D11 Rendering Subsystem created.
+19:15:20: D3D11: Driver Detection Starts
+19:15:20: D3D11: Driver Detection Ends
+19:15:20: Plugin successfully installed
+19:15:20: Loading library .\RenderSystem_GL3Plus_d
+19:15:20: Installing plugin: GL 3+ RenderSystem
+19:15:20: OpenGL 3+ Rendering Subsystem created.
+19:15:21: Plugin successfully installed
+19:15:21: *-*-* OGRE Initialising
+19:15:21: *-*-* Version 2.1.0unstable ('B')
+19:15:21: D3D11 : RenderSystem Option: Allow NVPerfHUD = No
+19:15:21: D3D11 : RenderSystem Option: Backbuffer Count = Auto
+19:15:21: D3D11 : RenderSystem Option: Driver type = Hardware
+19:15:21: D3D11 : RenderSystem Option: FSAA = 1
+19:15:21: D3D11 : RenderSystem Option: Fast Shader Build Hack = Yes
+19:15:21: D3D11 : RenderSystem Option: Floating-point mode = Fastest
+19:15:21: D3D11 : RenderSystem Option: Full Screen = No
+19:15:21: D3D11 : RenderSystem Option: Information Queue Exceptions Bottom Level = Info (exception on any message)
+19:15:21: D3D11 : RenderSystem Option: Max Requested Feature Levels = 11.1
+19:15:21: D3D11 : RenderSystem Option: Min Requested Feature Levels = 9.1
+19:15:21: D3D11 : RenderSystem Option: Rendering Device = NVIDIA GeForce GTX 1080 Ti_0
+19:15:21: D3D11 : RenderSystem Option: VSync = No
+19:15:21: D3D11 : RenderSystem Option: VSync Interval = 1
+19:15:21: D3D11 : RenderSystem Option: Video Mode = 1024 x 768 @ 32-bit colour
+19:15:21: D3D11 : RenderSystem Option: sRGB Gamma Conversion = No
+19:15:25: D3D11 : Shutting down cleanly.
+19:15:25: CPU Identifier & Features
+19:15:25: -------------------------
+19:15:25:  *   CPU ID: AuthenticAMD: AMD Ryzen 7 1800X Eight-Core Processor
+19:15:25:  *   Logical cores: 16
+19:15:25:  *      SSE: yes
+19:15:25:  *     SSE2: yes
+19:15:25:  *     SSE3: yes
+19:15:25:  *      MMX: yes
+19:15:25:  *   MMXEXT: yes
+19:15:25:  *    3DNOW: no
+19:15:25:  * 3DNOWEXT: no
+19:15:25:  *     CMOV: yes
+19:15:25:  *      TSC: yes
+19:15:25:  *      FPU: yes
+19:15:25:  *      PRO: yes
+19:15:25:  *       HT: no
+19:15:25: -------------------------
+19:15:25: *** Starting Win32GL Subsystem ***
+19:15:25: GL3PlusRenderSystem::_createRenderWindow "Tutorial 06: Multithreading", 1440x900 windowed  miscParams: FSAA=0 externalWindowHandle=591146 gamma=true title=Tutorial 06: Multithreading vsync=No 
+19:15:25: GL_VERSION = 3.3.0.0
+19:15:25: GL_VENDOR = NVIDIA Corporation
+19:15:25: GL_RENDERER = GeForce GTX 1080 Ti/PCIe/SSE2
+19:15:25: GL_EXTENSIONS = 
+19:15:25: GL_AMD_multi_draw_indirect
+19:15:25: GL_AMD_seamless_cubemap_per_texture
+19:15:25: GL_AMD_vertex_shader_viewport_index
+19:15:25: GL_AMD_vertex_shader_layer
+19:15:25: GL_ARB_arrays_of_arrays
+19:15:25: GL_ARB_base_instance
+19:15:25: GL_ARB_bindless_texture
+19:15:25: GL_ARB_blend_func_extended
+19:15:25: GL_ARB_buffer_storage
+19:15:25: GL_ARB_clear_buffer_object
+19:15:25: GL_ARB_clear_texture
+19:15:25: GL_ARB_clip_control
+19:15:25: GL_ARB_color_buffer_float
+19:15:25: GL_ARB_compressed_texture_pixel_storage
+19:15:25: GL_ARB_conservative_depth
+19:15:25: GL_ARB_compute_shader
+19:15:25: GL_ARB_compute_variable_group_size
+19:15:25: GL_ARB_conditional_render_inverted
+19:15:25: GL_ARB_copy_buffer
+19:15:25: GL_ARB_copy_image
+19:15:25: GL_ARB_cull_distance
+19:15:25: GL_ARB_debug_output
+19:15:25: GL_ARB_depth_buffer_float
+19:15:25: GL_ARB_depth_clamp
+19:15:25: GL_ARB_depth_texture
+19:15:25: GL_ARB_derivative_control
+19:15:25: GL_ARB_direct_state_access
+19:15:25: GL_ARB_draw_buffers
+19:15:25: GL_ARB_draw_buffers_blend
+19:15:25: GL_ARB_draw_indirect
+19:15:25: GL_ARB_draw_elements_base_vertex
+19:15:25: GL_ARB_draw_instanced
+19:15:25: GL_ARB_enhanced_layouts
+19:15:25: GL_ARB_ES2_compatibility
+19:15:25: GL_ARB_ES3_compatibility
+19:15:25: GL_ARB_ES3_1_compatibility
+19:15:25: GL_ARB_ES3_2_compatibility
+19:15:25: GL_ARB_explicit_attrib_location
+19:15:25: GL_ARB_explicit_uniform_location
+19:15:25: GL_ARB_fragment_coord_conventions
+19:15:25: GL_ARB_fragment_layer_viewport
+19:15:25: GL_ARB_fragment_program
+19:15:25: GL_ARB_fragment_program_shadow
+19:15:25: GL_ARB_fragment_shader
+19:15:25: GL_ARB_fragment_shader_interlock
+19:15:25: GL_ARB_framebuffer_no_attachments
+19:15:25: GL_ARB_framebuffer_object
+19:15:25: GL_ARB_framebuffer_sRGB
+19:15:25: GL_ARB_geometry_shader4
+19:15:25: GL_ARB_get_program_binary
+19:15:25: GL_ARB_get_texture_sub_image
+19:15:25: GL_ARB_gl_spirv
+19:15:25: GL_ARB_gpu_shader5
+19:15:25: GL_ARB_gpu_shader_fp64
+19:15:25: GL_ARB_gpu_shader_int64
+19:15:25: GL_ARB_half_float_pixel
+19:15:25: GL_ARB_half_float_vertex
+19:15:25: GL_ARB_imaging
+19:15:25: GL_ARB_indirect_parameters
+19:15:25: GL_ARB_instanced_arrays
+19:15:25: GL_ARB_internalformat_query
+19:15:25: GL_ARB_internalformat_query2
+19:15:25: GL_ARB_invalidate_subdata
+19:15:25: GL_ARB_map_buffer_alignment
+19:15:25: GL_ARB_map_buffer_range
+19:15:25: GL_ARB_multi_bind
+19:15:25: GL_ARB_multi_draw_indirect
+19:15:25: GL_ARB_multisample
+19:15:25: GL_ARB_multitexture
+19:15:25: GL_ARB_occlusion_query
+19:15:25: GL_ARB_occlusion_query2
+19:15:25: GL_ARB_parallel_shader_compile
+19:15:25: GL_ARB_pipeline_statistics_query
+19:15:25: GL_ARB_pixel_buffer_object
+19:15:25: GL_ARB_point_parameters
+19:15:25: GL_ARB_point_sprite
+19:15:25: GL_ARB_polygon_offset_clamp
+19:15:25: GL_ARB_post_depth_coverage
+19:15:25: GL_ARB_program_interface_query
+19:15:25: GL_ARB_provoking_vertex
+19:15:25: GL_ARB_query_buffer_object
+19:15:25: GL_ARB_robust_buffer_access_behavior
+19:15:25: GL_ARB_robustness
+19:15:25: GL_ARB_sample_locations
+19:15:25: GL_ARB_sample_shading
+19:15:25: GL_ARB_sampler_objects
+19:15:25: GL_ARB_seamless_cube_map
+19:15:25: GL_ARB_seamless_cubemap_per_texture
+19:15:25: GL_ARB_separate_shader_objects
+19:15:25: GL_ARB_shader_atomic_counter_ops
+19:15:25: GL_ARB_shader_atomic_counters
+19:15:25: GL_ARB_shader_ballot
+19:15:25: GL_ARB_shader_bit_encoding
+19:15:25: GL_ARB_shader_clock
+19:15:25: GL_ARB_shader_draw_parameters
+19:15:25: GL_ARB_shader_group_vote
+19:15:25: GL_ARB_shader_image_load_store
+19:15:25: GL_ARB_shader_image_size
+19:15:25: GL_ARB_shader_objects
+19:15:25: GL_ARB_shader_precision
+19:15:25: GL_ARB_shader_storage_buffer_object
+19:15:25: GL_ARB_shader_subroutine
+19:15:25: GL_ARB_shader_texture_image_samples
+19:15:25: GL_ARB_shader_texture_lod
+19:15:25: GL_ARB_shading_language_100
+19:15:25: GL_ARB_shader_viewport_layer_array
+19:15:25: GL_ARB_shading_language_420pack
+19:15:25: GL_ARB_shading_language_include
+19:15:25: GL_ARB_shading_language_packing
+19:15:25: GL_ARB_shadow
+19:15:25: GL_ARB_sparse_buffer
+19:15:25: GL_ARB_sparse_texture
+19:15:25: GL_ARB_sparse_texture2
+19:15:25: GL_ARB_sparse_texture_clamp
+19:15:25: GL_ARB_spirv_extensions
+19:15:25: GL_ARB_stencil_texturing
+19:15:25: GL_ARB_sync
+19:15:25: GL_ARB_tessellation_shader
+19:15:25: GL_ARB_texture_barrier
+19:15:25: GL_ARB_texture_border_clamp
+19:15:25: GL_ARB_texture_buffer_object
+19:15:25: GL_ARB_texture_buffer_object_rgb32
+19:15:25: GL_ARB_texture_buffer_range
+19:15:25: GL_ARB_texture_compression
+19:15:25: GL_ARB_texture_compression_bptc
+19:15:25: GL_ARB_texture_compression_rgtc
+19:15:25: GL_ARB_texture_cube_map
+19:15:25: GL_ARB_texture_cube_map_array
+19:15:25: GL_ARB_texture_env_add
+19:15:25: GL_ARB_texture_env_combine
+19:15:25: GL_ARB_texture_env_crossbar
+19:15:25: GL_ARB_texture_env_dot3
+19:15:25: GL_ARB_texture_filter_anisotropic
+19:15:25: GL_ARB_texture_filter_minmax
+19:15:25: GL_ARB_texture_float
+19:15:25: GL_ARB_texture_gather
+19:15:25: GL_ARB_texture_mirror_clamp_to_edge
+19:15:25: GL_ARB_texture_mirrored_repeat
+19:15:25: GL_ARB_texture_multisample
+19:15:25: GL_ARB_texture_non_power_of_two
+19:15:25: GL_ARB_texture_query_levels
+19:15:25: GL_ARB_texture_query_lod
+19:15:25: GL_ARB_texture_rectangle
+19:15:25: GL_ARB_texture_rg
+19:15:25: GL_ARB_texture_rgb10_a2ui
+19:15:25: GL_ARB_texture_stencil8
+19:15:25: GL_ARB_texture_storage
+19:15:25: GL_ARB_texture_storage_multisample
+19:15:25: GL_ARB_texture_swizzle
+19:15:25: GL_ARB_texture_view
+19:15:25: GL_ARB_timer_query
+19:15:25: GL_ARB_transform_feedback2
+19:15:25: GL_ARB_transform_feedback3
+19:15:25: GL_ARB_transform_feedback_instanced
+19:15:25: GL_ARB_transform_feedback_overflow_query
+19:15:25: GL_ARB_transpose_matrix
+19:15:25: GL_ARB_uniform_buffer_object
+19:15:25: GL_ARB_vertex_array_bgra
+19:15:25: GL_ARB_vertex_array_object
+19:15:25: GL_ARB_vertex_attrib_64bit
+19:15:25: GL_ARB_vertex_attrib_binding
+19:15:25: GL_ARB_vertex_buffer_object
+19:15:25: GL_ARB_vertex_program
+19:15:25: GL_ARB_vertex_shader
+19:15:25: GL_ARB_vertex_type_10f_11f_11f_rev
+19:15:25: GL_ARB_vertex_type_2_10_10_10_rev
+19:15:25: GL_ARB_viewport_array
+19:15:25: GL_ARB_window_pos
+19:15:25: GL_ATI_draw_buffers
+19:15:25: GL_ATI_texture_float
+19:15:25: GL_ATI_texture_mirror_once
+19:15:25: GL_S3_s3tc
+19:15:25: GL_EXT_texture_env_add
+19:15:25: GL_EXT_abgr
+19:15:25: GL_EXT_bgra
+19:15:25: GL_EXT_bindable_uniform
+19:15:25: GL_EXT_blend_color
+19:15:25: GL_EXT_blend_equation_separate
+19:15:25: GL_EXT_blend_func_separate
+19:15:25: GL_EXT_blend_minmax
+19:15:25: GL_EXT_blend_subtract
+19:15:25: GL_EXT_compiled_vertex_array
+19:15:25: GL_EXT_Cg_shader
+19:15:25: GL_EXT_depth_bounds_test
+19:15:25: GL_EXT_direct_state_access
+19:15:25: GL_EXT_draw_buffers2
+19:15:25: GL_EXT_draw_instanced
+19:15:25: GL_EXT_draw_range_elements
+19:15:25: GL_EXT_fog_coord
+19:15:25: GL_EXT_framebuffer_blit
+19:15:25: GL_EXT_framebuffer_multisample
+19:15:25: GL_EXTX_framebuffer_mixed_formats
+19:15:25: GL_EXT_framebuffer_multisample_blit_scaled
+19:15:25: GL_EXT_framebuffer_object
+19:15:25: GL_EXT_framebuffer_sRGB
+19:15:25: GL_EXT_geometry_shader4
+19:15:25: GL_EXT_gpu_program_parameters
+19:15:25: GL_EXT_gpu_shader4
+19:15:25: GL_EXT_multi_draw_arrays
+19:15:25: GL_EXT_packed_depth_stencil
+19:15:25: GL_EXT_packed_float
+19:15:25: GL_EXT_packed_pixels
+19:15:25: GL_EXT_pixel_buffer_object
+19:15:25: GL_EXT_point_parameters
+19:15:25: GL_EXT_polygon_offset_clamp
+19:15:25: GL_EXT_post_depth_coverage
+19:15:25: GL_EXT_provoking_vertex
+19:15:25: GL_EXT_raster_multisample
+19:15:25: GL_EXT_rescale_normal
+19:15:25: GL_EXT_secondary_color
+19:15:25: GL_EXT_separate_shader_objects
+19:15:25: GL_EXT_separate_specular_color
+19:15:25: GL_EXT_shader_image_load_formatted
+19:15:25: GL_EXT_shader_image_load_store
+19:15:25: GL_EXT_shader_integer_mix
+19:15:25: GL_EXT_shadow_funcs
+19:15:25: GL_EXT_sparse_texture2
+19:15:25: GL_EXT_stencil_two_side
+19:15:26: GL_EXT_stencil_wrap
+19:15:26: GL_EXT_texture3D
+19:15:26: GL_EXT_texture_array
+19:15:26: GL_EXT_texture_buffer_object
+19:15:26: GL_EXT_texture_compression_dxt1
+19:15:26: GL_EXT_texture_compression_latc
+19:15:26: GL_EXT_texture_compression_rgtc
+19:15:26: GL_EXT_texture_compression_s3tc
+19:15:26: GL_EXT_texture_cube_map
+19:15:26: GL_EXT_texture_edge_clamp
+19:15:26: GL_EXT_texture_env_combine
+19:15:26: GL_EXT_texture_env_dot3
+19:15:26: GL_EXT_texture_filter_anisotropic
+19:15:26: GL_EXT_texture_filter_minmax
+19:15:26: GL_EXT_texture_integer
+19:15:26: GL_EXT_texture_lod
+19:15:26: GL_EXT_texture_lod_bias
+19:15:26: GL_EXT_texture_mirror_clamp
+19:15:26: GL_EXT_texture_object
+19:15:26: GL_EXT_texture_shared_exponent
+19:15:26: GL_EXT_texture_sRGB
+19:15:26: GL_EXT_texture_sRGB_decode
+19:15:26: GL_EXT_texture_storage
+19:15:26: GL_EXT_texture_swizzle
+19:15:26: GL_EXT_timer_query
+19:15:26: GL_EXT_transform_feedback2
+19:15:26: GL_EXT_vertex_array
+19:15:26: GL_EXT_vertex_array_bgra
+19:15:26: GL_EXT_vertex_attrib_64bit
+19:15:26: GL_EXT_window_rectangles
+19:15:26: GL_EXT_import_sync_object
+19:15:26: GL_IBM_rasterpos_clip
+19:15:26: GL_IBM_texture_mirrored_repeat
+19:15:26: GL_KHR_context_flush_control
+19:15:26: GL_KHR_debug
+19:15:26: GL_EXT_memory_object
+19:15:26: GL_EXT_memory_object_win32
+19:15:26: GL_EXT_win32_keyed_mutex
+19:15:26: GL_KHR_parallel_shader_compile
+19:15:26: GL_KHR_no_error
+19:15:26: GL_KHR_robust_buffer_access_behavior
+19:15:26: GL_KHR_robustness
+19:15:26: GL_EXT_semaphore
+19:15:26: GL_EXT_semaphore_win32
+19:15:26: GL_KTX_buffer_region
+19:15:26: GL_NV_alpha_to_coverage_dither_control
+19:15:26: GL_NV_bindless_multi_draw_indirect
+19:15:26: GL_NV_bindless_multi_draw_indirect_count
+19:15:26: GL_NV_bindless_texture
+19:15:26: GL_NV_blend_equation_advanced
+19:15:26: GL_NV_blend_equation_advanced_coherent
+19:15:26: GL_NVX_blend_equation_advanced_multi_draw_buffers
+19:15:26: GL_NV_blend_minmax_factor
+19:15:26: GL_NV_blend_square
+19:15:26: GL_NV_clip_space_w_scaling
+19:15:26: GL_NV_command_list
+19:15:26: GL_NV_compute_program5
+19:15:26: GL_NV_conditional_render
+19:15:26: GL_NV_conservative_raster
+19:15:26: GL_NV_conservative_raster_dilate
+19:15:26: GL_NV_conservative_raster_pre_snap_triangles
+19:15:26: GL_NV_copy_depth_to_color
+19:15:26: GL_NV_copy_image
+19:15:26: GL_NV_depth_buffer_float
+19:15:26: GL_NV_depth_clamp
+19:15:26: GL_NV_draw_texture
+19:15:26: GL_NV_draw_vulkan_image
+19:15:26: GL_NV_ES1_1_compatibility
+19:15:26: GL_NV_ES3_1_compatibility
+19:15:26: GL_NV_explicit_multisample
+19:15:26: GL_NV_fence
+19:15:26: GL_NV_fill_rectangle
+19:15:26: GL_NV_float_buffer
+19:15:26: GL_NV_fog_distance
+19:15:26: GL_NV_fragment_coverage_to_color
+19:15:26: GL_NV_fragment_program
+19:15:26: GL_NV_fragment_program_option
+19:15:26: GL_NV_fragment_program2
+19:15:26: GL_NV_fragment_shader_interlock
+19:15:26: GL_NV_framebuffer_mixed_samples
+19:15:26: GL_NV_framebuffer_multisample_coverage
+19:15:26: GL_NV_geometry_shader4
+19:15:26: GL_NV_geometry_shader_passthrough
+19:15:26: GL_NV_gpu_program4
+19:15:26: GL_NV_internalformat_sample_query
+19:15:26: GL_NV_gpu_program4_1
+19:15:26: GL_NV_gpu_program5
+19:15:26: GL_NV_gpu_program5_mem_extended
+19:15:26: GL_NV_gpu_program_fp64
+19:15:26: GL_NV_gpu_shader5
+19:15:26: GL_NV_half_float
+19:15:26: GL_NV_light_max_exponent
+19:15:26: GL_NV_multisample_coverage
+19:15:26: GL_NV_multisample_filter_hint
+19:15:26: GL_NV_occlusion_query
+19:15:26: GL_NV_packed_depth_stencil
+19:15:26: GL_NV_parameter_buffer_object
+19:15:26: GL_NV_parameter_buffer_object2
+19:15:26: GL_NV_path_rendering
+19:15:26: GL_NV_path_rendering_shared_edge
+19:15:26: GL_NV_pixel_data_range
+19:15:26: GL_NV_point_sprite
+19:15:26: GL_NV_primitive_restart
+19:15:26: GL_NV_query_resource
+19:15:26: GL_NV_query_resource_tag
+19:15:26: GL_NV_register_combiners
+19:15:26: GL_NV_register_combiners2
+19:15:26: GL_NV_sample_locations
+19:15:26: GL_NV_sample_mask_override_coverage
+19:15:26: GL_NV_shader_atomic_counters
+19:15:26: GL_NV_shader_atomic_float
+19:15:26: GL_NV_shader_atomic_float64
+19:15:26: GL_NV_shader_atomic_fp16_vector
+19:15:26: GL_NV_shader_atomic_int64
+19:15:26: GL_NV_shader_buffer_load
+19:15:26: GL_NV_shader_storage_buffer_object
+19:15:26: GL_NV_stereo_view_rendering
+19:15:26: GL_NV_texgen_reflection
+19:15:26: GL_NV_texture_barrier
+19:15:26: GL_NV_texture_compression_vtc
+19:15:26: GL_NV_texture_env_combine4
+19:15:26: GL_NV_texture_multisample
+19:15:26: GL_NV_texture_rectangle
+19:15:26: GL_NV_texture_rectangle_compressed
+19:15:26: GL_NV_texture_shader
+19:15:26: GL_NV_texture_shader2
+19:15:26: GL_NV_texture_shader3
+19:15:26: GL_NV_transform_feedback
+19:15:26: GL_NV_transform_feedback2
+19:15:26: GL_NV_uniform_buffer_unified_memory
+19:15:26: GL_NV_vertex_array_range
+19:15:26: GL_NV_vertex_array_range2
+19:15:26: GL_NV_vertex_attrib_integer_64bit
+19:15:26: GL_NV_vertex_buffer_unified_memory
+19:15:26: GL_NV_vertex_program
+19:15:26: GL_NV_vertex_program1_1
+19:15:26: GL_NV_vertex_program2
+19:15:26: GL_NV_vertex_program2_option
+19:15:26: GL_NV_vertex_program3
+19:15:26: GL_NV_viewport_array2
+19:15:26: GL_NV_viewport_swizzle
+19:15:26: GL_NVX_conditional_render
+19:15:26: GL_NVX_gpu_memory_info
+19:15:26: GL_NVX_multigpu_info
+19:15:26: GL_NVX_nvenc_interop
+19:15:26: GL_NV_shader_thread_group
+19:15:26: GL_NV_shader_thread_shuffle
+19:15:26: GL_KHR_blend_equation_advanced
+19:15:26: GL_KHR_blend_equation_advanced_coherent
+19:15:26: GL_SGIS_generate_mipmap
+19:15:26: GL_SGIS_texture_lod
+19:15:26: GL_SGIX_depth_texture
+19:15:26: GL_SGIX_shadow
+19:15:26: GL_SUN_slice_accum
+19:15:26: GL_WIN_swap_hint
+19:15:26: WGL_EXT_swap_control
+19:15:26: Supported WGL extensions: WGL_ARB_buffer_region WGL_ARB_create_context WGL_ARB_create_context_no_error WGL_ARB_create_context_profile WGL_ARB_create_context_robustness WGL_ARB_context_flush_control WGL_ARB_extensions_string WGL_ARB_make_current_read WGL_ARB_multisample WGL_ARB_pbuffer WGL_ARB_pixel_format WGL_ARB_pixel_format_float WGL_ARB_render_texture WGL_ATI_pixel_format_float WGL_EXT_colorspace WGL_EXT_create_context_es_profile WGL_EXT_create_context_es2_profile WGL_EXT_extensions_string WGL_EXT_framebuffer_sRGB WGL_EXT_pixel_format_packed_float WGL_EXT_swap_control WGL_EXT_swap_control_tear WGL_NVX_DX_interop WGL_NV_DX_interop WGL_NV_DX_interop2 WGL_NV_copy_image WGL_NV_delay_before_swap WGL_NV_float_buffer WGL_NV_multisample_coverage WGL_NV_render_depth_texture WGL_NV_render_texture_rectangle 
+19:15:26: **************************************
+19:15:26: ***   OpenGL 3+ Renderer Started   ***
+19:15:26: **************************************
+19:15:26: Registering ResourceManager for type GpuProgram
+19:15:26: GL3+: Using FBOs for rendering to textures
+19:15:26: FBO PF_UNKNOWN depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_L8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_L16 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_A8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_BYTE_LA depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R5G6B5 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_B5G6R5 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_A4R4G4B4 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_A1R5G5B5 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8B8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_B8G8R8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_A8R8G8B8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_A8B8G8R8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_B8G8R8A8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_A2R10G10B10 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_A2B10G10R10 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_FLOAT16_RGB depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_FLOAT16_RGBA depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_FLOAT32_RGB depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_FLOAT32_RGBA depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_X8R8G8B8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_X8B8G8R8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8B8A8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_DEPTH_DEPRECATED depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_SHORT_RGBA depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R3G3B2 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_FLOAT16_R depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_FLOAT32_R depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_SHORT_GR depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_FLOAT16_GR depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_FLOAT32_GR depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_SHORT_RGB depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R11G11B10_FLOAT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8B8_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8B8A8_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16G16_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16G16B16_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16G16B16A16_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R32_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R32G32_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R32G32B32_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R32G32B32A32_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8B8_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8B8A8_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16G16_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16G16B16_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16G16B16A16_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R32_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R32G32_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R32G32B32_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R32G32B32A32_SINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_RG8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8_SNORM depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8_SNORM depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8B8_SNORM depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R8G8B8A8_SNORM depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16_SNORM depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16G16_SNORM depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16G16B16_SNORM depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_R16G16B16A16_SNORM depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_D24_UNORM_S8_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_D24_UNORM_X8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_X24_S8_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_D24_UNORM depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_D16_UNORM depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_D32_FLOAT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_D32_FLOAT_X24_S8_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_D32_FLOAT_X24_X8 depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: FBO PF_X32_X24_S8_UINT depth/stencil support: D0S0 D16S0 D24S0 D32S0 D32S0 Packed-D24S8 Packed-D32S8 
+19:15:26: [GL] : Valid FBO targets PF_UNKNOWN PF_L8 PF_L16 PF_A8 PF_BYTE_LA PF_R5G6B5 PF_B5G6R5 PF_A4R4G4B4 PF_A1R5G5B5 PF_R8G8B8 PF_B8G8R8 PF_A8R8G8B8 PF_A8B8G8R8 PF_B8G8R8A8 PF_A2R10G10B10 PF_A2B10G10R10 PF_FLOAT16_RGB PF_FLOAT16_RGBA PF_FLOAT32_RGB PF_FLOAT32_RGBA PF_X8R8G8B8 PF_X8B8G8R8 PF_R8G8B8A8 PF_DEPTH_DEPRECATED PF_SHORT_RGBA PF_R3G3B2 PF_FLOAT16_R PF_FLOAT32_R PF_SHORT_GR PF_FLOAT16_GR PF_FLOAT32_GR PF_SHORT_RGB PF_R11G11B10_FLOAT PF_R8_UINT PF_R8G8_UINT PF_R8G8B8_UINT PF_R8G8B8A8_UINT PF_R16_UINT PF_R16G16_UINT PF_R16G16B16_UINT PF_R16G16B16A16_UINT PF_R32_UINT PF_R32G32_UINT PF_R32G32B32_UINT PF_R32G32B32A32_UINT PF_R8_SINT PF_R8G8_SINT PF_R8G8B8_SINT PF_R8G8B8A8_SINT PF_R16_SINT PF_R16G16_SINT PF_R16G16B16_SINT PF_R16G16B16A16_SINT PF_R32_SINT PF_R32G32_SINT PF_R32G32B32_SINT PF_R32G32B32A32_SINT PF_RG8 PF_R8_SNORM PF_R8G8_SNORM PF_R8G8B8_SNORM PF_R8G8B8A8_SNORM PF_R16_SNORM PF_R16G16_SNORM PF_R16G16B16_SNORM PF_R16G16B16A16_SNORM PF_D24_UNORM_S8_UINT PF_D24_UNORM_X8 PF_X24_S8_UINT PF_D24_UNORM PF_D16_UNORM PF_D32_FLOAT PF_D32_FLOAT_X24_S8_UINT PF_D32_FLOAT_X24_X8 PF_X32_X24_S8_UINT 
+19:15:26: RenderSystem capabilities
+19:15:26: -------------------------
+19:15:26: RenderSystem Name: OpenGL 3+ Rendering Subsystem
+19:15:26: GPU Vendor: nvidia
+19:15:26: Device Name: GeForce GTX 1080 Ti/PCIe/SSE2
+19:15:26: Driver Version: 3.3.0.0
+19:15:26:  * Fixed function pipeline: no
+19:15:26:  * Hardware generation of mipmaps: yes
+19:15:26:  * Texture blending: yes
+19:15:26:  * Anisotropic texture filtering: yes
+19:15:26:  * Dot product texture operation: yes
+19:15:26:  * Cube mapping: yes
+19:15:26:  * Hardware stencil buffer: yes
+19:15:26:    - Stencil depth: 8
+19:15:26:    - Two sided stencil support: yes
+19:15:26:    - Wrap stencil values: yes
+19:15:26:  * Hardware vertex / index buffers: yes
+19:15:26:  * 32-bit index buffers: yes
+19:15:26:  * Vertex programs: yes
+19:15:26:  * Number of floating-point constants for vertex programs: 4096
+19:15:26:  * Number of integer constants for vertex programs: 4096
+19:15:26:  * Number of boolean constants for vertex programs: 4096
+19:15:26:  * Fragment programs: yes
+19:15:26:  * Number of floating-point constants for fragment programs: 4096
+19:15:26:  * Number of integer constants for fragment programs: 4096
+19:15:26:  * Number of boolean constants for fragment programs: 4096
+19:15:26:  * Geometry programs: yes
+19:15:26:  * Number of floating-point constants for geometry programs: 2048
+19:15:26:  * Number of integer constants for geometry programs: 2048
+19:15:26:  * Number of boolean constants for geometry programs: 2048
+19:15:26:  * Tessellation Hull programs: yes
+19:15:26:  * Number of floating-point constants for tessellation hull programs: 2048
+19:15:26:  * Number of integer constants for tessellation hull programs: 2048
+19:15:26:  * Number of boolean constants for tessellation hull programs: 2048
+19:15:26:  * Tessellation Domain programs: yes
+19:15:26:  * Number of floating-point constants for tessellation domain programs: 2048
+19:15:26:  * Number of integer constants for tessellation domain programs: 2048
+19:15:26:  * Number of boolean constants for tessellation domain programs: 2048
+19:15:26:  * Compute programs: yes
+19:15:26:  * Number of floating-point constants for compute programs: 2048
+19:15:26:  * Number of integer constants for compute programs: 2048
+19:15:26:  * Number of boolean constants for compute programs: 2048
+19:15:26:  * Supported Shader Profiles: glsl glsl130 glsl140 glsl150 glsl330
+19:15:26:  * Texture Compression: yes
+19:15:26:    - DXT: yes
+19:15:26:    - VTC: yes
+19:15:26:    - PVRTC: no
+19:15:26:    - ATC: no
+19:15:26:    - ETC1: no
+19:15:26:    - ETC2: yes
+19:15:26:    - BC4/BC5: yes
+19:15:26:    - BC6H/BC7: yes
+19:15:26:    - ASTC: no
+19:15:26:  * Hardware Occlusion Query: yes
+19:15:26:  * User clip planes: yes
+19:15:26:  * VET_UBYTE4 vertex element type: yes
+19:15:26:  * Infinite far plane projection: yes
+19:15:26:  * Hardware render-to-texture: yes
+19:15:26:  * Floating point textures: yes
+19:15:26:  * Non-power-of-two textures: yes
+19:15:26:  * 1d textures: yes
+19:15:26:  * Volume textures: yes
+19:15:26:  * Max Texture resolution (2D) 32768
+19:15:26:  * Max Texture resolution (3D) 16384
+19:15:26:  * Max Texture resolution (Cubemaps) 32768
+19:15:26:  * Multiple Render Targets: 8
+19:15:26:    - With different bit depths: yes
+19:15:26:  * Point Sprites: yes
+19:15:26:  * Extended point parameters: yes
+19:15:26:  * Max Point Size: 189.875
+19:15:26:  * Vertex texture fetch: yes
+19:15:26:  * Number of world matrices: 0
+19:15:26:  * Number of texture units: 16
+19:15:26:  * Stencil buffer depth: 8
+19:15:26:  * Number of vertex blend matrices: 0
+19:15:26:    - Max vertex textures: 32
+19:15:26:    - Vertex textures shared: yes
+19:15:26:  * Render to Vertex Buffer : yes
+19:15:26:  * Hardware Atomic Counters: yes
+19:15:26:  * GL 1.5 without VBO workaround: no
+19:15:26:  * Frame Buffer objects: yes
+19:15:26:  * Frame Buffer objects (ARB extension): no
+19:15:26:  * Frame Buffer objects (ATI extension): no
+19:15:26:  * PBuffer support: no
+19:15:26:  * GL 1.5 without HW-occlusion workaround: no
+19:15:26:  * Vertex Array Objects: yes
+19:15:26:  * Separate shader objects: no
+19:15:26: Registering ResourceManager for type Texture
+19:15:26: Using FSAA.
+19:15:26: DefaultWorkQueue('Root') initialising on thread main.
+19:15:26: Particle Renderer Type 'billboard' registered
+19:15:26: OverlayElementFactory for type Panel registered.
+19:15:26: OverlayElementFactory for type BorderPanel registered.
+19:15:26: OverlayElementFactory for type TextArea registered.
+19:15:26: Registering ResourceManager for type Font
+19:15:26: Creating resource group Essential
+19:15:26: Added resource location 'C:/TestCode/OGRE21/Samples/Media/packs/DebugPack.zip' of type 'Zip' to resource group 'Essential'
+19:15:26: Added resource location 'C:/TestCode/OGRE21/Samples/Media/2.0/scripts/materials/Common' of type 'FileSystem' to resource group 'General'
+19:15:26: Added resource location 'C:/TestCode/OGRE21/Samples/Media/2.0/scripts/materials/Common/GLSL' of type 'FileSystem' to resource group 'General'
+19:15:26: Added resource location 'C:/TestCode/OGRE21/Samples/Media/2.0/scripts/materials/Common/HLSL' of type 'FileSystem' to resource group 'General'
+19:15:26: Added resource location 'C:/TestCode/OGRE21/Samples/Media/2.0/scripts/materials/Common/Metal' of type 'FileSystem' to resource group 'General'
+19:15:26: Creating resource group Popular
+19:15:26: Added resource location 'C:/TestCode/OGRE21/Samples/Media/2.0/scripts/Compositors' of type 'FileSystem' to resource group 'Popular'
+19:15:26: Added resource location 'C:/TestCode/OGRE21/Samples/Media/models' of type 'FileSystem' to resource group 'Popular'
+19:15:26: Added resource location 'C:/TestCode/OGRE21/Samples/Media/materials/textures' of type 'FileSystem' to resource group 'Popular'
+19:15:26: Added resource location 'C:/TestCode/OGRE21/Samples/Media/materials/textures/Cubemaps' of type 'FileSystem' to resource group 'Popular'
+19:15:26: Added resource location 'C:/TestCode/TestOgre/HollowShell/compositors' of type 'FileSystem' to resource group 'Popular'
+19:15:26: Added resource location 'C:/TestCode/OGRE21/Samples/Media/2.0/scripts/materials/PbsMaterials' of type 'FileSystem' to resource group 'General'
+19:15:26: Parsing scripts for resource group Autodetect
+19:15:26: Finished parsing scripts for resource group Autodetect
+19:15:26: Creating resources for group Autodetect
+19:15:26: All done
+19:15:26: Parsing scripts for resource group Essential
+19:15:26: Parsing script Materials.material
+19:15:26: Parsing script DebugFont.fontdef
+19:15:26: Finished parsing scripts for resource group Essential
+19:15:26: Creating resources for group Essential
+19:15:26: All done
+19:15:26: Parsing scripts for resource group General
+19:15:26: Parsing script Quad.program
+19:15:26: Parsing script Copyback.material
+19:15:26: Parsing script DepthUtils.material
+19:15:26: Parsing script DPSM.material
+19:15:26: Parsing script EsmGaussianBlurLogFilter.material
+19:15:26: Parsing script PbsMaterials.material
+19:15:26: Texture: loading Rocks_Diffuse.tga as Rocks_Diffuse.tga
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: Texture: loading Rocks_Normal.tga as Rocks_Normal.tga
+19:15:27: WARNING: normal map texture Rocks_Normal.tga is not BC5S compressed. This is encouraged for lower memory usage. If you don't want to see this message without compressing to BC5, set getDefaultTextureParameters()[TEXTURE_TYPE_NORMALS].pixelFormat to PF_R8G8_SNORM (or PF_BYTE_LA if RSC_TEXTURE_SIGNED_INT is not supported)
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: Texture: loading Rocks_Spec.tga as Rocks_Spec.tga
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:27: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: Texture: loading nm_up.png as nm_up.png
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: Texture: loading 1d_debug.png as 1d_debug.png
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: Texture: loading MRAMOR6X6.jpg as MRAMOR6X6.jpg
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: Texture: loading nm_bk.png as nm_bk.png
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: Texture: loading NMBumpsOut.png as NMBumpsOut.png
+19:15:28: WARNING: normal map texture NMBumpsOut.png is not BC5S compressed. This is encouraged for lower memory usage. If you don't want to see this message without compressing to BC5, set getDefaultTextureParameters()[TEXTURE_TYPE_NORMALS].pixelFormat to PF_R8G8_SNORM (or PF_BYTE_LA if RSC_TEXTURE_SIGNED_INT is not supported)
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: Texture: loading MtlPlat2.jpg as MtlPlat2.jpg
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: Texture: loading NMBalls.png as NMBalls.png
+19:15:28: WARNING: normal map texture NMBalls.png is not BC5S compressed. This is encouraged for lower memory usage. If you don't want to see this message without compressing to BC5, set getDefaultTextureParameters()[TEXTURE_TYPE_NORMALS].pixelFormat to PF_R8G8_SNORM (or PF_BYTE_LA if RSC_TEXTURE_SIGNED_INT is not supported)
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: Texture: loading MRAMOR-bump.jpg as MRAMOR-bump.jpg
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131154: Pixel-path performance warning: Pixel transfer is synchronized with 3D rendering.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:28: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:29: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:29: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:29: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 13 (bound to GL_PIXEL_UNPACK_BUFFER_ARB, usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:29: Parsing script EsmGaussianBlurLogFilter.material.json
+19:15:29: Parsing script Mipmaps.material.json
+19:15:29: Finished parsing scripts for resource group General
+19:15:29: Creating resources for group General
+19:15:29: All done
+19:15:29: Parsing scripts for resource group Internal
+19:15:29: Finished parsing scripts for resource group Internal
+19:15:29: Creating resources for group Internal
+19:15:29: All done
+19:15:29: Parsing scripts for resource group Popular
+19:15:29: Parsing script LocalCubemaps.compositor
+19:15:29: Parsing script PbsMaterials.compositor
+19:15:29: Parsing script PlanarReflections.compositor
+19:15:29: Parsing script ScreenSpaceReflections.compositor
+19:15:29: Parsing script ShadowMapDebugging.compositor
+19:15:29: Parsing script StaticShadowMaps.compositor
+19:15:29: Parsing script StencilTest.compositor
+19:15:29: Parsing script StereoRendering.compositor
+19:15:29: Parsing script TutorialSky_Postprocess.compositor
+19:15:29: Parsing script TutorialUav01_Setup.compositor
+19:15:29: Parsing script TutorialUav02_Setup.compositor
+19:15:29: Parsing script Tutorial_DynamicCubemap.compositor
+19:15:29: Parsing script Tutorial_ReconstructPosFromDepth.compositor
+19:15:29: Parsing script Tutorial_Terrain.compositor
+19:15:29: Parsing script BasicCompositor.compositor
+19:15:29: Parsing script BasicCompositor2.compositor
+19:15:29: Parsing script BasicCompositor2b.compositor
+19:15:29: Parsing script BasicCompositor3.compositor
+19:15:29: Finished parsing scripts for resource group Popular
+19:15:29: Creating resources for group Popular
+19:15:29: All done
+19:15:29: MovableObjectFactory for type 'MovableText' registered.
+19:15:29: Font DebugFont using texture size 512x512
+19:15:29: Info: Freetype returned null for character 127 in font DebugFont
+19:15:29: Info: Freetype returned null for character 128 in font DebugFont
+19:15:29: Info: Freetype returned null for character 129 in font DebugFont
+19:15:29: Info: Freetype returned null for character 130 in font DebugFont
+19:15:29: Info: Freetype returned null for character 131 in font DebugFont
+19:15:29: Info: Freetype returned null for character 132 in font DebugFont
+19:15:29: Info: Freetype returned null for character 133 in font DebugFont
+19:15:29: Info: Freetype returned null for character 134 in font DebugFont
+19:15:29: Info: Freetype returned null for character 135 in font DebugFont
+19:15:29: Info: Freetype returned null for character 136 in font DebugFont
+19:15:29: Info: Freetype returned null for character 137 in font DebugFont
+19:15:29: Info: Freetype returned null for character 138 in font DebugFont
+19:15:29: Info: Freetype returned null for character 139 in font DebugFont
+19:15:29: Info: Freetype returned null for character 140 in font DebugFont
+19:15:29: Info: Freetype returned null for character 141 in font DebugFont
+19:15:29: Info: Freetype returned null for character 142 in font DebugFont
+19:15:29: Info: Freetype returned null for character 143 in font DebugFont
+19:15:29: Info: Freetype returned null for character 144 in font DebugFont
+19:15:29: Info: Freetype returned null for character 145 in font DebugFont
+19:15:29: Info: Freetype returned null for character 146 in font DebugFont
+19:15:29: Info: Freetype returned null for character 147 in font DebugFont
+19:15:29: Info: Freetype returned null for character 148 in font DebugFont
+19:15:29: Info: Freetype returned null for character 149 in font DebugFont
+19:15:29: Info: Freetype returned null for character 150 in font DebugFont
+19:15:29: Info: Freetype returned null for character 151 in font DebugFont
+19:15:29: Info: Freetype returned null for character 152 in font DebugFont
+19:15:29: Info: Freetype returned null for character 153 in font DebugFont
+19:15:29: Info: Freetype returned null for character 154 in font DebugFont
+19:15:29: Info: Freetype returned null for character 155 in font DebugFont
+19:15:29: Info: Freetype returned null for character 156 in font DebugFont
+19:15:29: Info: Freetype returned null for character 157 in font DebugFont
+19:15:29: Info: Freetype returned null for character 158 in font DebugFont
+19:15:29: Info: Freetype returned null for character 159 in font DebugFont
+19:15:29: Info: Freetype returned null for character 160 in font DebugFont
+19:15:29: Texture: DebugFontTexture: Loading 1 faces(PF_RG8,512x512x1) Internal format is PF_RG8,512x512x1.
+19:15:29: OpenGL:performance(medium) 131154: Pixel-path performance warning: Pixel transfer is synchronized with 3D rendering.
+19:15:29: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 1 (bound to GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING_ARB (15), GL_UNIFORM_BUFFER (1), and GL_COPY_READ_BUFFER_BINDING_EXT, usage hint is GL_DYNAMIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:29: OpenGL:performance(medium) 131186: Buffer performance warning: Buffer object 3 (bound to GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING_ARB (0), and GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING_ARB (7), usage hint is GL_STATIC_DRAW) is being copied/moved from VIDEO memory to HOST memory.
+19:15:29: Mesh: Loading Cube_d.mesh.
+19:15:29: WARNING: Cube_d.mesh is an older format ([MeshSerializer_v2.1 R1]); you should upgrade it as soon as possible using the OgreMeshTool tool.
+19:15:41: Unregistering ResourceManager for type Font
+19:15:41: DefaultWorkQueue('Root') shutting down on thread main.
+19:15:41: *-*-* OGRE Shutdown
+19:15:41: Unregistering ResourceManager for type OldSkeleton
+19:15:41: Unregistering ResourceManager for type Mesh2
+19:15:41: Unregistering ResourceManager for type Mesh
+19:15:41: Unregistering ResourceManager for type Material
+19:15:41: Unregistering ResourceManager for type HighLevelGpuProgram
+19:15:41: Uninstalling plugin: GL 3+ RenderSystem
+19:15:41: Unregistering ResourceManager for type GpuProgram
+19:15:41: Unregistering ResourceManager for type Texture
+19:15:41: *** Stopping Win32GL Subsystem ***
+19:15:41: Plugin successfully uninstalled
+19:15:41: Unloading library .\RenderSystem_GL3Plus_d
+19:15:41: Uninstalling plugin: D3D11 RenderSystem
+19:15:41: D3D11 : Shutting down cleanly.
+19:15:41: D3D11 : Direct3D11 Rendering Subsystem destroyed.
+19:15:41: Plugin successfully uninstalled
+19:15:41: Unloading library .\RenderSystem_Direct3D11_d

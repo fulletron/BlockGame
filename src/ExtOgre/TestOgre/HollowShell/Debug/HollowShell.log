@@ -1,0 +1,37 @@
+﻿Build started 2/16/2018 11:41:23 PM.
+     1>Project "C:\TestCode\TestOgre\HollowShell\HollowShell.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IC:\TestCode\TestOgre\OGREdeps\include\SDL2 /IC:\TestCode\TestOgre\OGREsdk\include\OIS /IC:\TestCode\TestOgre\OGREsdk\include\OGRE /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt basesystem.cpp cameracontroller.cpp gameentitymanager.cpp gamestate.cpp graphicsgamestate.cpp graphicssystem.cpp logicgamestate.cpp logicsystem.cpp main.cpp osystem\staticpluginloader.cpp sdlinputhandler.cpp
+         sdlinputhandler.cpp
+         staticpluginloader.cpp
+         main.cpp
+         logicsystem.cpp
+         logicgamestate.cpp
+         graphicssystem.cpp
+         graphicsgamestate.cpp
+     1>c:\testcode\testogre\hollowshell\graphicsgamestate.cpp(40): warning C4244: 'initializing' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\testcode\testogre\hollowshell\graphicsgamestate.cpp(53): warning C4244: 'initializing' : conversion from 'const double' to 'float', possible loss of data
+         gamestate.cpp
+         gameentitymanager.cpp
+         cameracontroller.cpp
+     1>c:\testcode\testogre\hollowshell\cameracontroller.cpp(55): warning C4244: 'argument' : conversion from 'int' to 'const Ogre::Real', possible loss of data
+         basesystem.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\TestCode\TestOgre\Debug\HollowShell.exe" /INCREMENTAL /NOLOGO winmm.lib imm32.lib version.lib msimg32.lib C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreOverlay_d.lib C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreMain_d.lib C:\TestCode\TestOgre\OGREsdk\lib\debug\OIS_d.lib C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreHlmsPbs_d.lib C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreHlmsUnlit_d.lib C:\TestCode\TestOgre\OGREsdk\lib\debug\opt\RenderSystem_GL3Plus_d.lib C:\TestCode\TestOgre\OGREdeps\lib\SDL2.lib C:\TestCode\TestOgre\OGREdeps\lib\SDL2main.lib C:\TestCode\TestOgre\OGREdeps\lib\debug\FreeImage_d.lib C:\TestCode\TestOgre\OGREdeps\lib\debug\zziplib_d.lib C:\TestCode\TestOgre\OGREdeps\lib\debug\zlib_d.lib C:\TestCode\TestOgre\OGREdeps\lib\debug\freetype_d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\TestCode\TestOgre\Debug\HollowShell.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\TestCode\TestOgre\Debug\HollowShell.lib" /MACHINE:X64 Debug\basesystem.obj
+         Debug\cameracontroller.obj
+         Debug\gameentitymanager.obj
+         Debug\gamestate.obj
+         Debug\graphicsgamestate.obj
+         Debug\graphicssystem.obj
+         Debug\logicgamestate.obj
+         Debug\logicsystem.obj
+         Debug\main.obj
+         Debug\staticpluginloader.obj
+         Debug\sdlinputhandler.obj
+     1>Debug\basesystem.obj : fatal error LNK1112: module machine type 'X86' conflicts with target machine type 'x64'
+     1>Done Building Project "C:\TestCode\TestOgre\HollowShell\HollowShell.vcxproj" (Rebuild target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:24.22

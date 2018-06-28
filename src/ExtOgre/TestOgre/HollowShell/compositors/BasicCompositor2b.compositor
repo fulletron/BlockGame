@@ -1,0 +1,41 @@
+compositor_node Test2BNode
+{
+	in 0 rt_renderwindow
+	
+	texture rtt				target_width_scaled 1.25 target_height_scaled 1.25 PF_A8R8G8B8
+
+	target rtt
+	{
+		pass clear
+		{
+			colour_value 0.2 0.4 0.6 1
+		}
+
+		pass render_scene
+		{
+			overlays	on
+			shadows		ShadowMapDebuggingShadowNode
+		}
+	}
+	
+	//Copy results to render window
+	target rt_renderwindow
+	{
+		pass clear
+		{
+			colour_value 0.2 0.4 0.6 1
+		}
+		
+		pass render_quad
+		{
+			material Ogre/Copy/4xFP32
+			input 0 rtt
+		}
+	}
+	out 0 rt_renderwindow
+}
+
+workspace Test2BWorkspace
+{
+    connect_output Test2BNode 0
+}

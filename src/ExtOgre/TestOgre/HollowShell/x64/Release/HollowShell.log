@@ -1,0 +1,9 @@
+﻿Build started 6/25/2018 8:56:59 PM.
+     1>Project "C:\TestCode\TestOgre\HollowShell\HollowShell.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         HollowShell.vcxproj -> C:\TestCode\TestOgre\x64\Release\HollowShell.exe
+     1>Done Building Project "C:\TestCode\TestOgre\HollowShell\HollowShell.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.06

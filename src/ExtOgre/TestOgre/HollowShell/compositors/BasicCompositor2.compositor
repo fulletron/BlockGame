@@ -1,0 +1,65 @@
+compositor_node Test2Node
+{
+	in 0 rt_renderwindow
+	
+	texture rtt				target_width_scaled 1.25 target_height_scaled 1.25 PF_A8R8G8B8
+
+	target rtt
+	{
+		pass clear
+		{
+			colour_value 0.2 0.4 0.6 1
+		}
+		
+		pass render_scene
+		{
+			visibility_mask 0x00000003
+			light_visibility_mask 0x00000003
+			rq_first	1
+			rq_last		3
+			
+			overlays	off
+			shadows		ShadowMapDebuggingShadowNode
+		}
+		
+		pass render_scene
+		{
+			visibility_mask 0x00000002
+			light_visibility_mask 0x00000004
+			camera "UI Camera"
+			rq_first	2
+			rq_last		3
+		}
+		
+		//Render overlays last on the entire screen
+		pass render_scene
+		{
+		
+			rq_first	254
+			rq_last		255
+			
+			overlays	on
+		}
+	}
+	
+	//Copy results to render window
+	target rt_renderwindow
+	{
+		pass clear
+		{
+			colour_value 0.2 0.4 0.6 1
+		}
+		
+		pass render_quad
+		{
+			material Ogre/Copy/4xFP32
+			input 0 rtt
+		}
+	}
+	out 0 rt_renderwindow
+}
+
+workspace Test2Workspace
+{
+    connect_output Test2Node 0
+}

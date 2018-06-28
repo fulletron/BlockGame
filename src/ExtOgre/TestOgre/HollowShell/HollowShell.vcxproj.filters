@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\base">
+      <UniqueIdentifier>{218f7597-e3a7-43b8-8c4b-3180097b8884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\base">
+      <UniqueIdentifier>{5587b146-c779-4fcc-842a-56c15165a103}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\terra">
+      <UniqueIdentifier>{1edf2717-6705-4165-90ab-1434df8a6620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\terra">
+      <UniqueIdentifier>{dddc71c4-b8b4-4452-9c70-5f2e974a4178}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gameents">
+      <UniqueIdentifier>{f22cc3d7-e48d-4574-a958-5da3e8d0e56e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gameents">
+      <UniqueIdentifier>{198a3ba7-50d8-4740-b6e1-62907f5b4fbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\textblip">
+      <UniqueIdentifier>{b5f381c9-9e57-4adc-8ab0-971e9214593d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\textblip">
+      <UniqueIdentifier>{0e580153-0780-4195-b396-a4a083b2bdbe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="basesystem.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="cameracontroller.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="gamestate.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="graphicssystem.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="sdlinputhandler.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="osystem\staticpluginloader.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="othreading\messagequeuesystem.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="gameentitymanager.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="logicsystem.cpp">
+      <Filter>Source Files\base</Filter>
+    </ClCompile>
+    <ClCompile Include="outils\meshutils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="oterra\Hlms\OgreHlmsJsonTerra.cpp">
+      <Filter>Source Files\terra</Filter>
+    </ClCompile>
+    <ClCompile Include="oterra\Hlms\PbsListener\OgreHlmsPbsTerraShadows.cpp">
+      <Filter>Source Files\terra</Filter>
+    </ClCompile>
+    <ClCompile Include="oterra\Hlms\OgreHlmsTerra.cpp">
+      <Filter>Source Files\terra</Filter>
+    </ClCompile>
+    <ClCompile Include="oterra\Hlms\OgreHlmsTerraDatablock.cpp">
+      <Filter>Source Files\terra</Filter>
+    </ClCompile>
+    <ClCompile Include="oterra\terra.cpp">
+      <Filter>Source Files\terra</Filter>
+    </ClCompile>
+    <ClCompile Include="oterra\terraincell.cpp">
+      <Filter>Source Files\terra</Filter>
+    </ClCompile>
+    <ClCompile Include="terraingamestate.cpp">
+      <Filter>Source Files\terra</Filter>
+    </ClCompile>
+    <ClCompile Include="oterra\terrashadowmapper.cpp">
+      <Filter>Source Files\terra</Filter>
+    </ClCompile>
+    <ClCompile Include="forward3dgamestate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="f3dmultilogicgamestate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="f3dmultigraphicsgamestate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gameents\gamedirectionallight.cpp">
+      <Filter>Source Files\gameents</Filter>
+    </ClCompile>
+    <ClCompile Include="gameents\gameentity.cpp">
+      <Filter>Source Files\gameents</Filter>
+    </ClCompile>
+    <ClCompile Include="gameents\gameitem.cpp">
+      <Filter>Source Files\gameents</Filter>
+    </ClCompile>
+    <ClCompile Include="gameents\gamepointlight.cpp">
+      <Filter>Source Files\gameents</Filter>
+    </ClCompile>
+    <ClCompile Include="gameents\gamespotlight.cpp">
+      <Filter>Source Files\gameents</Filter>
+    </ClCompile>
+    <ClCompile Include="gameents\gameplane.cpp">
+      <Filter>Source Files\gameents</Filter>
+    </ClCompile>
+    <ClCompile Include="f3dmultigraphicssystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="textblip\MovableText.cpp">
+      <Filter>Source Files\textblip</Filter>
+    </ClCompile>
+    <ClCompile Include="gameents\gametext.cpp">
+      <Filter>Source Files\gameents</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="basesystem.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="cameracontroller.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="definitions_types.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="gamestate.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="graphicssystem.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="igamestate.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="iinputlisteners.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="othreading\messagequeuesystem.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="othreading\mqmessages.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="sdlemulationlayer.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="sdlinputhandler.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="osystem\staticpluginloader.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="othreading\yieldtimer.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="gameentity.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="gameentitymanager.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="logicsystem.h">
+      <Filter>Header Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="outils\meshutils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="oterra\Hlms\OgreHlmsJsonTerra.h">
+      <Filter>Header Files\terra</Filter>
+    </ClInclude>
+    <ClInclude Include="oterra\Hlms\PbsListener\OgreHlmsPbsTerraShadows.h">
+      <Filter>Header Files\terra</Filter>
+    </ClInclude>
+    <ClInclude Include="oterra\Hlms\OgreHlmsTerra.h">
+      <Filter>Header Files\terra</Filter>
+    </ClInclude>
+    <ClInclude Include="oterra\Hlms\OgreHlmsTerraDatablock.h">
+      <Filter>Header Files\terra</Filter>
+    </ClInclude>
+    <ClInclude Include="oterra\Hlms\OgreHlmsTerraPrerequisites.h">
+      <Filter>Header Files\terra</Filter>
+    </ClInclude>
+    <ClInclude Include="oterra\terra.h">
+      <Filter>Header Files\terra</Filter>
+    </ClInclude>
+    <ClInclude Include="oterra\terraincell.h">
+      <Filter>Header Files\terra</Filter>
+    </ClInclude>
+    <ClInclude Include="terraingamestate.h">
+      <Filter>Header Files\terra</Filter>
+    </ClInclude>
+    <ClInclude Include="oterra\terrashadowmapper.h">
+      <Filter>Header Files\terra</Filter>
+    </ClInclude>
+    <ClInclude Include="forward3dgamestate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="f3dmultilogicgamestate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="f3dmultigraphicsgamestate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gameents\gameentity.h">
+      <Filter>Header Files\gameents</Filter>
+    </ClInclude>
+    <ClInclude Include="gameents\gameitem.h">
+      <Filter>Header Files\gameents</Filter>
+    </ClInclude>
+    <ClInclude Include="gameents\gameplane.h">
+      <Filter>Header Files\gameents</Filter>
+    </ClInclude>
+    <ClInclude Include="gameents\gamepointlight.h">
+      <Filter>Header Files\gameents</Filter>
+    </ClInclude>
+    <ClInclude Include="gameents\gamespotlight.h">
+      <Filter>Header Files\gameents</Filter>
+    </ClInclude>
+    <ClInclude Include="gameents\gamedirectionallight.h">
+      <Filter>Header Files\gameents</Filter>
+    </ClInclude>
+    <ClInclude Include="f3dmultigraphicssystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="textblip\MovableText.h">
+      <Filter>Header Files\textblip</Filter>
+    </ClInclude>
+    <ClInclude Include="gameents\gametext.h">
+      <Filter>Header Files\gameents</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

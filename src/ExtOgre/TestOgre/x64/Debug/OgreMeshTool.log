@@ -1,0 +1,2 @@
+13:31:48: OGRE EXCEPTION(6:FileNotFoundException): 'plugins_tools_d.cfg' file not found! in ConfigFile::load at C:\TestCode\OGRE21\OgreMain\src\OgreConfigFile.cpp (line 88)
+13:31:48: OGRE EXCEPTION(1:InvalidStateException): Cannot initialise - no render system has been selected. in Root::initialise at C:\TestCode\OGRE21\OgreMain\src\OgreRoot.cpp (line 709)

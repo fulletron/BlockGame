@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F516AB3A-F486-4136-ACB8-A9CEBECE3D76}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>HollowShell</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\TestCode\TestOgre\OGREdeps\include\SDL2;C:\TestCode\TestOgre\OGREsdk\include\OIS;C:\TestCode\TestOgre\OGREsdk\include\OGRE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;imm32.lib;version.lib;msimg32.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreOverlay_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreMain_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\OIS_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreHlmsPbs_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreHlmsUnlit_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\opt\RenderSystem_GL3Plus_d.lib;C:\TestCode\TestOgre\OGREdeps\lib\SDL2.lib;C:\TestCode\TestOgre\OGREdeps\lib\SDL2main.lib;C:\TestCode\TestOgre\OGREdeps\lib\debug\FreeImage_d.lib;C:\TestCode\TestOgre\OGREdeps\lib\debug\zziplib_d.lib;C:\TestCode\TestOgre\OGREdeps\lib\debug\zlib_d.lib;C:\TestCode\TestOgre\OGREdeps\lib\debug\freetype_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\TestCode\TestOgre\OGREsdk\include\OGRE\RenderSystems\GL3Plus;C:\TestCode\TestOgre\OGREdeps\include\SDL2;C:\TestCode\TestOgre\OGREsdk\include\OGRE\RenderSystems\Direct3D11;C:\TestCode\TestOgre\OGREdeps\include;C:\TestCode\TestOgre\OGREsdk\include\OIS;C:\TestCode\TestOgre\OGREsdk\include\OGRE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;imm32.lib;version.lib;msimg32.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreOverlay_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreMain_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\OIS_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreHlmsPbs_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\OgreHlmsUnlit_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\opt\RenderSystem_GL3Plus_d.lib;C:\TestCode\TestOgre\OGREsdk\lib\debug\opt\RenderSystem_Direct3D11_d.lib;C:\TestCode\TestOgre\OGREdeps\lib\SDL2.lib;C:\TestCode\TestOgre\OGREdeps\lib\SDL2main.lib;C:\TestCode\TestOgre\OGREdeps\lib\debug\FreeImage_d.lib;C:\TestCode\TestOgre\OGREdeps\lib\debug\zziplib_d.lib;C:\TestCode\TestOgre\OGREdeps\lib\debug\zlib_d.lib;C:\TestCode\TestOgre\OGREdeps\lib\debug\freetype_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\TestCode\TestOgre\OGREsdk\include\OGRE\RenderSystems\GL3Plus;C:\TestCode\TestOgre\OGREdeps\include\SDL2;C:\TestCode\TestOgre\OGREsdk\include\OGRE\RenderSystems\Direct3D11;C:\TestCode\TestOgre\OGREdeps\include;C:\TestCode\TestOgre\OGREsdk\include\OIS;C:\TestCode\TestOgre\OGREsdk\include\OGRE;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>winmm.lib;imm32.lib;version.lib;msimg32.lib;C:\TestCode\TestOgre\OGREsdk\lib\release\OgreOverlay.lib;C:\TestCode\TestOgre\OGREsdk\lib\release\OgreMain.lib;C:\TestCode\TestOgre\OGREsdk\lib\release\OIS.lib;C:\TestCode\TestOgre\OGREsdk\lib\release\OgreHlmsPbs.lib;C:\TestCode\TestOgre\OGREsdk\lib\release\OgreHlmsUnlit.lib;C:\TestCode\TestOgre\OGREsdk\lib\release\opt\RenderSystem_GL3Plus.lib;C:\TestCode\TestOgre\OGREsdk\lib\release\opt\RenderSystem_Direct3D11.lib;C:\TestCode\TestOgre\OGREdeps\lib\SDL2.lib;C:\TestCode\TestOgre\OGREdeps\lib\SDL2main.lib;C:\TestCode\TestOgre\OGREdeps\lib\release\FreeImage.lib;C:\TestCode\TestOgre\OGREdeps\lib\release\zziplib.lib;C:\TestCode\TestOgre\OGREdeps\lib\release\zlib.lib;C:\TestCode\TestOgre\OGREdeps\lib\release\freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="basesystem.cpp" />
+    <ClCompile Include="cameracontroller.cpp" />
+    <ClCompile Include="f3dmultigraphicsgamestate.cpp" />
+    <ClCompile Include="f3dmultigraphicssystem.cpp" />
+    <ClCompile Include="f3dmultilogicgamestate.cpp" />
+    <ClCompile Include="forward3dgamestate.cpp" />
+    <ClCompile Include="gameentitymanager.cpp" />
+    <ClCompile Include="gameents\gamedirectionallight.cpp" />
+    <ClCompile Include="gameents\gameentity.cpp" />
+    <ClCompile Include="gameents\gameitem.cpp" />
+    <ClCompile Include="gameents\gameplane.cpp" />
+    <ClCompile Include="gameents\gamepointlight.cpp" />
+    <ClCompile Include="gameents\gamespotlight.cpp" />
+    <ClCompile Include="gameents\gametext.cpp" />
+    <ClCompile Include="gamestate.cpp" />
+    <ClCompile Include="graphicssystem.cpp" />
+    <ClCompile Include="logicsystem.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="osystem\staticpluginloader.cpp" />
+    <ClCompile Include="oterra\Hlms\OgreHlmsJsonTerra.cpp" />
+    <ClCompile Include="oterra\Hlms\OgreHlmsTerra.cpp" />
+    <ClCompile Include="oterra\Hlms\OgreHlmsTerraDatablock.cpp" />
+    <ClCompile Include="oterra\Hlms\PbsListener\OgreHlmsPbsTerraShadows.cpp" />
+    <ClCompile Include="oterra\terra.cpp" />
+    <ClCompile Include="oterra\terraincell.cpp" />
+    <ClCompile Include="oterra\terrashadowmapper.cpp" />
+    <ClCompile Include="othreading\messagequeuesystem.cpp" />
+    <ClCompile Include="outils\meshutils.cpp" />
+    <ClCompile Include="sdlinputhandler.cpp" />
+    <ClCompile Include="terraingamestate.cpp" />
+    <ClCompile Include="textblip\MovableText.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="basesystem.h" />
+    <ClInclude Include="cameracontroller.h" />
+    <ClInclude Include="definitions_types.h" />
+    <ClInclude Include="f3dmultigraphicsgamestate.h" />
+    <ClInclude Include="f3dmultigraphicssystem.h" />
+    <ClInclude Include="f3dmultilogicgamestate.h" />
+    <ClInclude Include="forward3dgamestate.h" />
+    <ClInclude Include="gameentity.h" />
+    <ClInclude Include="gameentitymanager.h" />
+    <ClInclude Include="gameents\gamedirectionallight.h" />
+    <ClInclude Include="gameents\gameentity.h" />
+    <ClInclude Include="gameents\gameitem.h" />
+    <ClInclude Include="gameents\gameplane.h" />
+    <ClInclude Include="gameents\gamepointlight.h" />
+    <ClInclude Include="gameents\gamespotlight.h" />
+    <ClInclude Include="gameents\gametext.h" />
+    <ClInclude Include="gamestate.h" />
+    <ClInclude Include="graphicssystem.h" />
+    <ClInclude Include="igamestate.h" />
+    <ClInclude Include="iinputlisteners.h" />
+    <ClInclude Include="logicsystem.h" />
+    <ClInclude Include="osystem\staticpluginloader.h" />
+    <ClInclude Include="oterra\Hlms\OgreHlmsJsonTerra.h" />
+    <ClInclude Include="oterra\Hlms\OgreHlmsTerra.h" />
+    <ClInclude Include="oterra\Hlms\OgreHlmsTerraDatablock.h" />
+    <ClInclude Include="oterra\Hlms\OgreHlmsTerraPrerequisites.h" />
+    <ClInclude Include="oterra\Hlms\PbsListener\OgreHlmsPbsTerraShadows.h" />
+    <ClInclude Include="oterra\terra.h" />
+    <ClInclude Include="oterra\terraincell.h" />
+    <ClInclude Include="oterra\terrashadowmapper.h" />
+    <ClInclude Include="othreading\messagequeuesystem.h" />
+    <ClInclude Include="othreading\mqmessages.h" />
+    <ClInclude Include="othreading\yieldtimer.h" />
+    <ClInclude Include="outils\meshutils.h" />
+    <ClInclude Include="sdlemulationlayer.h" />
+    <ClInclude Include="sdlinputhandler.h" />
+    <ClInclude Include="terraingamestate.h" />
+    <ClInclude Include="textblip\MovableText.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

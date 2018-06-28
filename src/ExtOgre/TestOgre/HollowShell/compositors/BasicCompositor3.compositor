@@ -1,0 +1,158 @@
+compositor_node Test3Node
+{
+	in 0 rt_renderwindow
+	
+	texture rtt				target_width_scaled 1.25 target_height_scaled 1.25 PF_A8R8G8B8
+
+	target rtt
+	{
+		pass clear
+		{
+			colour_value 0.2 0.4 0.6 1
+		}
+
+//		VANILLA WORKING
+//		pass render_scene
+//		{
+//			overlays	on
+//			shadows		ShadowMapDebuggingShadowNodeTEST
+//		}
+		
+		pass render_scene
+		{
+			visibility_mask 0x00000001
+			light_visibility_mask 0x00000001
+			rq_first	1
+			rq_last		3
+			
+			overlays	off
+			shadows		ShadowMapDebuggingShadowNodeTEST
+		}
+		
+		//pass render_scene
+		//{
+			//visibility_mask 0x00000002
+			//light_visibility_mask 0x00000004
+			//camera "UI Camera"
+			//rq_first	2
+			//rq_last		3
+		//}
+		
+		//Render overlays last on the entire screen
+		pass render_scene
+		{
+		
+			rq_first	3
+			rq_last		255
+			
+			overlays	on
+		}
+	}
+	
+	//Copy results to render window
+	target rt_renderwindow
+	{
+		pass clear
+		{
+			colour_value 0.2 0.4 0.6 1
+		}
+		
+		pass render_quad
+		{
+			material Ogre/Copy/4xFP32
+			input 0 rtt
+		}
+	}
+	out 0 rt_renderwindow
+}
+
+workspace Test3Workspace
+{
+    connect_output Test3Node 0
+}
+
+abstract target cubemap_target_shadow
+{
+	pass clear { colour_value 1 1 1 1 }
+	pass render_scene
+	{
+		camera_cubemap_reorient true
+	}
+}
+
+compositor_node_shadow ShadowMapDebuggingShadowNodeTEST
+{
+	technique pssm
+
+//	texture atlas 2048 7168 PF_D32_FLOAT no_fsaa
+//	texture atlas 4096 14336 PF_D32_FLOAT no_fsaa
+//	texture atlas 8192 8192 PF_FLOAT32_R no_fsaa
+//	texture atlas 10240 10240 PF_D32_FLOAT no_fsaa
+	texture atlas 2048 2048 PF_D32_FLOAT no_fsaa
+	texture tmpCubemap 1024 1024 PF_FLOAT32_R cubemap no_fsaa
+
+//Suppose the shadow distance setting is set at 100m.
+//With a pssm_lambda of 0 and 4 splits, the splits will be evenly distributed to cover ranges [0;25), [25; 50), [50; 75), and [75;100).
+//With a pssm_lambda of 1; the splits will be exponentially distributed to cover ranges [0; 0.1), [0.1;10), [10; 30), [30; 100). (I didn't calculate these numbers accurately, but you get the idea).
+//This is based on the assumption that further away splits require less quality than close splits. However an exponential distribution may be too much. For example the first split covering the range [0; 0.1) is too exaggerated. So the lambda factor acts like a slider to set a middle ground between both distributions.
+	num_splits		3
+//	pssm_lambda		0.95 // ORIG :: this 
+	pssm_lambda		0.5
+	shadow_map 0 atlas uv 0.0 0.000000000000000 1.0 0.285714285714286 light 0 split 0
+	shadow_map 1 atlas uv 0.0 0.285714285714286 0.5 0.142857142857143 light 0 split 1
+	shadow_map 2 atlas uv 0.5 0.285714285714286 0.5 0.142857142857143 light 0 split 2
+
+	technique focused
+	shadow_map 3 atlas uv 0.0 0.428571428571429 1.0 0.285714285714286 light 1
+	shadow_map 4 atlas uv 0.0 0.714285714285714 1.0 0.285714285714286 light 2
+
+	target atlas
+	{
+		pass clear
+		{
+			colour_value 1 1 1 1
+		}
+	}
+
+	shadow_map_target_type directional
+	{
+		shadow_map 0 1 2
+		{
+			pass render_scene
+			{
+			}
+		}
+	}
+
+	shadow_map_target_type directional spot
+	{
+		shadow_map 3 4
+		{
+			pass render_scene
+			{
+			}
+		}
+	}
+
+	shadow_map_target_type point
+	{
+		shadow_map_repeat 3 4
+		{
+			target tmpCubemap +X : cubemap_target_shadow {}
+			target tmpCubemap -X : cubemap_target_shadow {}
+			target tmpCubemap +Y : cubemap_target_shadow {}
+			target tmpCubemap -Y : cubemap_target_shadow {}
+			target tmpCubemap +Z : cubemap_target_shadow {}
+			target tmpCubemap -Z : cubemap_target_shadow {}
+
+			shadow_map
+			{
+				pass render_quad
+				{
+					material Ogre/DPSM/CubeToDpsm
+					input 0 tmpCubemap
+				}
+			}
+		}
+	}
+}
